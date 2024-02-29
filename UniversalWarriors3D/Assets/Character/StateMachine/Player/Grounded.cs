@@ -9,7 +9,7 @@ public class Grounded : PlayerBaseState
     private readonly int EquipHash = Animator.StringToHash("Equip");
     private readonly int UnEquipHash = Animator.StringToHash("UnEquip");
     public float AnimatorDampTime = 0.05f;
-    private float freeLookValue = 1;
+    private float freeLookValue;
     private float freeLookMoveSpeed;
     private bool shouldFade;
     private const float CrossFadeDuration = 0.1f;
@@ -121,10 +121,16 @@ public class Grounded : PlayerBaseState
         Vector3 movement = CalculateMovement().normalized;        
         Move(movement * freeLookMoveSpeed, deltaTime);
 
-        if(GetNormalizedTime(stateMachine.Animator,"Stance") > 1f)
+        if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
         {
             stateMachine.Animator.SetFloat("isEquiped",
-                (stateMachine.InputReader.FightingStance) ? 1 : 0); 
+                (stateMachine.InputReader.FightingStance) ? 1 : 0);
+            stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        }
+        else if(GetNormalizedTime(stateMachine.Animator,"Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f )
+        {
+            stateMachine.Animator.SetFloat("isEquiped",
+                (stateMachine.InputReader.FightingStance) ? 1 : 0);
             stateMachine.Animator.Play(FreeLookBlendTreeHash);
         }
 
@@ -149,26 +155,34 @@ public class Grounded : PlayerBaseState
 
         //freeLookValue = Mathf.Clamp(
         //    stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
-        float magnitude = Mathf.Clamp(stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
+        //float magnitude = Mathf.Clamp(stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
+        float magnitude = stateMachine.InputReader.MovementValue.magnitude;
+        //Debug.Log($"Magnitude: {magnitude}");
         if (magnitude > 0 && magnitude < .3f)
         {
+            Debug.Log("slight tilt");
             freeLookValue = .5f;
             freeLookMoveSpeed = 2f;
         }
-        else if (magnitude > .3f && magnitude < 6f)
+        
+        if (magnitude > .3f && magnitude < .6f)
         {
+            Debug.Log("medium tilt");
             freeLookValue = 1;
             freeLookMoveSpeed = 3f;
         }
-        else if (magnitude > 6f)
+                
+        if (magnitude > .6f)
         {
+            Debug.Log("Full tilt");
             freeLookValue = 1.5f;
             freeLookMoveSpeed = 5f;
         }
-        else
-        {
-            freeLookValue = 0;
-        }
+        //Debug.Log($"FreeLook Value: {freeLookValue}");
+        //else
+        //{
+        //    freeLookValue = 0;
+        //}
 
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, freeLookValue, AnimatorDampTime, deltaTime);
 

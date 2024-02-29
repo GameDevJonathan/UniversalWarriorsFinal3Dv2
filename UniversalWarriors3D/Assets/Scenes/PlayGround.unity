@@ -9371,6 +9371,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI_Armor Soldier (X1)Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 3280997254524102546, guid: 9770a07ae06dd344f8b268d86febc126,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9963,7 +9968,7 @@ MonoBehaviour:
   <isAiming>k__BackingField: 0
   <SelectionValue>k__BackingField: {x: 0, y: 0}
   Targeting: 0
-  <FightingStance>k__BackingField: 0
+  FightingStance: 0
   <FightingStanceCoolDown>k__BackingField: 0.3
   <FightingStanceCoolDownTime>k__BackingField: 0
   <equipingWeapon>k__BackingField: 0
@@ -12407,7 +12412,7 @@ Transform:
   m_GameObject: {fileID: 6487362149839512169}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000834465, y: 0, z: 12.8549595}
+  m_LocalPosition: {x: 0, y: 0, z: 12.8549595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

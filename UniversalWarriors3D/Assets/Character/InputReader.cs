@@ -46,7 +46,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     #region Weapons
     [field: Space]
     [field: Header("Weapons")]
-    [field: SerializeField] public bool FightingStance { get; private set; } = false;
+    [SerializeField] public bool FightingStance; 
     [field: SerializeField] public float FightingStanceCoolDown { get; private set; } = .3f;
     [field: SerializeField] public float FightingStanceCoolDownTime { get; private set; } = 0;
     [field: SerializeField] public bool equipingWeapon { get; private set; } = false;
