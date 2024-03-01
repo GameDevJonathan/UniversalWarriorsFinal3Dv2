@@ -14,7 +14,7 @@ public class Grounded : PlayerBaseState
     private bool shouldFade;
     private const float CrossFadeDuration = 0.1f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
-    
+
 
 
     public Grounded(PlayerStateMachine stateMachine, bool shouldFade = false) : base(stateMachine)
@@ -25,12 +25,12 @@ public class Grounded : PlayerBaseState
 
     public override void Enter()
     {
-        
+
         if (stateMachine.rig != null)
         {
             stateMachine.rig.weight = 0f;
         }
-       
+
 
         if (!shouldFade)
             stateMachine.Animator.Play(FreeLookBlendTreeHash);
@@ -47,7 +47,7 @@ public class Grounded : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        var hitData = stateMachine.EnviromentScaner.ObstacleCheck();        
+        var hitData = stateMachine.EnviromentScaner.ObstacleCheck();
 
         if (grounded)
         {
@@ -58,8 +58,8 @@ public class Grounded : PlayerBaseState
                 {
                     foreach (var action in stateMachine.ParkourActions)
                     {
-                        if(action.CheckIfPossible(hitData,stateMachine.transform))
-                        Debug.Log(action.CheckIfPossible(hitData, stateMachine.transform));
+                        if (action.CheckIfPossible(hitData, stateMachine.transform))
+                            Debug.Log(action.CheckIfPossible(hitData, stateMachine.transform));
                         if (action.CheckIfPossible(hitData, stateMachine.transform))
                         {
                             Debug.Log("Obstacle Found" + hitData.forwardHit.transform.name);
@@ -118,7 +118,7 @@ public class Grounded : PlayerBaseState
         #endregion
 
         #region Movement
-        Vector3 movement = CalculateMovement().normalized;        
+        Vector3 movement = CalculateMovement().normalized;
         Move(movement * freeLookMoveSpeed, deltaTime);
 
         if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
@@ -127,7 +127,7 @@ public class Grounded : PlayerBaseState
                 (stateMachine.InputReader.FightingStance) ? 1 : 0);
             stateMachine.Animator.Play(FreeLookBlendTreeHash);
         }
-        else if(GetNormalizedTime(stateMachine.Animator,"Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f )
+        else if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
         {
             stateMachine.Animator.SetFloat("isEquiped",
                 (stateMachine.InputReader.FightingStance) ? 1 : 0);
@@ -147,7 +147,7 @@ public class Grounded : PlayerBaseState
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
-            
+
             stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0, AnimatorDampTime, deltaTime);
             return;
         }
@@ -155,8 +155,8 @@ public class Grounded : PlayerBaseState
 
         //freeLookValue = Mathf.Clamp(
         //    stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
-        //float magnitude = Mathf.Clamp(stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
-        float magnitude = stateMachine.InputReader.MovementValue.magnitude;
+        float magnitude = Mathf.Clamp(stateMachine.InputReader.MovementValue.magnitude, 0f, 1f);
+        //float magnitude = stateMachine.InputReader.MovementValue.magnitude;
         //Debug.Log($"Magnitude: {magnitude}");
         if (magnitude > 0 && magnitude < .3f)
         {
@@ -164,25 +164,21 @@ public class Grounded : PlayerBaseState
             freeLookValue = .5f;
             freeLookMoveSpeed = 2f;
         }
-        
-        if (magnitude > .3f && magnitude < .6f)
+        else if (magnitude > .3f && magnitude < .6f)
         {
             Debug.Log("medium tilt");
             freeLookValue = 1;
             freeLookMoveSpeed = 3f;
         }
-                
-        if (magnitude > .6f)
+        else if (magnitude > .6f)
         {
             Debug.Log("Full tilt");
             freeLookValue = 1.5f;
             freeLookMoveSpeed = 5f;
+        } else
+        {
+            freeLookValue = 0;
         }
-        //Debug.Log($"FreeLook Value: {freeLookValue}");
-        //else
-        //{
-        //    freeLookValue = 0;
-        //}
 
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, freeLookValue, AnimatorDampTime, deltaTime);
 
@@ -235,11 +231,11 @@ public class Grounded : PlayerBaseState
         {
 
             case false:
-                stateMachine.Animator.Play(EquipHash);
+                stateMachine.Animator.CrossFadeInFixedTime(EquipHash, CrossFadeDuration);
                 break;
 
             case true:
-                stateMachine.Animator.Play(UnEquipHash);
+                stateMachine.Animator.CrossFadeInFixedTime(UnEquipHash, CrossFadeDuration);
                 break;
         }
     }
