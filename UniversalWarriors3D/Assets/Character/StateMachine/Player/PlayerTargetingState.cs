@@ -58,7 +58,7 @@ public class PlayerTargetingState : PlayerBaseState
         
         delta = Vector2.zero - stateMachine.InputReader.MovementValue;
         angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
-        angle -= 180;
+        angle += 270;
         Debug.Log($"JoystickAngle: {angle}");
 
         FaceTarget();
