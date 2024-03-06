@@ -23,12 +23,13 @@ public class AttackingState : PlayerBaseState
     }
     public override void Tick(float deltaTime)
     {
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
-
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");        
+        
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
             if (stateMachine.InputReader.AttackButtonPressed)
             {
+                Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
             }
 

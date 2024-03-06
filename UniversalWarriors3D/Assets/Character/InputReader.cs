@@ -26,7 +26,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool Modified;
 
     public bool JumpButtonPressed => controls.Player.Jump.WasPressedThisFrame();
-    public bool AttackButtonPressed => controls.Player.Attack.WasPressedThisFrame();
+    public bool AttackButtonPressed => controls.Player.Melee.WasPressedThisFrame();
 
     [HideInInspector] public bool shoot;
     [HideInInspector] public bool charge;

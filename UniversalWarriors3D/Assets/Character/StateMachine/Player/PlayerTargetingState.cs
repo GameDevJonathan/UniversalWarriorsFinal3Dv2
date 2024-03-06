@@ -35,7 +35,7 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(TargetingHash, CrossFadeDuration);
         stateMachine._TargetCamUtil.SetActive(true);
         //Debug.Log("PlayerTargeting State:: Entered Targeting State");        
-        stateMachine.rig.weight = .6f;
+        //stateMachine.rig.weight = .6f;
         stateMachine.InputReader.CancelEvent += OnCancel;
         stateMachine.InputReader.DodgeEvent += OnDodge;
     }
@@ -51,14 +51,15 @@ public class PlayerTargetingState : PlayerBaseState
 
         stateMachine.Targeter.CycleTarget();
 
-        Vector3 movement = TargetedMovement();
+        Vector3 movement = TargetedMovement().normalized;
 
         Move(movement * stateMachine.LockOnMovementSpeed, deltaTime);
 
         
         delta = Vector2.zero - stateMachine.InputReader.MovementValue;
         angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
-        angle += 180;
+        angle -= 180;
+        Debug.Log($"JoystickAngle: {angle}");
 
         FaceTarget();
 
@@ -76,24 +77,24 @@ public class PlayerTargetingState : PlayerBaseState
 
         #region Shooting Mechanics
 
-        if (stateMachine.InputReader.AttackButtonPressed)
-        {
-            ShotLevel(0, "BusterShot");
-        }
+        //if (stateMachine.InputReader.AttackButtonPressed)
+        //{
+        //    ShotLevel(0, "BusterShot");
+        //}
 
-        if (stateMachine.InputReader.mediumShot)
-        {
+        //if (stateMachine.InputReader.mediumShot)
+        //{
 
-            ShotLevel(1, "ChargedShot");
-            stateMachine.InputReader.mediumShot = false;
-        }
+        //    ShotLevel(1, "ChargedShot");
+        //    stateMachine.InputReader.mediumShot = false;
+        //}
 
-        if (stateMachine.InputReader.chargedShot)
-        {
-            ShotLevel(2, "MaxShot");
-            stateMachine.InputReader.chargedShot = false;
+        //if (stateMachine.InputReader.chargedShot)
+        //{
+        //    ShotLevel(2, "MaxShot");
+        //    stateMachine.InputReader.chargedShot = false;
 
-        }
+        //}
         #endregion
     }
 
@@ -102,7 +103,7 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.Animator.SetFloat("StrafeMovement", 0);
         stateMachine._TargetCamUtil.SetActive(false);
         debugTransform.gameObject.SetActive(false);
-        stateMachine.rig.weight = 0f;
+        //stateMachine.rig.weight = 0f;
         stateMachine.InputReader.Targeting = (dodging) ? true : false;        
         stateMachine.InputReader.CancelEvent -= OnCancel;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
@@ -110,16 +111,43 @@ public class PlayerTargetingState : PlayerBaseState
 
     private void AnimatorValues()
     {
-        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.y);
-        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.x);
-        stateMachine.Animator.SetFloat("StrafeMovement", stateMachine.InputReader.MovementValue.magnitude);
+
+        #region unused code
+        //float forwardSpeed;
+        //float strafeSpeed;
+
+        //if(Mathf.Abs(stateMachine.InputReader.MovementValue.y) >= .05f)
+        //{
+        //    forwardSpeed = stateMachine.InputReader.MovementValue.normalized.y;
+        //    stateMachine.Animator.SetFloat("ForwardSpeed", forwardSpeed);
+        //}
+        //else
+        //{
+        //    stateMachine.Animator.SetFloat("ForwardSpeed", 0);
+        //}
+
+        //if (Mathf.Abs(stateMachine.InputReader.MovementValue.x) >= .05f)
+        //{
+        //    strafeSpeed = stateMachine.InputReader.MovementValue.normalized.x;
+        //    stateMachine.Animator.SetFloat("StrafingSpeed", strafeSpeed);
+        //}
+        //else
+        //{
+        //    stateMachine.Animator.SetFloat("StrafingSpeed", 0);
+        //}
+        #endregion
+
+
+        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y);
+        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x);
+        
     }
 
     public void OnCancel()
     {
         debugTransform.gameObject.SetActive(false);
         stateMachine.Targeter.Cancel();
-        //stateMachine.InputReader.ResetCamera();
+        stateMachine.InputReader.ResetCamera();
         dodging = false;
         stateMachine.SwitchState(new Grounded(stateMachine));
     }
@@ -147,8 +175,9 @@ public class PlayerTargetingState : PlayerBaseState
     private void RayCastDebug()
     {
         Vector3 distance = stateMachine.Targeter.CurrentTarget.transform.position - stateMachine.FirePoint.position;
+        //Vector3 distance = stateMachine.Targeter.CurrentTarget.transform.position - stateMachine.transform.position;
 
-        float dist = Vector3.Distance(stateMachine.Targeter.CurrentTarget.transform.position, stateMachine.FirePoint.position);
+        float dist = Vector3.Distance(stateMachine.Targeter.CurrentTarget.transform.position, stateMachine.FirePoint.transform.position);
 
 
         Vector3 faceTarget = distance;
@@ -158,10 +187,12 @@ public class PlayerTargetingState : PlayerBaseState
 
         Debug.DrawRay(stateMachine.FirePoint.transform.position,
             stateMachine.FirePoint.transform.forward * dist, Color.yellow);
+        //Debug.DrawRay(stateMachine.transform.position,
+        //    stateMachine.transform.forward * dist, Color.yellow);
 
         distance = distance.normalized;
 
-        if (Physics.Raycast(stateMachine.FirePoint.position, distance, out LockOnTargetHit,
+        if (Physics.Raycast(stateMachine.FirePoint.transform.position, distance, out LockOnTargetHit,
             dist, LockOnTargetMask))
         {
             //Debug.Log("Hit");
