@@ -7,11 +7,13 @@ public class AttackingState : PlayerBaseState
 {
     Attacks attack;
     float previousFrameTime;
+    private bool targetLock;
 
-    public AttackingState(PlayerStateMachine stateMachine, int AttackIndex) : base(stateMachine)
+    public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
     {
         attack = stateMachine.Attacks[AttackIndex];
         stateMachine.InputReader.FightingStance = true;
+        this.targetLock = targetLock;
     }
 
     public override void Enter()
@@ -23,8 +25,8 @@ public class AttackingState : PlayerBaseState
     }
     public override void Tick(float deltaTime)
     {
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");        
-        
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
+
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
             if (stateMachine.InputReader.AttackButtonPressed)
@@ -40,7 +42,11 @@ public class AttackingState : PlayerBaseState
             {
                 stateMachine.Animator.SetFloat("isEquiped",
                     (stateMachine.InputReader.FightingStance) ? 1 : 0);
-                stateMachine.SwitchState(new Grounded(stateMachine, true));
+
+                if (targetLock)
+                    stateMachine.SwitchState(new PlayerTargetingState(stateMachine,true));
+                else
+                    stateMachine.SwitchState(new Grounded(stateMachine, true));
                 return;
             }
         }
@@ -65,7 +71,7 @@ public class AttackingState : PlayerBaseState
 
         if (normalizedTime < attack.ComboAttackTime) { return; }
 
-        stateMachine.SwitchState(new AttackingState(stateMachine, attack.ComboStateIndex));
+        stateMachine.SwitchState(new AttackingState(stateMachine, attack.ComboStateIndex,targetLock));
     }
 
 

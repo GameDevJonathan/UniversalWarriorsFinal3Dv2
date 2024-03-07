@@ -13,8 +13,6 @@ public class PlayerTargetingState : PlayerBaseState
     private float angle;
     private bool dodging = false;
 
-
-
     //shot values
     private float _lastFireTime = -1f;
     private float _coolDownTime = .1f;
@@ -31,13 +29,14 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Enter()
     {
-        
+
         stateMachine.Animator.CrossFadeInFixedTime(TargetingHash, CrossFadeDuration);
         stateMachine._TargetCamUtil.SetActive(true);
         //Debug.Log("PlayerTargeting State:: Entered Targeting State");        
         //stateMachine.rig.weight = .6f;
         stateMachine.InputReader.CancelEvent += OnCancel;
         stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.MeleeEvent += OnMelee;
     }
 
 
@@ -55,10 +54,10 @@ public class PlayerTargetingState : PlayerBaseState
 
         Move(movement * stateMachine.LockOnMovementSpeed, deltaTime);
 
-        
+
         delta = Vector2.zero - stateMachine.InputReader.MovementValue;
         angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
-        angle += 270;
+        angle += 180;
         Debug.Log($"JoystickAngle: {angle}");
 
         FaceTarget();
@@ -75,27 +74,7 @@ public class PlayerTargetingState : PlayerBaseState
 
         }
 
-        #region Shooting Mechanics
 
-        //if (stateMachine.InputReader.AttackButtonPressed)
-        //{
-        //    ShotLevel(0, "BusterShot");
-        //}
-
-        //if (stateMachine.InputReader.mediumShot)
-        //{
-
-        //    ShotLevel(1, "ChargedShot");
-        //    stateMachine.InputReader.mediumShot = false;
-        //}
-
-        //if (stateMachine.InputReader.chargedShot)
-        //{
-        //    ShotLevel(2, "MaxShot");
-        //    stateMachine.InputReader.chargedShot = false;
-
-        //}
-        #endregion
     }
 
     public override void Exit()
@@ -104,9 +83,10 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine._TargetCamUtil.SetActive(false);
         debugTransform.gameObject.SetActive(false);
         //stateMachine.rig.weight = 0f;
-        stateMachine.InputReader.Targeting = (dodging) ? true : false;        
+        stateMachine.InputReader.Targeting = (dodging) ? true : false;
         stateMachine.InputReader.CancelEvent -= OnCancel;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.MeleeEvent -= OnMelee;
     }
 
     private void AnimatorValues()
@@ -140,16 +120,21 @@ public class PlayerTargetingState : PlayerBaseState
 
         stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y);
         stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x);
-        
+
     }
 
+
+
+
+
+    #region Input events
     public void OnCancel()
     {
         debugTransform.gameObject.SetActive(false);
         stateMachine.Targeter.Cancel();
         stateMachine.InputReader.ResetCamera();
         dodging = false;
-        stateMachine.SwitchState(new Grounded(stateMachine));
+        stateMachine.SwitchState(new Grounded(stateMachine,true));
     }
 
     public void OnDodge()
@@ -158,10 +143,20 @@ public class PlayerTargetingState : PlayerBaseState
         Vector2 move = stateMachine.InputReader.MovementValue;
         Debug.Log($"Dodging: {dodging}");
         dodging = true;
-        stateMachine.SwitchState(new PlayerDodgingState(stateMachine,move,angle, dodging));
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, move, angle, dodging));
         return;
     }
 
+    public void OnMelee()
+    {
+        dodging = true;
+        stateMachine.SwitchState(new AttackingState(stateMachine,0, dodging));
+        return;
+    }
+
+    #endregion
+
+    #region RayCast and Movement
     private Vector3 TargetedMovement()
     {
         Vector3 movement = new Vector3();
@@ -202,30 +197,7 @@ public class PlayerTargetingState : PlayerBaseState
             debugTransform.position = LockOnTargetHit.point;
         }
     }
+    #endregion
 
-    private void ShotLevel(int level, string sfx)
-    {
-        if (Time.time > _lastFireTime)
-        {
-            var shot =
-            MonoBehaviour.Instantiate(stateMachine.BusterShot[level], stateMachine.FirePoint.transform.position,
-                stateMachine.FirePoint.rotation);
 
-            switch (level)
-            {
-                case 0:
-                    shot.name = "Normal";
-                    break;
-                case 1:
-                    shot.name = "Medium";
-                    break;
-                case 2:
-                    shot.name = "Charged";
-                    break;
-            }
-            
-            UniversalAudioPlayer.PlayInGameSFX(sfx);
-            _lastFireTime = Time.time + _coolDownTime;
-        }
-    }
 }

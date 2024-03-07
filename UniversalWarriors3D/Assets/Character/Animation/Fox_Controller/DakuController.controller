@@ -806,7 +806,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack3
-  m_Speed: 1
+  m_Speed: 0.85
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
@@ -819,7 +819,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 269b181afebfe774abba1589f17c3932, type: 2}
+  m_Motion: {fileID: 8993902097722301239, guid: 5df97c8918e77ac42bda32adf0869d56,
+    type: 3}
   m_Tag: Attack
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1241,15 +1242,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.22
-  endDamage: 0.4
+  startDamage: 0.35
+  endDamage: 0.52
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - LeftLowerArm
+  - LeftLowerLeg
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
