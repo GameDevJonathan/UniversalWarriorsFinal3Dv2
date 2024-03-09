@@ -4201,7 +4201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 5
+  selectedToolbar: 10
   _isDead: 1
   _currentHealth: 0
   isImmortal: 1
@@ -4276,7 +4276,7 @@ MonoBehaviour:
   checkGroundDistance: 0.3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2097153
   useAutoCrouch: 0
   headDetectStart: 0.4
   headDetectHeight: 0.4
@@ -4316,7 +4316,7 @@ MonoBehaviour:
   _changeWaypointDistance: 0
   _invertWaypointsOrder: 0
   _randomStartingPoint: 1
-  _randomWaypoint: 1
+  _randomWaypoint: 0
   startUsingSpecificWaypoint: 0
   startWaypointIndex: 0
   startUsingNearWayPoint: 0
@@ -10743,6 +10743,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaypointArea
       objectReference: {fileID: 0}
+    - target: {fileID: 657714576870291424, guid: a69dd99fdfa2a0448a2526b2f66b5264,
+        type: 3}
+      propertyPath: editMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 657714576870291425, guid: a69dd99fdfa2a0448a2526b2f66b5264,
         type: 3}
       propertyPath: m_RootOrder
@@ -10798,6 +10803,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 657714577427490261, guid: a69dd99fdfa2a0448a2526b2f66b5264,
+        type: 3}
+      propertyPath: subPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 657714577427490262, guid: a69dd99fdfa2a0448a2526b2f66b5264,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -10808,6 +10818,9 @@ PrefabInstance:
     - {fileID: 657714576352625499, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
     - {fileID: 657714575707667554, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
     - {fileID: 657714576745254247, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
+    - {fileID: 657714576235604180, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
+    - {fileID: 657714576118604466, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
+    - {fileID: 657714576634381746, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a69dd99fdfa2a0448a2526b2f66b5264, type: 3}

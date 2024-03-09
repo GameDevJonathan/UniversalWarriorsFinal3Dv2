@@ -23,11 +23,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 455
-    y: 195
+    x: 570
+    y: 100
     width: 150
     height: 30
-  positionRect: {x: 455, y: 195}
+  positionRect: {x: 570, y: 100}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 0, a: 1}
@@ -80,14 +80,14 @@ MonoBehaviour:
   canEditName: 1
   canEditColor: 1
   isOpen: 1
-  isSelected: 1
+  isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 695
-    y: 200
+    x: 810
+    y: 105
     width: 150
     height: 62
-  positionRect: {x: 695, y: 200}
+  positionRect: {x: 810, y: 105}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.042452812, g: 1, b: 0.078183584, a: 1}
@@ -106,17 +106,17 @@ MonoBehaviour:
     parentState: {fileID: -4909257666395265469}
     trueRect:
       serializedVersion: 2
-      x: 685
-      y: 230
+      x: 800
+      y: 135
       width: 10
       height: 10
     falseRect:
       serializedVersion: 2
-      x: 845
-      y: 240
+      x: 960
+      y: 145
       width: 10
       height: 10
-    selectedTrue: 1
+    selectedTrue: 0
     selectedFalse: 0
     trueSideRight: 0
     falseSideRight: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fc604039227434d8b4e63ebc5e74a5, type: 3}
   m_Name: TestBehavior
   m_EditorClassIdentifier: 
-  selectedNode: {fileID: -4909257666395265469}
+  selectedNode: {fileID: 3691480983412673652}
   wantConnection: 0
   connectionNode: {fileID: 0}
   showProperties: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 4185670062659393564}
   - {fileID: -4909257666395265469}
   - {fileID: 3691480983412673652}
-  panOffset: {x: -135, y: 95}
+  panOffset: {x: 455, y: 195}
   overNode: 0
   actions:
   - {fileID: 0}
@@ -176,14 +176,14 @@ MonoBehaviour:
   canEditName: 1
   canEditColor: 1
   isOpen: 0
-  isSelected: 0
+  isSelected: 1
   nodeRect:
     serializedVersion: 2
-    x: 685
-    y: 325
+    x: 800
+    y: 230
     width: 150
     height: 30
-  positionRect: {x: 685, y: 325}
+  positionRect: {x: 800, y: 230}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.023584902, g: 0.5575568, b: 1, a: 1}
@@ -221,11 +221,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 455
-    y: 295
+    x: 570
+    y: 200
     width: 150
     height: 30
-  positionRect: {x: 455, y: 295}
+  positionRect: {x: 570, y: 200}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 1, a: 1}
