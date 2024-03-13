@@ -32,7 +32,6 @@ public class PlayerJumpState : PlayerBaseState
     }
     public override void Tick(float deltaTime)
     {
-        //Debug.Log($"Jump State::{stateMachine.WallRun.CheckForGround()}");
 
 
         Vector3 movement = CalculateMovement();
@@ -57,12 +56,25 @@ public class PlayerJumpState : PlayerBaseState
             if(stateMachine.InputReader.MovementValue.y > 0)
             {
                 Debug.Log("Can Enter Wall Run State");
-                stateMachine.SwitchState(new PlayerWallHang(stateMachine));
+                stateMachine.SwitchState(new PlayerWallRunning(stateMachine));
                 return;
-
             }
         }
-        
+
+
+        if (stateMachine.WallRun.AboveGround() && stateMachine.WallRun.HItWallForward())
+        {
+            Debug.Log(stateMachine.WallRun.HItWallForward());
+            //Debug.Log(stateMachine.WallRun.AboveGround());
+
+            if (stateMachine.InputReader.MovementValue.y > 0)
+            {
+                Debug.Log("Can Enter Wall Run State");
+                stateMachine.SwitchState(new PlayerWallHang(stateMachine));
+                return;
+            }
+        }
+
     }
 
     public override void Exit()

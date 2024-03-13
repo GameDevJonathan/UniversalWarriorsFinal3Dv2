@@ -160,22 +160,20 @@ public class Grounded : PlayerBaseState
         //Debug.Log($"Magnitude: {magnitude}");
         if (magnitude > 0 && magnitude < .3f)
         {
-            Debug.Log("slight tilt");
             freeLookValue = .5f;
             freeLookMoveSpeed = 2f;
         }
         else if (magnitude > .3f && magnitude < .6f)
         {
-            Debug.Log("medium tilt");
             freeLookValue = 1;
             freeLookMoveSpeed = 3f;
         }
         else if (magnitude > .6f)
         {
-            Debug.Log("Full tilt");
             freeLookValue = 1.5f;
             freeLookMoveSpeed = 5f;
-        } else
+        }
+        else
         {
             freeLookValue = 0;
         }
@@ -202,6 +200,7 @@ public class Grounded : PlayerBaseState
 
     public void OnMelee()
     {
+        stateMachine.Targeter.SelectClosestTarget();
         stateMachine.SwitchState(new AttackingState(stateMachine, 0));
         return;
     }

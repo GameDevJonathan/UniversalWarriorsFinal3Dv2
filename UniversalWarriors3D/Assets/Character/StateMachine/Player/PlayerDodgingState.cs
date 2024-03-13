@@ -26,35 +26,37 @@ public class PlayerDodgingState : PlayerBaseState
     {
         Debug.Log(angle);
 
-
-
-
-        if (dodgeInput == Vector2.zero)
+        if(dodgeInput == Vector2.zero && angle == 0)
+        {
             setAnimProperties(3);
+            return;
+        }
+
+
 
 
         /*if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 315))*/ // right quadrent
-        if ((angle <= 45 || angle >= 315)) // right quadrent
+        if ((angle <= 45 || angle >= 315)) // up quardrent
         {
-            setAnimProperties(4);//dodging right
+            setAnimProperties(1);//dodging forward
         }
         else
 
-        if (angle > 45 && angle < 135) // forward quadrent
+        if (angle > 45 && angle < 135) // right quadrent
         {
-            setAnimProperties(1);//
+            setAnimProperties(2);// dodge right
         }
         else
 
-        if (angle > 135 && angle < 225) //left quadrent
+        if (angle > 135 && angle < 225) //down quadrent
         {
-            setAnimProperties(2);//
+            setAnimProperties(3);// dodge back
         }
         else
 
-        if (angle > 225 && angle < 315) // back quadrent
+        if ( angle == 0 || (angle > 225 && angle < 315)) // left quadrent
         {
-            setAnimProperties(3);//
+            setAnimProperties(4);// dodge left
         }
 
         //if (dodgingInput.y < -.3f && (dodgingInput.x > -.4f && dodgingInput.x < .4f))
@@ -94,9 +96,9 @@ public class PlayerDodgingState : PlayerBaseState
 
     /// <summary>
     /// Set animation Roll 1: Forward |  
-    ///  2: Left |
+    ///  2: Right |
     ///  3: Back |
-    ///  4: Right
+    ///  4: Left
     /// </summary>
     /// 
     /// 
@@ -107,14 +109,14 @@ public class PlayerDodgingState : PlayerBaseState
             case 1: //forard
                 stateMachine.Animator.CrossFadeInFixedTime(DodgeForwardHash, CrossFadeDuration);
                 break;
-            case 2: //Left
-                stateMachine.Animator.CrossFadeInFixedTime(DodgeLeftHash, CrossFadeDuration);
+            case 2: //Right
+                stateMachine.Animator.CrossFadeInFixedTime(DodgeRightHash, CrossFadeDuration);
                 break;
-            case 3:
+            case 3: //Down
                 stateMachine.Animator.CrossFadeInFixedTime(DodgeBackHash, CrossFadeDuration);
                 break;
-            case 4:
-                stateMachine.Animator.CrossFadeInFixedTime(DodgeRightHash, CrossFadeDuration);
+            case 4: //Left
+                stateMachine.Animator.CrossFadeInFixedTime(DodgeLeftHash, CrossFadeDuration);
                 break;
         }        
         stateMachine.Animator.applyRootMotion = true;

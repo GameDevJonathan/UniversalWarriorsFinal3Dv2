@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class AttackingState : PlayerBaseState
@@ -8,30 +9,37 @@ public class AttackingState : PlayerBaseState
     Attacks attack;
     float previousFrameTime;
     private bool targetLock;
+    private int attackIndex;
 
     public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
     {
         attack = stateMachine.Attacks[AttackIndex];
         stateMachine.InputReader.FightingStance = true;
         this.targetLock = targetLock;
+        this.attackIndex = AttackIndex;
+        
+        
     }
 
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
         stateMachine.Animator.applyRootMotion = true;
+        setIndex();
 
 
     }
     public override void Tick(float deltaTime)
     {
+        Move(deltaTime);
+        FaceTarget();
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
             if (stateMachine.InputReader.AttackButtonPressed)
             {
-                Debug.Log("Pressed attack button");
+                //Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
             }
 
@@ -71,7 +79,15 @@ public class AttackingState : PlayerBaseState
 
         if (normalizedTime < attack.ComboAttackTime) { return; }
 
+        stateMachine.Targeter.SelectClosestTarget();
+
         stateMachine.SwitchState(new AttackingState(stateMachine, attack.ComboStateIndex,targetLock));
+    }
+
+    private void setIndex()
+    {
+        //Debug.Log(attackIndex);
+        stateMachine.Index = attackIndex;
     }
 
 

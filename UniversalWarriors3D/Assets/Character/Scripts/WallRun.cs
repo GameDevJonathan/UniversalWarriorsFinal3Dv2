@@ -74,7 +74,8 @@ public class WallRun : MonoBehaviour
         Debug.DrawRay(orientation.position, -orientation.right * wallCheckDistance, Color.red);
         
         wallFront = Physics.Raycast(orientation.position, orientation.forward, out frontWallHit, wallCheckDistance, whatIsWall);
-        if(frontWallHit.transform) Debug.Log(frontWallHit.transform.name);
+        
+        //if(frontWallHit.transform) Debug.Log(frontWallHit.transform.name);
         Debug.DrawRay(orientation.position, orientation.forward * wallCheckDistance, Color.white); 
 
 
@@ -94,7 +95,15 @@ public class WallRun : MonoBehaviour
 
     public bool HitWall()
     {
-        if (lastJumpTime <=0 &&  wallFront/*(wallLeft || wallRight || wallFront)*/)
+        if (lastJumpTime <=0 &&  (wallLeft || wallRight))
+            return true;
+        else
+            return false;
+    }
+
+    public bool HItWallForward()
+    {
+        if (lastJumpTime <= 0 && (wallFront))
             return true;
         else
             return false;
@@ -173,14 +182,14 @@ public class WallRun : MonoBehaviour
         return ForceTopApply;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (debugWireSphere_Transform)
-        {
-            Gizmos.color = debugWireSphere_Color;
-            Gizmos.DrawWireSphere(debugWireSphere_Transform.position, debugWireSphere_Radius);
+    //private void OnDrawGizmos()
+    //{
+    //    if (debugWireSphere_Transform)
+    //    {
+    //        Gizmos.color = debugWireSphere_Color;
+    //        Gizmos.DrawWireSphere(debugWireSphere_Transform.position, debugWireSphere_Radius);
 
-        }
+    //    }
                 
-    }
+    //}
 }

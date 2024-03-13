@@ -2,6 +2,7 @@ using UnityEngine;
 using EasyAudioManager;
 using UnityEngine.Animations.Rigging;
 using System.Collections.Generic;
+using System.Dynamic;
 
 public class PlayerStateMachine : StateMachine
 {
@@ -15,6 +16,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public WallRun WallRun { get; private set; }
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
+    [SerializeField] public int Index = 0;
+
     [field: SerializeField] public List<ParkourAction> ParkourActions { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public EnviromentScaner EnviromentScaner { get; private set; }
@@ -180,7 +183,7 @@ public class PlayerStateMachine : StateMachine
             return;
         }
 
-        Debug.Log(body);
+        //Debug.Log(body);
 
         body.TryGetComponent<HighWayInteraction>(out HighWayInteraction highWayInteraction);
 
@@ -203,6 +206,12 @@ public class PlayerStateMachine : StateMachine
         MeshTrail = GetComponent<MeshTrail>();
     }
 
+    public Attacks SetAttackIndex()
+    {
+        //Debug.Log(Attacks[Index].AttackForce);
+        return Attacks[Index];
+        
+    }
 
 
 

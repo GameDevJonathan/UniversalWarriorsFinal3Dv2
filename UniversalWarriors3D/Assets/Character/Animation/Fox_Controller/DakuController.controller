@@ -1064,6 +1064,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 5576861441031082211}
     m_Position: {x: 480, y: 10, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6115178056156368544}
+    m_Position: {x: 240, y: 660, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1127,6 +1130,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &2496214674605536162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDamage: 0.4
+  endDamage: 0.53
+  damageMultiplier: 0
+  recoilID: 0
+  reactionID: 1
+  meleeAttackType: 0
+  damageType: 
+  bodyParts:
+  - RightLowerLeg
+  ignoreDefense: 0
+  activeRagdoll: 0
+  senselessTime: 0
+  resetAttackTrigger: 0
+  debug: 0
 --- !u!114 &3547391399406515507
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1435,6 +1464,34 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 56ec2dc6bec698641b31eb1c1db9d5a9, type: 3}
   m_Tag: Stance
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &6115178056156368544
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack4
+  m_Speed: 0.75
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours:
+  - {fileID: 2496214674605536162}
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 8993902097722301239, guid: 87f042d51ffc93946942a6636fba0de4,
+    type: 3}
+  m_Tag: Attack
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

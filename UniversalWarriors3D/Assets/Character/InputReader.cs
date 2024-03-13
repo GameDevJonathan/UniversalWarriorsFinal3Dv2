@@ -433,6 +433,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         _cinemachineTargetYaw = _InitialCameraYaw;
         _cinemachineTargetPitch = 0;
+        //StartCoroutine(SoftReset());
     }
 
     IEnumerator SoftReset()

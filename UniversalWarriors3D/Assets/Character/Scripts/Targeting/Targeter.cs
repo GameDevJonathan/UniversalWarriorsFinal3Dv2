@@ -9,6 +9,8 @@ public class Targeter : MonoBehaviour
     [SerializeField] private CinemachineTargetGroup targetGroup;
     [SerializeField] private List<Target> targets = new List<Target>();
     [SerializeField] public Target CurrentTarget;
+    [SerializeField] public Target QuickTarget;
+
     [SerializeField] public int index = 0;
     [SerializeField] private bool didCycle;
     [SerializeField] private PlayerStateMachine stateMachine;
@@ -22,10 +24,14 @@ public class Targeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log($"Target List Length: {targets.Count}");
-
-        //if (CurrentTarget)
-        //    Debug.Log($"CurrentTargetName: {CurrentTarget.transform.root.name}");
+        AnimatorStateInfo anim = stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
+        if (!stateMachine.Animator.IsInTransition(0)
+            && (anim.IsTag("Attack") || anim.IsTag("TakeDown"))
+            && QuickTarget != null)
+        {
+            if (anim.normalizedTime > 1)
+                QuickTarget = null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,10 +46,44 @@ public class Targeter : MonoBehaviour
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }
         targets.Remove(target);
-
+        stateMachine.InputReader.Targeting = false;
         RemoveTarget(target);
     }
 
+    public void SelectClosestTarget()
+    {
+        if (CurrentTarget != null) return;
+        if (targets.Count == 0) return;
+        float closestDistance = Mathf.Infinity;
+        Target closestTarget = null;
+
+        foreach(Target target in targets)
+        {
+            float currentDistance;
+            currentDistance = Vector3.Distance(transform.position, target.transform.position);
+
+            if(currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                closestTarget = target;
+            }
+        }
+
+        QuickTarget = closestTarget;
+        Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
+        Debug.Log($"look position {lookPos}");
+        lookPos.y = 0f;
+
+        float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
+        Debug.Log($"Distance {distance}");
+        if(distance < 6f)
+            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+    
+    
+    
+    
+    
     private void RemoveTarget(Target target)
     {
         if (CurrentTarget == target)

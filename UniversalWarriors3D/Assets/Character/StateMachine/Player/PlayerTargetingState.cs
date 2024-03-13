@@ -56,9 +56,23 @@ public class PlayerTargetingState : PlayerBaseState
 
 
         delta = Vector2.zero - stateMachine.InputReader.MovementValue;
-        angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
-        angle += 180;
-        Debug.Log($"JoystickAngle: {angle}");
+        delta.Normalize();
+        if (delta != Vector2.zero)
+        {
+            angle = Mathf.Atan2(delta.y, -delta.x) / Mathf.PI;
+            angle *= 180;
+            angle += 90f;
+            if (angle < 0)
+            {
+                angle += 360;
+            }
+        }
+        else
+        {
+            angle = 0f;
+        }
+
+        //Debug.Log($"JoystickAngle: {angle}");
 
         FaceTarget();
 
@@ -80,10 +94,12 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.Animator.SetFloat("StrafeMovement", 0);
-        stateMachine._TargetCamUtil.SetActive(false);
-        debugTransform.gameObject.SetActive(false);
-        //stateMachine.rig.weight = 0f;
         stateMachine.InputReader.Targeting = (dodging) ? true : false;
+        
+        stateMachine._TargetCamUtil.SetActive(dodging);
+        debugTransform.gameObject.SetActive(dodging);
+        //stateMachine.InputReader.ResetCamera();
+        //stateMachine.rig.weight = 0f;
         stateMachine.InputReader.CancelEvent -= OnCancel;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
@@ -132,9 +148,9 @@ public class PlayerTargetingState : PlayerBaseState
     {
         debugTransform.gameObject.SetActive(false);
         stateMachine.Targeter.Cancel();
-        stateMachine.InputReader.ResetCamera();
+        //stateMachine.InputReader.ResetCamera();
         dodging = false;
-        stateMachine.SwitchState(new Grounded(stateMachine,true));
+        stateMachine.SwitchState(new Grounded(stateMachine, true));
     }
 
     public void OnDodge()
@@ -150,7 +166,7 @@ public class PlayerTargetingState : PlayerBaseState
     public void OnMelee()
     {
         dodging = true;
-        stateMachine.SwitchState(new AttackingState(stateMachine,0, dodging));
+        stateMachine.SwitchState(new AttackingState(stateMachine, 0, dodging));
         return;
     }
 
@@ -192,7 +208,7 @@ public class PlayerTargetingState : PlayerBaseState
         {
             //Debug.Log("Hit");
             stateMachine._TargetCamUtil.transform.position = LockOnTargetHit.point;
-            stateMachine._TargetCamUtil.transform.LookAt(stateMachine.transform.position);
+            stateMachine._TargetCamUtil.transform.LookAt(Camera.main.transform);
             debugTransform.gameObject.SetActive(true);
             debugTransform.position = LockOnTargetHit.point;
         }

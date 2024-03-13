@@ -34,7 +34,7 @@ public class PlayerWallRunning : PlayerBaseState
             if (stateMachine.InputReader.JumpButtonPressed)
             {
                 stateMachine.ForceReceiver.Reset();
-                stateMachine.WallRun.ResetWallJumpTime();                
+                stateMachine.WallRun.ResetWallJumpTime(.5f);                
                 stateMachine.SwitchState(new WallJumpState(stateMachine));
                 return;
 
