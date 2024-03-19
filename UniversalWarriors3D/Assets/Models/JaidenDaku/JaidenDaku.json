@@ -5,7 +5,7 @@
             "Name": true,
             "SupportShaderSelect": true
         },
-        "Export Directory": "D:/CharacterCreatorCharacters/CharacterCreator",
+        "Export Directory": "D:/CharacterCreatorCharacters/CharacterCreator/JaidenDaku",
         "Object": {
             "JaidenDaku": {
                 "Generation": "RL_CC3_Plus",
@@ -624,7 +624,7 @@
                                     "Shader Name": "RLTongue",
                                     "Image": {
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "Gradient AO": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_GradAO.jpg"
@@ -763,7 +763,7 @@
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Head/Std_Skin_Head_SSSMap.jpg"
                                         },
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "Cheek Fore UpperLip Chin Mask": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Head/Std_Skin_Head_CFULCMask.tga"
@@ -960,7 +960,7 @@
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Body/Std_Skin_Body_SSSMap.png"
                                         },
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "MicroNormalMask": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Body/Std_Skin_Body_MicroNMask.jpg"
@@ -1124,7 +1124,7 @@
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Arm/Std_Skin_Arm_SSSMap.png"
                                         },
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "MicroNormalMask": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Arm/Std_Skin_Arm_MicroNMask.jpg"
@@ -1288,7 +1288,7 @@
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_SSSMap.png"
                                         },
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "MicroNormalMask": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroNMask.jpg"
@@ -1452,7 +1452,7 @@
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Nails/Std_Nails_SSSMap.jpg"
                                         },
                                         "MicroNormal": {
-                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Tongue/Std_Tongue/Std_Tongue_MicroN.png"
+                                            "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Skin_Leg/Std_Skin_Leg_MicroN.png"
                                         },
                                         "MicroNormalMask": {
                                             "Texture Path": "./textures/JaidenDaku/JaidenDaku/CC_Base_Body/Std_Nails/Std_Nails_MicroNMask.jpg"
@@ -2207,10 +2207,10 @@
                                             "Texture Path": "./textures/JaidenDaku/CC_Base_Eye/CC_Base_Eye/Std_Cornea_R/Std_Cornea_R_ScleraN.png"
                                         },
                                         "Gradient AO": {
-                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Upper_Teeth/Std_Upper_Teeth_GradAO.jpg"
+                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Lower_Teeth/Std_Lower_Teeth_GradAO.jpg"
                                         },
                                         "Gums Mask": {
-                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Upper_Teeth/Std_Upper_Teeth_GumsMask.jpg"
+                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Lower_Teeth/Std_Lower_Teeth_GumsMask.jpg"
                                         }
                                     },
                                     "Variable": {
@@ -2349,10 +2349,10 @@
                                             "Texture Path": "./textures/JaidenDaku/CC_Base_Eye/CC_Base_Eye/Std_Cornea_R/Std_Cornea_R_ScleraN.png"
                                         },
                                         "Gradient AO": {
-                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Upper_Teeth/Std_Upper_Teeth_GradAO.jpg"
+                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Lower_Teeth/Std_Lower_Teeth_GradAO.jpg"
                                         },
                                         "Gums Mask": {
-                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Upper_Teeth/Std_Upper_Teeth_GumsMask.jpg"
+                                            "Texture Path": "./textures/JaidenDaku/CC_Base_Teeth/CC_Base_Teeth/Std_Lower_Teeth/Std_Lower_Teeth_GumsMask.jpg"
                                         }
                                     },
                                     "Variable": {
@@ -3194,7 +3194,11 @@
                                         "padding c15w": 0.0
                                     }
                                 }
-                            },
+                            }
+                        }
+                    },
+                    "Chinstrap_Thick": {
+                        "Materials": {
                             "Beard_Transparency_0": {
                                 "Material Type": "Pbr",
                                 "MultiUV Index": 0,
@@ -3279,7 +3283,7 @@
                                         ]
                                     },
                                     "AO": {
-                                        "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_ao.jpg",
+                                        "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_ao.jpg",
                                         "Strength": 90.0,
                                         "Offset": [
                                             0.0,
@@ -3291,10 +3295,10 @@
                                         ]
                                     },
                                     "MetallicAlpha": {
-                                        "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_MetallicAlpha.png"
+                                        "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_MetallicAlpha.png"
                                     },
                                     "HDRP": {
-                                        "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_HDRP.png"
+                                        "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_HDRP.png"
                                     }
                                 },
                                 "Resource Textures": {},
@@ -3302,13 +3306,13 @@
                                     "Shader Name": "RLHair",
                                     "Image": {
                                         "Hair Root Map": {
-                                            "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_Hair Root Map.jpg"
+                                            "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_Hair Root Map.jpg"
                                         },
                                         "Hair ID Map": {
-                                            "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_Hair ID Map.png"
+                                            "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_Hair ID Map.png"
                                         },
                                         "Hair Flow Map": {
-                                            "Texture Path": "./textures/JaidenDaku/Sideburns_Narrow/Sideburns_Narrow/Beard_Transparency_0/Beard_Transparency_0_Hair Flow Map.png"
+                                            "Texture Path": "./textures/JaidenDaku/Chinstrap_Thick/Chinstrap_Thick/Beard_Transparency_0/Beard_Transparency_0_Hair Flow Map.png"
                                         }
                                     },
                                     "Variable": {
@@ -3861,6 +3865,293 @@
                                     }
                                 },
                                 "Resource Textures": {}
+                            }
+                        }
+                    },
+                    "Afro_Buzz_Cut_Hair": {
+                        "Materials": {
+                            "Scalp_Transparency": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Node Type": "Beard",
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Specular Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./JaidenDaku.fbm/Scalp_Transparency_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./JaidenDaku.fbm/Scalp_Transparency_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Scalp_Transparency/Scalp_Transparency_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Scalp_Transparency/Scalp_Transparency_MetallicAlpha.png"
+                                    }
+                                },
+                                "Resource Textures": {}
+                            },
+                            "Hair_Transparency": {
+                                "Material Type": "Pbr",
+                                "MultiUV Index": 0,
+                                "Node Type": "Beard",
+                                "Two Side": true,
+                                "Diffuse Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Ambient Color": [
+                                    125.00000762939453,
+                                    125.00000762939453,
+                                    125.00000762939453
+                                ],
+                                "Specular Color": [
+                                    255.0,
+                                    255.0,
+                                    255.0
+                                ],
+                                "Opacity": 1.0,
+                                "Self Illumination": 0.0,
+                                "Textures": {
+                                    "Metallic": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Base Color": {
+                                        "Texture Path": "./JaidenDaku.fbm/Hair_Transparency_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Specular": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Roughness": {
+                                        "Texture Path": "",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "Opacity": {
+                                        "Texture Path": "./JaidenDaku.fbm/Hair_Transparency_Diffuse.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "AO": {
+                                        "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_ao.png",
+                                        "Strength": 100.0,
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Tiling": [
+                                            1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "MetallicAlpha": {
+                                        "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_MetallicAlpha.png"
+                                    },
+                                    "HDRP": {
+                                        "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_HDRP.png"
+                                    }
+                                },
+                                "Resource Textures": {},
+                                "Custom Shader": {
+                                    "Shader Name": "RLHair",
+                                    "Image": {
+                                        "Hair Specular Mask Map": {
+                                            "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_HSpecMap.jpg"
+                                        },
+                                        "Hair Root Map": {
+                                            "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_Hair Root Map.jpg"
+                                        },
+                                        "Hair ID Map": {
+                                            "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_Hair ID Map.jpg"
+                                        },
+                                        "Hair Flow Map": {
+                                            "Texture Path": "./textures/JaidenDaku/Afro_Buzz_Cut_Hair/Afro_Buzz_Cut_Hair/Hair_Transparency/Hair_Transparency_Hair Flow Map.jpg"
+                                        }
+                                    },
+                                    "Variable": {
+                                        "TangentVectorColor": [
+                                            255.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "TangentMapFlipGreen": 1.0,
+                                        "AO Map Occlude All Lighting": 1.0,
+                                        "Diffuse Strength": 1.0,
+                                        "Hair Roughness Map Strength": 0.6600000262260437,
+                                        "Hair Specular Map Strength": 0.2840000092983246,
+                                        "Specular Strength": 0.4390000104904175,
+                                        "Secondary Specular Strength": 0.6240000128746033,
+                                        "Transmission Strength": 0.18700000643730164,
+                                        "No Back Face Triangles": 1.0,
+                                        "VertexGrayToColor": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "VertexColorStrength": 0.875,
+                                        "ActiveChangeHairColor": 0.0,
+                                        "BaseColorMapStrength": 1.0,
+                                        "padding c4z": 0.0,
+                                        "paddingHasMips": 0.0,
+                                        "RootColor": [
+                                            4.0,
+                                            3.0,
+                                            3.0
+                                        ],
+                                        "padding c5w": 0.0,
+                                        "TipColor": [
+                                            17.0,
+                                            13.0,
+                                            12.0
+                                        ],
+                                        "RootTipBlendMode": 1.0,
+                                        "UseRootTipColor": 1.0,
+                                        "RootColorStrength": 1.0,
+                                        "TipColorStrength": 1.0,
+                                        "InvertRootTip": 0.0,
+                                        "_1st Dye Color": [
+                                            109.0,
+                                            105.0,
+                                            96.0
+                                        ],
+                                        "_1st Dye Strength": 1.0,
+                                        "_1st Dye Distribution from Grayscale": [
+                                            168.6060028076172,
+                                            213.35850524902345,
+                                            255.0
+                                        ],
+                                        "_1st BlendMode": 0.0,
+                                        "Mask 1st Dye by RootMap": 1.0,
+                                        "Invert 1st Dye RootMap Mask": 1.0,
+                                        "_1st Dye add Specular": 0.0,
+                                        "padding c10w": 0.0,
+                                        "_2nd Dye Color": [
+                                            12.0,
+                                            6.0,
+                                            2.0
+                                        ],
+                                        "_2nd Dye Strength": 1.0,
+                                        "_2nd Dye Distribution from Grayscale": [
+                                            0.0,
+                                            90.55049896240235,
+                                            172.2524871826172
+                                        ],
+                                        "_2nd BlendMode": 0.0,
+                                        "Mask 2nd Dye by RootMap": 1.0,
+                                        "Invert 2nd Dye RootMap Mask": 1.0,
+                                        "_2nd Dye add Specular": 0.0,
+                                        "padding c13w": 0.0,
+                                        "BlackColor Reflection Offset X": 0.0,
+                                        "BlackColor Reflection Offset Y": 0.0,
+                                        "BlackColor Reflection Offset Z": 0.0,
+                                        "padding c14w": 0.0,
+                                        "WhiteColor Reflection Offset X": 0.0,
+                                        "WhiteColor Reflection Offset Y": 0.0,
+                                        "WhiteColor Reflection Offset Z": 0.0,
+                                        "padding c15w": 0.0
+                                    }
+                                }
                             }
                         }
                     }

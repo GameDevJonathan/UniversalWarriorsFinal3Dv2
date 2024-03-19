@@ -1146,9 +1146,9 @@ MonoBehaviour:
   endDamage: 0.53
   damageMultiplier: 0
   recoilID: 0
-  reactionID: 1
+  reactionID: 2
   meleeAttackType: 0
-  damageType: 
+  damageType: KnockDown
   bodyParts:
   - RightLowerLeg
   ignoreDefense: 0

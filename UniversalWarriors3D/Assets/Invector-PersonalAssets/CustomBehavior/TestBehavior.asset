@@ -23,11 +23,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 295
+    x: 405
     y: 115
     width: 150
     height: 30
-  positionRect: {x: 295, y: 115}
+  positionRect: {x: 405, y: 115}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 0, a: 1}
@@ -41,6 +41,78 @@ MonoBehaviour:
   useDecisions: 0
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: -4909257666395265469}
+--- !u!114 &-7069938713422306830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b73a6f13cf18194e889cafd0287a9ec, type: 3}
+  m_Name: KnockDown
+  m_EditorClassIdentifier: 
+  description: 'KnockDown State
+
+'
+  selectedDecisionIndex: 0
+  canRemove: 1
+  canTranstTo: 1
+  canSetAsDefault: 1
+  canEditName: 1
+  canEditColor: 1
+  isOpen: 0
+  isSelected: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 635
+    y: 350
+    width: 150
+    height: 30
+  positionRect: {x: 635, y: 350}
+  rectWidth: 150
+  editingName: 1
+  nodeColor: {r: 1, g: 0, b: 0, a: 1}
+  resizeLeft: 0
+  resizeRight: 0
+  inDrag: 0
+  resetCurrentDestination: 1
+  transitions:
+  - decisions: []
+    trueState: {fileID: 0}
+    falseState: {fileID: 0}
+    muteTrue: 0
+    muteFalse: 0
+    transitionType: 0
+    transitionDelay: 3
+    parentState: {fileID: -7069938713422306830}
+    trueRect:
+      serializedVersion: 2
+      x: 710
+      y: 365
+      width: 0
+      height: 0
+    falseRect:
+      serializedVersion: 2
+      x: 710
+      y: 365
+      width: 0
+      height: 0
+    selectedTrue: 0
+    selectedFalse: 0
+    trueSideRight: 0
+    falseSideRight: 0
+    decisionEditor: {fileID: 0}
+    isOpen: 0
+    scroolView: {x: 0, y: 0, z: 0}
+    sameTargetCount: 0
+  actions:
+  - {fileID: 3881772887352406332}
+  useActions: 1
+  useDecisions: 1
+  parentGraph: {fileID: 11400000}
+  defaultTransition: {fileID: 0}
 --- !u!114 &-4937481537773655999
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,15 +151,15 @@ MonoBehaviour:
   canSetAsDefault: 1
   canEditName: 1
   canEditColor: 1
-  isOpen: 1
+  isOpen: 0
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 535
+    x: 645
     y: 120
     width: 150
-    height: 62
-  positionRect: {x: 535, y: 120}
+    height: 30
+  positionRect: {x: 645, y: 120}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.042452812, g: 1, b: 0.078183584, a: 1}
@@ -95,35 +167,7 @@ MonoBehaviour:
   resizeRight: 0
   inDrag: 0
   resetCurrentDestination: 1
-  transitions:
-  - decisions: []
-    trueState: {fileID: 3691480983412673652}
-    falseState: {fileID: 0}
-    muteTrue: 0
-    muteFalse: 0
-    transitionType: 0
-    transitionDelay: 3
-    parentState: {fileID: -4909257666395265469}
-    trueRect:
-      serializedVersion: 2
-      x: 685
-      y: 150
-      width: 10
-      height: 10
-    falseRect:
-      serializedVersion: 2
-      x: 685
-      y: 160
-      width: 10
-      height: 10
-    selectedTrue: 0
-    selectedFalse: 0
-    trueSideRight: 1
-    falseSideRight: 1
-    decisionEditor: {fileID: 0}
-    isOpen: 0
-    scroolView: {x: 0, y: 0, z: 0}
-    sameTargetCount: 0
+  transitions: []
   actions: []
   useActions: 1
   useDecisions: 1
@@ -139,7 +183,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b309ffe3fece36944b46cce1f2cf80e9, type: 3}
-  m_Name: Check Damage Type
+  m_Name: CheckKnockDown
   m_EditorClassIdentifier: 
   parentFSM: {fileID: 11400000}
   editingName: 0
@@ -157,79 +201,8 @@ MonoBehaviour:
     height: 10
   selectedTrue: 0
   selectedFalse: 0
-  damageTypeToCheck: []
---- !u!114 &-366608650029536406
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b73a6f13cf18194e889cafd0287a9ec, type: 3}
-  m_Name: Flee
-  m_EditorClassIdentifier: 
-  description: 'Fleeing
-
-'
-  selectedDecisionIndex: 0
-  canRemove: 1
-  canTranstTo: 1
-  canSetAsDefault: 1
-  canEditName: 1
-  canEditColor: 1
-  isOpen: 1
-  isSelected: 1
-  nodeRect:
-    serializedVersion: 2
-    x: 525
-    y: 230
-    width: 150
-    height: 62
-  positionRect: {x: 525, y: 230}
-  rectWidth: 150
-  editingName: 1
-  nodeColor: {r: 1, g: 1, b: 1, a: 1}
-  resizeLeft: 0
-  resizeRight: 0
-  inDrag: 0
-  resetCurrentDestination: 1
-  transitions:
-  - decisions: []
-    trueState: {fileID: -4909257666395265469}
-    falseState: {fileID: 0}
-    muteTrue: 0
-    muteFalse: 0
-    transitionType: 0
-    transitionDelay: 3
-    parentState: {fileID: -366608650029536406}
-    trueRect:
-      serializedVersion: 2
-      x: 675
-      y: 260
-      width: 10
-      height: 10
-    falseRect:
-      serializedVersion: 2
-      x: 675
-      y: 270
-      width: 10
-      height: 10
-    selectedTrue: 1
-    selectedFalse: 1
-    trueSideRight: 1
-    falseSideRight: 1
-    decisionEditor: {fileID: 0}
-    isOpen: 0
-    scroolView: {x: 0, y: 0, z: 0}
-    sameTargetCount: 0
-  actions:
-  - {fileID: 2256792510332242127}
-  useActions: 1
-  useDecisions: 1
-  parentGraph: {fileID: 11400000}
-  defaultTransition: {fileID: 0}
+  damageTypeToCheck:
+  - KnockDown
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fc604039227434d8b4e63ebc5e74a5, type: 3}
   m_Name: TestBehavior
   m_EditorClassIdentifier: 
-  selectedNode: {fileID: -366608650029536406}
+  selectedNode: {fileID: 4185670062659393564}
   wantConnection: 0
   connectionNode: {fileID: 0}
   showProperties: 1
@@ -251,13 +224,15 @@ MonoBehaviour:
   - {fileID: 4185670062659393564}
   - {fileID: -4909257666395265469}
   - {fileID: 3691480983412673652}
-  - {fileID: -366608650029536406}
-  panOffset: {x: 295, y: 115}
+  - {fileID: -7069938713422306830}
+  panOffset: {x: 405, y: 115}
   overNode: 0
   actions:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   decisions:
+  - {fileID: 0}
   - {fileID: 0}
   icon: {fileID: 0}
 --- !u!114 &2256792510332242127
@@ -302,11 +277,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 750
+    x: 860
     y: 130
     width: 150
     height: 30
-  positionRect: {x: 750, y: 130}
+  positionRect: {x: 860, y: 130}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.023584902, g: 0.5575568, b: 1, a: 1}
@@ -321,6 +296,23 @@ MonoBehaviour:
   useDecisions: 1
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: 0}
+--- !u!114 &3881772887352406332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714cdc96e35146746ab54334262480d1, type: 3}
+  m_Name: TriggerKnockdown
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 11400000}
+  executionType: 2
+  editingName: 0
+  listenerName: TriggerKnockdown
+  message: KnockDown
 --- !u!114 &4185670062659393564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,14 +333,14 @@ MonoBehaviour:
   canEditName: 0
   canEditColor: 0
   isOpen: 1
-  isSelected: 0
+  isSelected: 1
   nodeRect:
     serializedVersion: 2
-    x: 295
+    x: 405
     y: 215
     width: 150
     height: 62
-  positionRect: {x: 295, y: 215}
+  positionRect: {x: 405, y: 215}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 1, a: 1}
@@ -362,7 +354,7 @@ MonoBehaviour:
       decision: {fileID: -4520712754818466142}
       isValid: 0
       validated: 0
-    trueState: {fileID: -366608650029536406}
+    trueState: {fileID: -7069938713422306830}
     falseState: {fileID: 0}
     muteTrue: 0
     muteFalse: 0
@@ -371,13 +363,13 @@ MonoBehaviour:
     parentState: {fileID: 4185670062659393564}
     trueRect:
       serializedVersion: 2
-      x: 445
+      x: 555
       y: 245
       width: 10
       height: 10
     falseRect:
       serializedVersion: 2
-      x: 445
+      x: 555
       y: 255
       width: 10
       height: 10
@@ -394,3 +386,32 @@ MonoBehaviour:
   useDecisions: 1
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: 0}
+--- !u!114 &9195290726557004221
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b309ffe3fece36944b46cce1f2cf80e9, type: 3}
+  m_Name: Check Damage Type
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 11400000}
+  editingName: 0
+  trueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 10
+    height: 10
+  falseRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 10
+    height: 10
+  selectedTrue: 0
+  selectedFalse: 0
+  damageTypeToCheck: []
