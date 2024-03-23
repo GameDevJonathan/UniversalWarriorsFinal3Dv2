@@ -1146,7 +1146,7 @@ MonoBehaviour:
   endDamage: 0.53
   damageMultiplier: 0
   recoilID: 0
-  reactionID: 2
+  reactionID: 0
   meleeAttackType: 0
   damageType: KnockDown
   bodyParts:
@@ -1271,8 +1271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.35
-  endDamage: 0.52
+  startDamage: 0.14
+  endDamage: 0.65
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0

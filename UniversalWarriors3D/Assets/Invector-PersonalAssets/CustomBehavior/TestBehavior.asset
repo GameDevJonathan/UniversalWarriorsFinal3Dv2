@@ -23,11 +23,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 340
-    y: 120
+    x: 355
+    y: 0
     width: 150
     height: 30
-  positionRect: {x: 340, y: 120}
+  positionRect: {x: 355, y: 0}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 0, a: 1}
@@ -66,11 +66,11 @@ MonoBehaviour:
   isSelected: 1
   nodeRect:
     serializedVersion: 2
-    x: 570
-    y: 355
+    x: 585
+    y: 230
     width: 150
     height: 30
-  positionRect: {x: 570, y: 355}
+  positionRect: {x: 585, y: 230}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 1, g: 0, b: 0, a: 1}
@@ -78,41 +78,30 @@ MonoBehaviour:
   resizeRight: 0
   inDrag: 0
   resetCurrentDestination: 1
-  transitions:
-  - decisions: []
-    trueState: {fileID: 0}
-    falseState: {fileID: 0}
-    muteTrue: 0
-    muteFalse: 0
-    transitionType: 0
-    transitionDelay: 3
-    parentState: {fileID: -7069938713422306830}
-    trueRect:
-      serializedVersion: 2
-      x: 645
-      y: 370
-      width: 0
-      height: 0
-    falseRect:
-      serializedVersion: 2
-      x: 645
-      y: 370
-      width: 0
-      height: 0
-    selectedTrue: 0
-    selectedFalse: 0
-    trueSideRight: 0
-    falseSideRight: 0
-    decisionEditor: {fileID: 0}
-    isOpen: 0
-    scroolView: {x: 0, y: 0, z: 0}
-    sameTargetCount: 0
+  transitions: []
   actions:
   - {fileID: 3881772887352406332}
   useActions: 1
   useDecisions: 1
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: 0}
+--- !u!114 &-5845598610118553230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714cdc96e35146746ab54334262480d1, type: 3}
+  m_Name: GetUp
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 0}
+  executionType: 2
+  editingName: 0
+  listenerName: GetUp
+  message: 
 --- !u!114 &-4937481537773655999
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,11 +144,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 580
-    y: 125
+    x: 595
+    y: 0
     width: 150
     height: 30
-  positionRect: {x: 580, y: 125}
+  positionRect: {x: 595, y: 0}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.042452812, g: 1, b: 0.078183584, a: 1}
@@ -174,18 +163,18 @@ MonoBehaviour:
     muteTrue: 0
     muteFalse: 0
     transitionType: 0
-    transitionDelay: 5
+    transitionDelay: 30
     parentState: {fileID: -4909257666395265469}
     trueRect:
       serializedVersion: 2
-      x: 655
-      y: 140
+      x: 670
+      y: 15
       width: 0
       height: 0
     falseRect:
       serializedVersion: 2
-      x: 655
-      y: 140
+      x: 670
+      y: 15
       width: 0
       height: 0
     selectedTrue: 0
@@ -254,11 +243,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 575
-    y: 245
+    x: 585
+    y: 115
     width: 150
     height: 30
-  positionRect: {x: 575, y: 245}
+  positionRect: {x: 585, y: 115}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.9716981, g: 0.132921, b: 0.132921, a: 1}
@@ -295,9 +284,10 @@ MonoBehaviour:
   - {fileID: 3691480983412673652}
   - {fileID: -7069938713422306830}
   - {fileID: -373224967783389107}
-  panOffset: {x: 340, y: 120}
+  panOffset: {x: 355, y: 0}
   overNode: 0
   actions:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -347,11 +337,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 795
-    y: 135
+    x: 810
+    y: 10
     width: 150
     height: 30
-  positionRect: {x: 795, y: 135}
+  positionRect: {x: 810, y: 10}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.023584902, g: 0.5575568, b: 1, a: 1}
@@ -382,7 +372,7 @@ MonoBehaviour:
   executionType: 2
   editingName: 0
   listenerName: TriggerKnockdown
-  message: KnockDown
+  message: KnockDown_Front_Big
 --- !u!114 &4185670062659393564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,11 +396,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 340
-    y: 220
+    x: 355
+    y: 95
     width: 150
     height: 62
-  positionRect: {x: 340, y: 220}
+  positionRect: {x: 355, y: 95}
   rectWidth: 150
   editingName: 0
   nodeColor: {r: 0, g: 1, b: 1, a: 1}
@@ -433,14 +423,14 @@ MonoBehaviour:
     parentState: {fileID: 4185670062659393564}
     trueRect:
       serializedVersion: 2
-      x: 490
-      y: 250
+      x: 505
+      y: 125
       width: 10
       height: 10
     falseRect:
       serializedVersion: 2
-      x: 490
-      y: 260
+      x: 505
+      y: 135
       width: 10
       height: 10
     selectedTrue: 0
