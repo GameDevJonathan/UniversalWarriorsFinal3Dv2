@@ -10,6 +10,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public Vector2 MovementValue { get; private set; }
     public Vector2 CameraValue { get; private set; }
 
+    [Range(0,1)]public float TimeScale = 1f;
+
     private Controls controls;
 
     #region CameraReset
@@ -145,6 +147,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     private void Update()
     {
+        Time.timeScale = TimeScale;
+
         _targetValue = Mathf.Clamp(_targetValue, .1f, 1f);
 
         FightingStanceCoolDownTime = Mathf.Clamp(FightingStanceCoolDownTime, 0f, 1f);

@@ -22,10 +22,17 @@ namespace Invector.vCharacterController.AI.FSMBehaviour
             //TO DO
             return true;
         }
-
-        
-        
-
-       
     }
+
+    public class Countdown : MonoBehaviour
+    {
+        float time;
+        private Animator anim;
+
+        private void Update()
+        {
+            
+        }
+    }
+    
 }
