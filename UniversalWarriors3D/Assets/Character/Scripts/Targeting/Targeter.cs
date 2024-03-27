@@ -71,12 +71,12 @@ public class Targeter : MonoBehaviour
 
         QuickTarget = closestTarget;
         Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
-        Debug.Log($"look position {lookPos}");
+        //Debug.Log($"look position {lookPos}");
         lookPos.y = 0f;
 
         float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
-        Debug.Log($"Distance {distance}");
-        if(distance < 6f)
+        //Debug.Log($"Distance {distance}");
+        if(distance < 3f)
             stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
     

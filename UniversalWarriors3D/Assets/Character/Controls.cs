@@ -118,12 +118,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Melee"",
+                    ""name"": ""LightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""ad12a785-a2f8-47a3-a858-74d8c9177c48"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -354,7 +354,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f794a038-7dc9-497d-8650-240b6bb4c78e"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
@@ -475,11 +475,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""276d8268-7ef6-4204-a7a5-a03259738692"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Melee"",
+                    ""action"": ""LightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -490,7 +490,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Melee"",
+                    ""action"": ""LightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -638,7 +638,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
         m_Player_LockOn = m_Player.FindAction("LockOn", throwIfNotFound: true);
         m_Player_TargetSelection = m_Player.FindAction("TargetSelection", throwIfNotFound: true);
-        m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+        m_Player_LightAttack = m_Player.FindAction("LightAttack", throwIfNotFound: true);
         m_Player_SpecialBeam = m_Player.FindAction("Special Beam", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_ResetCamera = m_Player.FindAction("ResetCamera", throwIfNotFound: true);
@@ -714,7 +714,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Equip;
     private readonly InputAction m_Player_LockOn;
     private readonly InputAction m_Player_TargetSelection;
-    private readonly InputAction m_Player_Melee;
+    private readonly InputAction m_Player_LightAttack;
     private readonly InputAction m_Player_SpecialBeam;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_ResetCamera;
@@ -733,7 +733,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Equip => m_Wrapper.m_Player_Equip;
         public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
         public InputAction @TargetSelection => m_Wrapper.m_Player_TargetSelection;
-        public InputAction @Melee => m_Wrapper.m_Player_Melee;
+        public InputAction @LightAttack => m_Wrapper.m_Player_LightAttack;
         public InputAction @SpecialBeam => m_Wrapper.m_Player_SpecialBeam;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @ResetCamera => m_Wrapper.m_Player_ResetCamera;
@@ -777,9 +777,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @TargetSelection.started += instance.OnTargetSelection;
             @TargetSelection.performed += instance.OnTargetSelection;
             @TargetSelection.canceled += instance.OnTargetSelection;
-            @Melee.started += instance.OnMelee;
-            @Melee.performed += instance.OnMelee;
-            @Melee.canceled += instance.OnMelee;
+            @LightAttack.started += instance.OnLightAttack;
+            @LightAttack.performed += instance.OnLightAttack;
+            @LightAttack.canceled += instance.OnLightAttack;
             @SpecialBeam.started += instance.OnSpecialBeam;
             @SpecialBeam.performed += instance.OnSpecialBeam;
             @SpecialBeam.canceled += instance.OnSpecialBeam;
@@ -826,9 +826,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @TargetSelection.started -= instance.OnTargetSelection;
             @TargetSelection.performed -= instance.OnTargetSelection;
             @TargetSelection.canceled -= instance.OnTargetSelection;
-            @Melee.started -= instance.OnMelee;
-            @Melee.performed -= instance.OnMelee;
-            @Melee.canceled -= instance.OnMelee;
+            @LightAttack.started -= instance.OnLightAttack;
+            @LightAttack.performed -= instance.OnLightAttack;
+            @LightAttack.canceled -= instance.OnLightAttack;
             @SpecialBeam.started -= instance.OnSpecialBeam;
             @SpecialBeam.performed -= instance.OnSpecialBeam;
             @SpecialBeam.canceled -= instance.OnSpecialBeam;
@@ -888,7 +888,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnEquip(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnTargetSelection(InputAction.CallbackContext context);
-        void OnMelee(InputAction.CallbackContext context);
+        void OnLightAttack(InputAction.CallbackContext context);
         void OnSpecialBeam(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnResetCamera(InputAction.CallbackContext context);

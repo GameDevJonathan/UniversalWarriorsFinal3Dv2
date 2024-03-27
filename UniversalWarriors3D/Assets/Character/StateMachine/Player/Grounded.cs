@@ -12,7 +12,7 @@ public class Grounded : PlayerBaseState
     private float freeLookValue;
     private float freeLookMoveSpeed;
     private bool shouldFade;
-    private const float CrossFadeDuration = 0.1f;
+    private const float CrossFadeDuration = 0.2f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
 
 
@@ -85,23 +85,23 @@ public class Grounded : PlayerBaseState
                 return;
             }
 
-            if (stateMachine.InputReader.AttackButtonPressed)
-            {
-                stateMachine.SwitchState(new FiringState(stateMachine));
-                return;
-            }
+            //if (stateMachine.InputReader.AttackButtonPressed)
+            //{
+            //    stateMachine.SwitchState(new FiringState(stateMachine));
+            //    return;
+            //}
 
-            if (stateMachine.InputReader.mediumShot)
-            {
-                stateMachine.SwitchState(new FiringState(stateMachine));
-                return;
-            }
+            //if (stateMachine.InputReader.mediumShot)
+            //{
+            //    stateMachine.SwitchState(new FiringState(stateMachine));
+            //    return;
+            //}
 
-            if (stateMachine.InputReader.chargedShot)
-            {
-                stateMachine.SwitchState(new FiringState(stateMachine));
-                return;
-            }
+            //if (stateMachine.InputReader.chargedShot)
+            //{
+            //    stateMachine.SwitchState(new FiringState(stateMachine));
+            //    return;
+            //}
 
 
 

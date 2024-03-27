@@ -28,7 +28,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool Modified;
 
     public bool JumpButtonPressed => controls.Player.Jump.WasPressedThisFrame();
-    public bool AttackButtonPressed => controls.Player.Melee.WasPressedThisFrame();
+    public bool AttackButtonPressed => controls.Player.LightAttack.WasPressedThisFrame();
+    public bool AttackButtonHeld => controls.Player.LightAttack.WasPerformedThisFrame();
 
     [HideInInspector] public bool shoot;
     [HideInInspector] public bool charge;
@@ -390,9 +391,10 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         JumpEvent?.Invoke();
     }
 
-    public void OnMelee(InputAction.CallbackContext context)
+    public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        //Debug.Log("Context...:" + context);
+        if (context.started)
         {
             MeleeEvent?.Invoke();
         }
