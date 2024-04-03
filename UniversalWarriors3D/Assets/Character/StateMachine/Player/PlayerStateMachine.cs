@@ -16,6 +16,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public WallRun WallRun { get; private set; }
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
+    [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
     [SerializeField] public int Index = 0;
 
     [field: SerializeField] public List<ParkourAction> ParkourActions { get; private set; }
@@ -76,11 +77,12 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Transform debugTransform { get; private set; }
     [field: SerializeField] public Transform LockOnSphere { get; private set; }
 
-    
-    
+
+
     #endregion
 
-    private void Awake()
+
+    private void OnEnable()
     {
         GetComponents();
     }

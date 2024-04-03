@@ -10,7 +10,9 @@ public class AttackingState : PlayerBaseState
     float previousFrameTime;
     private bool targetLock;
     private int attackIndex;
-    private enum SpecialAttacks { Uppercut = 4};
+    private bool alreadyAppliedForce;
+    private bool grounded => stateMachine.WallRun.CheckForGround();
+    private enum SpecialAttacks { Uppercut = 4 };
     SpecialAttacks specialAttacks;
 
     public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
@@ -26,7 +28,14 @@ public class AttackingState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
-        stateMachine.Animator.applyRootMotion = true;
+
+        if (attack.AnimationName == "Uppercut")
+        {
+            stateMachine.Animator.applyRootMotion = false;
+            
+        }
+        else
+            stateMachine.Animator.applyRootMotion = true;
 
         setIndex();
 
@@ -38,22 +47,36 @@ public class AttackingState : PlayerBaseState
         FaceTarget();
 
 
-
+        if(attack.AnimationName == "Uppercut")
+        {
+            if (GetNormalizedTime(stateMachine.Animator, "UpperCut") >= attack.TimeForce && attack.ShouldAddAttackForce)
+            {
+                Debug.Log("adding Force");
+                TryApplyForce(stateMachine.transform.up);
+            }
+        }
+        
+        
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
+           
+            
             if (stateMachine.InputReader.AttackButtonHeld)
             {
                 Debug.Log("ButtonHeld");
                 TryComboEnder(normalizedTime);
             }
 
+            
             if (stateMachine.InputReader.AttackButtonPressed)
             {
                 Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
             }
+
+            
 
         }
         else
@@ -68,6 +91,17 @@ public class AttackingState : PlayerBaseState
                 else
                     stateMachine.SwitchState(new Grounded(stateMachine, true));
                 return;
+            }
+        }
+
+
+        if (GetNormalizedTime(stateMachine.Animator, "UpperCut") > 1f)
+        {
+            Debug.Log($"Grounded Return Value {grounded}");
+
+            if (!grounded)
+            {
+                stateMachine.SwitchState(new PlayerFallState(stateMachine));
             }
         }
 
@@ -107,12 +141,27 @@ public class AttackingState : PlayerBaseState
         {
             case 1:
                 specialAttacks = SpecialAttacks.Uppercut;
-                stateMachine.SwitchState(new AttackingState(stateMachine,(int)specialAttacks, targetLock));
+                //stateMachine.ForceReceiver.Jump(20f);
+                stateMachine.SwitchState(new AttackingState(stateMachine, (int)specialAttacks, targetLock));
                 break;
 
         }
 
-        
+
+    }
+
+    
+    /// <summary>
+    /// transformDirection for which Direction I want to apply force 
+    /// </summary>
+    
+    
+    private void TryApplyForce(Vector3 transformDirection)
+    {
+        if (alreadyAppliedForce) return;
+        stateMachine.ForceReceiver.AddForce(transformDirection * attack.AttackForce);
+        alreadyAppliedForce = true;
+
     }
 
     private void setIndex()

@@ -47,6 +47,8 @@ public class Grounded : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+
+        Debug.Log($"WallRunCheck for ground function {grounded}");
         var hitData = stateMachine.EnviromentScaner.ObstacleCheck();
 
         if (grounded)
@@ -125,21 +127,23 @@ public class Grounded : PlayerBaseState
         {
             stateMachine.Animator.SetFloat("isEquiped",
                 (stateMachine.InputReader.FightingStance) ? 1 : 0);
-            stateMachine.Animator.Play(FreeLookBlendTreeHash);
+            stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash,CrossFadeDuration);
         }
-        else if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
+
+        if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
         {
             stateMachine.Animator.SetFloat("isEquiped",
                 (stateMachine.InputReader.FightingStance) ? 1 : 0);
             stateMachine.Animator.Play(FreeLookBlendTreeHash);
         }
 
-
+       
 
 
         //Debug.Log($"Grounded State::{grounded}");
         if (!grounded)
         {
+            
             Debug.Log("Not Touching Ground");
             stateMachine.SwitchState(new PlayerFallState(stateMachine));
             return;

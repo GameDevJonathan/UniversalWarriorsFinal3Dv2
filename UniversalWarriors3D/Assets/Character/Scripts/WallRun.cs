@@ -182,14 +182,14 @@ public class WallRun : MonoBehaviour
         return ForceTopApply;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (debugWireSphere_Transform)
-    //    {
-    //        Gizmos.color = debugWireSphere_Color;
-    //        Gizmos.DrawWireSphere(debugWireSphere_Transform.position, debugWireSphere_Radius);
+    private void OnDrawGizmos()
+    {
+        if (debugWireSphere_Transform)
+        {
+            Gizmos.color = debugWireSphere_Color;
+            Gizmos.DrawWireSphere(debugWireSphere_Transform.position, debugWireSphere_Radius);
 
-    //    }
-                
-    //}
+        }
+
+    }
 }
