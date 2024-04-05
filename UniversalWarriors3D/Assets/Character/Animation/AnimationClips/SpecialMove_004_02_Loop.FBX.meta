@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 098ee6c3eef4c2840aeabbec539dddc1
+guid: 87fcfc24811b9564b8a8e802fffee703
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,13 +19,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'calf_l'
-      : position error = 1.465034 mm\n\t'foot_l' : position error = 1.374742 mm\n\t'calf_r'
-      : position error = 1.441978 mm\n\t'foot_r' : position error = 1.348023 mm\n"
+      : position error = 1.466691 mm\n\t'foot_l' : position error = 1.376896 mm\n\t'calf_r'
+      : position error = 1.442079 mm\n\t'foot_r' : position error = 1.347767 mm\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Unreal Take' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'hand_r' has translation animation that
-      will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -43,7 +40,7 @@ ModelImporter:
       takeName: Unreal Take
       internalID: 8993902097722301239
       firstFrame: 0
-      lastFrame: 189
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 90
       level: 0

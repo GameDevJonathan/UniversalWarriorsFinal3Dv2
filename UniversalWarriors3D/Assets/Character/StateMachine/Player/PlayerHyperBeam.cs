@@ -27,7 +27,12 @@ public class PlayerHyperBeam : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f && SpecialBeam[0].activeSelf == false)
+        //if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f && SpecialBeam[0].activeSelf == false)
+        //{
+        //    stateMachine.SwitchState(new Grounded(stateMachine,true));
+        //}  
+        
+        if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f)
         {
             stateMachine.SwitchState(new Grounded(stateMachine,true));
         }
