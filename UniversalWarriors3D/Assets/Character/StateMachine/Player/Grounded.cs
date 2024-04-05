@@ -81,11 +81,11 @@ public class Grounded : PlayerBaseState
         #region Inputs
         if (!stateMachine.InputReader.equipingWeapon)
         {
-            if (stateMachine.InputReader.isAiming)
-            {
-                stateMachine.SwitchState(new AimingState(stateMachine));
-                return;
-            }
+            //if (stateMachine.InputReader.isAiming)
+            //{
+            //    stateMachine.SwitchState(new AimingState(stateMachine));
+            //    return;
+            //}
 
             //if (stateMachine.InputReader.AttackButtonPressed)
             //{
