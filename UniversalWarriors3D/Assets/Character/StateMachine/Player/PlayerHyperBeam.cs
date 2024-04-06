@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerHyperBeam : PlayerBaseState
 {
-    private readonly int HyperBeamHash = Animator.StringToHash("HyperBeam");
+    private readonly int HyperBeamHash = Animator.StringToHash("HyperBeamStart");
     private const float CrossFadeDuration = 0.05f;
     private GameObject[] SpecialBeam;
 
@@ -27,12 +27,12 @@ public class PlayerHyperBeam : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        //if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f && SpecialBeam[0].activeSelf == false)
-        //{
-        //    stateMachine.SwitchState(new Grounded(stateMachine,true));
-        //}  
+        if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f && SpecialBeam[0].activeSelf == false)
+        {
+            stateMachine.Animator.SetTrigger("End");
+        }  
         
-        if (GetNormalizedTime(stateMachine.Animator, "HyperBeam") > 1f)
+        if (GetNormalizedTime(stateMachine.Animator, "HyperBeamEnd") > 1f)
         {
             stateMachine.SwitchState(new Grounded(stateMachine,true));
         }
