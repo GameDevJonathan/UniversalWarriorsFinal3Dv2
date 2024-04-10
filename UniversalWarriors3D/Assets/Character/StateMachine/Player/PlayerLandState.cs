@@ -7,7 +7,7 @@ public class PlayerLandState : PlayerBaseState
     Vector2 inputMovement;
     private readonly int LandHash = Animator.StringToHash("JumpEnd");
     private readonly int RollingLandHash = Animator.StringToHash("LandingRoll");
-    private const float CrossFadeDuration = 0.3f;
+    private const float CrossFadeDuration = 0.1f;
     private float falltime;
     Vector3 Momentum;
 

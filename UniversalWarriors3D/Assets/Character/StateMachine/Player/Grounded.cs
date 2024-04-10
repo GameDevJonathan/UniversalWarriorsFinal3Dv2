@@ -1,4 +1,5 @@
 using AmplifyShaderEditor;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -11,9 +12,13 @@ public class Grounded : PlayerBaseState
     public float AnimatorDampTime = 0.05f;
     private float freeLookValue;
     private float freeLookMoveSpeed;
+    private float equipTime;
+    private float _time = 2f;
+    private float _lerpSpeed = .9f;
     private bool shouldFade;
     private const float CrossFadeDuration = 0.2f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
+    
 
 
 
@@ -21,6 +26,8 @@ public class Grounded : PlayerBaseState
     {
         this.freeLookMoveSpeed = stateMachine.FreeLookMovementSpeed;
         this.shouldFade = shouldFade;
+        this.equipTime = (stateMachine.InputReader.FightingStance) ? 1 : 0;
+        
     }
 
     public override void Enter()
@@ -39,7 +46,7 @@ public class Grounded : PlayerBaseState
 
         stateMachine.InputReader.JumpEvent += OnJump;
         stateMachine.InputReader.DashEvent += OnDash;
-        stateMachine.InputReader.EquipEvent += OnEquip;
+        //stateMachine.InputReader.EquipEvent += OnEquip;
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.MeleeEvent += OnMelee;
         stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
@@ -47,6 +54,36 @@ public class Grounded : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        stateMachine.EquipTime = Mathf.Clamp(stateMachine.EquipTime,0, stateMachine.EquipTime);
+        switch (stateMachine.InputReader.FightingStance)
+        {
+            case true:
+                if(stateMachine.EquipTime > 0f)
+                {
+                    stateMachine.EquipTime -= deltaTime;
+                }
+
+                if(stateMachine.EquipTime == 0f)
+                {
+                    equipTime = Mathf.Clamp(equipTime,0,equipTime);
+                    equipTime -= _time * deltaTime;
+                    Debug.Log($"equipTime: {equipTime}");
+                    stateMachine.Animator.SetFloat("isEquiped", equipTime);                    
+                }
+                
+                if (equipTime <= 0)
+                {
+                    equipTime = 0f;
+                    stateMachine.InputReader.FightingStance = false;
+                }
+
+
+                break;
+
+            case false:
+                break;
+        }
+       
 
         Debug.Log($"WallRunCheck for ground function {grounded}");
         var hitData = stateMachine.EnviromentScaner.ObstacleCheck();
@@ -123,19 +160,19 @@ public class Grounded : PlayerBaseState
         Vector3 movement = CalculateMovement().normalized;
         Move(movement * freeLookMoveSpeed, deltaTime);
 
-        if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
-        {
-            stateMachine.Animator.SetFloat("isEquiped",
-                (stateMachine.InputReader.FightingStance) ? 1 : 0);
-            stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash,CrossFadeDuration);
-        }
+        //if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
+        //{
+        //    stateMachine.Animator.SetFloat("isEquiped",
+        //        (stateMachine.InputReader.FightingStance) ? 1 : 0);
+        //    stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash,CrossFadeDuration);
+        //}
 
-        if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
-        {
-            stateMachine.Animator.SetFloat("isEquiped",
-                (stateMachine.InputReader.FightingStance) ? 1 : 0);
-            stateMachine.Animator.Play(FreeLookBlendTreeHash);
-        }
+        //if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
+        //{
+        //    stateMachine.Animator.SetFloat("isEquiped",
+        //        (stateMachine.InputReader.FightingStance) ? 1 : 0);
+        //    stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        //}
 
        
 
@@ -183,6 +220,7 @@ public class Grounded : PlayerBaseState
         }
 
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, freeLookValue, AnimatorDampTime, deltaTime);
+        
 
 
         FaceMovement(movement, deltaTime);
@@ -204,6 +242,7 @@ public class Grounded : PlayerBaseState
 
     public void OnMelee()
     {
+        stateMachine.EquipTime = 10f;
         stateMachine.Targeter.SelectClosestTarget();
         stateMachine.SwitchState(new AttackingState(stateMachine, 0));
         return;
@@ -247,7 +286,7 @@ public class Grounded : PlayerBaseState
     {
         stateMachine.InputReader.JumpEvent -= OnJump;
         stateMachine.InputReader.DashEvent -= OnDash;
-        stateMachine.InputReader.EquipEvent -= OnEquip;
+        //stateMachine.InputReader.EquipEvent -= OnEquip;
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
         stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;

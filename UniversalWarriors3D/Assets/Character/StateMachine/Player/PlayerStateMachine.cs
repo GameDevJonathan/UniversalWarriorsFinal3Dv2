@@ -2,7 +2,6 @@ using UnityEngine;
 using EasyAudioManager;
 using UnityEngine.Animations.Rigging;
 using System.Collections.Generic;
-using System.Dynamic;
 
 public class PlayerStateMachine : StateMachine
 {
@@ -17,6 +16,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public WallRun WallRun { get; private set; }
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
     [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
+
     [SerializeField] public int Index = 0;
 
     [field: SerializeField] public List<ParkourAction> ParkourActions { get; private set; }
@@ -62,6 +62,7 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float DashForceTime { get; private set; }
     [field: SerializeField] public float DashForce { get; private set; }
+    [field: SerializeField] public float EquipTime { get;  set; } 
     #endregion
 
     #region Camera's and VFX

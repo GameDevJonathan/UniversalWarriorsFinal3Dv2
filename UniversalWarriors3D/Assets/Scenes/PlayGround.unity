@@ -855,6 +855,7 @@ Transform:
   - {fileID: 1872415669}
   - {fileID: 116758677}
   - {fileID: 802893478}
+  - {fileID: 2142086941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54575067
@@ -12898,12 +12899,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142086935}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.000004, y: 0, z: 0.00000017881393}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 50, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 40416597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9171099628821068
 GameObject:
@@ -16317,15 +16318,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: '-----DakuRig---- '
       objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <EquipTime>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4354683298210802650, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: targetGroup
       value: 
       objectReference: {fileID: 1893656333}
+    - target: {fileID: 6251654511200602842, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <FightingStanceCoolDown>k__BackingField
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6726470085167506011, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16428,6 +16439,5 @@ SceneRoots:
   - {fileID: 543450652781048670}
   - {fileID: 903659637}
   - {fileID: 1384276732}
-  - {fileID: 2142086941}
   - {fileID: 6954426676855409212}
   - {fileID: 163245719}

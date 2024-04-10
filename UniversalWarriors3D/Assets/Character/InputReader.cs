@@ -362,12 +362,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnEquip(InputAction.CallbackContext context)
     {
-        if(context.performed && FightingStanceCoolDownTime == 0f)
-        {
-            EquipEvent?.Invoke();
-            FightingStance = !FightingStance;
-            FightingStanceCoolDownTime = FightingStanceCoolDown;
-        }
+        //if(context.performed && FightingStanceCoolDownTime == 0f)
+        //{
+        //    EquipEvent?.Invoke();
+        //    FightingStance = !FightingStance;
+        //    FightingStanceCoolDownTime = FightingStanceCoolDown;
+        //}
        
     }
 

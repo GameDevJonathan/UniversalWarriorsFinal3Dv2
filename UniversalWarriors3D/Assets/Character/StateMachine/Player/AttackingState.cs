@@ -9,6 +9,7 @@ public class AttackingState : PlayerBaseState
     private bool alreadyAppliedForce;
     private bool grounded => stateMachine.WallRun.CheckForGround();
     private enum SpecialAttacks { Uppercut = 4 };
+
     SpecialAttacks specialAttacks;
 
     public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
@@ -28,7 +29,7 @@ public class AttackingState : PlayerBaseState
         if (attack.AnimationName == "Uppercut")
         {
             stateMachine.Animator.applyRootMotion = false;
-            
+
         }
         else
             stateMachine.Animator.applyRootMotion = true;
@@ -43,36 +44,36 @@ public class AttackingState : PlayerBaseState
         FaceTarget();
 
 
-        if(attack.AnimationName == "Uppercut")
+        if (attack.AnimationName == "Uppercut")
         {
             if (GetNormalizedTime(stateMachine.Animator, "UpperCut") >= attack.TimeForce && attack.ShouldAddAttackForce)
             {
                 Debug.Log("adding Force");
-                TryApplyForce(stateMachine.transform.up);
+                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 100f, 30f);
             }
         }
-        
-        
+
+
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
-           
-            
+
+
             if (stateMachine.InputReader.AttackButtonHeld)
             {
                 Debug.Log("ButtonHeld");
                 TryComboEnder(normalizedTime);
             }
 
-            
+
             if (stateMachine.InputReader.AttackButtonPressed)
             {
                 Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
             }
 
-            
+
 
         }
         else
@@ -146,16 +147,16 @@ public class AttackingState : PlayerBaseState
 
     }
 
-    
+
     /// <summary>
-    /// transformDirection for which Direction I want to apply force 
+    /// transformDirection for which Direction I want to apply force
     /// </summary>
-    
-    
-    private void TryApplyForce(Vector3 transformDirection)
+
+
+    private void TryApplyForce(Vector3 UpwardDirection, Vector3 ForwardDirection, float UpForce = 1, float ForwardForce = 1)
     {
         if (alreadyAppliedForce) return;
-        stateMachine.ForceReceiver.AddForce(transformDirection * attack.AttackForce);
+        stateMachine.ForceReceiver.AddForce((UpwardDirection * UpForce) + (ForwardDirection * ForwardForce));
         alreadyAppliedForce = true;
 
     }
