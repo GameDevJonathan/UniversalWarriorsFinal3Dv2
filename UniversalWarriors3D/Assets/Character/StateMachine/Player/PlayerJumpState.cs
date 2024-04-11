@@ -21,15 +21,16 @@ public class PlayerJumpState : PlayerBaseState
         Momentum = stateMachine.CharacterController.velocity;
         Momentum.y = 0f;
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash,CrossFadeDuration);
-
-        
-
-        
-        
-       
-
-        
+        stateMachine.InputReader.MeleeEvent += MeleeEvent;
     }
+
+    private void MeleeEvent()
+    {
+        stateMachine.EquipTime = 10f;
+        stateMachine.Targeter.SelectClosestTarget();
+        stateMachine.SwitchState(new AttackingState(stateMachine, 5));
+    }
+
     public override void Tick(float deltaTime)
     {
 
@@ -79,6 +80,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.InputReader.MeleeEvent -= MeleeEvent;
         stateMachine.ForceReceiver.Reset();
     }
 
