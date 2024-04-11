@@ -23,13 +23,7 @@ public class PlayerJumpState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash,CrossFadeDuration);
         stateMachine.InputReader.MeleeEvent += MeleeEvent;
     }
-
-    private void MeleeEvent()
-    {
-        stateMachine.EquipTime = 10f;
-        stateMachine.Targeter.SelectClosestTarget();
-        stateMachine.SwitchState(new AttackingState(stateMachine, 5));
-    }
+   
 
     public override void Tick(float deltaTime)
     {
@@ -114,6 +108,14 @@ public class PlayerJumpState : PlayerBaseState
         Vector3 forceToApply = stateMachine.transform.up * stateMachine.WallRun.wallJumpForce + wallNormal * stateMachine.WallRun.wallJumpSideForce;
 
         
+    }
+
+    private void MeleeEvent()
+    {
+        stateMachine.EquipTime = 10f;
+        stateMachine.ForceReceiver.Reset();
+        stateMachine.Targeter.SelectClosestTarget();
+        stateMachine.SwitchState(new PlayerDiveKickState(stateMachine));
     }
 
 

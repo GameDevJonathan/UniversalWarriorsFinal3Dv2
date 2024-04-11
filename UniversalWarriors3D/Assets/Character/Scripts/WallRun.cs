@@ -182,7 +182,7 @@ public class WallRun : MonoBehaviour
         return ForceTopApply;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (debugWireSphere_Transform)
         {
@@ -192,4 +192,6 @@ public class WallRun : MonoBehaviour
         }
 
     }
+
+    
 }

@@ -18,6 +18,7 @@ public class ForceReceiver : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float Normal = 30f;
     [SerializeField] private float wallSlideSpeed = 1f;
+    [SerializeField] private float DiveSpeed = 30f;
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
 
     private void Start()

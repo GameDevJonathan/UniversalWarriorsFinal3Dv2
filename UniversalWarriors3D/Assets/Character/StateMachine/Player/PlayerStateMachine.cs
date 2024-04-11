@@ -58,6 +58,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float LockOnMovementSpeed { get; private set; }
     [field: SerializeField] public float AirMovementSpeed { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
+    [field: SerializeField] public float DiveForce { get; private set; }
+    [field: SerializeField] public float ForwardForce { get; private set; }
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
 
     [field: SerializeField] public float DashForceTime { get; private set; }
