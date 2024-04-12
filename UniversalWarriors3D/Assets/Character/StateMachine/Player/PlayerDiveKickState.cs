@@ -1,3 +1,4 @@
+using AmplifyShaderEditor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class PlayerDiveKickState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(DiveKickHash, CrossFadeDuration);
-        stateMachine.ForceReceiver.Jump(-stateMachine.DiveForce);
+        //stateMachine.ForceReceiver.Jump(-stateMachine.DiveForce);
         attack = stateMachine.Attacks[5];
         stateMachine.ForceReceiver.useGravity = false;
     }
@@ -31,7 +32,8 @@ public class PlayerDiveKickState : PlayerBaseState
         if (GetNormalizedTime(stateMachine.Animator, "DiveKick") > attack.TimeForce && attack.ShouldAddAttackForce)
         {
             Debug.Log("adding Force");
-            TryApplyForce(-stateMachine.transform.up, stateMachine.transform.forward, stateMachine.DiveForce, stateMachine.ForwardForce);
+            TryApplyForce(-stateMachine.transform.up, stateMachine.transform.forward, deltaTime,
+                stateMachine.DiveForce, stateMachine.ForwardForce, true);
         }        
 
         if (grounded && GetNormalizedTime(stateMachine.Animator,"DiveKick") > 1)
@@ -52,10 +54,10 @@ public class PlayerDiveKickState : PlayerBaseState
     }
 
 
-    private void TryApplyForce(Vector3 UpwardDirection, Vector3 ForwardDirection, float UpForce = 1, float ForwardForce = 1)
+    private void TryApplyForce(Vector3 UpwardDirection, Vector3 ForwardDirection, float deltaTime, float UpForce = 1, float ForwardForce = 1, bool continueForce = false)
     {
-        if (alreadyAppliedForce) return;
-        stateMachine.ForceReceiver.AddForce((UpwardDirection * UpForce) + (ForwardDirection * ForwardForce));
+        if (alreadyAppliedForce && !continueForce) return;
+        stateMachine.ForceReceiver.AddForce(((UpwardDirection * UpForce) + (ForwardDirection * ForwardForce)) * deltaTime );
         alreadyAppliedForce = true;
 
     }
