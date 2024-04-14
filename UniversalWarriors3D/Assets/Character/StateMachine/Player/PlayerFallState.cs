@@ -22,6 +22,7 @@ public class PlayerFallState : PlayerBaseState
         Momentum = stateMachine.CharacterController.velocity;
         Momentum.y = 0f;
         stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
+        stateMachine.InputReader.MeleeEvent += MeleeEvent;
 
     }
 
@@ -78,6 +79,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.InputReader.MeleeEvent -= MeleeEvent;
         stateMachine.MeshTrail.isTrailActive = false;
     }
 
@@ -96,6 +98,14 @@ public class PlayerFallState : PlayerBaseState
 
         return forward * stateMachine.InputReader.MovementValue.y +
                right * stateMachine.InputReader.MovementValue.x;
+    }
+
+    private void MeleeEvent()
+    {
+        stateMachine.EquipTime = 10f;
+        stateMachine.ForceReceiver.Reset();
+        stateMachine.Targeter.SelectClosestTarget();
+        stateMachine.SwitchState(new PlayerDiveKickState(stateMachine));
     }
 
 

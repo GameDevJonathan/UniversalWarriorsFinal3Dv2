@@ -12,6 +12,7 @@ public class PlayerTargetingState : PlayerBaseState
     Vector2 delta;
     private float angle;
     private bool dodging = false;
+    public float AnimatorDampTime = 0.05f;
 
     //shot values
     private float _lastFireTime = -1f;
@@ -76,7 +77,7 @@ public class PlayerTargetingState : PlayerBaseState
 
         FaceTarget();
 
-        AnimatorValues();
+        AnimatorValues(deltaTime);
 
         if (stateMachine.Targeter.CurrentTarget != null)
         {
@@ -105,7 +106,7 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.InputReader.MeleeEvent -= OnMelee;
     }
 
-    private void AnimatorValues()
+    private void AnimatorValues(float deltaTime)
     {
 
         #region unused code
@@ -134,8 +135,8 @@ public class PlayerTargetingState : PlayerBaseState
         #endregion
 
 
-        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y);
-        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x);
+        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y,AnimatorDampTime,deltaTime);
+        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x, AnimatorDampTime,deltaTime);
 
     }
 
