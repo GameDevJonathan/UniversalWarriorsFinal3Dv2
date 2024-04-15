@@ -30,6 +30,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool JumpButtonPressed => controls.Player.Jump.WasPressedThisFrame();
     public bool AttackButtonPressed => controls.Player.LightAttack.WasPressedThisFrame();
     public bool AttackButtonHeld => controls.Player.LightAttack.WasPerformedThisFrame();
+    public bool BlockButtonReleased => controls.Player.Block.WasReleasedThisFrame();
 
     [HideInInspector] public bool shoot;
     [HideInInspector] public bool charge;
@@ -69,6 +70,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     [Header("Energy Gathering Effect")]
     [SerializeField] private GameObject _maxChargeEffect;
     [SerializeField] private GameObject _minChargeEffect;
+    
+    //EVENTS ACTIONS
     #region action events
     //Actions
     public event Action JumpEvent;
@@ -77,9 +80,13 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action TargetEvent;
     public event Action CancelEvent;
     public event Action MeleeEvent;
+    public event Action BlockEvent;
     public event Action DodgeEvent;
     public event Action SpecialBeamEvent;
     #endregion
+    
+    
+    
     public Transform Player;
     //public event Action AttackEvent;
 
@@ -471,6 +478,15 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         if (context.canceled)
         {
             Debug.Log($"Parkour Context: ${context}");
+        }
+    }
+
+    public void OnBlock(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed)
+        {
+            BlockEvent?.Invoke();
         }
     }
 }

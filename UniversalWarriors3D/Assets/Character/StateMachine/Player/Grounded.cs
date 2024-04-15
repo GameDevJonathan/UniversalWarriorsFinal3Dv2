@@ -1,5 +1,3 @@
-using AmplifyShaderEditor;
-using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -46,7 +44,7 @@ public class Grounded : PlayerBaseState
 
         stateMachine.InputReader.JumpEvent += OnJump;
         stateMachine.InputReader.DashEvent += OnDash;
-        //stateMachine.InputReader.EquipEvent += OnEquip;
+        stateMachine.InputReader.BlockEvent += OnBlock;
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.MeleeEvent += OnMelee;
         stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
@@ -236,9 +234,18 @@ public class Grounded : PlayerBaseState
     //{
     //    stateMachine.SwitchState(new AttackingState(stateMachine,0));
     //    return;
-    //}
+    //}    
 
+    public override void Exit()
+    {
+        stateMachine.InputReader.JumpEvent -= OnJump;
+        stateMachine.InputReader.DashEvent -= OnDash;
+        stateMachine.InputReader.BlockEvent -= OnBlock;
+        stateMachine.InputReader.TargetEvent -= OnTarget;
+        stateMachine.InputReader.MeleeEvent -= OnMelee;
+        stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;
 
+    }
 
     public void OnMelee()
     {
@@ -261,6 +268,12 @@ public class Grounded : PlayerBaseState
         return;
     }
 
+    private void OnBlock()
+    {
+        stateMachine.SwitchState(new PlayerBlockState(stateMachine));
+        return;
+    }
+
     private void InputReader_SpecialBeamEvent()
     {
         stateMachine.SwitchState(new PlayerHyperBeam(stateMachine));
@@ -280,17 +293,6 @@ public class Grounded : PlayerBaseState
                 stateMachine.Animator.CrossFadeInFixedTime(UnEquipHash, CrossFadeDuration);
                 break;
         }
-    }
-
-    public override void Exit()
-    {
-        stateMachine.InputReader.JumpEvent -= OnJump;
-        stateMachine.InputReader.DashEvent -= OnDash;
-        //stateMachine.InputReader.EquipEvent -= OnEquip;
-        stateMachine.InputReader.TargetEvent -= OnTarget;
-        stateMachine.InputReader.MeleeEvent -= OnMelee;
-        stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;
-
     }
 
     public void OnTarget()

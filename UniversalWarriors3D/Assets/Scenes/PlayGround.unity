@@ -8842,6 +8842,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaypointArea
       objectReference: {fileID: 0}
+    - target: {fileID: 657714576870291423, guid: a69dd99fdfa2a0448a2526b2f66b5264,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 657714576870291424, guid: a69dd99fdfa2a0448a2526b2f66b5264,
         type: 3}
       propertyPath: editMode

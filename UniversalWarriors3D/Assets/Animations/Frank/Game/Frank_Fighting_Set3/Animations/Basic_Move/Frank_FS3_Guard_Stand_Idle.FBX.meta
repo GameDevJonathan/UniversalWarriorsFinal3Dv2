@@ -16,23 +16,11 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 2.643827 mm\n\t'calf_r' : position error = 1.123178 mm\n\t'upperarm_l'
-      : position error = 1.150873 mm\n\t'lowerarm_l' : position error = 2.075895
-      mm\n\t'hand_l' : position error = 1.878831 mm\n\t'ring_02_l' : position error
-      = 1.239450 mm\n\t'ring_03_l' : position error = 1.120294 mm\n\t'upperarm_r'
-      : position error = 1.235545 mm\n\t'lowerarm_r' : position error = 1.825175
-      mm\n\t'hand_r' : position error = 2.862859 mm\n\t'middle_02_r' : position error
-      = 1.764385 mm\n\t'middle_03_r' : position error = 1.311752 mm\n\t'ring_02_r'
-      : position error = 1.565958 mm\n\t'ring_03_r' : position error = 1.300701 mm\n\t'pinky_01_r'
-      : position error = 1.114196 mm\n\t'head' : position error = 6.325574 mm\n"
+    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
+      does not match:\n\tTransform 'mixamorig:Hips' for human bone 'Hips' not found\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Unreal Take' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'hand_l' has translation animation that
-      will be discarded.\n\t'hand_r' has translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
