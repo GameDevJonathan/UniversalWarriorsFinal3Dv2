@@ -16346,7 +16346,7 @@ PrefabInstance:
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: <Attacks>k__BackingField.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
@@ -16355,13 +16355,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<TimeForce>k__BackingField
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[5].<AttackForce>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<AttackForce>k__BackingField
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[5].<AnimationName>k__BackingField
       value: DiveKick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<AnimationName>k__BackingField
+      value: SpinningKick
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
@@ -16375,12 +16390,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<ComboAttackTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<ComboStateIndex>k__BackingField
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[5].<TransitionDuration>k__BackingField
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<TransitionDuration>k__BackingField
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[5].<ShouldAddAttackForce>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<ShouldAddAttackForce>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3222353948272991805, guid: 51a64003d9d16a84b9d19ed11e70f19e,

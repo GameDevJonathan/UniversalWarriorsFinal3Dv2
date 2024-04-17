@@ -8,7 +8,7 @@ public class AttackingState : PlayerBaseState
     private int attackIndex;
     private bool alreadyAppliedForce;
     private bool grounded => stateMachine.WallRun.CheckForGround();
-    private enum SpecialAttacks { Uppercut = 4 };
+    private enum SpecialAttacks { Uppercut = 4, SpinningKick = 6 };
 
     SpecialAttacks specialAttacks;
 
@@ -50,6 +50,15 @@ public class AttackingState : PlayerBaseState
             {
                 Debug.Log("adding Force");
                 TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 100f, 30f);
+            }
+        }
+
+        if (attack.AnimationName == "SpinningKick")
+        {
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce && attack.ShouldAddAttackForce)
+            {
+                Debug.Log("adding Force");
+                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 20f, 30f);
             }
         }
 
@@ -138,6 +147,12 @@ public class AttackingState : PlayerBaseState
         {
             case 1:
                 specialAttacks = SpecialAttacks.Uppercut;
+                //stateMachine.ForceReceiver.Jump(20f);
+                stateMachine.SwitchState(new AttackingState(stateMachine, (int)specialAttacks, targetLock));
+                break;
+
+            case 2:
+                specialAttacks = SpecialAttacks.SpinningKick;
                 //stateMachine.ForceReceiver.Jump(20f);
                 stateMachine.SwitchState(new AttackingState(stateMachine, (int)specialAttacks, targetLock));
                 break;
