@@ -16,6 +16,7 @@ public class Grounded : PlayerBaseState
     private bool shouldFade;
     private const float CrossFadeDuration = 0.2f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
+    public bool isOnLedge { get; set; }
     
 
 
@@ -156,6 +157,12 @@ public class Grounded : PlayerBaseState
 
         #region Movement
         Vector3 movement = CalculateMovement().normalized;
+        isOnLedge = stateMachine.EnviromentScaner.LedgeCheck(movement);
+
+        if (isOnLedge)
+        {
+            Debug.Log("On Ledge");
+        }
         Move(movement * freeLookMoveSpeed, deltaTime);
 
         //if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
