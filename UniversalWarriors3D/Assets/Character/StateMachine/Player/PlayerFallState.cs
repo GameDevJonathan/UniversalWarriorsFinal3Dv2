@@ -9,19 +9,22 @@ public class PlayerFallState : PlayerBaseState
     private Vector3 Momentum;
     private float fallTime = 0f;
     private float fallTimeRate = 1f;
+    private bool animChange;
 
 
     public PlayerFallState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-
+        
     }
 
     public override void Enter()
     {
         stateMachine.InputReader.isDashing = false;
         Momentum = stateMachine.CharacterController.velocity;
-        Momentum.y = 0f;
+        Momentum.y = 0f;        
         stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
+
+
         stateMachine.InputReader.MeleeEvent += MeleeEvent;
 
     }

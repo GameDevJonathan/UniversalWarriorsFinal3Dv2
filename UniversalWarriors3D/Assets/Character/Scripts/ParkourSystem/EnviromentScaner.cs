@@ -13,6 +13,7 @@ public class EnviromentScaner : MonoBehaviour
     [SerializeField] float heightRayLength = 5f;
     [SerializeField] float ledgeRayLength = 10f;
     [SerializeField] float ledgeheightThreshold = 0.75f;
+    [SerializeField] public float height;
     [SerializeField] float originoffset = 0.5f;
     [SerializeField] Vector3 Direction;
     [SerializeField] LayerMask obstacleLayer;
@@ -52,9 +53,9 @@ public class EnviromentScaner : MonoBehaviour
 
         if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, ledgeRayLength, obstacleLayer))
         {
-            float height = transform.position.y - hit.point.y;
+            height = transform.position.y - hit.point.y;
 
-            Debug.Log($"height distance: + {height}");
+            Debug.Log($"height distance: {height}");
 
             if (height > ledgeheightThreshold)
             {

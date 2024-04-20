@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abdc8623b7724ce4dbad72288bf0103f
+guid: 37798a10b449666488991452b0d952f7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -437,7 +437,7 @@ ModelImporter:
     second: CLazyRunner
   - first:
       74: 7400000
-    second: Jmp_FrontAir_A_Keep
+    second: Jmp_FrontAir_A_Root
   - first:
       95: 9500000
     second: //RootNode
@@ -463,10 +463,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 8.883008 mm\n\t'calf_l' : position error = 7.275871 mm\n\t'foot_l'
-      : position error = 7.541357 mm\n\t'ball_l' : position error = 7.086841 mm\n\t'thigh_r'
-      : position error = 8.846962 mm\n\t'calf_r' : position error = 9.005532 mm\n\t'foot_r'
-      : position error = 8.421877 mm\n\t'ball_r' : position error = 7.427119 mm\n"
+      : position error = 26.334055 mm\n\t'calf_l' : position error = 9.010933 mm\n\t'foot_l'
+      : position error = 8.592342 mm\n\t'ball_l' : position error = 2.209887 mm\n\t'thigh_r'
+      : position error = 11.319602 mm\n\t'calf_r' : position error = 10.231208 mm\n\t'foot_r'
+      : position error = 11.969155 mm\n\t'ball_r' : position error = 8.305959 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -524,11 +524,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jmp_FrontAir_A_Keep
+      name: Jmp_FrontAir_A_Root
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -539,7 +539,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1

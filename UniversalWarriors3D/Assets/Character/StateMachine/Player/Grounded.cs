@@ -12,11 +12,15 @@ public class Grounded : PlayerBaseState
     private float freeLookMoveSpeed;
     private float equipTime;
     private float _time = 2f;
-    private float _lerpSpeed = .9f;
+    private float dropHeight;
     private bool shouldFade;
+    Vector3 movement;
+
     private const float CrossFadeDuration = 0.2f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
+    
     public bool isOnLedge { get; set; }
+    ObstacleHitData hitData;
     
 
 
@@ -85,7 +89,7 @@ public class Grounded : PlayerBaseState
        
 
         Debug.Log($"WallRunCheck for ground function {grounded}");
-        var hitData = stateMachine.EnviromentScaner.ObstacleCheck();
+        hitData = stateMachine.EnviromentScaner.ObstacleCheck();
 
         if (grounded)
         {
@@ -108,9 +112,11 @@ public class Grounded : PlayerBaseState
                     }
 
                 }
-
             }
+           
         }
+
+       
 
 
 
@@ -156,12 +162,18 @@ public class Grounded : PlayerBaseState
         #endregion
 
         #region Movement
-        Vector3 movement = CalculateMovement().normalized;
+        movement = CalculateMovement().normalized;
         isOnLedge = stateMachine.EnviromentScaner.LedgeCheck(movement);
 
         if (isOnLedge)
         {
             Debug.Log("On Ledge");
+            if (stateMachine.InputReader.MovementValue.magnitude > 0.1f)
+            {
+                dropHeight = stateMachine.EnviromentScaner.height;
+                stateMachine.SwitchState(new PlayerLedgeJumpState(stateMachine, dropHeight));
+                return;
+            }
         }
         Move(movement * freeLookMoveSpeed, deltaTime);
 
@@ -325,5 +337,26 @@ public class Grounded : PlayerBaseState
 
         return forward * stateMachine.InputReader.MovementValue.y +
                right * stateMachine.InputReader.MovementValue.x;
+    }
+
+    private void DoParkourAction()
+    {
+        if (stateMachine.InputReader.MovementValue.magnitude > 0.1f)
+        {
+            foreach (var action in stateMachine.ParkourActions)
+            {
+                if (action.CheckIfPossible(hitData, stateMachine.transform))
+                    Debug.Log(action.CheckIfPossible(hitData, stateMachine.transform));
+                if (action.CheckIfPossible(hitData, stateMachine.transform))
+                {
+                    Debug.Log("Obstacle Found" + hitData.forwardHit.transform.name);
+                    stateMachine.SwitchState(new PlayerParkourState(stateMachine, action.AnimName, action.RotateToObstacle,
+                        action.TargetRotation, action.EnableTargetMatching, action.MatchPos, action));
+                    return;
+                }
+            }
+
+        }
+
     }
 }
