@@ -46,7 +46,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Modifier"",
+                    ""name"": ""Skills"",
                     ""type"": ""Button"",
                     ""id"": ""f5134603-52aa-49c2-acd7-ebd6dcf1245a"",
                     ""expectedControlType"": ""Button"",
@@ -64,15 +64,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""243de235-4d52-4ec7-b14f-8a8060aea68f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""AIm"",
                     ""type"": ""Button"",
                     ""id"": ""76dc2962-2464-42ad-877d-129d414c1561"",
@@ -83,12 +74,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""a13b11bb-62a5-4566-a754-77d2ec8f04be"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Equip"",
@@ -323,7 +314,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Modifier"",
+                    ""action"": ""Skills"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -334,7 +325,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Modifier"",
+                    ""action"": ""Skills"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -357,28 +348,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f794a038-7dc9-497d-8650-240b6bb4c78e"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f1081a50-084f-4e9d-9014-dc6a4b840ae6"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -421,7 +390,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""GamePad"",
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -465,7 +434,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""GamePad"",
                     ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -650,9 +619,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Modifier = m_Player.FindAction("Modifier", throwIfNotFound: true);
+        m_Player_Skills = m_Player.FindAction("Skills", throwIfNotFound: true);
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_AIm = m_Player.FindAction("AIm", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
@@ -727,9 +695,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Modifier;
+    private readonly InputAction m_Player_Skills;
     private readonly InputAction m_Player_Camera;
-    private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_AIm;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Equip;
@@ -747,9 +714,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Modifier => m_Wrapper.m_Player_Modifier;
+        public InputAction @Skills => m_Wrapper.m_Player_Skills;
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @AIm => m_Wrapper.m_Player_AIm;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Equip => m_Wrapper.m_Player_Equip;
@@ -776,15 +742,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Modifier.started += instance.OnModifier;
-            @Modifier.performed += instance.OnModifier;
-            @Modifier.canceled += instance.OnModifier;
+            @Skills.started += instance.OnSkills;
+            @Skills.performed += instance.OnSkills;
+            @Skills.canceled += instance.OnSkills;
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
             @AIm.started += instance.OnAIm;
             @AIm.performed += instance.OnAIm;
             @AIm.canceled += instance.OnAIm;
@@ -828,15 +791,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Modifier.started -= instance.OnModifier;
-            @Modifier.performed -= instance.OnModifier;
-            @Modifier.canceled -= instance.OnModifier;
+            @Skills.started -= instance.OnSkills;
+            @Skills.performed -= instance.OnSkills;
+            @Skills.canceled -= instance.OnSkills;
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
             @AIm.started -= instance.OnAIm;
             @AIm.performed -= instance.OnAIm;
             @AIm.canceled -= instance.OnAIm;
@@ -909,9 +869,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnModifier(InputAction.CallbackContext context);
+        void OnSkills(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
         void OnAIm(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnEquip(InputAction.CallbackContext context);

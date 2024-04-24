@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Modifier",
+                    "name": "Skills",
                     "type": "Button",
                     "id": "f5134603-52aa-49c2-acd7-ebd6dcf1245a",
                     "expectedControlType": "Button",
@@ -42,15 +42,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "243de235-4d52-4ec7-b14f-8a8060aea68f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "AIm",
                     "type": "Button",
                     "id": "76dc2962-2464-42ad-877d-129d414c1561",
@@ -61,12 +52,12 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a13b11bb-62a5-4566-a754-77d2ec8f04be",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Equip",
@@ -301,7 +292,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Modifier",
+                    "action": "Skills",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -312,7 +303,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Modifier",
+                    "action": "Skills",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -335,28 +326,6 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f794a038-7dc9-497d-8650-240b6bb4c78e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f1081a50-084f-4e9d-9014-dc6a4b840ae6",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamePad",
-                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -399,7 +368,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "GamePad",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -443,7 +412,7 @@
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "GamePad",
                     "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false

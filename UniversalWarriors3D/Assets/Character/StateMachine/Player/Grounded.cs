@@ -48,7 +48,7 @@ public class Grounded : PlayerBaseState
             stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
 
         stateMachine.InputReader.JumpEvent += OnJump;
-        stateMachine.InputReader.DashEvent += OnDash;
+        //stateMachine.InputReader.DashEvent += OnDash;
         stateMachine.InputReader.BlockEvent += OnBlock;
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.MeleeEvent += OnMelee;
@@ -168,7 +168,7 @@ public class Grounded : PlayerBaseState
         if (isOnLedge)
         {
             Debug.Log("On Ledge");
-            if (stateMachine.InputReader.MovementValue.magnitude > 0.1f)
+            if (stateMachine.InputReader.MovementValue.magnitude > 0.1f && stateMachine.InputReader.Modified)
             {
                 dropHeight = stateMachine.EnviromentScaner.height;
                 stateMachine.SwitchState(new PlayerLedgeJumpState(stateMachine, dropHeight));
@@ -258,7 +258,7 @@ public class Grounded : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.JumpEvent -= OnJump;
-        stateMachine.InputReader.DashEvent -= OnDash;
+        //stateMachine.InputReader.DashEvent -= OnDash;
         stateMachine.InputReader.BlockEvent -= OnBlock;
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
@@ -281,11 +281,11 @@ public class Grounded : PlayerBaseState
         return;
     }
 
-    private void OnDash()
-    {
-        stateMachine.SwitchState(new DashState(stateMachine));
-        return;
-    }
+    //private void OnDash()
+    //{
+    //    stateMachine.SwitchState(new DashState(stateMachine));
+    //    return;
+    //}
 
     private void OnBlock()
     {
@@ -318,6 +318,7 @@ public class Grounded : PlayerBaseState
     {
         if (!stateMachine.Targeter.SelectTarget()) return;
         stateMachine.InputReader.Targeting = true;
+        //stateMachine.InputReader.CinemachineCameraTarget.transform.rotation.eulerAngles.y = 0f;
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
         return;
 

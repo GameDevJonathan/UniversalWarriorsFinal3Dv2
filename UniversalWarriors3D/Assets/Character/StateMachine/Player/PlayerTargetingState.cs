@@ -36,6 +36,7 @@ public class PlayerTargetingState : PlayerBaseState
         //Debug.Log("PlayerTargeting State:: Entered Targeting State");        
         //stateMachine.rig.weight = .6f;
         stateMachine.InputReader.CancelEvent += OnCancel;
+        stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.MeleeEvent += OnMelee;
     }
@@ -96,12 +97,13 @@ public class PlayerTargetingState : PlayerBaseState
     {
         stateMachine.Animator.SetFloat("StrafeMovement", 0);
         stateMachine.InputReader.Targeting = (dodging) ? true : false;
-        
+
         stateMachine._TargetCamUtil.SetActive(dodging);
         debugTransform.gameObject.SetActive(dodging);
         //stateMachine.InputReader.ResetCamera();
         //stateMachine.rig.weight = 0f;
         stateMachine.InputReader.CancelEvent -= OnCancel;
+        stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
     }
@@ -135,8 +137,8 @@ public class PlayerTargetingState : PlayerBaseState
         #endregion
 
 
-        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y,AnimatorDampTime,deltaTime);
-        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x, AnimatorDampTime,deltaTime);
+        stateMachine.Animator.SetFloat("ForwardSpeed", stateMachine.InputReader.MovementValue.normalized.y, AnimatorDampTime, deltaTime);
+        stateMachine.Animator.SetFloat("StrafingSpeed", stateMachine.InputReader.MovementValue.normalized.x, AnimatorDampTime, deltaTime);
 
     }
 
@@ -152,16 +154,6 @@ public class PlayerTargetingState : PlayerBaseState
         //stateMachine.InputReader.ResetCamera();
         dodging = false;
         stateMachine.SwitchState(new Grounded(stateMachine, true));
-    }
-
-    public void OnDodge()
-    {
-        Debug.Log($"Joystick angle: {angle}");
-        Vector2 move = stateMachine.InputReader.MovementValue;
-        Debug.Log($"Dodging: {dodging}");
-        dodging = true;
-        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, move, angle, dodging));
-        return;
     }
 
     public void OnMelee()
@@ -215,6 +207,20 @@ public class PlayerTargetingState : PlayerBaseState
         }
     }
     #endregion
+    private void InputReader_SpecialBeamEvent()
+    {
+        dodging = true;
+        stateMachine.SwitchState(new PlayerHyperBeam(stateMachine, dodging));
+    }
 
+    public void OnDodge()
+    {
+        Debug.Log($"Joystick angle: {angle}");
+        Vector2 move = stateMachine.InputReader.MovementValue;
+        Debug.Log($"Dodging: {dodging}");
+        dodging = true;
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, move, angle, dodging));
+        return;
+    }
 
 }

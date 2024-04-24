@@ -19,6 +19,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     [SerializeField, Range(0, 1)] private float _lerpTime = 1f;
     [SerializeField] private float _Time = 0f;
     [SerializeField] private float _InitialCameraYaw = 0f;
+    [SerializeField] private float _InitialCameraPitch = 0f;
     private Coroutine _resetCamera;
     [SerializeField] private bool _softReset = false;
     #endregion
@@ -26,6 +27,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     #region Gameplay bools
     [Header("Gameplay bools")]
     public bool Modified;
+    public bool Skills;
+    public float triggerValue;
 
     public bool JumpButtonPressed => controls.Player.Jump.WasPressedThisFrame();
     public bool AttackButtonPressed => controls.Player.LightAttack.WasPressedThisFrame();
@@ -102,6 +105,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
     public GameObject CinemachineCameraTarget;
+    public GameObject CinemachineInitPos;
 
     [Tooltip("How far in degrees can you move the camera up")]
     public float TopClamp = 70.0f;
@@ -146,7 +150,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Enable();
 
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-        _InitialCameraYaw = _cinemachineTargetYaw;
+        
+        //_InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
 
         _material.SetFloat(_targetRef, _targetValue);
     }
@@ -156,8 +161,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     private void Update()
     {
         Time.timeScale = TimeScale;
+        _InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
+        _InitialCameraPitch = CinemachineInitPos.transform.rotation.eulerAngles.x;
 
         _targetValue = Mathf.Clamp(_targetValue, .1f, 1f);
+        triggerValue = Mathf.Clamp(triggerValue, 0f, 1f);
+        Modified = (triggerValue >= 0.01f);
 
         FightingStanceCoolDownTime = Mathf.Clamp(FightingStanceCoolDownTime, 0f, 1f);
         if (FightingStanceCoolDownTime > 0f) FightingStanceCoolDownTime -= Time.deltaTime;
@@ -288,48 +297,48 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
+    //public void OnAttack(InputAction.CallbackContext context)
+    //{
+    //    if (context.started)
+    //    {
 
-            shoot = true;
-            fire = false;
-            Debug.Log("Firing");
-            mediumShot = false;
-            chargedShot = false;
-        }
-        else
-        if (context.performed)
-        {
-            shoot = false;
-            charge = true;
-            if (chargeAmount > _minRate)
-                Debug.Log("Charging");
-
-
-        }
-        else
-        if (context.canceled)
-        {
-            charge = false;
-            fire = true;
-            if (chargeAmount >= _minRate && chargeAmount < _maxRate)
-            {
-                Debug.Log("Meduim Shot");
-                mediumShot = true;
+    //        shoot = true;
+    //        fire = false;
+    //        Debug.Log("Firing");
+    //        mediumShot = false;
+    //        chargedShot = false;
+    //    }
+    //    else
+    //    if (context.performed)
+    //    {
+    //        shoot = false;
+    //        charge = true;
+    //        if (chargeAmount > _minRate)
+    //            Debug.Log("Charging");
 
 
-            }
-            else if (chargeAmount >= _maxRate)
-            {
-                Debug.Log("Max Charge Shot");
+    //    }
+    //    else
+    //    if (context.canceled)
+    //    {
+    //        charge = false;
+    //        fire = true;
+    //        if (chargeAmount >= _minRate && chargeAmount < _maxRate)
+    //        {
+    //            Debug.Log("Meduim Shot");
+    //            mediumShot = true;
 
-                chargedShot = true;
-            }
-            chargeAmount = 0;
-        }
-    }
+
+    //        }
+    //        else if (chargeAmount >= _maxRate)
+    //        {
+    //            Debug.Log("Max Charge Shot");
+
+    //            chargedShot = true;
+    //        }
+    //        chargeAmount = 0;
+    //    }
+    //}
 
     public void OnAIm(InputAction.CallbackContext context)
     {
@@ -354,8 +363,10 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
-        DashEvent?.Invoke();
+        Debug.Log($"Trigger value: {context.ReadValue<float>()}");
+        //if (!context.performed) { return; }
+        //DashEvent?.Invoke();
+        triggerValue = context.ReadValue<float>();
     }
 
     public void OnDodge(InputAction.CallbackContext context)
@@ -380,12 +391,14 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnLockOn(InputAction.CallbackContext context)
     {
+        Debug.Log("ButtonPressed");
         if (context.performed && !Targeting)
         {
+            //rotation = new Quaternion(0, 0, 0,0);            
             TargetEvent?.Invoke();
-        }
-        else if (context.performed && Targeting)
+        }else if (context.performed && Targeting)
         {
+            
             Targeting = false;
             CancelEvent?.Invoke();
         }
@@ -407,18 +420,19 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-    public void OnModifier(InputAction.CallbackContext context)
+    public void OnSkills(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Modified = true;
-        }
-        else if (context.canceled)
-        {
-            Modified = false;
+            Skills = true;
         }
 
-        Debug.Log("Modified: " + Modified);
+        if (context.canceled)
+        {
+            Skills = false;
+        }
+        Debug.Log($"Skills context: {context}");
+        Debug.Log("Skills: " + Modified);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -451,11 +465,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     IEnumerator SoftReset()
     {
-        while (_cinemachineTargetYaw != _InitialCameraYaw)
+        while ((_cinemachineTargetYaw != _InitialCameraYaw) && (_cinemachineTargetPitch != _InitialCameraPitch))
         {
             yield return null;
             Debug.Log($"Appoximately: {Mathf.Approximately(_cinemachineTargetYaw, _InitialCameraYaw)}");
             _cinemachineTargetYaw = Mathf.Lerp(_cinemachineTargetYaw, _InitialCameraYaw, _Time);
+            _cinemachineTargetPitch = Mathf.Lerp(_cinemachineTargetPitch, _InitialCameraPitch, _Time);
             _Time += Time.deltaTime * _lerpSpeed;
         }
         _softReset = false;
