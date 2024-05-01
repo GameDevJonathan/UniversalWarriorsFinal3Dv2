@@ -6295,7 +6295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 1
+  openCloseWindow: 0
   selectedToolbar: 0
   Members:
   - transform: {fileID: 1131041857}
@@ -6371,10 +6371,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 12
   _isDead: 1
   _currentHealth: 0
-  isImmortal: 1
+  isImmortal: 0
   fillHealthOnStart: 1
   _maxHealth: 100
   _healthRecovery: 0
@@ -6479,7 +6479,7 @@ MonoBehaviour:
   updatePathQuality: 2
   aceleration: 8
   _stopingDistance: 0.2
-  _walkingStopingDistance: 0
+  _walkingStopingDistance: 0.1
   _runningStopingDistance: 0.1
   _sprintingStopingDistance: 0.15
   _waypointArea: {fileID: 1410130744}
@@ -6495,17 +6495,17 @@ MonoBehaviour:
   detectionPointReference: {fileID: 1938027827}
   sightMethod: -1
   findTargetUpdateQuality: 3
-  canseeTargetUpdateQuality: 4
+  canseeTargetUpdateQuality: 2
   findOtherTarget: 0
   maxTargetsDetection: 10
   _changeTargetDelay: 2
   findTargetByDistance: 1
   _fieldOfView: 90
-  _minDistanceToDetect: 6
-  _maxDistanceToDetect: 9.48
+  _minDistanceToDetect: 5
+  _maxDistanceToDetect: 9
   _hasPositionOfTheTarget: 0
   _targetInLineOfSight: 0
-  _lostTargetDistance: 4
+  _lostTargetDistance: 1.42
   _timeToLostWithoutSight: 5
   _detectLayer:
     serializedVersion: 2
@@ -6523,7 +6523,7 @@ MonoBehaviour:
     isFixedTarget: 0
     isLost: 0
   _secundaryTargets: []
-  _debugVisualDetection: 0
+  _debugVisualDetection: 1
   _debugRaySight: 1
   _debugLastTargetPosition: 0
   _receivedDamage:
@@ -6539,7 +6539,7 @@ MonoBehaviour:
   _minAttackTime: 0.5
   _maxAttackTime: 2
   _minAttackCount: 1
-  _maxAttackCount: 3
+  _maxAttackCount: 4
   _attackDistance: 1
   _combatBlockingChance: 0
   _onDamageBlockingChance: 0
@@ -6551,7 +6551,7 @@ MonoBehaviour:
   - unarmed
   - melee
   _minDistanceOfTheTarget: 2
-  _combatDistance: 4
+  _combatDistance: 3.57
   _strafeCombatMovement: 1
   _alwaysStrafe: 0
   _minTimeToChangeStrafeSide: 1
