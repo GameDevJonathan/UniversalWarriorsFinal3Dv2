@@ -96,7 +96,7 @@ Transform:
   m_GameObject: {fileID: 49078013048671494}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.398, z: -2.2999992}
+  m_LocalPosition: {x: 0.00000023841858, y: 1.398, z: -2.2999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5857,7 +5857,7 @@ Transform:
   m_GameObject: {fileID: 1514780721465902359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: -0.00000023841858, z: 12.8549595}
+  m_LocalPosition: {x: -0.00000011920929, y: 0.00000047683716, z: 12.8549595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5954,7 +5954,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1174746652988489907
 Rigidbody:
@@ -22237,7 +22237,7 @@ GameObject:
   - component: {fileID: 4857561070767187275}
   - component: {fileID: 2217217456490157665}
   - component: {fileID: 878951680395192149}
-  - component: {fileID: 5431035898301688395}
+  - component: {fileID: 5449861506898400344}
   m_Layer: 8
   m_Name: cm
   m_TagString: Untagged
@@ -22296,7 +22296,7 @@ MonoBehaviour:
   CameraRadius: 0.2
   DampingIntoCollision: 0
   DampingFromCollision: 2
---- !u!114 &5431035898301688395
+--- !u!114 &5449861506898400344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28080,6 +28080,7 @@ Transform:
   - {fileID: 2290712903160723200}
   - {fileID: 1100341623726246755}
   - {fileID: 3717986478761306243}
+  - {fileID: 6015859132970277936}
   - {fileID: 8099763663335115613}
   - {fileID: 1931683759552106378}
   - {fileID: 9132540097266709474}
@@ -28160,6 +28161,20 @@ MonoBehaviour:
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 1
     <TimeForce>k__BackingField: 0.3
+  - <AnimationName>k__BackingField: DiveKick
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 1
+    <AttackForce>k__BackingField: 20
+    <ShouldAddAttackForce>k__BackingField: 1
+    <TimeForce>k__BackingField: 0.6
+  - <AnimationName>k__BackingField: SpinningKick
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 1
+    <AttackForce>k__BackingField: 20
+    <ShouldAddAttackForce>k__BackingField: 1
+    <TimeForce>k__BackingField: 0.4
   <SpecialMoves>k__BackingField: []
   Index: 0
   <ParkourActions>k__BackingField:
@@ -28194,10 +28209,13 @@ MonoBehaviour:
   <FreeLookMovementSpeed>k__BackingField: 5
   <LockOnMovementSpeed>k__BackingField: 2.5
   <AirMovementSpeed>k__BackingField: 3
-  <JumpForce>k__BackingField: 15
+  <JumpForce>k__BackingField: 20
+  <DiveForce>k__BackingField: 300
+  <ForwardForce>k__BackingField: 200
   <RotationSmoothValue>k__BackingField: 11
   <DashForceTime>k__BackingField: 0.1
   <DashForce>k__BackingField: 35
+  <EquipTime>k__BackingField: 0
   <_thirdPersonCam>k__BackingField: {fileID: 7275176124480098509}
   <_AimCam>k__BackingField: {fileID: 8164545889302036681}
   <_AimCamUtil>k__BackingField: {fileID: 1543287124681864437}
@@ -28255,8 +28273,11 @@ MonoBehaviour:
   _lerpTime: 1
   _Time: 0
   _InitialCameraYaw: 0
+  _InitialCameraPitch: 0
   _softReset: 0
   Modified: 0
+  Skills: 0
+  triggerValue: 0
   shoot: 0
   charge: 0
   fire: 0
@@ -28267,7 +28288,7 @@ MonoBehaviour:
   <SelectionValue>k__BackingField: {x: 0, y: 0}
   Targeting: 0
   FightingStance: 0
-  <FightingStanceCoolDown>k__BackingField: 0.3
+  <FightingStanceCoolDown>k__BackingField: 0.6
   <FightingStanceCoolDownTime>k__BackingField: 0
   <equipingWeapon>k__BackingField: 0
   AnimChargeRef: ChargeLevel
@@ -28283,6 +28304,7 @@ MonoBehaviour:
   <isAttacking>k__BackingField: 0
   Sensitivity: 0.5
   CinemachineCameraTarget: {fileID: 3778411012160126477}
+  CinemachineInitPos: {fileID: 8964167918464969605}
   TopClamp: 70
   BottomClamp: -23
   CameraAngleOverride: 0
@@ -28318,6 +28340,7 @@ MonoBehaviour:
   gravity: 0
   Normal: 30
   wallSlideSpeed: 1
+  DiveSpeed: 30
 --- !u!114 &3559275684960245964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28333,9 +28356,14 @@ MonoBehaviour:
   forwardRayOffset: {x: 0, y: 1, z: 0}
   forwardRayLength: 1.5
   heightRayLength: 5
+  ledgeRayLength: 1000
+  ledgeheightThreshold: 0.75
+  height: 0
+  originoffset: 1
+  Direction: {x: 0, y: 0, z: 0}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 3670016
 --- !u!114 &7039530752574895184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51221,13 +51249,13 @@ Transform:
   m_GameObject: {fileID: 7275176124480098509}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: 0.64735323, y: -2.4354687, z: 6.8540297}
+  m_LocalPosition: {x: 0.64735305, y: -2.4354687, z: 6.85403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4857561070767187275}
   m_Father: {fileID: 7538983510965459112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.375, y: -174.17, z: 0}
 --- !u!114 &8007137382052788304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51246,7 +51274,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 11
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 7206535533246469589}
+  m_LookAt: {fileID: 1100341623726246755}
   m_Follow: {fileID: 1100341623726246755}
   m_Lens:
     FieldOfView: 70.39
@@ -61703,7 +61731,7 @@ Transform:
   m_GameObject: {fileID: 8164545889302036681}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: -0.018252134, y: -2.0011897, z: 6.327845}
+  m_LocalPosition: {x: -0.018252432, y: -2.0011897, z: 6.3278456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61877,15 +61905,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8220259682428842565}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.005253212, y: 0.9931791, z: -0.1054446, w: -0.049489193}
-  m_LocalPosition: {x: 1.6648791, y: -1.0787065, z: 17.038834}
+  m_LocalRotation: {x: -0.005253204, y: 0.993179, z: -0.10544461, w: -0.04948913}
+  m_LocalPosition: {x: 1.6648774, y: -1.0787065, z: 17.038836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8989771943216622418}
   - {fileID: 217334727170229599}
   m_Father: {fileID: 7538983510965459112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.121, y: -175.5, z: 0}
 --- !u!114 &5151864751240047554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81934,6 +81962,37 @@ Transform:
   m_Children:
   - {fileID: 2632960769579710201}
   m_Father: {fileID: 8303604977667676221}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8964167918464969605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6015859132970277936}
+  m_Layer: 8
+  m_Name: CameraResetPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6015859132970277936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8964167918464969605}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3979998, z: -2.3000011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7206535533246469589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8992852927616929576
 GameObject:
