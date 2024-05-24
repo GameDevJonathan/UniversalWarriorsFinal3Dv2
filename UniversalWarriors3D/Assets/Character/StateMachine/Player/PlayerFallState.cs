@@ -12,16 +12,19 @@ public class PlayerFallState : PlayerBaseState
     private bool animChange;
 
 
-    public PlayerFallState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerFallState(PlayerStateMachine stateMachine, bool animationChange = false) : base(stateMachine)
     {
-        
+        this.animChange = animationChange;
     }
 
     public override void Enter()
     {
+        Debug.Log("Entered fallState");
         stateMachine.InputReader.isDashing = false;
         Momentum = stateMachine.CharacterController.velocity;
-        Momentum.y = 0f;        
+        Momentum.y = 0f;
+        
+        if(!animChange)
         stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
 
 

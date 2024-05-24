@@ -9,6 +9,7 @@ public class PlayerLedgeJumpState : PlayerBaseState
     private Vector3 Momentum;
     private float fallTime = 0f;
     private float fallTimeRate = 1f;
+    private bool alreadyAppliedForce;
 
     public PlayerLedgeJumpState(PlayerStateMachine stateMachine, float height) : base(stateMachine)
     {
@@ -17,9 +18,9 @@ public class PlayerLedgeJumpState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.applyRootMotion = true;
+        //stateMachine.Animator.applyRootMotion = true;
         Momentum = stateMachine.CharacterController.velocity;
-        Momentum.y = 0f;
+        //Momentum.y = 0f;
         stateMachine.Animator.CrossFadeInFixedTime(LedgeJumpStartHash, CrossFadeDuration);
     }
 
@@ -28,25 +29,46 @@ public class PlayerLedgeJumpState : PlayerBaseState
         Vector3 movement = CalculateMovement();
         fallTime += fallTimeRate * Time.deltaTime;
 
-        if (stateMachine.Animator.GetCurrentAnimatorStateInfo(0).IsTag("LedgeJump"))
+
+        if( GetNormalizedTime(stateMachine.Animator,"LedgeJump") > .11f && !alreadyAppliedForce)
         {
-            if (stateMachine.Animator.applyRootMotion)
-            {
-                stateMachine.Animator.applyRootMotion = !stateMachine.Animator.applyRootMotion;
-                stateMachine.ForceReceiver.Reset();
-            }
+            Debug.Log("jumped ledge");
+            //stateMachine.ForceReceiver.Jump(10f);
+            //alreadyAppliedForce = true;
+            TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 80f, Momentum.z);
+        }
+        Move(Momentum,deltaTime);
 
-            //Move(Momentum, deltaTime);
-            Move(movement + Momentum, deltaTime);
-
-            if (movement != Vector3.zero)
-                FaceMovement(movement, deltaTime);
+        if(GetNormalizedTime(stateMachine.Animator,"LedgeJumpLoop") > 1f)
+        {
+            stateMachine.SwitchState(new PlayerFallState(stateMachine, true));
         }
 
-        if (stateMachine.CharacterController.isGrounded && stateMachine.Animator.GetCurrentAnimatorStateInfo(0).IsTag("LedgeJump"))
-        {
-            stateMachine.SwitchState(new PlayerLandState(stateMachine, movement, fallTime));
-        }
+
+        //if (stateMachine.Animator.GetCurrentAnimatorStateInfo(0).IsTag("LedgeJump"))
+        //{
+        //    if (stateMachine.Animator.applyRootMotion)
+        //    {
+        //        stateMachine.Animator.applyRootMotion = !stateMachine.Animator.applyRootMotion;
+        //        stateMachine.ForceReceiver.Reset();
+        //    }
+
+        //    //Move(Momentum, deltaTime);           
+        //    if (stateMachine.CharacterController.isGrounded)
+        //    {
+        //        stateMachine.ForceReceiver.Jump(10f);
+
+
+        //    }
+
+        //    if (movement != Vector3.zero)
+        //        FaceMovement(movement, deltaTime);
+        //}
+
+        //if (stateMachine.CharacterController.isGrounded && stateMachine.Animator.GetCurrentAnimatorStateInfo(0).IsTag("LedgeJumpLand"))
+        //{
+        //    stateMachine.SwitchState(new PlayerLandState(stateMachine, movement, fallTime));
+        //}
 
     }
 
@@ -70,4 +92,14 @@ public class PlayerLedgeJumpState : PlayerBaseState
         return forward * stateMachine.InputReader.MovementValue.y +
                right * stateMachine.InputReader.MovementValue.x;
     }
+
+    private void TryApplyForce(Vector3 UpwardDirection, Vector3 ForwardDirection, float UpForce = 1, float ForwardForce = 1)
+    {
+        if (alreadyAppliedForce) return;
+        stateMachine.ForceReceiver.AddForce((UpwardDirection * UpForce) + (ForwardDirection * ForwardForce));
+        alreadyAppliedForce = true;
+
+    }
+
+
 }

@@ -7,6 +7,8 @@ public class Target : MonoBehaviour
     public enum Type { small = 1, heavy = 2, large = 3}
     public Type type;
 
+    private Target target;
+
     public void OnDestroy()
     {
         OnDestroyed?.Invoke(this);
@@ -15,6 +17,15 @@ public class Target : MonoBehaviour
     public void Destroyed()
     {
         OnDestroyed?.Invoke(this);
+    }
+
+    public void delete()
+    {
+        target = GetComponent<Target>();
+       Destroy(target);
+        
+        
+        
     }
 
 

@@ -55,7 +55,7 @@ public class EnviromentScaner : MonoBehaviour
         {
             height = transform.position.y - hit.point.y;
 
-            Debug.Log($"height distance: {height}");
+            //Debug.Log($"height distance: {height}");
 
             if (height > ledgeheightThreshold)
             {

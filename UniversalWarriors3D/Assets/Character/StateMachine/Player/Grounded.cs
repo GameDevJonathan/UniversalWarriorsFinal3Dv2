@@ -35,6 +35,12 @@ public class Grounded : PlayerBaseState
 
     public override void Enter()
     {
+        if (stateMachine.InputReader.Targeting)
+        {
+            stateMachine.InputReader.Targeting = false;
+            stateMachine._TargetCamUtil.SetActive(false);
+            stateMachine.debugTransform.gameObject.SetActive(false);
+        }
 
         if (stateMachine.rig != null)
         {

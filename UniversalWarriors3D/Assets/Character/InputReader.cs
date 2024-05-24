@@ -363,7 +363,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        Debug.Log($"Trigger value: {context.ReadValue<float>()}");
+        //Debug.Log($"Trigger value: {context.ReadValue<float>()}");
         //if (!context.performed) { return; }
         //DashEvent?.Invoke();
         triggerValue = context.ReadValue<float>();

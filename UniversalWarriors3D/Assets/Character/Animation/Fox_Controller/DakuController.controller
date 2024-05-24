@@ -952,7 +952,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 37798a10b449666488991452b0d952f7, type: 3}
-  m_Tag: 
+  m_Tag: LedgeJump
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -1402,7 +1402,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: ec591301ad91fec4bac6482dbaa301fd, type: 3}
-  m_Tag: LedgeJump
+  m_Tag: LedgeJumpLoop
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
