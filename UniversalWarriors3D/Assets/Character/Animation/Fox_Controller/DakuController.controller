@@ -86,7 +86,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack1
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
@@ -1135,7 +1135,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1330871703407167127, guid: 0cef84ef54af24b4e9ae9cb83d620635,
+  m_Motion: {fileID: 8993902097722301239, guid: c2434edcf9f90d348ac4b8059a1fd216,
     type: 3}
   m_Tag: DiveKickEnd
   m_SpeedParameter: 
@@ -1920,7 +1920,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8985062063777163253, guid: b1326f29dcfd37f4aa4c7b542bf3e050,
+  m_Motion: {fileID: 8993902097722301239, guid: 20d1da250ad97a343a11a8514cab64cf,
     type: 3}
   m_Tag: DiveKick
   m_SpeedParameter: 
@@ -2080,7 +2080,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8286288697290588857, guid: 9e5ab723a8fb6c74eaf89f607d57681a,
+  m_Motion: {fileID: 8993902097722301239, guid: 69b660de8ba64a441a9109c64c9066fc,
     type: 3}
   m_Tag: DiveKickLoop
   m_SpeedParameter: 
