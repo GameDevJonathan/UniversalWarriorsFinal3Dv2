@@ -29,6 +29,8 @@ namespace Invector.vCharacterController.AI
         // This variable will appear in the new Tab 'Custom Properties'
         [vHelpBox("Check the script 'vControlAI_ExpandExample' to see how you can expand the controller by creating your own methods and variables", vHelpBoxAttribute.MessageType.Info)]
         public GameObject myTarget;
+        [Tooltip("Animator for current GameObject")]
+        public Animator myAnimator;
 
         // Just a bool so we can test the method, check true via inspector to make the controller MoveTo the target assigned
         public bool moveToTarget;
@@ -38,6 +40,7 @@ namespace Invector.vCharacterController.AI
 
         // This is a simple example for the FSM to have access to the variable myTarget
         public GameObject customTarget { get => myTarget; }
+        public Animator customAnimator { get => myAnimator; }
 
         /// <summary>
         /// Make it public so you can call it when you create a new FSM CustomAction
