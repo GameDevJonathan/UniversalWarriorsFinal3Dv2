@@ -125,15 +125,15 @@ MonoBehaviour:
   canSetAsDefault: 1
   canEditName: 1
   canEditColor: 1
-  isOpen: 1
+  isOpen: 0
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 705
-    y: 270
+    x: 725
+    y: 305
     width: 150
-    height: 62
-  positionRect: {x: 705, y: 270}
+    height: 30
+  positionRect: {x: 725, y: 305}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 1, g: 0, b: 0, a: 1}
@@ -142,36 +142,41 @@ MonoBehaviour:
   inDrag: 0
   resetCurrentDestination: 1
   transitions:
-  - decisions: []
+  - decisions:
+    - trueValue: 0
+      decision: {fileID: -3920933432733673754}
+      isValid: 1
+      validated: 0
     trueState: {fileID: -373224967783389107}
     falseState: {fileID: 0}
     muteTrue: 0
     muteFalse: 0
     transitionType: 0
-    transitionDelay: 1
+    transitionDelay: 0
     parentState: {fileID: -7069938713422306830}
     trueRect:
       serializedVersion: 2
-      x: 855
-      y: 300
-      width: 10
-      height: 10
+      x: 800
+      y: 320
+      width: 0
+      height: 0
     falseRect:
       serializedVersion: 2
-      x: 855
-      y: 310
-      width: 10
-      height: 10
+      x: 800
+      y: 320
+      width: 0
+      height: 0
     selectedTrue: 0
     selectedFalse: 0
-    trueSideRight: 1
-    falseSideRight: 1
+    trueSideRight: 0
+    falseSideRight: 0
     decisionEditor: {fileID: 0}
     isOpen: 0
     scroolView: {x: 0, y: 0, z: 0}
     sameTargetCount: 0
   actions:
   - {fileID: 3881772887352406332}
+  - {fileID: 5196788119395573270}
   useActions: 1
   useDecisions: 1
   parentGraph: {fileID: 11400000}
@@ -232,7 +237,7 @@ MonoBehaviour:
   canEditName: 1
   canEditColor: 1
   isOpen: 1
-  isSelected: 1
+  isSelected: 0
   nodeRect:
     serializedVersion: 2
     x: 415
@@ -268,8 +273,8 @@ MonoBehaviour:
       y: 190
       width: 10
       height: 10
-    selectedTrue: 1
-    selectedFalse: 1
+    selectedTrue: 0
+    selectedFalse: 0
     trueSideRight: 1
     falseSideRight: 1
     decisionEditor: {fileID: 0}
@@ -386,6 +391,34 @@ MonoBehaviour:
   useDecisions: 1
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: 0}
+--- !u!114 &-3920933432733673754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a024ffb2422df4d4994a71b757065ab2, type: 3}
+  m_Name: MyFSMGetUpDecision
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 11400000}
+  editingName: 0
+  trueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 10
+    height: 10
+  falseRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 10
+    height: 10
+  selectedTrue: 0
+  selectedFalse: 0
 --- !u!114 &-3182947809349789670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -472,21 +505,9 @@ MonoBehaviour:
   m_Name: GettingUp
   m_EditorClassIdentifier: 
   parentFSM: {fileID: 0}
+  executionType: 1
   editingName: 0
-  trueRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 10
-    height: 10
-  falseRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 10
-    height: 10
-  selectedTrue: 0
-  selectedFalse: 0
+  animator: {fileID: 0}
 --- !u!114 &-373224967783389107
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,11 +531,11 @@ MonoBehaviour:
   isSelected: 0
   nodeRect:
     serializedVersion: 2
-    x: 710
-    y: 175
+    x: 730
+    y: 195
     width: 150
     height: 62
-  positionRect: {x: 710, y: 175}
+  positionRect: {x: 730, y: 195}
   rectWidth: 150
   editingName: 1
   nodeColor: {r: 0.9716981, g: 0.132921, b: 0.132921, a: 1}
@@ -529,18 +550,18 @@ MonoBehaviour:
     muteTrue: 0
     muteFalse: 0
     transitionType: 0
-    transitionDelay: 2
+    transitionDelay: 1
     parentState: {fileID: -373224967783389107}
     trueRect:
       serializedVersion: 2
-      x: 700
-      y: 205
+      x: 720
+      y: 225
       width: 10
       height: 10
     falseRect:
       serializedVersion: 2
-      x: 860
-      y: 215
+      x: 880
+      y: 235
       width: 10
       height: 10
     selectedTrue: 0
@@ -569,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fc604039227434d8b4e63ebc5e74a5, type: 3}
   m_Name: TestBehavior
   m_EditorClassIdentifier: 
-  selectedNode: {fileID: 3691480983412673652}
+  selectedNode: {fileID: -373224967783389107}
   wantConnection: 0
   connectionNode: {fileID: 0}
   showProperties: 1
@@ -585,6 +606,7 @@ MonoBehaviour:
   panOffset: {x: -40, y: 100}
   overNode: 0
   actions:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -923,7 +945,7 @@ MonoBehaviour:
       validated: 0
     - trueValue: 0
       decision: {fileID: 2096722257667533010}
-      isValid: 0
+      isValid: 1
       validated: 0
     - trueValue: 0
       decision: {fileID: -3182947809349789670}
@@ -971,7 +993,7 @@ MonoBehaviour:
       validated: 0
     - trueValue: 0
       decision: {fileID: 2096722257667533010}
-      isValid: 0
+      isValid: 1
       validated: 0
     - trueValue: 0
       decision: {fileID: -8908749201215078217}
@@ -1009,6 +1031,21 @@ MonoBehaviour:
   useDecisions: 1
   parentGraph: {fileID: 11400000}
   defaultTransition: {fileID: 0}
+--- !u!114 &5196788119395573270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3671a3e541f9e14dbc42c69fcade39b, type: 3}
+  m_Name: MyFSMGetUpAction
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 11400000}
+  executionType: 1
+  editingName: 0
 --- !u!114 &6469227619155193597
 MonoBehaviour:
   m_ObjectHideFlags: 1

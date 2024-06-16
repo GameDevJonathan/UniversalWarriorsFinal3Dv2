@@ -5951,6 +5951,11 @@ MonoBehaviour:
   myTarget: {fileID: 0}
   myAnimator: {fileID: 0}
   moveToTarget: 0
+  HoldAnim: 1
+  holdTime: 0
+  setTime: 0
+  minTime: 0
+  maxTime: 0
   _minAttackTime: 0.5
   _maxAttackTime: 2
   _minAttackCount: 1
@@ -6548,8 +6553,13 @@ MonoBehaviour:
     massiveValue: 0
   navMeshAgent: {fileID: 0}
   myTarget: {fileID: 0}
-  myAnimator: {fileID: 0}
+  myAnimator: {fileID: 903659636}
   moveToTarget: 0
+  HoldAnim: 1
+  holdTime: 0
+  setTime: 0
+  minTime: 2
+  maxTime: 3
   _minAttackTime: 0.5
   _maxAttackTime: 2
   _minAttackCount: 1

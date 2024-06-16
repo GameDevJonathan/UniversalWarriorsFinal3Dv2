@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Invector.vCharacterController.AI.FSMBehaviour
 {
 #if UNITY_EDITOR
-    [vFSMHelpbox("This is a GettingUp decision", UnityEditor.MessageType.Info)]
+    [vFSMHelpbox("This is a MyFSMGetUpDecision decision", UnityEditor.MessageType.Info)]
 #endif
-    public class GettingUp : vStateDecision 
+    public class MyFSMGetUpDecision : vStateDecision
     {
 		public override string categoryName
         {
@@ -14,25 +14,13 @@ namespace Invector.vCharacterController.AI.FSMBehaviour
 
         public override string defaultName
         {
-            get { return "GettingUp"; }
+            get { return "MyFSMGetUpDecision"; }
         }
 
         public override bool Decide(vIFSMBehaviourController fsmBehaviour)
         {
             //TO DO
-            return true;
+            return fsmBehaviour.aiController._holdAnim;
         }
     }
-
-    public class Countdown : MonoBehaviour
-    {
-        float time;
-        private Animator anim;
-
-        private void Update()
-        {
-            
-        }
-    }
-    
 }

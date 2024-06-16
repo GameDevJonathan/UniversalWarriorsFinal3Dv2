@@ -15,9 +15,12 @@ namespace Invector.vCharacterController.AI
         // Here we created a variable that can be access from my New Action
         GameObject customTarget { get; }
         bool _moveToTarget { get; }
+        bool _holdAnim { get; }
 
         // Declaring the new Method that will be implemented below
         void MoveToTargetExample(vAIMovementSpeed speed = vAIMovementSpeed.Running);
+        //void HoldAnimation(float minTime, float maxTime);
+        void HoldAnimation();
     }
 
     // Now create a Partial class vControlAI and implement the new methods and variables from our Interface above 
@@ -34,13 +37,21 @@ namespace Invector.vCharacterController.AI
 
         // Just a bool so we can test the method, check true via inspector to make the controller MoveTo the target assigned
         public bool moveToTarget;
+        public bool HoldAnim;
+        public float holdTime;
+        public bool setTime;
+        public float minTime;
+        public float maxTime;
 
         // We need to create the bool again so we can pass this information to the FSM 
         public bool _moveToTarget { get => moveToTarget; }
+        public bool _holdAnim { get => HoldAnim; }
+
 
         // This is a simple example for the FSM to have access to the variable myTarget
         public GameObject customTarget { get => myTarget; }
         public Animator customAnimator { get => myAnimator; }
+
 
         /// <summary>
         /// Make it public so you can call it when you create a new FSM CustomAction
@@ -52,9 +63,9 @@ namespace Invector.vCharacterController.AI
         public void MoveToTargetExample(vAIMovementSpeed speed = vAIMovementSpeed.Running)
         {
             // Simple example to move the controller to a specific position set via inspector     
-            
-            if(myTarget != null)
-            {                
+
+            if (myTarget != null)
+            {
                 // Here we simple call the method MoveTo from the original vControlAI script
 
                 MoveTo(myTarget.transform.position, speed);
@@ -66,12 +77,64 @@ namespace Invector.vCharacterController.AI
             }
         }
 
+        public float GetNormalizedTime(Animator animator, string tag, int slot = 0)
+        {
+            AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(slot);
+            AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(slot);
+
+            if (animator.IsInTransition(slot) && nextInfo.IsTag(tag))
+            {
+                return nextInfo.normalizedTime;
+            }
+            else if (!animator.IsInTransition(slot) && currentInfo.IsTag(tag))
+            {
+                return currentInfo.normalizedTime;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public void HoldAnimation()
+        {
+            if (!setTime)
+            {
+                holdTime = Random.Range(minTime, maxTime);
+                setTime = true;
+                HoldAnim = true;
+                Debug.Log(setTime);
+            }
+
+            if (myAnimator != null && GetNormalizedTime(myAnimator, "Down", 5) > 1f)
+            {
+                Debug.Log("animation complete");
+                if (holdTime > 0f)
+                {
+                    Debug.Log($"Hold {holdTime}");
+                    holdTime -= Time.deltaTime;
+                }
+                else
+                {
+                    HoldAnim = false;
+                    setTime = false;
+                    holdTime = 0f;
+                }
+            }
+        }
+
         /// <summary>
         /// Public method so we can set the variavel 'moveToTarget' using Inspector Events
         /// </summary>
         public void SetMoveToTarget_Example()
         {
             moveToTarget = !moveToTarget;
+        }
+
+        public bool ReleaseAnimation()
+        {
+            return HoldAnim;
+
         }
     }
 }
