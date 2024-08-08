@@ -13,6 +13,8 @@ public class Attacks
     [field: SerializeField] public float AttackForce { get; private set; } 
     [field: SerializeField] public bool ShouldAddAttackForce { get; private set; } 
     [field: SerializeField] public float TimeForce { get; private set; } 
+    [field: SerializeField] public float UpForce { get; private set; } 
+    [field: SerializeField] public float ForwardForce { get; private set; } 
     
 }
 

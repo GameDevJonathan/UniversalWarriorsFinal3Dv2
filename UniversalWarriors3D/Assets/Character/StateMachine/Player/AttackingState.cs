@@ -49,7 +49,7 @@ public class AttackingState : PlayerBaseState
             if (GetNormalizedTime(stateMachine.Animator, "UpperCut") >= attack.TimeForce && attack.ShouldAddAttackForce)
             {
                 Debug.Log("adding Force");
-                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 100f, 30f);
+                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
             }
         }
 
@@ -58,7 +58,7 @@ public class AttackingState : PlayerBaseState
             if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce && attack.ShouldAddAttackForce)
             {
                 Debug.Log("adding Force");
-                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 5f, 30f);
+                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
             }
         }
 

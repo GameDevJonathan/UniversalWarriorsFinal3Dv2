@@ -16701,8 +16701,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[4].<UpForce>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<UpForce>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[6].<TimeForce>k__BackingField
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[4].<ForwardForce>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<ForwardForce>k__BackingField
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
