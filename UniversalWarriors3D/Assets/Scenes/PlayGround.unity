@@ -16699,6 +16699,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<TimeForce>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800857637552132189, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[6].<ShouldAddAttackForce>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2849821409645684335, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: m_Materials.Array.size

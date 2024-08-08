@@ -58,7 +58,7 @@ public class AttackingState : PlayerBaseState
             if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce && attack.ShouldAddAttackForce)
             {
                 Debug.Log("adding Force");
-                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 20f, 30f);
+                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 5f, 30f);
             }
         }
 

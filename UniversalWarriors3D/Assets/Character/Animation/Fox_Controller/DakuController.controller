@@ -86,7 +86,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack1
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
@@ -161,7 +161,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack2
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
@@ -468,7 +468,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d7a3dcfcb0475cd4696e322e65071bcc, type: 3}
+  m_Motion: {fileID: 7400000, guid: b099443175035d141b9ea97b2727a3f4, type: 3}
   m_Tag: Attack
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.17
-  endDamage: 0.3
+  endDamage: 0.5
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 0
+  resetAttackTrigger: 1
   debug: 0
 --- !u!1102 &1600771421913398579
 AnimatorState:
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 0
+  resetAttackTrigger: 1
   debug: 0
 --- !u!1102 &3062270351206017702
 AnimatorState:
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 0
+  resetAttackTrigger: 1
   debug: 0
 --- !u!206 &3618572113694141654
 BlendTree:
@@ -1571,8 +1571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.14
-  endDamage: 0.65
+  startDamage: 0.39
+  endDamage: 0.56
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 0
+  resetAttackTrigger: 1
   debug: 0
 --- !u!1101 &5202537027127436775
 AnimatorStateTransition:
