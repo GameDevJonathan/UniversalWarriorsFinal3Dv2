@@ -53,12 +53,12 @@ public class Grounded : PlayerBaseState
         else
             stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
 
-        stateMachine.InputReader.JumpEvent += OnJump;
-        //stateMachine.InputReader.DashEvent += OnDash;
         stateMachine.InputReader.BlockEvent += OnBlock;
-        stateMachine.InputReader.TargetEvent += OnTarget;
+        stateMachine.InputReader.GrabEvent += OnGrab;
         stateMachine.InputReader.MeleeEvent += OnMelee;
+        stateMachine.InputReader.JumpEvent += OnJump;
         stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
+        stateMachine.InputReader.TargetEvent += OnTarget;
     }
 
     public override void Tick(float deltaTime)
@@ -164,6 +164,12 @@ public class Grounded : PlayerBaseState
                 //Debug.Log("Grounded State:: input reader value: " + stateMachine.InputReader.Modified);
             }
 
+            if (stateMachine.InputReader.GrabButtonPressed)
+            {
+                Debug.Log("Grounded State:: input reader value:  pressed" );
+
+            }
+
         }
         #endregion
 
@@ -264,7 +270,7 @@ public class Grounded : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.JumpEvent -= OnJump;
-        //stateMachine.InputReader.DashEvent -= OnDash;
+        stateMachine.InputReader.GrabEvent -= OnGrab;
         stateMachine.InputReader.BlockEvent -= OnBlock;
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
@@ -287,11 +293,11 @@ public class Grounded : PlayerBaseState
         return;
     }
 
-    //private void OnDash()
-    //{
-    //    stateMachine.SwitchState(new DashState(stateMachine));
-    //    return;
-    //}
+    private void OnGrab()
+    {
+        //stateMachine.SwitchState(new DashState(stateMachine));
+        //return;
+    }
 
     private void OnBlock()
     {

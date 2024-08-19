@@ -39,6 +39,7 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.MeleeEvent += OnMelee;
+        stateMachine.InputReader.BlockEvent += OnBlock;
     }
 
 
@@ -100,10 +101,12 @@ public class PlayerTargetingState : PlayerBaseState
 
         stateMachine._TargetCamUtil.SetActive(dodging);
         debugTransform.gameObject.SetActive(dodging);
+
         //stateMachine.InputReader.ResetCamera();
         //stateMachine.rig.weight = 0f;
         stateMachine.InputReader.CancelEvent -= OnCancel;
         stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;
+        stateMachine.InputReader.BlockEvent -= OnBlock;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
     }
@@ -220,6 +223,13 @@ public class PlayerTargetingState : PlayerBaseState
         Debug.Log($"Dodging: {dodging}");
         dodging = true;
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, move, angle, dodging));
+        return;
+    }
+
+    private void OnBlock()
+    {
+        var lockon = true;
+        stateMachine.SwitchState(new PlayerBlockState(stateMachine, lockon));
         return;
     }
 

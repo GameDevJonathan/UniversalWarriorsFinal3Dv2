@@ -10,7 +10,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public Vector2 MovementValue { get; private set; }
     public Vector2 CameraValue { get; private set; }
 
-    [Range(0,1)]public float TimeScale = 1f;
+    [Range(0, 1)] public float TimeScale = 1f;
 
     private Controls controls;
 
@@ -34,6 +34,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool AttackButtonPressed => controls.Player.LightAttack.WasPressedThisFrame();
     public bool AttackButtonHeld => controls.Player.LightAttack.WasPerformedThisFrame();
     public bool BlockButtonReleased => controls.Player.Block.WasReleasedThisFrame();
+    public bool GrabButtonPressed => controls.Player.Grab.WasPressedThisFrame();
 
     [HideInInspector] public bool shoot;
     [HideInInspector] public bool charge;
@@ -53,7 +54,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     #region Weapons
     [field: Space]
     [field: Header("Weapons")]
-    [SerializeField] public bool FightingStance; 
+    [SerializeField] public bool FightingStance;
     [field: SerializeField] public float FightingStanceCoolDown { get; private set; } = .3f;
     [field: SerializeField] public float FightingStanceCoolDownTime { get; private set; } = 0;
     [field: SerializeField] public bool equipingWeapon { get; private set; } = false;
@@ -73,23 +74,24 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     [Header("Energy Gathering Effect")]
     [SerializeField] private GameObject _maxChargeEffect;
     [SerializeField] private GameObject _minChargeEffect;
-    
+
     //EVENTS ACTIONS
     #region action events
     //Actions
-    public event Action JumpEvent;
-    public event Action DashEvent;
-    public event Action EquipEvent;
-    public event Action TargetEvent;
-    public event Action CancelEvent;
-    public event Action MeleeEvent;
     public event Action BlockEvent;
+    public event Action CancelEvent;
+    public event Action DashEvent;
     public event Action DodgeEvent;
+    public event Action EquipEvent;
+    public event Action GrabEvent;
+    public event Action JumpEvent;
+    public event Action MeleeEvent;
+    public event Action TargetEvent;
     public event Action SpecialBeamEvent;
     #endregion
-    
-    
-    
+
+
+
     public Transform Player;
     //public event Action AttackEvent;
 
@@ -150,13 +152,13 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Enable();
 
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-        
+
         //_InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
 
         _material.SetFloat(_targetRef, _targetValue);
     }
 
-   
+
 
     private void Update()
     {
@@ -199,7 +201,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     private void LateUpdate()
     {
-        
+
 
         if (stateMachine.SpecialMove || Targeting) return;
         CameraRotation();
@@ -297,64 +299,16 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-    //public void OnAttack(InputAction.CallbackContext context)
-    //{
-    //    if (context.started)
-    //    {
-
-    //        shoot = true;
-    //        fire = false;
-    //        Debug.Log("Firing");
-    //        mediumShot = false;
-    //        chargedShot = false;
-    //    }
-    //    else
-    //    if (context.performed)
-    //    {
-    //        shoot = false;
-    //        charge = true;
-    //        if (chargeAmount > _minRate)
-    //            Debug.Log("Charging");
-
-
-    //    }
-    //    else
-    //    if (context.canceled)
-    //    {
-    //        charge = false;
-    //        fire = true;
-    //        if (chargeAmount >= _minRate && chargeAmount < _maxRate)
-    //        {
-    //            Debug.Log("Meduim Shot");
-    //            mediumShot = true;
-
-
-    //        }
-    //        else if (chargeAmount >= _maxRate)
-    //        {
-    //            Debug.Log("Max Charge Shot");
-
-    //            chargedShot = true;
-    //        }
-    //        chargeAmount = 0;
-    //    }
-    //}
-
-    public void OnAIm(InputAction.CallbackContext context)
+    public void OnBlock(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
-            isAiming = true;
-
-            CinemachineCameraTarget.transform.rotation = Player.transform.rotation;
-
+            BlockEvent?.Invoke();
         }
-        else if (context.canceled)
-        {
-            isAiming = false;
-        }
-
     }
+
+
 
     public void OnCamera(InputAction.CallbackContext context)
     {
@@ -386,8 +340,16 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         //    FightingStance = !FightingStance;
         //    FightingStanceCoolDownTime = FightingStanceCoolDown;
         //}
-       
+
     }
+
+    public void OnGrab(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Context...:" + context);
+        //if (!context.performed) { return; }
+        //GrabEvent?.Invoke();
+    }
+
 
     public void OnLockOn(InputAction.CallbackContext context)
     {
@@ -396,9 +358,10 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         {
             //rotation = new Quaternion(0, 0, 0,0);            
             TargetEvent?.Invoke();
-        }else if (context.performed && Targeting)
+        }
+        else if (context.performed && Targeting)
         {
-            
+
             Targeting = false;
             CancelEvent?.Invoke();
         }
@@ -494,14 +457,5 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         {
             Debug.Log($"Parkour Context: ${context}");
         }
-    }
-
-    public void OnBlock(InputAction.CallbackContext context)
-    {
-        
-        if (context.performed)
-        {
-            BlockEvent?.Invoke();
-        }
-    }
+    }    
 }

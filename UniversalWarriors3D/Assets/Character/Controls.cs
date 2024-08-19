@@ -64,7 +64,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""AIm"",
+                    ""name"": ""Grab"",
                     ""type"": ""Button"",
                     ""id"": ""76dc2962-2464-42ad-877d-129d414c1561"",
                     ""expectedControlType"": ""Button"",
@@ -358,7 +358,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""AIm"",
+                    ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -369,7 +369,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AIm"",
+                    ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -621,7 +621,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Skills = m_Player.FindAction("Skills", throwIfNotFound: true);
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
-        m_Player_AIm = m_Player.FindAction("AIm", throwIfNotFound: true);
+        m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
         m_Player_LockOn = m_Player.FindAction("LockOn", throwIfNotFound: true);
@@ -697,7 +697,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Skills;
     private readonly InputAction m_Player_Camera;
-    private readonly InputAction m_Player_AIm;
+    private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Equip;
     private readonly InputAction m_Player_LockOn;
@@ -716,7 +716,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Skills => m_Wrapper.m_Player_Skills;
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
-        public InputAction @AIm => m_Wrapper.m_Player_AIm;
+        public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Equip => m_Wrapper.m_Player_Equip;
         public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
@@ -748,9 +748,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
-            @AIm.started += instance.OnAIm;
-            @AIm.performed += instance.OnAIm;
-            @AIm.canceled += instance.OnAIm;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
@@ -797,9 +797,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
-            @AIm.started -= instance.OnAIm;
-            @AIm.performed -= instance.OnAIm;
-            @AIm.canceled -= instance.OnAIm;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
@@ -871,7 +871,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSkills(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
-        void OnAIm(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnEquip(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
