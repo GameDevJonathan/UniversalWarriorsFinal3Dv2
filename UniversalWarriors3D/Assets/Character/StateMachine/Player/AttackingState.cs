@@ -43,24 +43,34 @@ public class AttackingState : PlayerBaseState
         Move(deltaTime);
         FaceTarget();
 
-
-        if (attack.AnimationName == "Uppercut")
+        if (attack.ShouldAddAttackForce)
         {
-            if (GetNormalizedTime(stateMachine.Animator, "UpperCut") >= attack.TimeForce && attack.ShouldAddAttackForce)
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce)
             {
                 Debug.Log("adding Force");
                 TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
             }
         }
 
-        if (attack.AnimationName == "SpinningKick")
-        {
-            if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce && attack.ShouldAddAttackForce)
-            {
-                Debug.Log("adding Force");
-                TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
-            }
-        }
+
+
+        //if (attack.AnimationName == "Uppercut")
+        //{
+        //    if (GetNormalizedTime(stateMachine.Animator, "UpperCut") >= attack.TimeForce && attack.ShouldAddAttackForce)
+        //    {
+        //        Debug.Log("adding Force");
+        //        TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
+        //    }
+        //}
+
+        //if (attack.AnimationName == "SpinningKick")
+        //{
+        //    if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce && attack.ShouldAddAttackForce)
+        //    {
+        //        Debug.Log("adding Force");
+        //        TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
+        //    }
+        //}
 
 
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");

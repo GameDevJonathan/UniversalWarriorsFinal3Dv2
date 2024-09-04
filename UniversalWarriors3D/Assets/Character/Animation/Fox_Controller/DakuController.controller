@@ -73,7 +73,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 861985091738876215, guid: e63f612d72c1af54a88161e26f2bba9c, type: 3}
-  m_Tag: UpperCut
+  m_Tag: Attack
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -294,8 +294,7 @@ BlendTree:
   m_Name: Idle
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 8993902097722301239, guid: d50c134b929fec148a4cc267d1e6218a,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 01e9fdf611240c74fbab4d7aa9381bd7, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1062,7 +1061,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 1
+  resetAttackTrigger: 0
   debug: 0
 --- !u!1102 &1600771421913398579
 AnimatorState:
@@ -1280,13 +1279,13 @@ AnimatorStateMachine:
     m_Position: {x: -230, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7363680062840592175}
-    m_Position: {x: 230, y: 550, z: 0}
+    m_Position: {x: 230, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6254801570631391796}
     m_Position: {x: 230, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3199467673489422069}
-    m_Position: {x: 230, y: 670, z: 0}
+    m_Position: {x: 230, y: 550, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 646886219081181869}
     m_Position: {x: 1170, y: 230, z: 0}
@@ -1368,13 +1367,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.4
-  endDamage: 0.53
+  startDamage: 0.3
+  endDamage: 0.46
   damageMultiplier: 0
   recoilID: 0
-  reactionID: 0
+  reactionID: 2
   meleeAttackType: 0
-  damageType: KnockDown
+  damageType: 
   bodyParts:
   - RightLowerLeg
   ignoreDefense: 0
@@ -1432,7 +1431,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 1
+  resetAttackTrigger: 0
   debug: 0
 --- !u!206 &3618572113694141654
 BlendTree:
@@ -1584,7 +1583,7 @@ MonoBehaviour:
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
-  resetAttackTrigger: 1
+  resetAttackTrigger: 0
   debug: 0
 --- !u!1101 &5202537027127436775
 AnimatorStateTransition:
@@ -1842,8 +1841,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8993902097722301239, guid: 87f042d51ffc93946942a6636fba0de4,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: c9e2df634f8cba34b8c3b9e465368a4f, type: 2}
   m_Tag: Attack
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2105,7 +2103,7 @@ BlendTree:
     m_DirectBlendParameter: FreeLookSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 6e950ce0deb6c22419d4f264e8441f3b, type: 3}
+    m_Motion: {fileID: 7400000, guid: a047d8e50e5dc854ba31c7582952b4a4, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -2121,8 +2119,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 8993902097722301239, guid: 8dbee27ae3b8f1142ac3633aed26b9f8,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 82b0f6aef54052f43adfbcbe18fab21d, type: 2}
     m_Threshold: 1.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

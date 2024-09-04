@@ -35,6 +35,7 @@ TagManager:
   - Fence
   - Target
   - Sensor
+  - Hitbox
   layers:
   - Default
   - TransparentFX
@@ -49,7 +50,7 @@ TagManager:
   - CompanionAI
   - Triggers
   - StopMove
-  - 
+  - VisionSensor
   - HeadTrack
   - BodyPart
   - BlockAIRayCast
