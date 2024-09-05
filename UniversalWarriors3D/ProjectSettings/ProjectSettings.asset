@@ -806,7 +806,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: AMPLIFY_SHADER_EDITOR;INVECTOR_AI_TEMPLATE
+    Standalone: AMPLIFY_SHADER_EDITOR;INVECTOR_AI_TEMPLATE;inputsystem
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
