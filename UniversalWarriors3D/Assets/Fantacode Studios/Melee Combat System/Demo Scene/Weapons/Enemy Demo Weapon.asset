@@ -111,6 +111,9 @@ MonoBehaviour:
   blockedDamage: 25
   blockReactionData: {fileID: 11400000, guid: c05e53600afde0e468c7f46d59ffed37, type: 2}
   blockMask: {fileID: 0}
+  canCounter: 1
+  playActionIfCounterMisused: 0
+  counterMisusedAction: {fileID: 0}
   overrideController: {fileID: 0}
   useRootmotion: 0
   overrideMoveSpeed: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DakuLeftJab
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: 17bab307e7d35b040aee2940fe1cf1f0, type: 2}
-  animationSpeed: 0.75
+  animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
   rotateToTarget: 1

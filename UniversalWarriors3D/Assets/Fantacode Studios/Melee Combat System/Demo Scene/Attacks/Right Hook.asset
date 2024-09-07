@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Right Hook
   m_EditorClassIdentifier: 
   clip: {fileID: -211020991351916998, guid: 71b464623122240499a13b66db63a2dc, type: 3}
+  animationSpeed: 1
   isFinisher: 0
+  canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 5
   reactionTag: Weak
@@ -46,7 +48,7 @@ MonoBehaviour:
   canBeCountered: 0
   counterAttacks: []
   hitboxToUse: 1
-  damage: 5
+  damage: 0
   impactStartTime: 0.44
   impactEndTime: 0.55
   waitForNextAttack: 1
@@ -85,7 +87,10 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
-  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76, type: 3}
+  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76,
+    type: 3}
   hittingTime: 0
   blockedHitEffect: {fileID: 0}
   blockedHittingTime: 0
+  cameraShakeAmount: 0.3
+  cameraShakeDuration: 0.2
