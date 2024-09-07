@@ -4745,7 +4745,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 2e6629299034fd840a9f22366be18282, type: 3}
   m_Controller: {fileID: 9100000, guid: b221b45350acf8248a26a45a9eef3daf, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -17609,13 +17609,13 @@ MonoBehaviour:
   dragEffectDistance: 0.75
   minVerticalAngle: -45
   maxVerticalAngle: 70
-  framingOffset: {x: 0, y: 1, z: 0}
+  framingOffset: {x: 0.15, y: 2, z: -1}
   invertX: 0
   invertY: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 1
-  lockCursor: 1
+  lockCursor: 0
   cameraShakeAmount: 0.6
 --- !u!81 &1439464320
 AudioListener:

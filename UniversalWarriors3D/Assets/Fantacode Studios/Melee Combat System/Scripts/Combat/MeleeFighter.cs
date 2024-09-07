@@ -487,7 +487,7 @@ namespace FS_CombatSystem
                 }
             }
 
-            animGraph.CrossFade(attack.Clip, 0.2f, transitionOut: 0.4f,animationSpeed:attack.AnimationSpeed);
+            animGraph.CrossFade(attack.Clip, 0.1f, transitionOut: 0.1f,animationSpeed:attack.AnimationSpeed);
 
             MatchingTargetDeltaPos = Vector3.zero;
             IsMatchingTarget = false;
