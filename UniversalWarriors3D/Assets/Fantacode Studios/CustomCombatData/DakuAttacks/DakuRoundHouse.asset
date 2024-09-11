@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DakuRoundHouse
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: c9e2df634f8cba34b8c3b9e465368a4f, type: 2}
-  animationSpeed: 0.8
+  animationSpeed: 0.9
   isFinisher: 0
   canHitMultipleTargets: 1
   rotateToTarget: 1
@@ -50,8 +50,8 @@ MonoBehaviour:
   counterAttacks: []
   hitboxToUse: 3
   damage: 2
-  impactStartTime: 0.35
-  impactEndTime: 0.45
+  impactStartTime: 0.36
+  impactEndTime: 0.5
   waitForNextAttack: 1
   waitForAttackTime: 1
   moveToTarget: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
   m_Name: DakuLeftJab
   m_EditorClassIdentifier: 
-  clip: {fileID: 7400000, guid: 17bab307e7d35b040aee2940fe1cf1f0, type: 2}
+  clip: {fileID: -518962105211102742, guid: 59224bbf6d5dcae448f722902fe7dffc, type: 3}
   animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
@@ -49,10 +49,10 @@ MonoBehaviour:
   counterAttacks: []
   hitboxToUse: 0
   damage: 1
-  impactStartTime: 0.2
-  impactEndTime: 0.4
-  waitForNextAttack: 0
-  waitForAttackTime: 1
+  impactStartTime: 0.08
+  impactEndTime: 0.24
+  waitForNextAttack: 1
+  waitForAttackTime: 0.245
   moveToTarget: 0
   distanceFromTarget: 1
   localPositionFromTarget: {x: 0, y: 0, z: 0}

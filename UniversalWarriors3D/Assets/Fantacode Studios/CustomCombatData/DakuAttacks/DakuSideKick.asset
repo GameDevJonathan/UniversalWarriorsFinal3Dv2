@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
   m_Name: DakuSideKick
   m_EditorClassIdentifier: 
-  clip: {fileID: 7400000, guid: 1dadb0bed18cfde439efc0cb0f02bbc4, type: 2}
-  animationSpeed: 0.75
+  clip: {fileID: 7400000, guid: fa7fe8d3487ae7644a28fcc7a20f08f4, type: 2}
+  animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
   rotateToTarget: 1
@@ -49,10 +49,10 @@ MonoBehaviour:
   counterAttacks: []
   hitboxToUse: 2
   damage: 1
-  impactStartTime: 0.3
-  impactEndTime: 0.55
-  waitForNextAttack: 0
-  waitForAttackTime: 0
+  impactStartTime: 0.25
+  impactEndTime: 0.4
+  waitForNextAttack: 1
+  waitForAttackTime: 0.7
   moveToTarget: 0
   distanceFromTarget: 1
   localPositionFromTarget: {x: 0, y: 0, z: 0}

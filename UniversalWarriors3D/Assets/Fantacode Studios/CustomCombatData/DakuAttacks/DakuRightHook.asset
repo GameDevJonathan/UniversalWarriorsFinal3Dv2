@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
   m_Name: DakuRightHook
   m_EditorClassIdentifier: 
-  clip: {fileID: 7400000, guid: b621193c693cb89498a68aa5ccfa1859, type: 2}
+  clip: {fileID: 8698264123388757495, guid: 1de67696d10a3f54a83e3dd471dcb41e, type: 3}
   animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
   canBeCountered: 0
   counterAttacks: []
   hitboxToUse: 1
-  damage: 1
-  impactStartTime: 0.12
-  impactEndTime: 0.35
-  waitForNextAttack: 0
-  waitForAttackTime: 0
+  damage: 5
+  impactStartTime: 0.16
+  impactEndTime: 0.3
+  waitForNextAttack: 1
+  waitForAttackTime: 0.3
   moveToTarget: 0
   distanceFromTarget: 1
   localPositionFromTarget: {x: 0, y: 0, z: 0}

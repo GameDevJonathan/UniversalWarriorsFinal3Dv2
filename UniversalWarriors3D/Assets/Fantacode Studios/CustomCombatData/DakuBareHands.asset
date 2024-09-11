@@ -23,12 +23,15 @@ MonoBehaviour:
     maxDistance: 2
     healthThreshold: 100
     attacks:
+    - attack: {fileID: 11400000, guid: cfe702f5490a4c64e97230d15e973a79, type: 2}
+      canBeCharged: 1
+      chargedAttack: {fileID: 11400000, guid: 78dc2e78530e0b643b8f234b5e5aba79, type: 2}
     - attack: {fileID: 11400000, guid: b3a89b40c839f624887574541d30e5dc, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     - attack: {fileID: 11400000, guid: 2f19db5f0f9501843965426ec353b411, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
+      canBeCharged: 1
+      chargedAttack: {fileID: 11400000, guid: 00fa3f6022647c249a3dababd0b4b3bd, type: 2}
     - attack: {fileID: 11400000, guid: 06e81c29894bef74db7d69167ca67eb2, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
@@ -41,21 +44,35 @@ MonoBehaviour:
       chargedAttack: {fileID: 0}
     animationDistance: 0
     serialized: 1
+  - attackType: 2
+    minDistance: 0
+    maxDistance: 2
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: 15544399cfa1a144bb0e687638f0fec1, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: 15544399cfa1a144bb0e687638f0fec1, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0
+    serialized: 1
   heavyAttacks: []
   reactionData: {fileID: 0}
   weaponEquipAnimation: {fileID: 0}
   weaponActivationTime: 0
   weaponUnEquipAnimation: {fileID: 0}
   weaponDeactivationTime: 0
-  canBlock: 0
-  blocking: {fileID: 0}
-  blockedDamage: 25
-  blockReactionData: {fileID: 0}
-  blockMask: {fileID: 0}
+  canBlock: 1
+  blocking: {fileID: 7400000, guid: e401d4b84f5c67a409de27ea6d772aa6, type: 2}
+  blockedDamage: 0
+  blockReactionData: {fileID: 11400000, guid: 3b18c52a9d1e9424eadbbcaca42da474, type: 2}
+  blockMask: {fileID: 31900000, guid: dcfb505775d3da841bd0724a642db8b3, type: 2}
   canCounter: 1
   playActionIfCounterMisused: 0
   counterMisusedAction: {fileID: 0}
-  overrideController: {fileID: 0}
+  overrideController: {fileID: 22100000, guid: ba65182d9a9fc7a49ba3b8234ef84ed5, type: 2}
   useRootmotion: 0
   overrideMoveSpeed: 0
   walkSpeed: 2
