@@ -50,13 +50,13 @@ MonoBehaviour:
   canBeCountered: 0
   counterAttacks: []
   hitboxToUse: 0
-  damage: 5
+  damage: 0
   impactStartTime: 0
   impactEndTime: 1
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 1
+  distanceFromTarget: 0.6
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
   moveEndTime: 1
@@ -93,5 +93,5 @@ MonoBehaviour:
   hittingTime: 0
   blockedHitEffect: {fileID: 0}
   blockedHittingTime: 0
-  cameraShakeAmount: 0.3
+  cameraShakeAmount: 0.5
   cameraShakeDuration: 0.2
