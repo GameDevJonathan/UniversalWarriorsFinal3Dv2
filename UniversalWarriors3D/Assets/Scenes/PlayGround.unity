@@ -1617,14 +1617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!1 &94987598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,14 +1885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!1 &104079136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,51 +3870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: LeftLowerLeg
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 690063432}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!4 &223879564
 Transform:
   m_ObjectHideFlags: 0
@@ -4049,14 +3988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!65 &236793032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4324,14 +4255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!65 &267542588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5690,14 +5613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!1 &399470410
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,51 +6629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: RightLowerArm
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 661909263}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!1 &469941160
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,14 +8283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!65 &655402541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8523,14 +8385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!1 &675136060
 GameObject:
   m_ObjectHideFlags: 0
@@ -8864,14 +8718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb97f58541b05b24ab37661346298ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObject: {fileID: 0}
-  damagePercentage: 100
-  triggerType: 3
-  canHit: 0
-  _trigger: {fileID: 0}
 --- !u!65 &690063433
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9163,51 +9009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: RightLowerArm
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 236793031}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!4 &716482205
 Transform:
   m_ObjectHideFlags: 0
@@ -9461,51 +9262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: LeftLowerArm
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 102838769}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!1 &756262345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9515,7 +9271,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 756262346}
-  - component: {fileID: 756262347}
   m_Layer: 0
   m_Name: SwatGuyUnity
   m_TagString: Untagged
@@ -9540,27 +9295,6 @@ Transform:
   - {fileID: 334588256}
   m_Father: {fileID: 1050087385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &756262347
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756262345}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 98230ea98ca182c49b5e848e9299657d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &757538523
 GameObject:
   m_ObjectHideFlags: 0
@@ -11133,68 +10867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11b181c688f7664aba8ba5b38942ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  Members:
-  - {transform: {fileID: 7410462538173295180}, bodyPart: LeftLowerArm, attackObject: {fileID: 744971474}, isHuman: 1}
-  - {transform: {fileID: 2563496968939299101}, bodyPart: RightLowerArm, attackObject: {fileID: 464637287}, isHuman: 1}
-  - {transform: {fileID: 7151331951248028264}, bodyPart: LeftLowerLeg, attackObject: {fileID: 1643646805}, isHuman: 1}
-  - {transform: {fileID: 5477181764867496559}, bodyPart: RightLowerLeg, attackObject: {fileID: 2136468260}, isHuman: 1}
-  defaultDamage:
-    damageValue: 10
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  hitProperties:
-    hitDamageTags:
-    - Enemy
-    useRecoil: 1
-    drawRecoilGizmos: 0
-    recoilRange: 90
-    hitRecoilLayer:
-      m_Bits: 1
-  leftWeapon: {fileID: 0}
-  rightWeapon: {fileID: 0}
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEquipWeapon:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onUnequipWeapon:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  defaultAttackDistance: 1
-  defaultStaminaCost: 20
-  defaultStaminaRecoveryDelay: 1
-  defaultDefenseRate: 100
-  defaultDefenseRange: 90
-  <damageMultiplier>k__BackingField: 0
-  <currentRecoilID>k__BackingField: 0
-  <currentReactionID>k__BackingField: 0
-  <ignoreDefense>k__BackingField: 0
-  <activeRagdoll>k__BackingField: 0
-  <senselessTime>k__BackingField: 0
-  <inRecoil>k__BackingField: 0
-  <attackName>k__BackingField: 
 --- !u!114 &851974733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11207,287 +10879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cc87428c178f84b9fc7ed68f7c3264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 11
-  _isDead: 1
-  _currentHealth: 0
-  isImmortal: 1
-  fillHealthOnStart: 1
-  _maxHealth: 100
-  _healthRecovery: 0
-  _healthRecoveryDelay: 0
-  _currentHealthRecoveryDelay: 0
-  checkHealthEvents: []
-  _onStartReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onDead:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onChangeHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onResetHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  <inHealthRecovery>k__BackingField: 0
-  deathBy: 0
-  removeComponentsAfterDie: 0
-  debugActionListener: 0
-  <animator>k__BackingField: {fileID: 0}
-  _ragdolled: 0
-  OnCrouch:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  OnStandUp:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onActiveRagdoll:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableRagdoll:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionStay:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  isInit: 0
-  _isCrouching: 0
-  disableControllerOnStart: 0
-  currentSpeed: 0
-  animatorSpeed: 1
-  inputMagnitudeSmooth: 0.2
-  useRootMotion: 0
-  freeSpeed:
-    rotationSpeed: 10
-    walkSpeed: 3
-    runningSpeed: 4
-    sprintSpeed: 5
-    crouchSpeed: 2
-  strafeSpeed:
-    rotationSpeed: 10
-    walkSpeed: 2
-    runningSpeed: 3
-    sprintSpeed: 4
-    crouchSpeed: 2
-  _useStepOffSet: 1
-  stepOffsetEnd: 0.45
-  stepOffsetStart: 0.05
-  stepSmooth: 4
-  jumpSpeedPerMeter: 0.05
-  jumpHeight: 0.01
-  checkGroundDistance: 6
-  groundLayer:
-    m_Bits: 2621441
-  useAutoCrouch: 0
-  headDetectStart: 0.4
-  headDetectHeight: 0.4
-  headDetectMargin: 0.02
-  autoCrouchLayer:
-    m_Bits: 1
-  debugAutoCrouch: 0
-  onEnableController:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableController:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  <isStrafing>k__BackingField: 0
-  <isGrounded>k__BackingField: 0
-  _rigidbody: {fileID: 0}
-  frictionPhysics: {fileID: 0}
-  maxFrictionPhysics: {fileID: 0}
-  slippyPhysics: {fileID: 0}
-  _capsuleCollider: {fileID: 851974736}
-  targetDirection: {x: 0, y: 0, z: 0}
-  input: {x: 0, y: 0, z: 0}
-  lockMovement: 0
-  lockRotation: 0
-  stopMove: 0
-  isJumping: 0
-  doingCustomAction: 0
-  <animatorStateInfos>k__BackingField:
-    debug: 0
-    animator: {fileID: 0}
-    stateInfos: []
-  <isRolling>k__BackingField: 0
-  <useCustomRotationSpeed>k__BackingField: 0
-  <customRotationSpeed>k__BackingField: 0
-  onUpdateAI:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _isStrafingRef: 0
-  _isGroundedRef: 0
-  _verticalVelocityRef: 0
-  _groundDistanceRef: 0
-  _isCrouchingRef: 0
-  _isCrouchingFromCast: 0
-  customAction: 0
-  direction: 0
-  speed: 0
-  velocity: 0
-  strafeMagnitude: 0
-  rotationMagnitude: 0
-  colliderHeight: 0
-  verticalVelocity: 0
-  freeRotation: {x: 0, y: 0, z: 0, w: 0}
-  colliderCenter: {x: 0, y: 0, z: 0}
-  lastCharacterAngle: {x: 0, y: 0, z: 0}
-  temporaryDirection: {x: 0, y: 0, z: 0}
-  temporaryDirectionTime: 0
-  disableAgentOnStart: 1
-  useNavMeshAgent: 1
-  updatePathQuality: 2
-  aceleration: 8
-  _stopingDistance: 0.2
-  _walkingStopingDistance: 0
-  _runningStopingDistance: 0.1
-  _sprintingStopingDistance: 0.15
-  _waypointArea: {fileID: 0}
-  _changeWaypointDistance: 0
-  _invertWaypointsOrder: 0
-  _randomStartingPoint: 0
-  _randomWaypoint: 0
-  startUsingSpecificWaypoint: 0
-  startWaypointIndex: 0
-  startUsingNearWayPoint: 0
-  _selfStartingPoint: 0
-  _customStartingPoint: {fileID: 0}
-  detectionPointReference: {fileID: 1668589549}
-  sightMethod: -1
-  findTargetUpdateQuality: 3
-  canseeTargetUpdateQuality: 2
-  findOtherTarget: 0
-  maxTargetsDetection: 10
-  _changeTargetDelay: 2
-  findTargetByDistance: 1
-  _fieldOfView: 90
-  _minDistanceToDetect: 3
-  _maxDistanceToDetect: 6
-  _hasPositionOfTheTarget: 0
-  _targetInLineOfSight: 0
-  _lostTargetDistance: 4
-  _timeToLostWithoutSight: 5
-  _detectLayer:
-    m_Bits: 256
-  _detectTags:
-    tags:
-    - Player
-  _obstacles:
-    m_Bits: 524289
-  targetsInRange: []
-  _currentTarget:
-    _tag: 
-    _transform: {fileID: 0}
-    <_collider>k__BackingField: {fileID: 0}
-    <targetInfo>k__BackingField: {fileID: 0}
-    isFixedTarget: 0
-    isLost: 0
-  _secundaryTargets: []
-  _debugVisualDetection: 1
-  _debugRaySight: 1
-  _debugLastTargetPosition: 0
-  _receivedDamage:
-    isValid: 0
-    lastValue: 0
-    lasType: unnamed
-    lastSender: {fileID: 0}
-    massiveCount: 0
-    massiveValue: 0
-    lastValidDamage: 0
-    _massiveTime: 0
-  _headtrack: {fileID: 0}
-  targetsBuffer: []
-  _lastTargetPosition: {x: 0, y: 0, z: 0}
-  _currentWaypoint: 0
-  lostTargetTime: 0
-  lastValidDestination: {x: 0, y: 0, z: 0}
-  changeTargetTime: 0
-  isWaypointStarted: 0
-  _destination: {x: 0, y: 0, z: 0}
-  lasDestination: {x: 0, y: 0, z: 0}
-  navMeshAgent: {fileID: 0}
-  updatePathTime: 0
-  updateFindTargetTime: 0
-  canseeTargetUpdateTime: 0
-  timeToResetOutDistance: 0
-  forceUpdatePathTime: 0
-  isOutOfDistance: 0
-  findAgentDestinationRadius: 0
-  <selfStartPosition>k__BackingField: {x: 0, y: 0, z: 0}
-  <targetWaypoint>k__BackingField: {fileID: 0}
-  <visitedWaypoints>k__BackingField: []
-  <changeWaypointDistance>k__BackingField: 0
-  triggers: []
-  checkTriggerFrequency: 0
-  myTarget: {fileID: 0}
-  myAnimator: {fileID: 0}
-  moveToTarget: 0
-  HoldAnim: 1
-  holdTime: 0
-  setTime: 0
-  minTime: 0
-  maxTime: 0
-  _minAttackTime: 0.5
-  _maxAttackTime: 2
-  _minAttackCount: 1
-  _maxAttackCount: 3
-  _attackDistance: 1
-  _combatBlockingChance: 0
-  _onDamageBlockingChance: 0
-  _minStayBlockingTime: 4
-  _maxStayBlockingTime: 6
-  _minTimeToTryBlock: 4
-  _maxTimeToTryBlock: 6
-  ignoreDefenseDamageTypes:
-  - unarmed
-  - melee
-  _minDistanceOfTheTarget: 2
-  _combatDistance: 4
-  _strafeCombatMovement: 1
-  _alwaysStrafe: 0
-  _minTimeToChangeStrafeSide: 1
-  _maxTimeToChangeStrafeSide: 4
-  _isInCombat: 0
-  _isAiming: 0
-  _isBlocking: 0
-  _attackTime: 0
-  _blockingTime: 0
-  _tryBlockTime: 0
-  _timeToChangeStrafeSide: 0
-  <strafeCombatSide>k__BackingField: 0
-  <attackCount>k__BackingField: 0
-  <MeleeManager>k__BackingField: {fileID: 0}
-  <isEquipping>k__BackingField: 0
-  _moveSetID: 0
-  _attackID: 0
-  _defenseID: 0
-  _recoilID: 0
 --- !u!114 &851974734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11500,41 +10891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fb374bd0aad974e9798f071eb5ecb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  _fsmBehaviour: {fileID: 11400000, guid: 27b0f76830d4c1e4eaf154e507a48b0e, type: 2}
-  _stop: 0
-  _debugMode: 1
-  onStartFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPauseFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onResetFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onStateEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onStateExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onChangeBehaviour:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _currentState: {fileID: 0}
-  _lastState: {fileID: 0}
-  inChangeState: 0
-  _messageReceiver: {fileID: 0}
-  tryGetMessageReceiver: 0
 --- !u!195 &851974735
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12055,28 +11411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff11ee57b0c241a82c0c37c40c0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  messagesListeners:
-  - Name: TriggerKnockdown
-    receiveFromGlobal: 0
-    onReceiveMessage:
-      m_PersistentCalls:
-        m_Calls:
-        - {m_Target: {fileID: 903659636}, m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine, m_MethodName: PlayInFixedTime, m_Mode: 5, m_Arguments: {m_ObjectArgument: {fileID: 0},
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-            m_FloatArgument: 0, m_StringArgument: KnockDown_Far, m_BoolArgument: 0}, m_CallState: 2}
-      m_CallsDirty: 1
-  - Name: TriggerGetUp
-    receiveFromGlobal: 0
-    onReceiveMessage:
-      m_PersistentCalls:
-        m_Calls:
-        - {m_Target: {fileID: 903659636}, m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine, m_MethodName: PlayInFixedTime, m_Mode: 5, m_Arguments: {m_ObjectArgument: {fileID: 0},
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-            m_FloatArgument: 0, m_StringArgument: GetUp, m_BoolArgument: 0}, m_CallState: 2}
-      m_CallsDirty: 1
 --- !u!114 &903659630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12089,68 +11423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11b181c688f7664aba8ba5b38942ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  Members:
-  - {transform: {fileID: 1131041857}, bodyPart: LeftLowerArm, attackObject: {fileID: 1131041856}, isHuman: 1}
-  - {transform: {fileID: 716482205}, bodyPart: RightLowerArm, attackObject: {fileID: 716482204}, isHuman: 1}
-  - {transform: {fileID: 223879564}, bodyPart: LeftLowerLeg, attackObject: {fileID: 223879563}, isHuman: 1}
-  - {transform: {fileID: 1768417634}, bodyPart: RightLowerLeg, attackObject: {fileID: 1768417633}, isHuman: 1}
-  defaultDamage:
-    damageValue: 10
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  hitProperties:
-    hitDamageTags:
-    - Enemy
-    useRecoil: 1
-    drawRecoilGizmos: 0
-    recoilRange: 90
-    hitRecoilLayer:
-      m_Bits: 1
-  leftWeapon: {fileID: 0}
-  rightWeapon: {fileID: 0}
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEquipWeapon:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onUnequipWeapon:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  defaultAttackDistance: 1
-  defaultStaminaCost: 20
-  defaultStaminaRecoveryDelay: 1
-  defaultDefenseRate: 100
-  defaultDefenseRange: 90
-  <damageMultiplier>k__BackingField: 0
-  <currentRecoilID>k__BackingField: 0
-  <currentReactionID>k__BackingField: 0
-  <ignoreDefense>k__BackingField: 0
-  <activeRagdoll>k__BackingField: 0
-  <senselessTime>k__BackingField: 0
-  <inRecoil>k__BackingField: 0
-  <attackName>k__BackingField: 
 --- !u!114 &903659631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12163,290 +11435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cc87428c178f84b9fc7ed68f7c3264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 9
-  _isDead: 1
-  _currentHealth: 0
-  isImmortal: 1
-  fillHealthOnStart: 1
-  _maxHealth: 100
-  _healthRecovery: 0
-  _healthRecoveryDelay: 0
-  _currentHealthRecoveryDelay: 0
-  checkHealthEvents: []
-  _onStartReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onDead:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 2081256351}, m_TargetAssemblyTypeName: Target, Assembly-CSharp, m_MethodName: delete, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
-  onChangeHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onResetHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  <inHealthRecovery>k__BackingField: 0
-  deathBy: 0
-  removeComponentsAfterDie: 0
-  debugActionListener: 0
-  <animator>k__BackingField: {fileID: 0}
-  _ragdolled: 0
-  OnCrouch:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  OnStandUp:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onActiveRagdoll:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableRagdoll:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionStay:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onActionExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  isInit: 0
-  _isCrouching: 0
-  disableControllerOnStart: 0
-  currentSpeed: 0
-  animatorSpeed: 1
-  inputMagnitudeSmooth: 0.2
-  useRootMotion: 0
-  freeSpeed:
-    rotationSpeed: 10
-    walkSpeed: 3
-    runningSpeed: 4
-    sprintSpeed: 5
-    crouchSpeed: 2
-  strafeSpeed:
-    rotationSpeed: 10
-    walkSpeed: 2
-    runningSpeed: 3
-    sprintSpeed: 4
-    crouchSpeed: 2
-  _useStepOffSet: 1
-  stepOffsetEnd: 0.45
-  stepOffsetStart: 0.05
-  stepSmooth: 4
-  jumpSpeedPerMeter: 1
-  jumpHeight: 1
-  checkGroundDistance: 6
-  groundLayer:
-    m_Bits: 2621441
-  useAutoCrouch: 0
-  headDetectStart: 0.4
-  headDetectHeight: 0.4
-  headDetectMargin: 0.02
-  autoCrouchLayer:
-    m_Bits: 1
-  debugAutoCrouch: 0
-  onEnableController:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableController:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  <isStrafing>k__BackingField: 0
-  <isGrounded>k__BackingField: 0
-  _rigidbody: {fileID: 0}
-  frictionPhysics: {fileID: 0}
-  maxFrictionPhysics: {fileID: 0}
-  slippyPhysics: {fileID: 0}
-  _capsuleCollider: {fileID: 903659634}
-  targetDirection: {x: 0, y: 0, z: 0}
-  input: {x: 0, y: 0, z: 0}
-  lockMovement: 0
-  lockRotation: 0
-  stopMove: 0
-  isJumping: 0
-  doingCustomAction: 0
-  <animatorStateInfos>k__BackingField:
-    debug: 0
-    animator: {fileID: 0}
-    stateInfos: []
-  <isRolling>k__BackingField: 0
-  <useCustomRotationSpeed>k__BackingField: 0
-  <customRotationSpeed>k__BackingField: 0
-  onUpdateAI:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _isStrafingRef: 0
-  _isGroundedRef: 0
-  _verticalVelocityRef: 0
-  _groundDistanceRef: 0
-  _isCrouchingRef: 0
-  _isCrouchingFromCast: 0
-  customAction: 0
-  direction: 0
-  speed: 0
-  velocity: 0
-  strafeMagnitude: 0
-  rotationMagnitude: 0
-  colliderHeight: 0
-  verticalVelocity: 0
-  freeRotation: {x: 0, y: 0, z: 0, w: 0}
-  colliderCenter: {x: 0, y: 0, z: 0}
-  lastCharacterAngle: {x: 0, y: 0, z: 0}
-  temporaryDirection: {x: 0, y: 0, z: 0}
-  temporaryDirectionTime: 0
-  disableAgentOnStart: 0
-  useNavMeshAgent: 1
-  updatePathQuality: 2
-  aceleration: 8
-  _stopingDistance: 0.2
-  _walkingStopingDistance: 0.1
-  _runningStopingDistance: 0.1
-  _sprintingStopingDistance: 0.15
-  _waypointArea: {fileID: 0}
-  _changeWaypointDistance: 0
-  _invertWaypointsOrder: 0
-  _randomStartingPoint: 0
-  _randomWaypoint: 0
-  startUsingSpecificWaypoint: 0
-  startWaypointIndex: 0
-  startUsingNearWayPoint: 0
-  _selfStartingPoint: 0
-  _customStartingPoint: {fileID: 0}
-  detectionPointReference: {fileID: 1938027827}
-  sightMethod: -1
-  findTargetUpdateQuality: 3
-  canseeTargetUpdateQuality: 2
-  findOtherTarget: 0
-  maxTargetsDetection: 10
-  _changeTargetDelay: 2
-  findTargetByDistance: 1
-  _fieldOfView: 90
-  _minDistanceToDetect: 5
-  _maxDistanceToDetect: 9
-  _hasPositionOfTheTarget: 0
-  _targetInLineOfSight: 0
-  _lostTargetDistance: 1.42
-  _timeToLostWithoutSight: 5
-  _detectLayer:
-    m_Bits: 256
-  _detectTags:
-    tags:
-    - Player
-  _obstacles:
-    m_Bits: 524289
-  targetsInRange: []
-  _currentTarget:
-    _tag: 
-    _transform: {fileID: 0}
-    <_collider>k__BackingField: {fileID: 0}
-    <targetInfo>k__BackingField: {fileID: 0}
-    isFixedTarget: 0
-    isLost: 0
-  _secundaryTargets: []
-  _debugVisualDetection: 1
-  _debugRaySight: 1
-  _debugLastTargetPosition: 0
-  _receivedDamage:
-    isValid: 0
-    lastValue: 0
-    lasType: unnamed
-    lastSender: {fileID: 0}
-    massiveCount: 0
-    massiveValue: 0
-    lastValidDamage: 0
-    _massiveTime: 0
-  _headtrack: {fileID: 0}
-  targetsBuffer: []
-  _lastTargetPosition: {x: 0, y: 0, z: 0}
-  _currentWaypoint: 0
-  lostTargetTime: 0
-  lastValidDestination: {x: 0, y: 0, z: 0}
-  changeTargetTime: 0
-  isWaypointStarted: 0
-  _destination: {x: 0, y: 0, z: 0}
-  lasDestination: {x: 0, y: 0, z: 0}
-  navMeshAgent: {fileID: 0}
-  updatePathTime: 0
-  updateFindTargetTime: 0
-  canseeTargetUpdateTime: 0
-  timeToResetOutDistance: 0
-  forceUpdatePathTime: 0
-  isOutOfDistance: 0
-  findAgentDestinationRadius: 0
-  <selfStartPosition>k__BackingField: {x: 0, y: 0, z: 0}
-  <targetWaypoint>k__BackingField: {fileID: 0}
-  <visitedWaypoints>k__BackingField: []
-  <changeWaypointDistance>k__BackingField: 0
-  triggers: []
-  checkTriggerFrequency: 0
-  myTarget: {fileID: 0}
-  myAnimator: {fileID: 903659636}
-  moveToTarget: 0
-  HoldAnim: 1
-  holdTime: 0
-  setTime: 0
-  minTime: 2
-  maxTime: 3
-  _minAttackTime: 0.5
-  _maxAttackTime: 2
-  _minAttackCount: 1
-  _maxAttackCount: 4
-  _attackDistance: 1
-  _combatBlockingChance: 0
-  _onDamageBlockingChance: 0
-  _minStayBlockingTime: 4
-  _maxStayBlockingTime: 6
-  _minTimeToTryBlock: 4
-  _maxTimeToTryBlock: 6
-  ignoreDefenseDamageTypes:
-  - unarmed
-  - melee
-  _minDistanceOfTheTarget: 2
-  _combatDistance: 3.57
-  _strafeCombatMovement: 1
-  _alwaysStrafe: 0
-  _minTimeToChangeStrafeSide: 1
-  _maxTimeToChangeStrafeSide: 4
-  _isInCombat: 0
-  _isAiming: 0
-  _isBlocking: 0
-  _attackTime: 0
-  _blockingTime: 0
-  _tryBlockTime: 0
-  _timeToChangeStrafeSide: 0
-  <strafeCombatSide>k__BackingField: 0
-  <attackCount>k__BackingField: 0
-  <MeleeManager>k__BackingField: {fileID: 0}
-  <isEquipping>k__BackingField: 0
-  _moveSetID: 0
-  _attackID: 0
-  _defenseID: 0
-  _recoilID: 0
 --- !u!114 &903659632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12459,41 +11447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fb374bd0aad974e9798f071eb5ecb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  _fsmBehaviour: {fileID: 11400000, guid: 628e1a0ae2580214ca21851594b5173f, type: 2}
-  _stop: 1
-  _debugMode: 1
-  onStartFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPauseFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onResetFSM:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onStateEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onStateExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onChangeBehaviour:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _currentState: {fileID: 0}
-  _lastState: {fileID: 0}
-  inChangeState: 0
-  _messageReceiver: {fileID: 0}
-  tryGetMessageReceiver: 0
 --- !u!195 &903659633
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14546,7 +13499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 8669752d11a9bd342bcacceb7cd39882, type: 2}
-  <MaxHealth>k__BackingField: 25
+  <MaxHealth>k__BackingField: 50
   rotationSpeedDuringAttack: 500
   <PreferredFightingRange>k__BackingField: 2
   defaultAnimations:
@@ -14684,6 +13637,7 @@ Transform:
   m_Children:
   - {fileID: 728953457}
   - {fileID: 756262346}
+  - {fileID: 4378858007715941029}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1055259887
@@ -15700,51 +14654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: LeftLowerArm
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 267542587}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!4 &1131041857
 Transform:
   m_ObjectHideFlags: 0
@@ -21585,51 +20494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: LeftLowerLeg
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 91757497}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!1 &1653827959
 GameObject:
   m_ObjectHideFlags: 0
@@ -22845,51 +21709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: RightLowerLeg
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 655402540}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!4 &1768417634
 Transform:
   m_ObjectHideFlags: 0
@@ -27677,51 +26496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0befb9e9384ab34d9dfc9d3cabf04b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 0
-  attackObjectName: RightLowerLeg
-  damage:
-    damageValue: 15
-    staminaBlockCost: 5
-    staminaRecoveryDelay: 1
-    ignoreDefense: 0
-    activeRagdoll: 0
-    senselessTime: 0
-    sender: {fileID: 0}
-    receiver: {fileID: 0}
-    hitPosition: {x: 0, y: 0, z: 0}
-    hitReaction: 1
-    recoil_id: 0
-    reaction_id: 0
-    damageType: 
-    force: {x: 0, y: 0, z: 0}
-  overrideDamageSender: {fileID: 0}
-  hitBoxes:
-  - {fileID: 397123596}
-  damageModifier: 0
-  canApplyDamage: 0
-  onDamageHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onRecoilHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onPassDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onEnableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onDisableDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  meleeManager: {fileID: 0}
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
@@ -28466,6 +27240,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &28851069778691639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517379540167492322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823f3afb7f96a0c48969c20a229d1a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeFighter: {fileID: 1050087380}
+  healthBarImg: {fileID: 1014910390222503748}
 --- !u!1 &152878826611005171
 GameObject:
   m_ObjectHideFlags: 0
@@ -28599,6 +27387,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!224 &410850287977973953
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088421387160778861}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5330812563069610641}
+  m_Father: {fileID: 8323463237924962026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &414117464868207765
 GameObject:
   m_ObjectHideFlags: 0
@@ -28760,6 +27568,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &1014910390222503748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756363797035924691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c32e9a54ba26d74498c530a462f407b1, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!4 &1031632034927216899
 Transform:
   m_ObjectHideFlags: 0
@@ -29057,6 +27895,36 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e3333910d7f5945a3962130b29f175, type: 3}
+--- !u!114 &1326949685083807076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088421387160778861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f04126b2f9e15b14db4be4c48b1d969c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!4 &1330755669750898521
 Transform:
   m_ObjectHideFlags: 0
@@ -29084,6 +27952,25 @@ GameObject:
   - component: {fileID: 6452705232292389915}
   m_Layer: 0
   m_Name: mixamorig:LeftToeBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1447204534344042012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8323463237924962026}
+  - component: {fileID: 5449882131203798286}
+  - component: {fileID: 5141945827107441254}
+  - component: {fileID: 7369332696721134721}
+  m_Layer: 5
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29718,6 +28605,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!222 &3434321679196396478
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756363797035924691}
+  m_CullTransparentMesh: 1
+--- !u!1 &3517379540167492322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4378858007715941029}
+  - component: {fileID: 28851069778691639}
+  m_Layer: 0
+  m_Name: HP Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &3558328721102029326
 Transform:
   m_ObjectHideFlags: 0
@@ -29972,6 +28884,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6452705232292389915}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4088421387160778861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410850287977973953}
+  - component: {fileID: 5140654424034357540}
+  - component: {fileID: 1326949685083807076}
+  m_Layer: 5
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &4114030614728079748
 GameObject:
   m_ObjectHideFlags: 0
@@ -30155,6 +29085,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73268956, y: 1.6599163, z: 0.08876455}
   m_Center: {x: 0, y: 0.8537378, z: -0.02}
+--- !u!4 &4378858007715941029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517379540167492322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8323463237924962026}
+  m_Father: {fileID: 1050087385}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4441848306315634200
 GameObject:
   m_ObjectHideFlags: 0
@@ -30418,6 +29364,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!222 &5140654424034357540
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088421387160778861}
+  m_CullTransparentMesh: 1
+--- !u!114 &5141945827107441254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447204534344042012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!4 &5260763422252513915
 Transform:
   m_ObjectHideFlags: 0
@@ -30520,11 +29497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9a215606679cb40bec79dd1cf72e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5260763422252513916}
-  forceMultipler: 0.5
-  joint: {fileID: 5260763422252513919}
-  character: {fileID: 5260763422252513922}
-  removeComponentsAfterDie: 0
 --- !u!114 &5260763422252513922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30537,39 +29509,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56a83ea88140fa4f869bb2f7ffdb184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  _isDead: 1
-  _currentHealth: 0
-  isImmortal: 1
-  fillHealthOnStart: 1
-  _maxHealth: 100
-  _healthRecovery: 0
-  _healthRecoveryDelay: 0
-  _currentHealthRecoveryDelay: 0
-  checkHealthEvents: []
-  _onStartReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  _onDead:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onChangeHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  onResetHealth:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  <inHealthRecovery>k__BackingField: 0
+--- !u!224 &5330812563069610641
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756363797035924691}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 410850287977973953}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &5372056943715314665
 Transform:
   m_ObjectHideFlags: 0
@@ -30602,6 +29560,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!223 &5449882131203798286
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447204534344042012}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!4 &5465940247440888778
 Transform:
   m_ObjectHideFlags: 0
@@ -30735,19 +29716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff11ee57b0c241a82c0c37c40c0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCloseEvents: 0
-  openCloseWindow: 1
-  selectedToolbar: 0
-  messagesListeners:
-  - Name: TriggerKnockdown
-    receiveFromGlobal: 0
-    onReceiveMessage:
-      m_PersistentCalls:
-        m_Calls:
-        - {m_Target: {fileID: 5866666020949338404}, m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine, m_MethodName: PlayInFixedTime, m_Mode: 5, m_Arguments: {m_ObjectArgument: {fileID: 0},
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-            m_FloatArgument: 0, m_StringArgument: KnockDown, m_BoolArgument: 0}, m_CallState: 2}
-      m_CallsDirty: 1
 --- !u!4 &5901452234846298589
 Transform:
   m_ObjectHideFlags: 0
@@ -31175,6 +30143,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7369332696721134721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447204534344042012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!4 &7410462538173295180
 Transform:
   m_ObjectHideFlags: 0
@@ -31345,6 +30330,24 @@ GameObject:
   - component: {fileID: 9118793900179698617}
   m_Layer: 0
   m_Name: mixamorig:RightHandRing1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &7756363797035924691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5330812563069610641}
+  - component: {fileID: 3434321679196396478}
+  - component: {fileID: 1014910390222503748}
+  m_Layer: 5
+  m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31556,6 +30559,26 @@ Transform:
   - {fileID: 6833846119627148959}
   m_Father: {fileID: 6502182838969303414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &8323463237924962026
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447204534344042012}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 410850287977973953}
+  m_Father: {fileID: 4378858007715941029}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.4, y: 0.05}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &8352548718654778408
 Transform:
   m_ObjectHideFlags: 0

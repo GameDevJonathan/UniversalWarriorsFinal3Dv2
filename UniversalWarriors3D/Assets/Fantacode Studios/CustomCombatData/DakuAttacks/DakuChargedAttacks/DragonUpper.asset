@@ -21,14 +21,14 @@ MonoBehaviour:
   reactionTag: 
   overrideReaction: 1
   reaction:
-    animationClip: {fileID: 7400000, guid: b39b36fe82d87b741adba5fee3011175, type: 3}
+    animationClip: {fileID: 7400000, guid: baa160d508cba7c418f8bcc6cac8729a, type: 2}
     willBeKnockedDown: 1
     knockDownDirection: 0
     lyingDownTimeRange: {x: 1, y: 3}
     overrideLyingDownAnimation: 1
-    lyingDownAnimation: {fileID: 1827226128182048838, guid: e325366197afb4e4eaa1cb1075377cd2,
-      type: 3}
-    getUpAnimation: {fileID: 7400000, guid: d7f6ac2bcb87d7941ab4f4b2cac62d4c, type: 3}
+    lyingDownAnimation: {fileID: 7400000, guid: 91b630fbbbf83474e9269f1c1c28860a,
+      type: 2}
+    getUpAnimation: {fileID: 7400000, guid: 52e0e97056d306e4891a1b31da086fca, type: 2}
   isSyncedReaction: 0
   syncStartTime: 0
   rotateTarget: 1

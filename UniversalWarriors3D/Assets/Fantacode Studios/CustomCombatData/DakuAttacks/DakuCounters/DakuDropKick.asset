@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: 1263fe7bd5815354c8507e46df651b51, type: 2}
   animationSpeed: 1
-  isFinisher: 0
+  isFinisher: 1
   canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 1
