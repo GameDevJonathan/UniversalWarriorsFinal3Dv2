@@ -132,7 +132,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""83a850d7-96ce-4c38-bbfd-b3ac4a2854b2"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

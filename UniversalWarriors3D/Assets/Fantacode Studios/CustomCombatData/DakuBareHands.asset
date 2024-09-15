@@ -49,11 +49,11 @@ MonoBehaviour:
     maxDistance: 2
     healthThreshold: 100
     attacks:
-    - attack: {fileID: 11400000, guid: 15544399cfa1a144bb0e687638f0fec1, type: 2}
+    - attack: {fileID: 11400000, guid: 2605447e35b6f1947b59aedeba03d526, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     attack:
-      attack: {fileID: 11400000, guid: 15544399cfa1a144bb0e687638f0fec1, type: 2}
+      attack: {fileID: 11400000, guid: 2605447e35b6f1947b59aedeba03d526, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     animationDistance: 0

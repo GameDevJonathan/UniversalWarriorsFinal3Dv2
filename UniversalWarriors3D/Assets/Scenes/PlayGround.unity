@@ -5104,8 +5104,8 @@ MonoBehaviour:
   rotationSpeed: 2.5
   playTurningAnimations: 1
   playQuickStopAnimation: 1
-  groundCheckRadius: 0.25
-  groundCheckOffset: {x: 0, y: 0.18, z: 0.07}
+  groundCheckRadius: 0.37
+  groundCheckOffset: {x: 0, y: 0.1, z: 0.07}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -13630,7 +13630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050087368}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 32, y: 0, z: 37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13639,7 +13639,7 @@ Transform:
   - {fileID: 756262346}
   - {fileID: 4378858007715941029}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1055259887
 GameObject:
   m_ObjectHideFlags: 0

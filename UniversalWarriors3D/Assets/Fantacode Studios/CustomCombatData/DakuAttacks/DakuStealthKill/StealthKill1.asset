@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
-  m_Name: SuplexBack
+  m_Name: StealthKill1
   m_EditorClassIdentifier: 
-  clip: {fileID: 1827226128182048838, guid: 79404e8c87ec18847b74861d2f6d58ef, type: 3}
+  clip: {fileID: 7400000, guid: 36bb2bbb6142aec499a6e33d2c18d83b, type: 2}
   animationSpeed: 1
   isFinisher: 1
   canHitMultipleTargets: 0
@@ -21,8 +21,7 @@ MonoBehaviour:
   reactionTag: 
   overrideReaction: 1
   reaction:
-    animationClip: {fileID: 1827226128182048838, guid: e29e0406a5a90e249a1388a7af4507f9,
-      type: 3}
+    animationClip: {fileID: 7400000, guid: b56e3cfa6842ecb46ad57681716758b1, type: 2}
     willBeKnockedDown: 0
     knockDownDirection: 0
     lyingDownTimeRange: {x: 1, y: 3}
@@ -31,7 +30,7 @@ MonoBehaviour:
     getUpAnimation: {fileID: 0}
   isSyncedReaction: 1
   syncStartTime: 0
-  rotateTarget: 1
+  rotateTarget: 0
   rotationOffset: 0
   overrideBlockedReaction: 0
   blockedReaction:
@@ -55,13 +54,13 @@ MonoBehaviour:
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 0.1
+  distanceFromTarget: 0.8
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
   moveEndTime: 0.05
   ignoreCollisions: 1
-  moveType: 0
-  snapType: 0
+  moveType: 2
+  snapType: 1
   snapTarget: 0
   weightMask: {x: 1, y: 1, z: 1}
   rootCurves:
