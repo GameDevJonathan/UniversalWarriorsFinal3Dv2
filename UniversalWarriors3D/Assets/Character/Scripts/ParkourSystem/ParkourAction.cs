@@ -19,7 +19,7 @@ public class ParkourAction : ScriptableObject
     [field: SerializeField] public Quaternion TargetRotation { get; private set; }
     public Vector3 MatchPos { get; set; }
 
-    public bool CheckIfPossible(ObstacleHitData hitdata, Transform player)
+    public bool CheckIfPossible(ObstacleHitData1 hitdata, Transform player)
     {
         if (!string.IsNullOrEmpty(ObstacleTag) && hitdata.forwardHit.transform.tag != ObstacleTag)
             return false;

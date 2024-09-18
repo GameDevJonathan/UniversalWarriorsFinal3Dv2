@@ -20,8 +20,8 @@ public class Grounded : PlayerBaseState
     private bool grounded => stateMachine.WallRun.CheckForGround();
     
     public bool isOnLedge { get; set; }
-    ObstacleHitData hitData;
-    
+    ObstacleHitData1 hitData;
+
 
 
 

@@ -36,6 +36,8 @@ TagManager:
   - Target
   - Sensor
   - Hitbox
+  - NarrowBeam
+  - SwingableLedge
   layers:
   - Default
   - TransparentFX
@@ -59,8 +61,8 @@ TagManager:
   - Obstacle
   - Wall
   - Ground
-  - 
-  - 
+  - Obstacles
+  - Ledge
   - 
   - 
   - 

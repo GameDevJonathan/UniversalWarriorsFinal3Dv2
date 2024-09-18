@@ -18,9 +18,9 @@ public class EnviromentScaner : MonoBehaviour
     [SerializeField] Vector3 Direction;
     [SerializeField] LayerMask obstacleLayer;
 
-    public ObstacleHitData ObstacleCheck()
+    public ObstacleHitData1 ObstacleCheck()
     {
-        var hitdata = new ObstacleHitData();
+        var hitdata = new ObstacleHitData1();
         var forwardOrigin = transform.position + forwardRayOffset;
 
         hitdata.forwardHitFound = Physics.Raycast(forwardOrigin, transform.forward, out hitdata.forwardHit,
@@ -83,11 +83,15 @@ public class EnviromentScaner : MonoBehaviour
 
 
 
-public struct ObstacleHitData
+public struct ObstacleHitData1
 {
     public bool forwardHitFound;
     public bool heightHitFound;
+    public bool ledgeHitFound;
     public RaycastHit forwardHit;
     public RaycastHit heightHit;
+    public RaycastHit ledgeHit;
+    public bool hasSpaceToVault;
+    public bool hasSpace;
 
 }
