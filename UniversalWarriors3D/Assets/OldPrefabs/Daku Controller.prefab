@@ -6696,8 +6696,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enablePredictiveJump: 1
-  <MaxJumpHeight>k__BackingField: 1.5
-  minDistanceFromLedgeForJumping: 1
+  <MaxJumpHeight>k__BackingField: 1.2
+  minDistanceFromLedgeForJumping: 0.5
   <MaxJumpDistance>k__BackingField: 7
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}

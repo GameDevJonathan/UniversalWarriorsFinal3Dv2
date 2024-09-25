@@ -46,7 +46,13 @@ MonoBehaviour:
   rotateTargetInBlocked: 1
   rotationOffsetInBlocked: 0
   canBeCountered: 0
-  counterAttacks: []
+  counterAttacks:
+  - counterAttack: {fileID: 0}
+    counterStartTime: 0
+    maxDistanceForCounter: 2
+    healthThresholdForCounter: 100
+    foldOut: 1
+    serialized: 1
   hitboxToUse: 0
   damage: 5
   impactStartTime: 0

@@ -58,6 +58,20 @@ MonoBehaviour:
       chargedAttack: {fileID: 0}
     animationDistance: 0
     serialized: 1
+  - attackType: 0
+    minDistance: 0
+    maxDistance: 2
+    healthThreshold: 20
+    attacks:
+    - attack: {fileID: 11400000, guid: 1c811d78a80fe7e4d87ea610ffb07a2d, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: 1c811d78a80fe7e4d87ea610ffb07a2d, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0
+    serialized: 1
   heavyAttacks: []
   reactionData: {fileID: 0}
   weaponEquipAnimation: {fileID: 0}

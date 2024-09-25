@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
   m_Name: DragonUpper
   m_EditorClassIdentifier: 
-  clip: {fileID: 861985091738876215, guid: 37f60e9bd5094362ad58517cc49ee178, type: 3}
+  clip: {fileID: 7400000, guid: 80939cad54cf3fd44ba4bfff59a4dd4b, type: 3}
   animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0

@@ -62,7 +62,7 @@ MonoBehaviour:
   - counterAttack: {fileID: 11400000, guid: 2079ae985e0e12c439ba11f200312984, type: 2}
     counterStartTime: 0.56
     maxDistanceForCounter: 1
-    healthThresholdForCounter: 80
+    healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   hitboxToUse: 0
