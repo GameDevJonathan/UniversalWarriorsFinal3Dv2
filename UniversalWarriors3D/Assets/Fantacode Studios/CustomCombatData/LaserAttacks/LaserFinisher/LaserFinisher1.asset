@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
-  m_Name: Attack_2
+  m_Name: LaserFinisher1
   m_EditorClassIdentifier: 
-  clip: {fileID: 6577726182660687752, guid: 6ca399935f778f34bbb08babaf7cef02, type: 3}
+  clip: {fileID: 8875984503372374270, guid: 7d9312dd4678ee54b899968754ebf16b, type: 3}
   animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
@@ -21,14 +21,15 @@ MonoBehaviour:
   reactionTag: 
   overrideReaction: 1
   reaction:
-    animationClip: {fileID: 7400000, guid: 5cb4d48bc5587a0469ea71fb49b210a0, type: 2}
+    animationClip: {fileID: 7268708525049681311, guid: 4242a9f2ab196b54f8a3a18b619dd6a5,
+      type: 3}
     willBeKnockedDown: 0
     knockDownDirection: 0
     lyingDownTimeRange: {x: 1, y: 3}
     overrideLyingDownAnimation: 0
     lyingDownAnimation: {fileID: 0}
     getUpAnimation: {fileID: 0}
-  isSyncedReaction: 0
+  isSyncedReaction: 1
   syncStartTime: 0
   rotateTarget: 1
   rotationOffset: 0
@@ -47,21 +48,21 @@ MonoBehaviour:
   rotationOffsetInBlocked: 0
   canBeCountered: 0
   counterAttacks: []
-  hitboxToUse: 1
-  damage: 2
-  impactStartTime: 0.2
-  impactEndTime: 0.4
+  hitboxToUse: 0
+  damage: 0
+  impactStartTime: 0
+  impactEndTime: 1
   waitForNextAttack: 0
   waitForAttackTime: 0
-  moveToTarget: 0
-  distanceFromTarget: 1
+  moveToTarget: 1
+  distanceFromTarget: 0.5
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
-  moveEndTime: 1
+  moveEndTime: 0.27
   ignoreCollisions: 1
   moveType: 0
-  snapType: 0
-  snapTarget: 0
+  snapType: 1
+  snapTarget: 1
   weightMask: {x: 1, y: 1, z: 1}
   rootCurves:
     CurveX:
@@ -83,8 +84,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   isUnblockableAttack: 0
-  strikeSound: {fileID: 8300000, guid: 90fb91c5d9f18df4183363d36d921429, type: 3}
-  hitSound: {fileID: 8300000, guid: a715ddf00ff7f24469c72404e8df85e9, type: 3}
+  strikeSound: {fileID: 0}
+  hitSound: {fileID: 0}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
   hitEffect: {fileID: 0}
