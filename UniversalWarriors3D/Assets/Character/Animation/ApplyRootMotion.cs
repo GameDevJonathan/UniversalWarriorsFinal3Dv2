@@ -22,5 +22,10 @@ public class ApplyRootMotion : MonoBehaviour
         Debug.Log("Firing");
     }
 
+    public void PlaySound()
+    {
+        Debug.Log("Firing");
+    }
+
    
 }
