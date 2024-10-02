@@ -11,6 +11,7 @@ namespace FS_ThirdPerson
     {
         Locomotion,
         Parkour,
+        Climbing,
         Combat,
         Other
     }
@@ -90,6 +91,9 @@ namespace FS_ThirdPerson
 
         public Action<float, float> OnLand;
 
+        public bool IsInAir { get; set; }
+        public bool PreventRotation { get; set; }
+
         // Awake all registered scripts
         void Awake()
         {
@@ -168,6 +172,15 @@ namespace FS_ThirdPerson
             player.OnStartSystem(system);
             if (WaitToStartSystem)
                 yield return new WaitUntil(() => WaitToStartSystem == false);
+        }
+
+        public void UnfocusAllSystem()
+        {
+            foreach (var system in managedScripts)
+            {
+                if (system.IsInFocus)
+                    player.OnEndSystem(system);
+            }
         }
     }
 }

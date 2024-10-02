@@ -124,5 +124,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1.5, g: 1.5, b: 1.5, a: 0}
-    - _EmissionMultiply: {r: 1, g: 0.996146, b: 0.8602941, a: 0}
+    - _EmissionMultiply: {r: 1, g: 0.996146, b: 0.8602941, a: 1}
   m_BuildTextureStacks: []

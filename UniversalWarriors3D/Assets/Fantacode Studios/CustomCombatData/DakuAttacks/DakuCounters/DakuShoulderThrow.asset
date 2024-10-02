@@ -56,7 +56,7 @@ MonoBehaviour:
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 1.3
+  distanceFromTarget: 0.8
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
   moveEndTime: 1

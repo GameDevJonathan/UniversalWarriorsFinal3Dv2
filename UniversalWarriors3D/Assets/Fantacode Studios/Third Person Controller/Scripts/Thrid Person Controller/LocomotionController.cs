@@ -293,11 +293,14 @@ namespace FS_ThirdPerson
             if (velocity != Vector3.zero)
                 characterController.Move(velocity * Time.deltaTime);
 
-            if (moveAmount > 0 && moveDir.magnitude > 0.2)
-                targetRotation = Quaternion.LookRotation(moveDir);
+            if (!playerController.PreventRotation)
+            {
+                if (moveAmount > 0 && moveDir.magnitude > 0.2)
+                    targetRotation = Quaternion.LookRotation(moveDir);
 
-            float turnSpeed = Mathf.Lerp(rotationSpeed * 100f, 2 * rotationSpeed * 100f, moveSpeed / sprintSpeed);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+                float turnSpeed = Mathf.Lerp(rotationSpeed * 100f, 2 * rotationSpeed * 100f, moveSpeed / sprintSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+            }
         }
 
         void HandleBalanceOnNarrowBeam()
@@ -446,7 +449,7 @@ namespace FS_ThirdPerson
             {
                 if (!turnBack && Turnback()) yield break;
 
-                if (targetRotation.HasValue) transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.Value, 500f * Time.deltaTime);
+                if (targetRotation.HasValue  && !playerController.PreventRotation) transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.Value, 500f * Time.deltaTime);
 
                 timer += Time.deltaTime;
                 yield return null;
@@ -523,6 +526,7 @@ namespace FS_ThirdPerson
 
             while (!isGrounded)
             {
+                playerController.IsInAir = true;
                 velocityY += Gravity * Time.deltaTime;
                 velocity = new Vector3((moveDir * jumpMoveSpeed).x, velocityY, (moveDir * jumpMoveSpeed).z);
 
@@ -534,14 +538,14 @@ namespace FS_ThirdPerson
                 if (jumpMaxPosY < transform.position.y)
                     jumpMaxPosY = transform.position.y;
 
-                if (moveDir != Vector3.zero)
+                if (moveDir != Vector3.zero && !playerController.PreventRotation)
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDir), Time.deltaTime * 100 * rotationSpeed);
                 yield return null;
 
                 if (playerController.CurrentSystemState != State)
                     yield break;    
             }
-
+            playerController.IsInAir = false;
             yield return VerticalJumpLanding();
             //parkourController.IsJumping = false;
             preventLocomotion = false;
@@ -680,6 +684,7 @@ namespace FS_ThirdPerson
 
         public void OnStartSystem(SystemBase systemBase)
         {
+            playerController.UnfocusAllSystem();
             systemBase.FocusScript();
             systemBase.EnterSystem();
             preventLocomotion = true;
@@ -712,6 +717,8 @@ namespace FS_ThirdPerson
         }
 
         public bool UseRootMotion { get; set; }
-#endregion
+        #endregion
+
+        public bool IsCrouching => crouchVal > 0.5f;
     }
 }

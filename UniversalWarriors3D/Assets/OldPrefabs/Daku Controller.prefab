@@ -6381,6 +6381,7 @@ GameObject:
   - component: {fileID: 2501154203395127525}
   - component: {fileID: 5543738811961201023}
   - component: {fileID: 6617467723527203866}
+  - component: {fileID: 118808781080577492}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -6652,14 +6653,14 @@ MonoBehaviour:
   <MinJumpDistance>k__BackingField: 0.8
   alwaysUsePlayerForward: 0
   heightRayLength: 4
+  obstacleCheckRange: 0.7
+  ledgeHeightThreshold: 1
   <ObstacleLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
   <LedgeLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
-  obstacleCheckRange: 0.7
-  ledgeHeightThreshold: 1
 --- !u!136 &7508971303921551971
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6697,7 +6698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enablePredictiveJump: 1
   <MaxJumpHeight>k__BackingField: 1.2
-  minDistanceFromLedgeForJumping: 0.5
+  minDistanceFromLedgeForJumping: 1
   <MaxJumpDistance>k__BackingField: 7
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}
@@ -6838,6 +6839,18 @@ MonoBehaviour:
   jumpButton: 
   dropButton: 
   jumpFromHangButton: 
+--- !u!114 &118808781080577492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a31f80961a0244d86cb3aca390546f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7487747447662458559
 GameObject:
   m_ObjectHideFlags: 0
@@ -7756,19 +7769,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 823142407180590499}
+  defaultSettings:
+    distance: 2.5
+    framingOffset: {x: 0, y: 1.5, z: 0}
+    followSmoothTime: 0.2
+    sensitivity: 0.6
+    minVerticalAngle: -45
+    maxVerticalAngle: 70
+    invertX: 0
+    invertY: 1
+    enableCameraCollisions: 1
+    minDistanceFromTarget: 0.2
+    serialized: 1
   advancedCameraRotation: 1
-  sensitivity: 0.6
-  distance: 2.5
-  dragEffectDistance: 0.75
-  minVerticalAngle: -45
-  maxVerticalAngle: 70
-  framingOffset: {x: 0.15, y: 2, z: -1}
-  invertX: 0
-  invertY: 1
-  layerMask:
+  collisionLayers:
     serializedVersion: 2
     m_Bits: 1
   lockCursor: 0
+  distanceSmoothTime: 0.3
+  distanceSmoothTimeWhenOcluded: 0
+  framingSmoothTime: 0.5
+  collisionPadding: 0.05
+  overrideCameraSettings:
+  - state: 0
+    settings:
+      distance: 3
+      framingOffset: {x: 0, y: 1.5, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 60
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  - state: 3
+    settings:
+      distance: 5
+      framingOffset: {x: 0, y: 2, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 60
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  nearClipPlane: 0.1
   cameraShakeAmount: 0.6
 --- !u!114 &1211388032527307394
 MonoBehaviour:

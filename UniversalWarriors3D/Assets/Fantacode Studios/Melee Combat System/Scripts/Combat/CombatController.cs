@@ -106,7 +106,6 @@ namespace FS_CombatSystem
         private void Start()
         {
             animator = player.Animator;
-            animator.fireEvents = false;
 
             inputManager.OnAttackPressed += OnAttackPressed;
 
@@ -125,6 +124,7 @@ namespace FS_CombatSystem
                 if (playerController.CurrentSystemState != SystemState.Combat)
                 {
                     playerController.WaitToStartSystem = true;
+
                     meleeFighter.QuickSwitchWeapon();
 
                     StartCoroutine(AsyncUtil.RunAfterFrames(1, () => playerController.WaitToStartSystem = false));
@@ -229,7 +229,11 @@ namespace FS_CombatSystem
 
         public override void HandleUpdate()
         {
-            GroundCheck();
+            if (playerController.FocusedSystemState == SystemState.Combat)
+                GroundCheck();
+            else
+                isGrounded = player.IsGrounded;
+
             if (isGrounded)
             {
                 ySpeed = -0.5f;
@@ -365,6 +369,7 @@ namespace FS_CombatSystem
         public override void EnterSystem()
         {
             meleeFighter.CanSwitchWeapon = true;
+            playerController.WaitToStartSystem = true;
         }
 
         private void OnGUI()

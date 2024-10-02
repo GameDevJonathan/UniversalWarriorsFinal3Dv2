@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: 8713f3f70307ff044987fd4928bc4b1b, type: 2}
   animationSpeed: 1
-  isFinisher: 0
+  isFinisher: 1
   canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 1
@@ -49,13 +49,13 @@ MonoBehaviour:
   canBeCountered: 0
   counterAttacks: []
   hitboxToUse: 0
-  damage: 10
-  impactStartTime: 0
-  impactEndTime: 1
+  damage: 0
+  impactStartTime: 0.49
+  impactEndTime: 0.56
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 1.3
+  distanceFromTarget: 0.5
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
   moveEndTime: 1

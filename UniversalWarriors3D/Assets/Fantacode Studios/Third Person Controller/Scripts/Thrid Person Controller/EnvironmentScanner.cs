@@ -10,12 +10,12 @@ namespace FS_ThirdPerson
         //[SerializeField] Vector3 forwardRayOffset = new Vector3(0, 2.5f, 0);
         [SerializeField] float heightRayLength = 4;
 
-        [field: SerializeField] public LayerMask ObstacleLayer { get; set; } = 1;
-        [field: SerializeField] public LayerMask LedgeLayer { get; set; } = 1;
-
         [SerializeField] float obstacleCheckRange = 0.7f;
 
         public float ledgeHeightThreshold = 1f;
+
+        [field: SerializeField] public LayerMask ObstacleLayer { get; set; } = 1;
+        [field: SerializeField] public LayerMask LedgeLayer { get; set; } = 1;
 
 
         public ObstacleHitData ObstacleCheck(bool performHeightCheck = true, float forwardOriginOffset = 1f)

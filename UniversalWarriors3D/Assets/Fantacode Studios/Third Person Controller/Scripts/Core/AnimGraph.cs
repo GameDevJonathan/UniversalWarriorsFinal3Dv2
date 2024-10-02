@@ -35,8 +35,11 @@ namespace FS_ThirdPerson
 
         private void Update()
         {
-            if (playableAnimator.GetSpeed() != animator.speed)
-                playableAnimator.SetSpeed(animator.speed);
+            if (animator != null)
+            {
+                if (playableAnimator.GetSpeed() != animator.speed)
+                    playableAnimator.SetSpeed(animator.speed);
+            }
         }
 
 
