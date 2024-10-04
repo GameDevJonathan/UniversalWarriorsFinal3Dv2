@@ -117,8 +117,8 @@ namespace FS_ParkourSystem
                 DisableRootMotion();
 
             //HandleParkourEvents();
-            if (!InAction && climbController.enableClimbing)
-                climbController.HandleClimbUpdate();
+            //if (!InAction && climbController.enableClimbing)
+                //climbController.HandleClimbUpdate();
 
             // If the character is in a predictiveJump or hanging then return
             if (inAirOfPredictiveJump || IsHanging)
@@ -335,6 +335,9 @@ namespace FS_ParkourSystem
 
             //bool playLand = true;
             float timer = 0f;
+
+
+
             while (true)
             {
                 timer += Time.deltaTime;
@@ -347,7 +350,8 @@ namespace FS_ParkourSystem
                 transform.position += velocity * Time.deltaTime;
                 //GetComponent<CharacterController>().Move(velocity * Time.deltaTime);
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
+                if (IsInFocus)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
 
 
                 if (timer > footMatchStartTime)
@@ -537,7 +541,8 @@ namespace FS_ParkourSystem
 
             //bool playLand = true;
             float timer = 0f;
-            while (true)
+            playerController.IsInAir = true;
+            while (true && IsInFocus)
             {
                 timer += Time.deltaTime;
 
@@ -549,7 +554,8 @@ namespace FS_ParkourSystem
                 transform.position += velocity * Time.deltaTime;
                 //GetComponent<CharacterController>().Move(velocity * Time.deltaTime);
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
+                if (!playerController.PreventRotation)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
 
 
                 if (timer > footMatchStartTime)
@@ -570,7 +576,7 @@ namespace FS_ParkourSystem
                     if (isGrounded)
                     {
                         animator.SetBool(AnimatorParameters.IsGrounded, isGrounded);
-
+                        playerController.IsInAir = false;
 
                         if (isFalling)
                         {
@@ -628,8 +634,8 @@ namespace FS_ParkourSystem
 
                 yield return null;
             }
-
-            transform.rotation = targetRot;
+            if (IsInFocus)
+                transform.rotation = targetRot;
 
             inAirOfPredictiveJump = false;
             IsHanging = false;
@@ -638,14 +644,12 @@ namespace FS_ParkourSystem
 
             matchFootToTarget = false;
 
-            if (!inAirOfPredictiveJump)
-            {
-                player.OnEndSystem(this);
-                ResetRootMotion();
-                InAction = false;
-                inPredictiveJump = false;
-            }
-
+           
+                
+            player.OnEndSystem(this);
+            ResetRootMotion();
+            InAction = false;
+            inPredictiveJump = false;
         }
 
         public void ResetPositionY()
@@ -717,7 +721,8 @@ namespace FS_ParkourSystem
 
             DisableRootMotion();
 
-            player.OnStartSystem(this);
+            player.OnStartSystem(climbController );
+
             if (playerController.WaitToStartSystem) yield return new WaitUntil(() => playerController.WaitToStartSystem == false);
 
 
@@ -816,6 +821,7 @@ namespace FS_ParkourSystem
                     yield return null;
                 }
             }
+            player.OnEndSystem(climbController);
 
             if (jumpPoint != null)
                 StartCoroutine(DoPredictiveJump(jumpPoint, animName, 0.3f));
@@ -824,7 +830,7 @@ namespace FS_ParkourSystem
             else
             {
                 inAirOfPredictiveJump = inPredictiveJump = InAction = false;
-                player.OnEndSystem(this);
+                //player.OnEndSystem(climbController);
                 ResetRootMotion();
             }
         }
@@ -835,7 +841,7 @@ namespace FS_ParkourSystem
             DisableRootMotion();
             InAction = true;
 
-            player.OnStartSystem(this);
+            player.OnStartSystem(climbController);
             if (playerController.WaitToStartSystem) yield return new WaitUntil(() => playerController.WaitToStartSystem == false);
 
             inAirOfPredictiveJump = true;
@@ -937,8 +943,8 @@ namespace FS_ParkourSystem
             bool DoCombo = false;
             bool DoQuickCombo = false;
             float comboTime = 0f;
-
-            while (timer <= temp)
+            playerController.IsInAir = true;
+            while (timer <= temp && climbController.IsInFocus)
             {
 
                 if (timer <= jumpTime)
@@ -971,6 +977,7 @@ namespace FS_ParkourSystem
                     IsHanging = true;
 
                     animator.speed = 1;
+                    playerController.IsInAir = false;
                     var handPos = climbController.rightHand.boneTransform;
 
                     if (camShake)
@@ -1035,21 +1042,23 @@ namespace FS_ParkourSystem
                     else if (inputManager.Jump && climbController.hangType == HangType.freeHang) DoQuickCombo = true;
 
                 }
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
+
+                if (!playerController.PreventRotation)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
 
                 timer += Time.deltaTime;
                 yield return null;
             }
-
-            transform.rotation = targetRot;
+            if (climbController.IsInFocus)
+                transform.rotation = targetRot;
+            else
+                IsHanging = false;
 
             inAirOfPredictiveJump = false;
-
-            //player.OnEndParkourAction(this);
             ResetRootMotion();
             inPredictiveJump = false;
             InAction = false;
-
+                
         }
 
         void JumpGroundCheck(Vector3 deltaPosition)

@@ -36,7 +36,7 @@ namespace FS_ThirdPerson
         [Tooltip("This value must be set before starting play mode. It cannot be changed while the game is running.")]
         [SerializeField] float nearClipPlane = 0.1f;
 
-        [SerializeField] float cameraShakeAmount = 0.6f;
+        float cameraShakeAmount = 0.6f;
 
         CameraSettings settings;
         CameraState currentState;
@@ -298,6 +298,7 @@ namespace FS_ThirdPerson
         Parkour,
         Climbing,
         Combat,
+        GrapplingHook,
         Other,
         Crouching
     }

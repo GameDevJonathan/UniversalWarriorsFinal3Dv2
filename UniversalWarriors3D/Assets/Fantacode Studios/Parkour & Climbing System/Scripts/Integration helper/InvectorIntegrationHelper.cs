@@ -17,6 +17,7 @@ namespace FS_ParkourSystem
         vMeleeCombatInput meleeCombatInput;
 
         ParkourController parkourController;
+        PlayerController playerController;
         Collider playerCollider;
         Animator animator;
 
@@ -43,6 +44,7 @@ namespace FS_ParkourSystem
             thirdPersonInput = GetComponent<vThirdPersonInput>();
             shooterMeleeInput = GetComponent<vShooterMeleeInput>();
             meleeCombatInput = GetComponent<vMeleeCombatInput>();
+            playerController = GetComponent<PlayerController>();
 
             parkourController = GetComponent<ParkourController>();
             playerCollider = GetComponent<Collider>();
@@ -53,6 +55,9 @@ namespace FS_ParkourSystem
 
         public void OnEndSystem(SystemBase systemBase)
         {
+            systemBase.UnFocusScript();
+            systemBase.ExitSystem();
+            playerController.ResetState();
             vThirdPersonCamera.instance.selfRigidbody.interpolation = RigidbodyInterpolation.None;
             vThirdPersonCamera.instance.selfRigidbody.useGravity = true;
             thirdPersonController.animator.updateMode = AnimatorUpdateMode.AnimatePhysics;
@@ -65,6 +70,13 @@ namespace FS_ParkourSystem
 
         public void OnStartSystem(SystemBase systemBase)
         {
+            playerController.UnfocusAllSystem();
+            systemBase.FocusScript();
+            systemBase.EnterSystem();
+            playerController.SetSystemState(systemBase.State);
+
+            
+
             vThirdPersonCamera.instance.selfRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
             vThirdPersonCamera.instance.selfRigidbody.useGravity = false;
             thirdPersonController._rigidbody.velocity = Vector3.zero;

@@ -23,6 +23,7 @@ namespace FS_ParkourSystem
         public bool verticalJump;
 
         ParkourController parkourController;
+        PlayerController playerController;
         Animator gc2Animator;
         LocomotionInputManager locomotionInputManager;
 
@@ -56,6 +57,7 @@ namespace FS_ParkourSystem
         private void Awake()
         {
             parkourController = GetComponent<ParkourController>();
+            playerController = GetComponent<PlayerController>();
             locomotionInputManager = GetComponent<LocomotionInputManager>();
 
             if (character == null)
@@ -93,6 +95,11 @@ namespace FS_ParkourSystem
             if (!character.enabled)
                 return;
 
+            playerController.UnfocusAllSystem();
+            systemBase.FocusScript();
+            systemBase.EnterSystem();
+            playerController.SetSystemState(systemBase.State);
+
             this.transform.parent = null;
             character.transform.parent = this.transform;
             character.enabled = false;
@@ -120,8 +127,12 @@ namespace FS_ParkourSystem
             character.States.ChangeWeight(5, 0, 0f);
         }
 
-        IEnumerator OnEndParkour()
+        IEnumerator OnEndParkour(SystemBase systemBase = null)
         {
+            systemBase.UnFocusScript();
+            systemBase.ExitSystem();
+            playerController.ResetState();
+
             character.Animim.OnStartup(character);
 
             character.enabled = true;
@@ -156,8 +167,7 @@ namespace FS_ParkourSystem
         {
             if (character.enabled)
                 return;
-            StartCoroutine(OnEndParkour());
-
+            StartCoroutine(OnEndParkour(systemBase));
         }
 
         public IEnumerator HandleVerticalJump()

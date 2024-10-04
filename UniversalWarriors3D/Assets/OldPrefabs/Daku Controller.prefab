@@ -6703,6 +6703,7 @@ MonoBehaviour:
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}
   parkourActions:
+  - {fileID: 11400000, guid: b27c0e78f82087840902b518268a0860, type: 2}
   - {fileID: 11400000, guid: 0c94d8efe347ff84b920190e4c36dcb2, type: 2}
   - {fileID: 11400000, guid: 77508b0b15797294da333074d59c47ab, type: 2}
   - {fileID: 11400000, guid: 7bad752d0f2272a46861ec7aa2b59dd4, type: 2}

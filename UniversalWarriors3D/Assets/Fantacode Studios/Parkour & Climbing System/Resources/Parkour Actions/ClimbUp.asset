@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ClimbUp
   m_EditorClassIdentifier: 
   animName: Climb Up
-  minHeight: 0.1
-  maxHeight: 10
+  minHeight: 1.5
+  maxHeight: 3.5
   rotateToObstacle: 1
   vaultType: 2
   obstacleTag: 
@@ -24,6 +24,3 @@ MonoBehaviour:
   matchStartTime: 0
   matchTargetTime: 0.46
   matchPosWeight: {x: 0, y: 1, z: 1}
-  clip: {fileID: -7586555752870520377, guid: 3d678ad068fb3d4448d2a75614f87380, type: 3}
-  minimumObstacleHorizontalDistance: 0
-  movementThreshold: 0

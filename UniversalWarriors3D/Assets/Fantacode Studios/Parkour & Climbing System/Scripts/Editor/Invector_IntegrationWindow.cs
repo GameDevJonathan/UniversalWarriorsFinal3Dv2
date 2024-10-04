@@ -72,26 +72,28 @@ namespace FS_ParkourSystem
         void AttachScripts()
         {
             //Checks if the parkour controller already exists
-            var p = GameObject.Find("Parkour Controller");
-            if (p != null && p.GetComponent<ParkourController>() != null && p.GetComponent<InvectorIntegrationHelper>())
-                return;
-
-            if (playerTemplate.GetComponent<ParkourController>() == null)
+            //var p = GameObject.Find("Parkour Controller");
+            //if (p != null && p.GetComponent<ParkourController>() != null && p.GetComponent<InvectorIntegrationHelper>())
+            //    return;
+            
+            var pc = playerTemplate.GetComponent<ParkourController>();
+            if (pc == null)
             {
-                var pc = playerTemplate.AddComponent<ParkourController>();
+                pc = playerTemplate.AddComponent<ParkourController>();
                 var actions = Resources.LoadAll("Parkour Actions", typeof(ParkourAction)).ToList();
                 foreach (var a in actions)
                     pc.parkourActions.Add(a as ParkourAction);
+                var cc = playerTemplate.GetComponent<ClimbController>();
+                if (cc == null)
+                    cc = playerTemplate.AddComponent<ClimbController>();
                 if (playerTemplate.GetComponent<PlayerController>() == null)
                 {
                     var playerController = playerTemplate.AddComponent<PlayerController>();
+                    playerController.managedScripts.Add(cc);
                     playerController.managedScripts.Add(pc);
                 }
             }
-
-
-            if (playerTemplate.GetComponent<ClimbController>() == null)
-                playerTemplate.AddComponent<ClimbController>();
+            
             if (playerTemplate.GetComponent<EnvironmentScanner>() == null)
                 playerTemplate.AddComponent<EnvironmentScanner>();
             if (playerTemplate.GetComponent<ParkourInputManager>() == null)

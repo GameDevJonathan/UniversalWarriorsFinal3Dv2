@@ -30,7 +30,7 @@ namespace FS_ParkourSystem
         [SerializeField] float footIkRayLength = 0.5f;
 
 
-        
+
 
         public HangType hangType { get => animator.GetFloat(AnimatorParameters.freeHang) < 0.5f ? HangType.bracedHang : HangType.freeHang; }
         //bool turnOnGizmos = false;
@@ -83,6 +83,8 @@ namespace FS_ParkourSystem
         float lookAtWeight;
         PlayerController playerController;
 
+        public override SystemState State { get; } = SystemState.Climbing;
+
         public void OnEnable()
         {
             player = GetComponent<ICharacter>();
@@ -124,9 +126,9 @@ namespace FS_ParkourSystem
         }
 
 
-        Vector3 hipIk, currenthipIk,rightHandIK,leftHandIK;
+        Vector3 hipIk, currenthipIk, rightHandIK, leftHandIK;
         public void OnAnimatorIK(int layerIndex)
-        { 
+        {
             rightHand.boneTransform = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
             leftHand.boneTransform = animator.GetBoneTransform(HumanBodyBones.LeftHand).position;
             rightFoot.boneTransform = animator.GetBoneTransform(HumanBodyBones.RightFoot).position;
@@ -247,7 +249,7 @@ namespace FS_ParkourSystem
         {
             //Vector3 rayStartPos = animator.GetIKPosition(ikGoal);
             rayStartPos -= rayDir * 0.2f;
-            bool isWall = Physics.SphereCast(rayStartPos,0.2f, rayDir, out RaycastHit hitInfo, footIkRayLength, envScanner.ObstacleLayer);
+            bool isWall = Physics.SphereCast(rayStartPos, 0.2f, rayDir, out RaycastHit hitInfo, footIkRayLength, envScanner.ObstacleLayer);
             //Debug.DrawRay(rayStartPos, rayDir * footIkRayLength, Color.green);
 
             var point = Vector3.zero;
@@ -257,6 +259,13 @@ namespace FS_ParkourSystem
             }
             return point;
         }
+
+        public override void HandleFixedUpdate()
+        {
+            if (enableClimbing)
+                HandleClimbUpdate();
+        }
+
 
         public void HandleClimbUpdate()
         {
@@ -570,21 +579,21 @@ namespace FS_ParkourSystem
                 StartCoroutine(DoClimbingAction("JumpFromHang",
                onComplete: () =>
                {
-                   player.OnEndSystem(parkourController);
+                   player.OnEndSystem(this);
                }));
             else
                 StartCoroutine(DoClimbingAction("JumpFromFreeHang",
                onComplete: () =>
                {
-                   player.OnEndSystem(parkourController);
+                   player.OnEndSystem(this);
                }));
             parkourController.IsHanging = false;
             isFalling = true;
             animator.SetBool(AnimatorParameters.IsGrounded, false);
         }
-        public bool DropToLedge(Transform currentLedge, Vector3 point,bool checkAngle = true,bool obstacleCheck =true, Vector3? checkDirection = null)
+        public bool DropToLedge(Transform currentLedge, Vector3 point, bool checkAngle = true, bool obstacleCheck = true, Vector3? checkDirection = null)
         {
-            var newPoint = GetNearestPoint(currentLedge, point,checkAngle:checkAngle ,obstacleCheck : obstacleCheck, checkDirection: checkDirection);
+            var newPoint = GetNearestPoint(currentLedge, point, checkAngle: checkAngle, obstacleCheck: obstacleCheck, checkDirection: checkDirection);
             if (newPoint == null)
                 return false;
             DropToPoint(newPoint);
@@ -596,7 +605,7 @@ namespace FS_ParkourSystem
 
             currentPoint = newPoint;
 
-            player.OnStartSystem(parkourController);
+            player.OnStartSystem(this);
 
             if (CheckWall(currentPoint).Value.isWall)
             {
@@ -623,7 +632,7 @@ namespace FS_ParkourSystem
                 StartCoroutine(DoClimbingAction("BracedHangClimb",
                     onComplete: () =>
                     {
-                        player.OnEndSystem(parkourController);
+                        player.OnEndSystem(this);
                         parkourController.IsHanging = false;
                         parkourController.ResetRootMotion();
                     }));
@@ -631,7 +640,7 @@ namespace FS_ParkourSystem
                 StartCoroutine(DoClimbingAction("FreeHangClimb",
                    onComplete: () =>
                    {
-                       player.OnEndSystem(parkourController);
+                       player.OnEndSystem(this);
                        parkourController.IsHanging = false;
                        parkourController.ResetRootMotion();
                    }));
@@ -673,7 +682,7 @@ namespace FS_ParkourSystem
                 {
                     animator.SetFloat(AnimatorParameters.freeHang, 0);
 
-                    player.OnStartSystem(parkourController);
+                    player.OnStartSystem(this);
                     StartCoroutine(JumpToLedge(currentPoint.transform, "IdleToBracedHang", 0.44f, 0.68f, matchStart: AvatarTarget.RightFoot));
                 }
                 else currentPoint = previousPoint;
@@ -690,7 +699,7 @@ namespace FS_ParkourSystem
                 else if (!parkourController.IsHanging)
                 {
                     animator.SetFloat(AnimatorParameters.freeHang, 1);
-                    player.OnStartSystem(parkourController);
+                    player.OnStartSystem(this);
                     StartCoroutine(JumpToLedge(currentPoint.transform, "IdleToFreeHang", 0.5f, 0.8f, matchStart: AvatarTarget.RightFoot));
                 }
                 else currentPoint = previousPoint;
@@ -1403,20 +1412,4 @@ namespace FS_ParkourSystem
 
         }
     }
-
-    public class TargetMatchParams
-    {
-        public Vector3 pos;
-        public Quaternion rot;
-        public AvatarTarget target;
-        public AvatarTarget startTarget;
-        public float startTime;
-        public float endTime;
-
-        public Vector3 startPos;
-        public Vector3 endPos;
-
-        public Vector3 posWeight;
-    }
-
 }

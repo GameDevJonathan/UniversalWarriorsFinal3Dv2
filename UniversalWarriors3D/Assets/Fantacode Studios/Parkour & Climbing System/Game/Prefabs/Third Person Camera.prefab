@@ -48,9 +48,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -98,10 +106,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
-  rotationSpeed: 2
-  distance: 2.5
-  minVerticalAngle: -45
-  maxVerticalAngle: 70
-  framingOffset: {x: 0, y: 1}
-  invertX: 0
-  invertY: 1
+  defaultSettings:
+    distance: 2.5
+    framingOffset: {x: 0, y: 1.5, z: 0}
+    followSmoothTime: 0.2
+    sensitivity: 0.6
+    minVerticalAngle: -45
+    maxVerticalAngle: 70
+    invertX: 0
+    invertY: 1
+    enableCameraCollisions: 1
+    minDistanceFromTarget: 0.2
+    serialized: 1
+  advancedCameraRotation: 1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  lockCursor: 1
+  distanceSmoothTime: 0.3
+  distanceSmoothTimeWhenOcluded: 0
+  framingSmoothTime: 0.5
+  collisionPadding: 0.05
+  overrideCameraSettings:
+  - state: 2
+    settings:
+      distance: 2.5
+      framingOffset: {x: 0, y: 1, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 70
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  - state: 5
+    settings:
+      distance: 2.5
+      framingOffset: {x: 0, y: 1, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 70
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  nearClipPlane: 0.1
+  cameraShakeAmount: 0.6

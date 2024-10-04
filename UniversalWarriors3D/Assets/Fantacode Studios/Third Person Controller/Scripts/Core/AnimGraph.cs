@@ -357,12 +357,12 @@ namespace FS_ThirdPerson
             }
         }
 
-        public void CrossfadeAvatarMaskAnimation(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f)
+        public void CrossfadeAvatarMaskAnimation(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f, bool removeMaskAfterComplete = true)
         {
-            StartCoroutine(CrossfadeAvatarMaskAnimationAsync(clip, targetMask, transitionBack, mask, transitionTime));
+            StartCoroutine(CrossfadeAvatarMaskAnimationAsync(clip, targetMask, transitionBack, mask, transitionTime, removeMaskAfterComplete));
         }
 
-        public IEnumerator CrossfadeAvatarMaskAnimationAsync(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f)
+        public IEnumerator CrossfadeAvatarMaskAnimationAsync(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f, bool removeMaskAfterComplete = true)
         {
             maskAdding = true;
             yield return new WaitUntil(() => maskRemoving == false);
@@ -415,11 +415,13 @@ namespace FS_ThirdPerson
 
             if (transitionBack)
             {
-                yield return new WaitForSeconds(clip.length);
-                RemoveAvatarMask();
+                yield return new WaitForSeconds(clip.length - transitionTime);
+                if(removeMaskAfterComplete)
+                    RemoveAvatarMask();
             }
             maskAdding = false;
         }
+
 
         public void RemoveAvatarMask(float transitionTime = .2f, bool removeAllLayer = false)
         {
@@ -481,15 +483,147 @@ namespace FS_ThirdPerson
             handMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftArm, true);
 
             upperBodyMask = new AvatarMask();
+            for (int i = 0; i < (int)AvatarMaskBodyPart.LastBodyPart; i++)
+                upperBodyMask.SetHumanoidBodyPartActive((AvatarMaskBodyPart)i, false);
 
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightArm, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightFingers, true);
-            upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightHandIK, true);
-            upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftHandIK, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftFingers, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftArm, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Body, true);
+            upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Head, true);
         }
+
+
+        public IEnumerator CrossfadeBlendAnimationAsync(AnimationClip clip1, AnimationClip clip2, float clip1Weight, float transitionIn = 0.2f, bool transitionBack = true, float transitionOut = 0.2f)
+        {
+            if (clip1 == null || clip2 == null)
+            {
+                Debug.Log("no clip found");
+                yield break;
+            }
+            var clipPlayable1 = AnimationClipPlayable.Create(graph, clip1);
+            var clipPlayable2 = AnimationClipPlayable.Create(graph, clip2);
+            var source = actionMixer.GetInput(0);
+            actionMixer.DisconnectInput(0);
+
+            var clipPlayable = AnimationMixerPlayable.Create(graph, 2);
+            clipPlayable.ConnectInput(0, clipPlayable1, 0);
+            clipPlayable.ConnectInput(1, clipPlayable2, 0);
+
+            clipPlayable.SetInputWeight(0, clip1Weight);
+            clipPlayable.SetInputWeight(1, 1 - clip1Weight);
+
+            var clipMixer = AnimationMixerPlayable.Create(graph, 2);
+            clipMixer.ConnectInput(0, source, 0);
+            clipMixer.ConnectInput(1, clipPlayable, 0);
+
+            actionMixer.ConnectInput(0, clipMixer, 0);
+
+            actionMixer.SetInputWeight(0, 1);
+            actionMixer.SetInputWeight(1, 0);
+
+            var animationTime = transitionIn;
+
+            yield return UpdateWeights(clip1, clipMixer, transitionIn, transitionBack, transitionOut,1);
+            transitionTime = animationTime;
+            yield return new WaitUntil(() => actionMixer.GetInput(0).Equals(clipMixer));
+
+            if (transitionBack)
+            {
+                var currInput = clipMixer.GetInput(0);
+                var currOutput = clipMixer.GetOutput(0);
+                clipMixer.DisconnectInput(0);
+
+                if (!currOutput.IsNull())
+                {
+                    currOutput.DisconnectInput(0);
+                    currOutput.ConnectInput(0, currInput, 0);
+
+                    currOutput.SetInputWeight(0, 1);
+                    currOutput.SetInputWeight(1, 0);
+                }
+
+                clipMixer.Destroy();
+                clipPlayable.Destroy();
+            }
+        }
+
+
+        public IEnumerator CrossfadeBlendAnimationAsyncLayer(AnimationClip clip1, AnimationClip clip2, float clip1Weight, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f, bool removeMaskAfterComplete = true)
+        {
+            maskAdding = true;
+            yield return new WaitUntil(() => maskRemoving == false);
+            if (clip1 == null || clip2 == null)
+            {
+                Debug.Log("no clip found");
+                yield break;
+            }
+            if (mask == null)
+            {
+                switch (targetMask)
+                {
+                    case Mask.Hand:
+                        mask = handMask;
+                        break;
+                    case Mask.UpperBody:
+                        mask = upperBodyMask;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            layerMixerList.Add(AnimationLayerMixerPlayable.Create(graph, 2));
+            var layerMixer = layerMixerList.Last();
+
+
+            var clipPlayable1 = AnimationClipPlayable.Create(graph, clip1);
+            var clipPlayable2 = AnimationClipPlayable.Create(graph, clip2);
+            var source = actionMixer.GetInput(0);
+            actionMixer.DisconnectInput(0);
+
+            var clipPlayable = AnimationMixerPlayable.Create(graph, 2);
+            clipPlayable.ConnectInput(0, clipPlayable1, 0);
+            clipPlayable.ConnectInput(1, clipPlayable2, 0);
+
+            clipPlayable.SetInputWeight(0, clip1Weight);
+            clipPlayable.SetInputWeight(1, 1 - clip1Weight);
+
+
+            layerMixer.ConnectInput(0, source, 0);
+            layerMixer.ConnectInput(1, clipPlayable, 0);
+
+            actionMixer.ConnectInput(0, layerMixer, 0);
+
+            actionMixer.SetInputWeight(0, 1);
+            actionMixer.SetInputWeight(1, 0);
+
+
+            layerMixer.SetLayerMaskFromAvatarMask(1, mask);
+            layerMixer.SetInputWeight(0, 1f);
+
+            float timer = 0f;
+            float weight = 0f;
+            while (timer < transitionTime && layerMixer.IsValid() && !maskRemoving)
+            {
+                weight = Mathf.Lerp(0, 1, timer / transitionTime);
+                layerMixer.SetInputWeight(1, weight);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            if (layerMixer.IsValid())
+                layerMixer.SetInputWeight(1, 1);
+
+            if (transitionBack)
+            {
+                yield return new WaitForSeconds(clip1.length - transitionTime);
+                if (removeMaskAfterComplete)
+                    RemoveAvatarMask();
+            }
+            maskAdding = false;
+        }
+
+
         void SetupAnimationGraph()
         {
             graph = PlayableGraph.Create(gameObject.name + " graph");
@@ -547,5 +681,7 @@ namespace FS_ThirdPerson
         //     GUILayout.Label(layerMixerList.Count.ToString(), style);
         //     //GUILayout.Label("Weight = " + weight, style);
         //}
+
+
     }
 }

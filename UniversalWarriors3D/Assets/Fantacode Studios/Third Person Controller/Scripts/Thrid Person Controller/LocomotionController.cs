@@ -721,4 +721,19 @@ namespace FS_ThirdPerson
 
         public bool IsCrouching => crouchVal > 0.5f;
     }
+
+    public class TargetMatchParams
+    {
+        public Vector3 pos;
+        public Quaternion rot;
+        public AvatarTarget target;
+        public AvatarTarget startTarget;
+        public float startTime;
+        public float endTime;
+
+        public Vector3 startPos;
+        public Vector3 endPos;
+
+        public Vector3 posWeight;
+    }
 }

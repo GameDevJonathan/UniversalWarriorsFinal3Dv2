@@ -13,6 +13,7 @@ namespace FS_ThirdPerson
         Parkour,
         Climbing,
         Combat,
+        GrapplingHook,
         Other
     }
     public enum SubSystemState
@@ -181,6 +182,11 @@ namespace FS_ThirdPerson
                 if (system.IsInFocus)
                     player.OnEndSystem(system);
             }
+        }
+
+        private void OnGUI()
+        {
+            // GUILayout.Label(FocusedSystemState.ToString(), new GUIStyle() { fontSize = 24 }); ;
         }
     }
 }
