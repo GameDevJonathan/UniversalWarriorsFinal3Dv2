@@ -6650,7 +6650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790464fff7e4b964994dec7090824467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MinJumpDistance>k__BackingField: 0.8
+  <MinJumpDistance>k__BackingField: 0.2
   alwaysUsePlayerForward: 0
   heightRayLength: 4
   obstacleCheckRange: 0.7
@@ -6698,12 +6698,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enablePredictiveJump: 1
   <MaxJumpHeight>k__BackingField: 1.2
-  minDistanceFromLedgeForJumping: 1
+  minDistanceFromLedgeForJumping: 0.2
   <MaxJumpDistance>k__BackingField: 7
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}
   parkourActions:
-  - {fileID: 11400000, guid: b27c0e78f82087840902b518268a0860, type: 2}
   - {fileID: 11400000, guid: 0c94d8efe347ff84b920190e4c36dcb2, type: 2}
   - {fileID: 11400000, guid: 77508b0b15797294da333074d59c47ab, type: 2}
   - {fileID: 11400000, guid: 7bad752d0f2272a46861ec7aa2b59dd4, type: 2}
@@ -7707,7 +7706,7 @@ Camera:
   m_GameObject: {fileID: 8889885805213154095}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -7819,7 +7818,6 @@ MonoBehaviour:
       minDistanceFromTarget: 0.2
       serialized: 1
   nearClipPlane: 0.1
-  cameraShakeAmount: 0.6
 --- !u!114 &1211388032527307394
 MonoBehaviour:
   m_ObjectHideFlags: 0

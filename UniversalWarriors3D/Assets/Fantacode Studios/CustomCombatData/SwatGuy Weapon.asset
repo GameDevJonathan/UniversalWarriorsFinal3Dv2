@@ -39,8 +39,8 @@ MonoBehaviour:
     animationDistance: 1.0060818
     serialized: 1
   - attackType: 0
-    minDistance: 0
-    maxDistance: 1.2
+    minDistance: 1
+    maxDistance: 2.2
     healthThreshold: 100
     attacks:
     - attack: {fileID: 11400000, guid: 11934fac2055f5849b619b2ac857d4e8, type: 2}
@@ -53,8 +53,8 @@ MonoBehaviour:
     animationDistance: 0.88434243
     serialized: 1
   - attackType: 1
-    minDistance: 0
-    maxDistance: 1
+    minDistance: 2
+    maxDistance: 3
     healthThreshold: 100
     attacks:
     - attack: {fileID: 11400000, guid: 4cc72f757df29f646ada94deca73498d, type: 2}

@@ -705,6 +705,7 @@ namespace FS_ThirdPerson
         }
         public Vector3 MoveDir { get { return desiredMoveDir; } set { desiredMoveDir = value; } }
         public bool IsGrounded => isGrounded;
+        
         public float Gravity => -20;
         public bool PreventAllSystems { get; set; } = false;
         public Animator Animator

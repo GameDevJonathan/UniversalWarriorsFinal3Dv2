@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -42,8 +39,6 @@ public class ForceReceiver : MonoBehaviour
             }
             
         }
-
-
 
         isGrounded = controller.isGrounded;
 
@@ -100,9 +95,7 @@ public class ForceReceiver : MonoBehaviour
             case 1:
                 gravity = wallSlideSpeed;
                 break;
-
         }
-
     }
 
 

@@ -50,13 +50,13 @@ MonoBehaviour:
   - counterAttack: {fileID: 11400000, guid: 2057fc99a1c3c2741b796d24e007e6fa, type: 2}
     counterStartTime: 0
     maxDistanceForCounter: 2
-    healthThresholdForCounter: 30
+    healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   - counterAttack: {fileID: 11400000, guid: 96ffbc16a34e7a245b5b340e17cdbc0e, type: 2}
     counterStartTime: 0
     maxDistanceForCounter: 2
-    healthThresholdForCounter: 100
+    healthThresholdForCounter: 10
     foldOut: 1
     serialized: 1
   hitboxToUse: 1

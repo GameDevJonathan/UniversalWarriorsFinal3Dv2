@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState
@@ -9,10 +7,7 @@ public class PlayerJumpState : PlayerBaseState
     private const float CrossFadeDuration = 0.1f;
     private Vector3 Momentum;
     
-    public PlayerJumpState(PlayerStateMachine stateMachine ) : base(stateMachine)
-    {
-        
-    }
+    public PlayerJumpState(PlayerStateMachine stateMachine ) : base(stateMachine){}
 
     public override void Enter()
     {

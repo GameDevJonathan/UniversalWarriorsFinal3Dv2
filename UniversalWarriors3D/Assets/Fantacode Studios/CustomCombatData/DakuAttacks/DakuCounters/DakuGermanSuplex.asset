@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: 8713f3f70307ff044987fd4928bc4b1b, type: 2}
   animationSpeed: 1
-  isFinisher: 1
+  isFinisher: 0
   canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 1
@@ -55,14 +55,14 @@ MonoBehaviour:
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 0.5
+  distanceFromTarget: 0.95
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
-  moveEndTime: 1
+  moveEndTime: 0.05
   ignoreCollisions: 1
-  moveType: 2
+  moveType: 0
   snapType: 1
-  snapTarget: 1
+  snapTarget: 0
   weightMask: {x: 1, y: 1, z: 1}
   rootCurves:
     CurveX:
