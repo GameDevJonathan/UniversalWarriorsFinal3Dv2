@@ -17,9 +17,9 @@ MonoBehaviour:
   isFinisher: 0
   canHitMultipleTargets: 0
   rotateToTarget: 1
-  hitDirection: 1
-  reactionTag: 
-  overrideReaction: 1
+  hitDirection: 4
+  reactionTag: Weak
+  overrideReaction: 0
   reaction:
     animationClip: {fileID: 7400000, guid: fd01e23aeef63a94f86ca36f6d5cd634, type: 2}
     willBeKnockedDown: 0
