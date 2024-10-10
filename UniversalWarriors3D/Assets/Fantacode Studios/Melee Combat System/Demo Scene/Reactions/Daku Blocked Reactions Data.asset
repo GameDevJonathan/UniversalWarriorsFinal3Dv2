@@ -18,8 +18,11 @@ MonoBehaviour:
     attackedFromBehind: 0
     tag: 
     reaction:
-      animationClip: {fileID: -3811655747034287029, guid: c719055a0adb91b4398ec63825e9ee80,
-        type: 3}
+      animationClip: {fileID: 7400018, guid: e1dc717923f59d44483c076fae553460, type: 3}
       willBeKnockedDown: 0
+      knockDownDirection: 0
+      lyingDownTimeRange: {x: 1, y: 3}
+      overrideLyingDownAnimation: 0
+      lyingDownAnimation: {fileID: 0}
       getUpAnimation: {fileID: 0}
-  rotateToTarget: 1
+  rotateToAttacker: 1
