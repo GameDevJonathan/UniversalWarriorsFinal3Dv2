@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
-  m_Name: DakuShoulderThrow
+  m_Name: DakuGermanSuplex
   m_EditorClassIdentifier: 
-  clip: {fileID: 1827226128182048838, guid: d69f81cb80e97c045b2045760c598a8b, type: 3}
+  clip: {fileID: 7400000, guid: 8713f3f70307ff044987fd4928bc4b1b, type: 2}
   animationSpeed: 1
   isFinisher: 0
   canHitMultipleTargets: 0
@@ -21,15 +21,14 @@ MonoBehaviour:
   reactionTag: 
   overrideReaction: 1
   reaction:
-    animationClip: {fileID: 1827226128182048838, guid: 0db07280546ee69418a02621c7e1c26c,
-      type: 3}
+    animationClip: {fileID: 7400000, guid: 3a229f4ff24e10d4bb2cd2f01c8db1d6, type: 2}
     willBeKnockedDown: 1
-    knockDownDirection: 0
+    knockDownDirection: 1
     lyingDownTimeRange: {x: 1, y: 3}
     overrideLyingDownAnimation: 1
-    lyingDownAnimation: {fileID: 7400000, guid: fe3b5dd8b9afcac4e8a3f6b13e302b3b,
+    lyingDownAnimation: {fileID: 7400000, guid: 91b630fbbbf83474e9269f1c1c28860a,
       type: 2}
-    getUpAnimation: {fileID: 7400000, guid: 5ba4627275005f54f984db189ffab23c, type: 2}
+    getUpAnimation: {fileID: 7400000, guid: 52e0e97056d306e4891a1b31da086fca, type: 2}
   isSyncedReaction: 1
   syncStartTime: 0
   rotateTarget: 1
@@ -51,19 +50,19 @@ MonoBehaviour:
   counterAttacks: []
   hitboxToUse: 0
   damage: 10
-  impactStartTime: 0
-  impactEndTime: 1
+  impactStartTime: 0.49
+  impactEndTime: 0.56
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 0.8
+  distanceFromTarget: 1.5
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0
-  moveEndTime: 1
+  moveEndTime: 0.05
   ignoreCollisions: 1
   moveType: 2
   snapType: 1
-  snapTarget: 1
+  snapTarget: 0
   weightMask: {x: 1, y: 1, z: 1}
   rootCurves:
     CurveX:

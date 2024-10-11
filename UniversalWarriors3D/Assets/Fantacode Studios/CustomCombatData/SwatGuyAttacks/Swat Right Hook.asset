@@ -18,7 +18,7 @@ MonoBehaviour:
   canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 5
-  reactionTag: Weak
+  reactionTag: 0
   overrideReaction: 0
   reaction:
     animationClip: {fileID: 0}

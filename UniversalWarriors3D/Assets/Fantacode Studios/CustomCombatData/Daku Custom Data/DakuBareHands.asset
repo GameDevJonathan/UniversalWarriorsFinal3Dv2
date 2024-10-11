@@ -73,7 +73,7 @@ MonoBehaviour:
     animationDistance: 0
     serialized: 1
   heavyAttacks: []
-  reactionData: {fileID: 0}
+  reactionData: {fileID: 11400000, guid: d5767fa4d922fc047b704fcfb4e44a75, type: 2}
   weaponEquipAnimation: {fileID: 0}
   weaponActivationTime: 0
   weaponUnEquipAnimation: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   canCounter: 1
   playActionIfCounterMisused: 0
   counterMisusedAction: {fileID: 0}
-  overrideController: {fileID: 22100000, guid: ba65182d9a9fc7a49ba3b8234ef84ed5, type: 2}
+  overrideController: {fileID: 22100000, guid: 6f6244ee77f1bbc448bf111080f42715, type: 2}
   useRootmotion: 0
   overrideMoveSpeed: 0
   walkSpeed: 2

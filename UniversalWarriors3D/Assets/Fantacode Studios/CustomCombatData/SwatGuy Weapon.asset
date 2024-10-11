@@ -32,45 +32,14 @@ MonoBehaviour:
     - attack: {fileID: 11400000, guid: 2a854216a928825448c7a7af7a584069, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
+    - attack: {fileID: 11400000, guid: 2a854216a928825448c7a7af7a584069, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
     attack:
       attack: {fileID: 0}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     animationDistance: 1.0060818
-    serialized: 1
-  - attackType: 0
-    minDistance: 1
-    maxDistance: 2.2
-    healthThreshold: 100
-    attacks:
-    - attack: {fileID: 11400000, guid: 11934fac2055f5849b619b2ac857d4e8, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    attack:
-      attack: {fileID: 11400000, guid: 11934fac2055f5849b619b2ac857d4e8, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    animationDistance: 0.88434243
-    serialized: 1
-  - attackType: 1
-    minDistance: 2
-    maxDistance: 3
-    healthThreshold: 100
-    attacks:
-    - attack: {fileID: 11400000, guid: 4cc72f757df29f646ada94deca73498d, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    - attack: {fileID: 11400000, guid: 0ac4fc97f4c28fe4cbfc605d27be91f2, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    - attack: {fileID: 11400000, guid: ec90147ede7287b47808c597b4545a31, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    attack:
-      attack: {fileID: 11400000, guid: ec90147ede7287b47808c597b4545a31, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
-    animationDistance: 1.0060813
     serialized: 1
   heavyAttacks: []
   reactionData: {fileID: 11400000, guid: 6036ddc2962f52e47ba682d6078af963, type: 2}

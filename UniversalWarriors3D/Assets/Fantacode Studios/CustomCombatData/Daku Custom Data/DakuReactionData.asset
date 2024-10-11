@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: DakuReactionData
   m_EditorClassIdentifier: 
   reactions:
-  - name: Direction - Left, Tag - Weak
+  - name: Direction - Right
+    direction: 4
+    attackedFromBehind: 0
+    tag: 
+    reaction:
+      animationClip: {fileID: 7400022, guid: e1dc717923f59d44483c076fae553460, type: 3}
+      willBeKnockedDown: 0
+      knockDownDirection: 0
+      lyingDownTimeRange: {x: 1, y: 3}
+      overrideLyingDownAnimation: 0
+      lyingDownAnimation: {fileID: 0}
+      getUpAnimation: {fileID: 0}
+  - name: Direction - Left
     direction: 5
     attackedFromBehind: 0
-    tag: Weak
+    tag: 
     reaction:
       animationClip: {fileID: 7400022, guid: e1dc717923f59d44483c076fae553460, type: 3}
       willBeKnockedDown: 0

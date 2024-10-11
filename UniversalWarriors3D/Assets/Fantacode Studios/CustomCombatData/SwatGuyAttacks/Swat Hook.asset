@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ac9caa4e533841a4b3676a5b8a7ef, type: 3}
   m_Name: Swat Hook
   m_EditorClassIdentifier: 
-  clip: {fileID: 8993902097722301239, guid: fc9b318b9249c3d45b3f09dfe44a3326, type: 3}
-  animationSpeed: 1
+  clip: {fileID: 7400000, guid: 59b151aa29ca8de42bab5484099216b3, type: 2}
+  animationSpeed: 0.8
   isFinisher: 0
   canHitMultipleTargets: 0
   rotateToTarget: 1
-  hitDirection: 5
-  reactionTag: Weak
+  hitDirection: 4
+  reactionTag: 
   overrideReaction: 0
   reaction:
     animationClip: {fileID: 0}
@@ -48,25 +48,25 @@ MonoBehaviour:
   canBeCountered: 1
   counterAttacks:
   - counterAttack: {fileID: 11400000, guid: 4fcc5ab65b872424097b9898bf897a5e, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
-    healthThresholdForCounter: 25
+    counterStartTime: 0.44
+    maxDistanceForCounter: 0.4
+    healthThresholdForCounter: 20
     foldOut: 1
     serialized: 1
   - counterAttack: {fileID: 11400000, guid: 9bbfe5fe2665d4344b167e9de01716fc, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
-    healthThresholdForCounter: 50
+    counterStartTime: 0.44
+    maxDistanceForCounter: 0.4
+    healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   - counterAttack: {fileID: 11400000, guid: 2079ae985e0e12c439ba11f200312984, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
+    counterStartTime: 0.3
+    maxDistanceForCounter: 0.4
     healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   hitboxToUse: 0
-  damage: 1
+  damage: 0
   impactStartTime: 0.44
   impactEndTime: 0.5
   waitForNextAttack: 1

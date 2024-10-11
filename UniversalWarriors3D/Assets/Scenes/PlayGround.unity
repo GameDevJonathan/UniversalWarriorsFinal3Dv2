@@ -33330,7 +33330,7 @@ PrefabInstance:
     - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
       propertyPath: upSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
@@ -33399,15 +33399,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156045867498525816, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 5bd8aba18852912469abd4b7d0404fa3,
+        type: 2}
+    - target: {fileID: 9156045867498525816, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
       propertyPath: defaultAnimations.hitReactionData
       value: 
-      objectReference: {fileID: 11400000, guid: 9e436829b9144de4489db3a9a72179af,
+      objectReference: {fileID: 11400000, guid: d5767fa4d922fc047b704fcfb4e44a75,
         type: 2}
     - target: {fileID: 9156045867498525816, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
       propertyPath: defaultAnimations.blockedReactionData
       value: 
-      objectReference: {fileID: 11400000, guid: cad66df850ce38f43903892d858d1820,
+      objectReference: {fileID: 11400000, guid: 3b18c52a9d1e9424eadbbcaca42da474,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

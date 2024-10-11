@@ -29,7 +29,7 @@ namespace FS_CombatSystem
 
             enemy.Fighter.TryToAttack(enemy.Fighter.Target);
             int comboCount = enemy.Fighter.CurrAttacksList.Count;
-            Debug.Log($"Combo Count: {comboCount} ");
+            
             for (int i = 1; i < comboCount; i++)
             {
                 while (enemy.Fighter.State == FighterState.Attacking && enemy.Fighter.AttackState != AttackStates.Cooldown) yield return null;
