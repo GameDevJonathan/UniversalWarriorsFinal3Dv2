@@ -21,11 +21,11 @@ MonoBehaviour:
   - attackType: 1
     minDistance: 0
     maxDistance: 2
-    healthThreshold: 100
+    healthThreshold: 90.8
     attacks:
     - attack: {fileID: 11400000, guid: cfe702f5490a4c64e97230d15e973a79, type: 2}
       canBeCharged: 1
-      chargedAttack: {fileID: 11400000, guid: 78dc2e78530e0b643b8f234b5e5aba79, type: 2}
+      chargedAttack: {fileID: 11400000, guid: e0af7a7ce49dda64ba258dbdb77dffad, type: 2}
     - attack: {fileID: 11400000, guid: b3a89b40c839f624887574541d30e5dc, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
@@ -61,13 +61,27 @@ MonoBehaviour:
   - attackType: 0
     minDistance: 0
     maxDistance: 2
-    healthThreshold: 20
+    healthThreshold: 100
     attacks:
     - attack: {fileID: 11400000, guid: 1c811d78a80fe7e4d87ea610ffb07a2d, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     attack:
       attack: {fileID: 11400000, guid: 1c811d78a80fe7e4d87ea610ffb07a2d, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0
+    serialized: 1
+  - attackType: 3
+    minDistance: 0
+    maxDistance: 2
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: 6151d6485aa160b4d8dfc767b6e59460, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: 6151d6485aa160b4d8dfc767b6e59460, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     animationDistance: 0

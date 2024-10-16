@@ -32,6 +32,23 @@ MonoBehaviour:
     - attack: {fileID: 11400000, guid: 2a854216a928825448c7a7af7a584069, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 0}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 1.0060818
+    serialized: 1
+  - attackType: 1
+    minDistance: 0
+    maxDistance: 1.2
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: 4cc72f757df29f646ada94deca73498d, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    - attack: {fileID: 11400000, guid: 0ac4fc97f4c28fe4cbfc605d27be91f2, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
     - attack: {fileID: 11400000, guid: 2a854216a928825448c7a7af7a584069, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
@@ -56,7 +73,7 @@ MonoBehaviour:
   playActionIfCounterMisused: 0
   counterMisusedAction: {fileID: 0}
   overrideController: {fileID: 0}
-  useRootmotion: 0
+  useRootmotion: 1
   overrideMoveSpeed: 0
   walkSpeed: 0
   runSpeed: 0

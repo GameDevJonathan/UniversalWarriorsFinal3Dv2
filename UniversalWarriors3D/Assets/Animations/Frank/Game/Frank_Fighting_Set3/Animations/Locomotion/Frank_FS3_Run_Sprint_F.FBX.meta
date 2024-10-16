@@ -19,34 +19,38 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 4.275038 mm\n\t'calf_l' : position error = 1.463169 mm\n\t'thigh_r'
-      : position error = 3.522216 mm\n\t'calf_r' : position error = 3.028144 mm\n\t'spine_01'
-      : position error = 9.939278 mm\n\t'lowerarm_l' : position error = 1.930659
-      mm\n\t'hand_l' : position error = 2.994454 mm\n\t'middle_02_l' : position error
-      = 1.205060 mm\n\t'ring_02_l' : position error = 1.315148 mm\n\t'hand_r' : position
-      error = 2.818537 mm\n\t'middle_02_r' : position error = 1.000557 mm\n\t'ring_02_r'
-      : position error = 1.161507 mm\n\t'head' : position error = 6.548135 mm\n"
+      : position error = 1.946418 mm\n\t'thigh_r' : position error = 2.510556 mm\n\t'calf_r'
+      : position error = 2.216463 mm\n\t'spine_01' : position error = 10.126693 mm\n\t'lowerarm_l'
+      : position error = 1.054260 mm\n\t'hand_l' : position error = 3.134043 mm\n\t'middle_02_l'
+      : position error = 1.116250 mm\n\t'ring_02_l' : position error = 1.049405 mm\nCopied
+      Avatar Rig Configuration mis-match. Inbetween bone rotation in copied configuration
+      does not match rotation in animation file:\n\t'foot_l' : rotation error = 8.371595
+      deg\n\t'foot_r' : rotation error = 31.015610 deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Unreal Take' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'thigh_l' has translation animation that
+      to improve retargeting quality.\n\t'pelvis' has translation animation that
+      will be discarded.\n\t'pelvis' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'thigh_l' has translation animation that
       will be discarded.\n\t'calf_l' has translation animation that will be discarded.\n\t'foot_l'
-      has translation animation that will be discarded.\n\t'ball_l' has translation
-      animation that will be discarded.\n\t'thigh_r' has translation animation that
-      will be discarded.\n\t'calf_r' has translation animation that will be discarded.\n\t'foot_r'
-      has translation animation that will be discarded.\n\t'ball_r' has translation
-      animation that will be discarded.\n\t'spine_01' has translation animation that
-      will be discarded.\n\t'upperarm_l' has translation animation that will be discarded.\n\t'lowerarm_l'
-      has translation animation that will be discarded.\n\t'upperarm_r' has translation
-      animation that will be discarded.\n\t'lowerarm_r' has translation animation
-      that will be discarded.\n\t'hand_r' has translation animation that will be
-      discarded.\n\t'thumb_03_r' has translation animation that will be discarded.\n\t'middle_01_r'
-      has translation animation that will be discarded.\n\t'middle_02_r' has translation
-      animation that will be discarded.\n\t'ring_01_r' has translation animation
-      that will be discarded.\n\t'ring_02_r' has translation animation that will
-      be discarded.\n\t'pinky_01_r' has translation animation that will be discarded.\n\t'pinky_02_r'
-      has translation animation that will be discarded.\n\t'head' has translation
-      animation that will be discarded.\n"
+      has translation animation that will be discarded.\n\t'foot_l' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ball_l'
+      has translation animation that will be discarded.\n\t'thigh_r' has translation
+      animation that will be discarded.\n\t'calf_r' has translation animation that
+      will be discarded.\n\t'foot_r' has translation animation that will be discarded.\n\t'foot_r'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ball_r'
+      has translation animation that will be discarded.\n\t'spine_01' has translation
+      animation that will be discarded.\n\t'upperarm_l' has translation animation
+      that will be discarded.\n\t'lowerarm_l' has translation animation that will
+      be discarded.\n\t'upperarm_r' has translation animation that will be discarded.\n\t'lowerarm_r'
+      has translation animation that will be discarded.\n\t'hand_r' has translation
+      animation that will be discarded.\n\t'thumb_03_r' has translation animation
+      that will be discarded.\n\t'middle_01_r' has translation animation that will
+      be discarded.\n\t'middle_02_r' has translation animation that will be discarded.\n\t'ring_01_r'
+      has translation animation that will be discarded.\n\t'ring_02_r' has translation
+      animation that will be discarded.\n\t'pinky_01_r' has translation animation
+      that will be discarded.\n\t'pinky_02_r' has translation animation that will
+      be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -66,7 +70,7 @@ ModelImporter:
       firstFrame: 0
       lastFrame: 36
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 90
       level: 0
       cycleOffset: 0
       loop: 0

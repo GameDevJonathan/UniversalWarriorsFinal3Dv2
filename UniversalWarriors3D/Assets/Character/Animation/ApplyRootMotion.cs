@@ -12,6 +12,9 @@ public class ApplyRootMotion : MonoBehaviour
     private Vector3 upperCutFwdDirection;
     private bool startLifting;
     [SerializeField] private Transform Daku;
+    private AudioSource Audio;
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioClip[] gruntClips;
 
     
 
@@ -19,6 +22,7 @@ public class ApplyRootMotion : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        Audio = GetComponent<AudioSource>();
 
         if (animator != null)
         {
@@ -28,6 +32,11 @@ public class ApplyRootMotion : MonoBehaviour
         if(characterController != null)
         {
             Debug.Log("Got Controller");
+        }
+
+        if (Audio)
+        {
+            Debug.Log("Got Audio");
         }
 
         Debug.Log("lift off");
@@ -48,9 +57,15 @@ public class ApplyRootMotion : MonoBehaviour
         Debug.Log("Firing");
     }
 
-    public void PlaySound()
+    public void PlaySound(int clipSound)
     {
-        Debug.Log("Firing");
+        Audio.PlayOneShot(audioClips[clipSound]);
+        
+    }
+
+    public void PlayVFX(int clipSound)
+    {
+        Audio.PlayOneShot(gruntClips[clipSound]);
     }
 
     public void LiftOff()

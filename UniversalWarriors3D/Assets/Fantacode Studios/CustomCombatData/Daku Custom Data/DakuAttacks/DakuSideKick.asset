@@ -49,7 +49,7 @@ MonoBehaviour:
   counterAttacks: []
   hitboxToUse: 2
   damage: 1
-  impactStartTime: 0.25
+  impactStartTime: 0
   impactEndTime: 0.4
   waitForNextAttack: 1
   waitForAttackTime: 0.7
@@ -84,7 +84,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   isUnblockableAttack: 0
   strikeSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 0147661c12ea814488259f82d4a4aed8, type: 3}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
   hitEffect: {fileID: 0}

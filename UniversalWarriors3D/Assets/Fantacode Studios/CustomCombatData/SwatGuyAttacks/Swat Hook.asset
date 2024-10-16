@@ -51,19 +51,25 @@ MonoBehaviour:
     counterStartTime: 0.44
     maxDistanceForCounter: 0.4
     healthThresholdForCounter: 20
+    foldOut: 0
+    serialized: 1
+  - counterAttack: {fileID: 11400000, guid: 22ac268789772af47bc0cf9004335933, type: 2}
+    counterStartTime: 0.44
+    maxDistanceForCounter: 0.4
+    healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   - counterAttack: {fileID: 11400000, guid: 9bbfe5fe2665d4344b167e9de01716fc, type: 2}
     counterStartTime: 0.44
     maxDistanceForCounter: 0.4
     healthThresholdForCounter: 100
-    foldOut: 1
+    foldOut: 0
     serialized: 1
   - counterAttack: {fileID: 11400000, guid: 2079ae985e0e12c439ba11f200312984, type: 2}
-    counterStartTime: 0.3
+    counterStartTime: 0.44
     maxDistanceForCounter: 0.4
     healthThresholdForCounter: 100
-    foldOut: 1
+    foldOut: 0
     serialized: 1
   hitboxToUse: 0
   damage: 0

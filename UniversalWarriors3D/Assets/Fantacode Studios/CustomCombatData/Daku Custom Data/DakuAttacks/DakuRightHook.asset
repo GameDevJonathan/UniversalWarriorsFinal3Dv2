@@ -84,7 +84,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   isUnblockableAttack: 0
   strikeSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: faf53b5b59d41a14e97c8858f4664122, type: 3}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
   hitEffect: {fileID: 0}

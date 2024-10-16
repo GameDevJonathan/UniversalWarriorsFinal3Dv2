@@ -85,12 +85,12 @@ MonoBehaviour:
       m_RotationOrder: 4
   isUnblockableAttack: 0
   strikeSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: a91b6eb6aee93de4fa0b41a96fd36c96, type: 3}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
   hitEffect: {fileID: 0}
   hittingTime: 0
   blockedHitEffect: {fileID: 0}
   blockedHittingTime: 0
-  cameraShakeAmount: 0.3
-  cameraShakeDuration: 0.2
+  cameraShakeAmount: 0.5
+  cameraShakeDuration: 0.5

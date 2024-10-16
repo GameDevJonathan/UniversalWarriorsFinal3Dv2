@@ -4299,6 +4299,8 @@ MonoBehaviour:
   upSpeed: 3
   forwardSpeed: 3
   Daku: {fileID: 0}
+  audioClips: []
+  gruntClips: []
 --- !u!114 &259133379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15548,7 +15550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1050087369
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32098,6 +32100,102 @@ MonoBehaviour:
   - {fileID: 773891436}
   - {fileID: 370701538}
   - {fileID: 987396078}
+--- !u!82 &2107934244
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107934225}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2109105956
 GameObject:
   m_ObjectHideFlags: 0
@@ -34135,6 +34233,56 @@ PrefabInstance:
       propertyPath: forwardSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: audioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b019c6187fca1e48b47e28c891dc66c, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 32263eda5ad12f042a8fa568c84e00a0, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b100661c0a9fe24ba0eab71a74da49e, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c53a7593826f2334b8e12efcbe78da37, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a5df32249c9c6641925df80af2d10be, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 22f4ce25f66fb3040907ff5e0f89ecd4, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: e676063a69c93b64895901c9c4a7f813, type: 3}
+    - target: {fileID: 118808781080577492, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: gruntClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8eb7062a83fb0e947b6dcd96ed071420, type: 3}
     - target: {fileID: 807253593859427826, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34185,6 +34333,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2987893812850306747, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: timeToJump
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987893812850306747, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: verticalJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987893812850306747, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: enableTurningAnim
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987893812850306747, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      propertyPath: playTurningAnimations
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5391559397446474653, guid: f483181453ccc6e4f94fe35933b79548,
         type: 3}
       propertyPath: m_Name
@@ -34221,6 +34389,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2107934242}
+    - targetCorrespondingSourceObject: {fileID: 7367994543752358055, guid: f483181453ccc6e4f94fe35933b79548,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2107934244}
   m_SourcePrefab: {fileID: 100100000, guid: f483181453ccc6e4f94fe35933b79548, type: 3}
 --- !u!222 &3434321679196396478
 CanvasRenderer:

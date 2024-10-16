@@ -48,7 +48,7 @@ MonoBehaviour:
   rotationOffsetInBlocked: 0
   canBeCountered: 0
   counterAttacks: []
-  hitboxToUse: 0
+  hitboxToUse: 2
   damage: 5
   impactStartTime: 0
   impactEndTime: 1
