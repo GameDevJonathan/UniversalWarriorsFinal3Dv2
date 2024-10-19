@@ -62,18 +62,18 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 				true:SetDefine:DecalScreenSpaceMesh:USE_UNITY_CROSSFADE 1
 				true:SetDefine:DecalProjectorForwardEmissive:USE_UNITY_CROSSFADE 1
 				true:SetDefine:DecalGBufferMesh:USE_UNITY_CROSSFADE 1
-				true:SetDefine:DBufferMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
-				true:SetDefine:DecalScreenSpaceMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
-				true:SetDefine:DecalProjectorForwardEmissive:pragma multi_compile _ LOD_FADE_CROSSFADE
-				true:SetDefine:DecalGBufferMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
+				true:SetDefine:DBufferMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				true:SetDefine:DecalScreenSpaceMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				true:SetDefine:DecalProjectorForwardEmissive:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				true:SetDefine:DecalGBufferMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
 				false:RemoveDefine:DBufferMesh:USE_UNITY_CROSSFADE 1
 				false:RemoveDefine:DecalScreenSpaceMesh:USE_UNITY_CROSSFADE 1
 				false:RemoveDefine:DecalProjectorForwardEmissive:USE_UNITY_CROSSFADE 1
 				false:RemoveDefine:DecalGBufferMesh:USE_UNITY_CROSSFADE 1
-				false:RemoveDefine:DBufferMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
-				false:RemoveDefine:DecalScreenSpaceMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
-				false:RemoveDefine:DecalProjectorForwardEmissive:pragma multi_compile _ LOD_FADE_CROSSFADE
-				false:RemoveDefine:DecalGBufferMesh:pragma multi_compile _ LOD_FADE_CROSSFADE
+				false:RemoveDefine:DBufferMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				false:RemoveDefine:DecalScreenSpaceMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				false:RemoveDefine:DecalProjectorForwardEmissive:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+				false:RemoveDefine:DecalGBufferMesh:pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
 			Option:Angle Fade:false,true:true
 			    true:SetDefine:DBufferProjector:DECAL_ANGLE_FADE 1
 				true:SetDefine:DecalScreenSpaceProjector:DECAL_ANGLE_FADE 1
@@ -139,12 +139,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
 			#pragma multi_compile _ _DECAL_LAYERS
 
-			/*ase_srp_cond_begin:<140010*/
-            #pragma multi_compile_fragment _ _FOVEATED_RENDERING_NON_UNIFORM_RASTER
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define HAVE_MESH_MODIFICATION
             #define SHADERPASS SHADERPASS_DBUFFER_PROJECTOR
@@ -152,38 +149,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -232,6 +213,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -492,6 +474,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define HAVE_MESH_MODIFICATION
 
@@ -500,37 +483,21 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -573,6 +540,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -813,26 +781,15 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
-
-			/*ase_srp_cond_begin:<140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
-            /*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            /*ase_srp_cond_end*/
-
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
 			#pragma multi_compile _ _FORWARD_PLUS
-
-			/*ase_srp_cond_begin:<140010*/
-            #pragma multi_compile_fragment _ _FOVEATED_RENDERING_NON_UNIFORM_RASTER
-			/*ase_srp_cond_end*/
-
+			#pragma multi_compile_fragment _ DEBUG_DISPLAY
 			#pragma multi_compile _DECAL_NORMAL_BLEND_LOW _DECAL_NORMAL_BLEND_MEDIUM _DECAL_NORMAL_BLEND_HIGH
 			#pragma multi_compile _ _DECAL_LAYERS
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
 			#define ATTRIBUTES_NEED_TEXCOORD0
@@ -851,38 +808,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
-			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
+		    #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -937,6 +878,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -1059,9 +1001,17 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 				inputData.vertexLighting = half3(input.fogFactorAndVertexLight.yzw);
 
 				#if defined(VARYINGS_NEED_DYNAMIC_LIGHTMAP_UV) && defined(DYNAMICLIGHTMAP_ON)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, half3(input.sh), normalWS);
+					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, input.sh, normalWS);
 				#elif defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, half3(input.sh), normalWS);
+					#if (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
+						inputData.bakedGI = SAMPLE_GI(input.sh,
+							GetAbsolutePositionWS(inputData.positionWS),
+							inputData.normalWS,
+							inputData.viewDirectionWS,
+							input.positionCS.xy);
+					#else
+						inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.sh, normalWS);
+					#endif
 				#endif
 
 				#if defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
@@ -1294,15 +1244,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma editor_sync_compilation
 
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
-
-			/*ase_srp_cond_begin:<140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
-            /*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            /*ase_srp_cond_end*/
-
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
 			#pragma multi_compile _DECAL_NORMAL_BLEND_LOW _DECAL_NORMAL_BLEND_MEDIUM _DECAL_NORMAL_BLEND_HIGH
 			#pragma multi_compile _ _DECAL_LAYERS
 			#pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
@@ -1310,6 +1252,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
 			#define ATTRIBUTES_NEED_TEXCOORD0
@@ -1327,38 +1270,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
@@ -1413,6 +1340,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -1538,9 +1466,17 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 				#endif
 
 				#if defined(VARYINGS_NEED_DYNAMIC_LIGHTMAP_UV) && defined(DYNAMICLIGHTMAP_ON)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, half3(input.sh), normalWS);
+					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, input.sh, normalWS);
 				#elif defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, half3(input.sh), normalWS);
+					#if (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
+						inputData.bakedGI = SAMPLE_GI(input.sh,
+							GetAbsolutePositionWS(inputData.positionWS),
+							inputData.normalWS,
+							inputData.viewDirectionWS,
+							input.positionCS.xy);
+					#else
+						inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.sh, normalWS);
+					#endif
 				#endif
 
 				#if defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
@@ -1782,6 +1718,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -1800,38 +1737,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -1887,6 +1808,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -2136,6 +2058,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -2154,37 +2077,21 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -2241,6 +2148,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -2490,26 +2398,21 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile _ LIGHTMAP_ON
 			#pragma multi_compile _ DYNAMICLIGHTMAP_ON
 			#pragma multi_compile _ DIRLIGHTMAP_COMBINED
+			#pragma multi_compile _ USE_LEGACY_LIGHTMAPS
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
-
-			/*ase_srp_cond_begin:<140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
-            /*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            /*ase_srp_cond_end*/
-
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
 			#pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
 			#pragma multi_compile _ SHADOWS_SHADOWMASK
 			#pragma multi_compile _ _FORWARD_PLUS
 			#pragma multi_compile _DECAL_NORMAL_BLEND_LOW _DECAL_NORMAL_BLEND_MEDIUM _DECAL_NORMAL_BLEND_HIGH
+			#pragma multi_compile_fragment _ DEBUG_DISPLAY
 			#pragma multi_compile _ _DECAL_LAYERS
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -2533,38 +2436,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
@@ -2625,6 +2512,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -2765,9 +2653,17 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 				#endif
 
 				#if defined(VARYINGS_NEED_DYNAMIC_LIGHTMAP_UV) && defined(DYNAMICLIGHTMAP_ON)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, half3(input.sh), normalWS);
+					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, input.sh, normalWS);
 				#elif defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, half3(input.sh), normalWS);
+					#if (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
+						inputData.bakedGI = SAMPLE_GI(input.sh,
+							GetAbsolutePositionWS(inputData.positionWS),
+							inputData.normalWS,
+							inputData.viewDirectionWS,
+							input.positionCS.xy);
+					#else
+						inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.sh, normalWS);
+					#endif
 				#endif
 
 				#if defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
@@ -2974,16 +2870,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile _ LIGHTMAP_ON
 			#pragma multi_compile _ DYNAMICLIGHTMAP_ON
 			#pragma multi_compile _ DIRLIGHTMAP_COMBINED
+			#pragma multi_compile _ USE_LEGACY_LIGHTMAPS
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
-
-			/*ase_srp_cond_begin:<140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT
-            /*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140009*/
-			#pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            /*ase_srp_cond_end*/
-
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
 			#pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
 			#pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
 			#pragma multi_compile _DECAL_NORMAL_BLEND_LOW _DECAL_NORMAL_BLEND_MEDIUM _DECAL_NORMAL_BLEND_HIGH
@@ -2993,6 +2882,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -3016,38 +2906,22 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
-			/*ase_srp_cond_begin:<140007*/
-            #pragma multi_compile _ DOTS_INSTANCING_ON
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:>=140007*/
-            #if ASE_SRP_VERSION >=140007
 			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
@@ -3109,6 +2983,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS
@@ -3246,9 +3121,17 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 				inputData.vertexLighting = half3(input.fogFactorAndVertexLight.yzw);
 
 				#if defined(VARYINGS_NEED_DYNAMIC_LIGHTMAP_UV) && defined(DYNAMICLIGHTMAP_ON)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, half3(input.sh), normalWS);
+					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV.xy, input.sh, normalWS);
 				#elif defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
-					inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, half3(input.sh), normalWS);
+					#if (defined(PROBE_VOLUMES_L1) || defined(PROBE_VOLUMES_L2))
+						inputData.bakedGI = SAMPLE_GI(input.sh,
+							GetAbsolutePositionWS(inputData.positionWS),
+							inputData.normalWS,
+							inputData.viewDirectionWS,
+							input.positionCS.xy);
+					#else
+						inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.sh, normalWS);
+					#endif
 				#endif
 
 				#if defined(VARYINGS_NEED_STATIC_LIGHTMAP_UV)
@@ -3466,6 +3349,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             #define HAVE_MESH_MODIFICATION
 
@@ -3475,8 +3359,8 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if _RENDER_PASS_ENABLED
 			#define GBUFFER3 0
 			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_HALF(GBUFFER4);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
+			FRAMEBUFFER_INPUT_X_HALF(GBUFFER4);
 			#endif
 
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
@@ -3485,17 +3369,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-
-			/*ase_srp_cond_begin:>=140010*/
-            #if ASE_SRP_VERSION >=140010
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-			#endif
-			/*ase_srp_cond_end*/
-
-			/*ase_srp_cond_begin:<140010*/
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            /*ase_srp_cond_end*/
-
+			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
@@ -3528,6 +3404,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#if defined(DECAL_ANGLE_FADE)
 			float _DecalAngleFadeSupported;
 			#endif
+			UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 			CBUFFER_END
 
             #ifdef SCENEPICKINGPASS

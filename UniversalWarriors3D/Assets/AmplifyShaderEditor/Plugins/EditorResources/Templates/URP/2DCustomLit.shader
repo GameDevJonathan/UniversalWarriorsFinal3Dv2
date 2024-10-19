@@ -1,6 +1,5 @@
 Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 {
-
     Properties
     {
 		/*ase_props*/
@@ -60,6 +59,8 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#pragma vertex vert
 			#pragma fragment frag
 
+			#pragma multi_compile _ DEBUG_DISPLAY SKINNED_SPRITE
+
             #define _SURFACE_TYPE_TRANSPARENT 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -75,6 +76,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
@@ -90,6 +92,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				float4 uv0 : TEXCOORD0;
 				float4 color : COLOR;
 				/*ase_vdata:p=p;n=n;t=t;c=c;uv0=tc0*/
+				UNITY_SKINNED_VERTEX_INPUTS
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -114,8 +117,6 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/SurfaceData2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
-			half4 _RendererColor;
-
 			/*ase_globals*/
 
 			/*ase_funcs*/
@@ -128,23 +129,27 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				UNITY_SKINNED_VERTEX_COMPUTE(v);
+
+				v.positionOS = UnityFlipSprite( v.positionOS, unity_SpriteProps.xy );
 
 				/*ase_vert_code:v=VertexInput;o=VertexOutput*/
+
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.positionOS.xyz;
+					float3 defaultVertexValue = v.positionOS;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 				float3 vertexValue = /*ase_vert_out:Vertex Offset;Float3;2;-1;_Vertex*/defaultVertexValue/*end*/;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.positionOS.xyz = vertexValue;
+					v.positionOS = vertexValue;
 				#else
-					v.positionOS.xyz += vertexValue;
+					v.positionOS += vertexValue;
 				#endif
 				v.normal = /*ase_vert_out:Vertex Normal;Float3;3;-1;_VNormal*/v.normal/*end*/;
 				v.tangent.xyz = /*ase_vert_out:Vertex Tangent;Float3;4;-1;_VTangent*/v.tangent.xyz/*end*/;
 
-				VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS.xyz);
+				VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS);
 
 				o.positionCS = vertexInput.positionCS;
 				o.positionWS.xyz =  vertexInput.positionWS;
@@ -160,7 +165,11 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
+				/*ase_local_var:sp*/float4 positionCS = IN.positionCS;
+				/*ase_local_var:wp*/float3 positionWS = IN.positionWS;
+
 				/*ase_frag_code:IN=VertexOutput*/
+
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				surfaceDescription.BaseColor = /*ase_frag_out:Color;Float3;0;-1;_Color*/IsGammaSpace() ? float3(0.5, 0.5, 0.5) : SRGBToLinear(float3(0.5, 0.5, 0.5))/*end*/;
 				surfaceDescription.Alpha = /*ase_frag_out:Alpha;Float;1;-1;_Alpha*/1/*end*/;
@@ -171,10 +180,10 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				SurfaceData2D surfaceData;
 				InitializeSurfaceData(color.rgb, color.a, surfaceData);
 				InputData2D inputData;
-				InitializeInputData(IN.positionWS.xy, half2(IN.texCoord0.xy), inputData);
+				InitializeInputData(positionWS.xy, half2(IN.texCoord0.xy), inputData);
 				half4 debugColor = 0;
 
-				SETUP_DEBUG_DATA_2D(inputData, IN.positionWS);
+				SETUP_DEBUG_DATA_2D(inputData, positionWS, positionCS);
 
 				if (CanDebugOverrideOutputColor(surfaceData, inputData, debugColor))
 				{
@@ -182,7 +191,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				}
 				#endif
 
-				color *= IN.color * _RendererColor;
+				color *= IN.color * unity_SpriteColor;
 				return color;
 			}
 
@@ -204,6 +213,8 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#pragma vertex vert
 			#pragma fragment frag
 
+			#pragma multi_compile _ SKINNED_SPRITE
+
             #define _SURFACE_TYPE_TRANSPARENT 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -215,6 +226,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
@@ -231,6 +243,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				float3 normal : NORMAL;
 				float4 tangent : TANGENT;
 				/*ase_vdata:p=p;n=n;t=t*/
+				UNITY_SKINNED_VERTEX_INPUTS
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -260,22 +273,25 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				UNITY_SKINNED_VERTEX_COMPUTE(v);
+
+				v.positionOS = UnityFlipSprite( v.positionOS, unity_SpriteProps.xy );
 
 				/*ase_vert_code:v=VertexInput;o=VertexOutput*/
+
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.positionOS.xyz;
+					float3 defaultVertexValue = v.positionOS;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 				float3 vertexValue = /*ase_vert_out:Vertex Offset;Float3;2;-1;_Vertex*/defaultVertexValue/*end*/;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.positionOS.xyz = vertexValue;
+					v.positionOS = vertexValue;
 				#else
-					v.positionOS.xyz += vertexValue;
+					v.positionOS += vertexValue;
 				#endif
 				v.normal = /*ase_vert_out:Vertex Normal;Float3;3;-1;_VNormal*/v.normal/*end*/;
 				v.tangent.xyz = /*ase_vert_out:Vertex Tangent;Float3;4;-1;_VTangent*/v.tangent.xyz/*end*/;
-
 
 				float3 positionWS = TransformObjectToWorld(v.positionOS);
 				float4 tangentWS = float4(TransformObjectToWorldDir(v.tangent.xyz), v.tangent.w);
@@ -326,6 +342,8 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#pragma vertex vert
 			#pragma fragment frag
 
+			#pragma multi_compile _ DEBUG_DISPLAY SKINNED_SPRITE
+
             #define _SURFACE_TYPE_TRANSPARENT 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -337,6 +355,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
@@ -352,9 +371,9 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				float3 normal : NORMAL;
 				float4 tangent : TANGENT;
 				/*ase_vdata:p=p;n=n;t=t*/
+				UNITY_SKINNED_VERTEX_INPUTS
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
-
 
 			struct VertexOutput
 			{
@@ -381,20 +400,23 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				UNITY_SKINNED_VERTEX_COMPUTE(v);
+
+				v.positionOS = UnityFlipSprite( v.positionOS, unity_SpriteProps.xy );
 
 				/*ase_vert_code:v=VertexInput;o=VertexOutput*/
+
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.positionOS.xyz;
+					float3 defaultVertexValue = v.positionOS;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 				float3 vertexValue = /*ase_vert_out:Vertex Offset;Float3;1;-1;_Vertex*/defaultVertexValue/*end*/;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.positionOS.xyz = vertexValue;
+					v.positionOS = vertexValue;
 				#else
-					v.positionOS.xyz += vertexValue;
+					v.positionOS += vertexValue;
 				#endif
-
 
 				float3 positionWS = TransformObjectToWorld(v.positionOS);
 				o.positionCS = TransformWorldToHClip(positionWS);
@@ -446,6 +468,8 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#pragma vertex vert
 			#pragma fragment frag
 
+			#pragma multi_compile _ DEBUG_DISPLAY SKINNED_SPRITE
+
             #define _SURFACE_TYPE_TRANSPARENT 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -456,6 +480,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
@@ -471,6 +496,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				float3 normal : NORMAL;
 				float4 tangent : TANGENT;
 				/*ase_vdata:p=p;n=n;t=t*/
+				UNITY_SKINNED_VERTEX_INPUTS
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -499,18 +525,22 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				UNITY_SKINNED_VERTEX_COMPUTE(v);
+
+				v.positionOS = UnityFlipSprite( v.positionOS, unity_SpriteProps.xy );
 
 				/*ase_vert_code:v=VertexInput;o=VertexOutput*/
+
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.positionOS.xyz;
+					float3 defaultVertexValue = v.positionOS;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 				float3 vertexValue = /*ase_vert_out:Vertex Offset;Float3;1;-1;_Vertex*/defaultVertexValue/*end*/;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.positionOS.xyz = vertexValue;
+					v.positionOS = vertexValue;
 				#else
-					v.positionOS.xyz += vertexValue;
+					v.positionOS += vertexValue;
 				#endif
 
 				float3 positionWS = TransformObjectToWorld(v.positionOS);
@@ -559,6 +589,8 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 			#pragma vertex vert
 			#pragma fragment frag
 
+			#pragma multi_compile _ SKINNED_SPRITE
+
             #define _SURFACE_TYPE_TRANSPARENT 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -573,6 +605,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
@@ -590,9 +623,9 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				float4 uv0 : TEXCOORD0;
 				float4 color : COLOR;
 				/*ase_vdata:p=p;n=n;t=t;c=c;uv0=tc0*/
+				UNITY_SKINNED_VERTEX_INPUTS
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
-
 
 			struct VertexOutput
 			{
@@ -626,22 +659,25 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				UNITY_SKINNED_VERTEX_COMPUTE(v);
+
+				v.positionOS = UnityFlipSprite( v.positionOS, unity_SpriteProps.xy );
 
 				/*ase_vert_code:v=VertexInput;o=VertexOutput*/
+
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = v.positionOS.xyz;
+					float3 defaultVertexValue = v.positionOS;
 				#else
 					float3 defaultVertexValue = float3( 0, 0, 0 );
 				#endif
 				float3 vertexValue = /*ase_vert_out:Vertex Offset;Float3;3;-1;_Vertex*/defaultVertexValue/*end*/;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					v.positionOS.xyz = vertexValue;
+					v.positionOS = vertexValue;
 				#else
-					v.positionOS.xyz += vertexValue;
+					v.positionOS += vertexValue;
 				#endif
 				v.normal = /*ase_vert_out:Vertex Normal;Float3;4;-1;_VNormal*/v.normal/*end*/;
 				v.tangent.xyz = /*ase_vert_out:Vertex Tangent;Float3;5;-1;_VTangent*/v.tangent.xyz/*end*/;
-
 
 				float3 positionWS = TransformObjectToWorld(v.positionOS);
 
@@ -658,7 +694,11 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				UNITY_SETUP_INSTANCE_ID(IN);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
+				/*ase_local_var:sp*/float4 positionCS = IN.positionCS;
+				/*ase_local_var:wp*/float3 positionWS = IN.positionWS;
+
 				/*ase_frag_code:IN=VertexOutput*/
+
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				surfaceDescription.BaseColor = /*ase_frag_out:Color;Float3;0;-1;_Color*/IsGammaSpace() ? float3(0.5, 0.5, 0.5) : SRGBToLinear(float3(0.5, 0.5, 0.5))/*end*/;
 				surfaceDescription.NormalTS = /*ase_frag_out:Normal;Float3;1;-1;_Normal*/float3(0.0f, 0.0f, 1.0f)/*end*/;
@@ -671,10 +711,10 @@ Shader /*ase_name*/ "Hidden/Universal/2D Custom Lit" /*end*/
 				SurfaceData2D surfaceData;
 				InitializeSurfaceData(color.rgb, color.a, surfaceData);
 				InputData2D inputData;
-				InitializeInputData(IN.positionWS.xy, half2(IN.texCoord0.xy), inputData);
+				InitializeInputData(positionWS.xy, half2(IN.texCoord0.xy), inputData);
 				half4 debugColor = 0;
 
-				SETUP_DEBUG_DATA_2D(inputData, IN.positionWS);
+				SETUP_DEBUG_DATA_2D(inputData, positionWS, positionCS);
 
 				if (CanDebugOverrideOutputColor(surfaceData, inputData, debugColor))
 				{
