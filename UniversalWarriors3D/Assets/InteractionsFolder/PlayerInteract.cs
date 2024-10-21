@@ -17,15 +17,15 @@ public class PlayerInteract : MonoBehaviour
     {
         if (_inputAction.Locomotion.Interaction.WasPressedThisFrame())
         {
-            Debug.Log("button pressed");
+            //Debug.Log("button pressed");
             float interactRange = 4f;            
             Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
             foreach (Collider collider in colliderArray)
             {
-                Debug.Log(collider);
+                //Debug.Log(collider);
                 if(collider.TryGetComponent(out NPCInteractable npcInteractable))                
                 {
-                    Debug.Log("GotComponnent");
+                    //Debug.Log("GotComponnent");
                     npcInteractable.Interact();
                 }
                 

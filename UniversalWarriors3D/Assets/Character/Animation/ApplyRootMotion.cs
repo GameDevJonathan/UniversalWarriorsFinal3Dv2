@@ -26,20 +26,20 @@ public class ApplyRootMotion : MonoBehaviour
 
         if (animator != null)
         {
-            Debug.Log("Got Animator");
+            //Debug.Log("Got Animator");
         }
         
         if(characterController != null)
         {
-            Debug.Log("Got Controller");
+            //Debug.Log("Got Controller");
         }
 
         if (Audio)
         {
-            Debug.Log("Got Audio");
+            //Debug.Log("Got Audio");
         }
 
-        Debug.Log("lift off");
+        
        
     }
 
