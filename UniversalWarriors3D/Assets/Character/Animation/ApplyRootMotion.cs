@@ -51,7 +51,7 @@ public class ApplyRootMotion : MonoBehaviour
             Debug.Log($"{transform.name} Got Audio");
         }
 
-        Debug.Log("lift off");
+        
        
     }
 

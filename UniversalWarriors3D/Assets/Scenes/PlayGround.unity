@@ -13653,7 +13653,7 @@ Transform:
   m_GameObject: {fileID: 777670409}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.993, y: 0, z: 23}
+  m_LocalPosition: {x: 29.8, y: 0, z: 23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13676,7 +13676,7 @@ MonoBehaviour:
   isOpen: 0
   rotValue: 0
   maxRotation: 90
-  lerpSpeed: 1
+  lerpSpeed: 2
   time: 0
 --- !u!65 &777670412
 BoxCollider:

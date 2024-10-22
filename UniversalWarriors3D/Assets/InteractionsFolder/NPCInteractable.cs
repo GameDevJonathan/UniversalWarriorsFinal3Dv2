@@ -32,59 +32,39 @@ public class NPCInteractable : MonoBehaviour
         if (rotValue <= -90f)
             isOpen = true;
 
-
-        ///check to see if canOpen is true of false. if it's false swing the door open.
-        //if (!canOpen) //if i open the door canOpen is false and the door should open
+        //if ( (transform.eulerAngles.y == 0 || transform.eulerAngles.y == 270))
         //{
-        //    switch (isOpen)
+
+        //    if (doorRoutine != null)
         //    {
-        //        case false:
-        //            if (doorRoutine == null)
-        //            {
-        //                doorRoutine = StartCoroutine(OpenDoorRoutine(isOpen));                    
-        //            }
-        //            break;
+        //        StopCoroutine(doorRoutine);
+        //        time = 0f;
+        //        canOpen = true;
+        //        doorRoutine = null;
         //    }
-        //}
-        //rotValue = Mathf.Clamp(rotValue,0f, maxRotation);
-
-        //if ( (rotValue <= -maxRotation) )
-        //{
-
-        //}
 
 
 
-        //switch (isOpen)
-        //{
-        //    case true:
-        //        if (rotValue < 0f)
-        //        {
-        //            rotValue = Mathf.Lerp(rotValue, 0, Time.deltaTime * lerpSpeed);
-        //            transform.Rotate(Vector3.up, rotValue);
-        //        }
-        //        break;
-
-        //    case false:
-        //        if(rotValue > -maxRotation)
-        //        {
-        //            rotValue = Mathf.Lerp(rotValue, -maxRotation, Time.deltaTime * lerpSpeed);
-        //            transform.Rotate(Vector3.up,rotValue);
-        //        }
-        //        break;
         //}
     }
 
     private IEnumerator OpenDoorRoutine()
     {
+        if (isOpen)
+            rotValue = 0f;
+        else
+            rotValue = -maxRotation;
+
         while (time < 1)
         {
-
-            rotValue = -maxRotation;
-            transform.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.Euler(0, rotValue, 0), time);
+            
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, rotValue, 0), time);
             time += Time.deltaTime * lerpSpeed;
             yield return null;
+
         }
+
+        Debug.Log(transform.eulerAngles.y);
 
         time = 0f;
         canOpen = true;
@@ -98,26 +78,26 @@ public class NPCInteractable : MonoBehaviour
 
     public void test()
     {
-        Debug.Log("test");
+        //Debug.Log("test");
     }
 
     public void Interact()
     {
-        Debug.Log("Interact");
+        //Debug.Log("Interact");
         if (canOpen)
             Opendoor();
     }
 
     private void Opendoor()
     {
-        Debug.Log("Openning Door");
-        
+        //Debug.Log("Openning Door");
+
         if (doorRoutine == null)
         {
-            if(canOpen && !isOpen)
+            if (canOpen)
             {
                 canOpen = false;
-                Debug.Log("OpenDoor Routine");
+                //Debug.Log("OpenDoor Routine");
                 doorRoutine = StartCoroutine(OpenDoorRoutine());
 
             }
