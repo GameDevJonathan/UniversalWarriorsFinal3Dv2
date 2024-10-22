@@ -105,4 +105,17 @@ MonoBehaviour:
       overrideLyingDownAnimation: 0
       lyingDownAnimation: {fileID: 0}
       getUpAnimation: {fileID: 0}
+  - name: Direction - Any, Tag - GutKick
+    direction: 0
+    attackedFromBehind: 0
+    tag: GutKick
+    reaction:
+      animationClip: {fileID: 7400000, guid: a9d72eebb4e8b5b4498b2707c712fcf5, type: 2}
+      willBeKnockedDown: 1
+      knockDownDirection: 1
+      lyingDownTimeRange: {x: 1, y: 3}
+      overrideLyingDownAnimation: 1
+      lyingDownAnimation: {fileID: 7400000, guid: 91b630fbbbf83474e9269f1c1c28860a,
+        type: 2}
+      getUpAnimation: {fileID: 7400000, guid: 52e0e97056d306e4891a1b31da086fca, type: 2}
   rotateToAttacker: 1

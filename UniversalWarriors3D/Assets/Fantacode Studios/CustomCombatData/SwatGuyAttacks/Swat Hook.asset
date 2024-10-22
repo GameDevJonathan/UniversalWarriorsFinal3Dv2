@@ -107,7 +107,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   isUnblockableAttack: 0
-  strikeSound: {fileID: 0}
+  strikeSound: {fileID: 8300000, guid: 0d605f23065c7bd4985b70fb5e9ec22d, type: 3}
   hitSound: {fileID: 0}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}

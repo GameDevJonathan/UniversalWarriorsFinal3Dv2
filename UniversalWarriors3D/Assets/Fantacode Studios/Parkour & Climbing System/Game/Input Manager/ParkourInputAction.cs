@@ -31,7 +31,7 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""5fe412fd-d19b-4eae-9769-e9172832745e"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -50,6 +50,15 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""2fb61c5f-8226-4f2f-8686-285705e01a9b"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parkour"",
+                    ""type"": ""Button"",
+                    ""id"": ""f72f8793-2c12-4eba-aae9-d9e57db1d0f5"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -121,6 +130,28 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""JumpFromHang"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b135cc1-14f5-4b60-8023-92ad4b574372"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parkour"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7c7bf1a-ebd1-4340-9c3a-fcc155e8f530"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parkour"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -132,6 +163,7 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
         m_Parkour_Jump = m_Parkour.FindAction("Jump", throwIfNotFound: true);
         m_Parkour_JumpFromHang = m_Parkour.FindAction("JumpFromHang", throwIfNotFound: true);
         m_Parkour_Drop = m_Parkour.FindAction("Drop", throwIfNotFound: true);
+        m_Parkour_Parkour = m_Parkour.FindAction("Parkour", throwIfNotFound: true);
     }
 
     ~@ParkourInputAction()
@@ -201,6 +233,7 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Parkour_Jump;
     private readonly InputAction m_Parkour_JumpFromHang;
     private readonly InputAction m_Parkour_Drop;
+    private readonly InputAction m_Parkour_Parkour;
     public struct ParkourActions
     {
         private @ParkourInputAction m_Wrapper;
@@ -208,6 +241,7 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Parkour_Jump;
         public InputAction @JumpFromHang => m_Wrapper.m_Parkour_JumpFromHang;
         public InputAction @Drop => m_Wrapper.m_Parkour_Drop;
+        public InputAction @Parkour => m_Wrapper.m_Parkour_Parkour;
         public InputActionMap Get() { return m_Wrapper.m_Parkour; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +260,9 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
+            @Parkour.started += instance.OnParkour;
+            @Parkour.performed += instance.OnParkour;
+            @Parkour.canceled += instance.OnParkour;
         }
 
         private void UnregisterCallbacks(IParkourActions instance)
@@ -239,6 +276,9 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
+            @Parkour.started -= instance.OnParkour;
+            @Parkour.performed -= instance.OnParkour;
+            @Parkour.canceled -= instance.OnParkour;
         }
 
         public void RemoveCallbacks(IParkourActions instance)
@@ -261,5 +301,6 @@ public partial class @ParkourInputAction: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnJumpFromHang(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnParkour(InputAction.CallbackContext context);
     }
 }

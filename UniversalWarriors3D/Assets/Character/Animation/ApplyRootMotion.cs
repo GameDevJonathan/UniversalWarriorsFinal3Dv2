@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class ApplyRootMotion : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -10,11 +12,13 @@ public class ApplyRootMotion : MonoBehaviour
     private Vector3 upperCutDirection;
     private Vector3 upperCutUpDirection;
     private Vector3 upperCutFwdDirection;
+    private CapsuleCollider capsuleCollider;
     private bool startLifting;
     [SerializeField] private Transform Daku;
-    private AudioSource Audio;
+    [SerializeField] private AudioSource Audio;
     [SerializeField] private AudioClip[] audioClips;
     [SerializeField] private AudioClip[] gruntClips;
+    private MeshRenderer renderer;
 
     
 
@@ -23,6 +27,14 @@ public class ApplyRootMotion : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         Audio = GetComponent<AudioSource>();
+        renderer = GetComponent<MeshRenderer>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+
+        if(renderer != null)
+        {
+            Debug.Log($"Got Renderer of {transform.name}");
+            Debug.Log(renderer.bounds.size);
+        }
 
         if (animator != null)
         {
@@ -36,7 +48,7 @@ public class ApplyRootMotion : MonoBehaviour
 
         if (Audio)
         {
-            Debug.Log("Got Audio");
+            Debug.Log($"{transform.name} Got Audio");
         }
 
         Debug.Log("lift off");
@@ -52,6 +64,11 @@ public class ApplyRootMotion : MonoBehaviour
 
     }
 
+    public void AddCapsuleFore()
+    {
+        
+    }
+
     public void SetRootMotion(int apply) {
 
         Debug.Log("Firing");
@@ -65,6 +82,7 @@ public class ApplyRootMotion : MonoBehaviour
 
     public void PlayVFX(int clipSound)
     {
+        Debug.Log($"{transform.name} played sound");
         Audio.PlayOneShot(gruntClips[clipSound]);
     }
 

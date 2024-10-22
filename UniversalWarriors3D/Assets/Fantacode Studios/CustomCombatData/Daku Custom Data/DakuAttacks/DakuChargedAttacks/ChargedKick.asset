@@ -18,8 +18,8 @@ MonoBehaviour:
   canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 1
-  reactionTag: 
-  overrideReaction: 1
+  reactionTag: GutKick
+  overrideReaction: 0
   reaction:
     animationClip: {fileID: 7400000, guid: a9d72eebb4e8b5b4498b2707c712fcf5, type: 2}
     willBeKnockedDown: 1
@@ -85,7 +85,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   isUnblockableAttack: 1
   strikeSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
   hitEffect: {fileID: 0}

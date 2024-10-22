@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Parkour System/New Parkour Action")]
+[CreateAssetMenu(menuName = "Old Parkour System/New Parkour Action")]
 public class ParkourAction : ScriptableObject
 {
     [SerializeField] string animName;
@@ -30,7 +30,7 @@ public class ParkourAction : ScriptableObject
         float height = hitdata.heightHit.collider.bounds.size.y;
         Debug.Log("hitdata obstacle collider height: " + hitdata.heightHit.collider.bounds);
         Debug.Log("hitdata obstacle height: " + height);
-        if(height < minHeight || height > maxHeight)
+        if (height < minHeight || height > maxHeight)
         {
             return false;
         }

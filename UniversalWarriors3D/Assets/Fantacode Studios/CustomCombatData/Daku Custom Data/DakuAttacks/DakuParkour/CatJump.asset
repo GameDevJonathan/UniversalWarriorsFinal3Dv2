@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d124415d0e957e54192c67925215bfe7, type: 3}
+  m_Name: CatJump
+  m_EditorClassIdentifier: 
+  animName: CatJump
+  minHeight: 0
+  maxHeight: 1.5
+  rotateToObstacle: 1
+  vaultType: 0
+  obstacleTag: Table
+  postActionDelay: 0
+  enableTargetMatching: 0
+  matchBodyPart: 5
+  matchStartTime: 0.5
+  matchTargetTime: 0.7
+  matchPosWeight: {x: 0, y: 1, z: 0}
+  clip: {fileID: 1827226128182048838, guid: f44fd9dff331cba4f9fb4d9f42c6c3dd, type: 3}
+  minimumObstacleHorizontalDistance: 0
+  movementThreshold: 0.3

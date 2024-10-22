@@ -961,13 +961,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 19.445086 mm\n\t'calf_l' : position error = 6.207175 mm\n\t'foot_l'
-      : position error = 48.172642 mm\n\t'ball_l' : position error = 2.499988 mm\n\t'thigh_r'
-      : position error = 22.022295 mm\n\t'calf_r' : position error = 8.355534 mm\n\t'foot_r'
-      : position error = 42.817459 mm\n\t'ball_r' : position error = 8.103943 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -1010,7 +1003,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.296875
+        functionName: PlayVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 1
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
