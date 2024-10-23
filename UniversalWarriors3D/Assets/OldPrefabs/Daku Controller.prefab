@@ -511,6 +511,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1141,6 +1144,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1795,6 +1801,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2063,6 +2072,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2386,6 +2398,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2785,6 +2800,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2908,6 +2926,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3319,6 +3340,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3727,6 +3751,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4123,6 +4150,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4826,6 +4856,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5129,6 +5162,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5339,6 +5375,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6004,6 +6043,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6382,6 +6424,10 @@ GameObject:
   - component: {fileID: 5543738811961201023}
   - component: {fileID: 6617467723527203866}
   - component: {fileID: 118808781080577492}
+  - component: {fileID: 137591029593443820}
+  - component: {fileID: 8144463002230066274}
+  - component: {fileID: 3152545044662964917}
+  - component: {fileID: 2540644397104200072}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -6437,7 +6483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preventFallingFromLedge: 1
   enableBalanceWalk: 1
-  enableTurningAnim: 1
+  enableTurningAnim: 0
   verticalJump: 0
   sprintSpeed: 6.5
   runSpeed: 4.5
@@ -6445,8 +6491,8 @@ MonoBehaviour:
   timeToJump: 0.4
   jumpMoveSpeed: 4
   rotationSpeed: 2.5
-  playTurningAnimations: 1
-  playQuickStopAnimation: 1
+  playTurningAnimations: 0
+  playQuickStopAnimation: 0
   groundCheckRadius: 0.37
   groundCheckOffset: {x: 0, y: 0.1, z: 0.07}
   groundLayer:
@@ -6470,7 +6516,7 @@ MonoBehaviour:
   directionScaleFactor: 0.1
 --- !u!95 &6510438989853042242
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6484,6 +6530,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -6501,13 +6548,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df305943fb092a4aa15c9a86a4b327a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 51610315f0a794c4f85086b6f04c8cf4, type: 2}
+  weapon: {fileID: 11400000, guid: 5bd8aba18852912469abd4b7d0404fa3, type: 2}
   <MaxHealth>k__BackingField: 200
   rotationSpeedDuringAttack: 500
   <PreferredFightingRange>k__BackingField: 2
   defaultAnimations:
-    hitReactionData: {fileID: 11400000, guid: 6036ddc2962f52e47ba682d6078af963, type: 2}
-    blockedReactionData: {fileID: 11400000, guid: c05e53600afde0e468c7f46d59ffed37,
+    hitReactionData: {fileID: 11400000, guid: d5767fa4d922fc047b704fcfb4e44a75, type: 2}
+    blockedReactionData: {fileID: 11400000, guid: 3b18c52a9d1e9424eadbbcaca42da474,
       type: 2}
     lyingOnBackAnimation: {fileID: 5560541404274110434, guid: 40713fc72995d3c40ad680572a393d7e,
       type: 3}
@@ -6571,7 +6618,6 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6654,7 +6700,7 @@ MonoBehaviour:
   alwaysUsePlayerForward: 0
   heightRayLength: 4
   obstacleCheckRange: 0.7
-  ledgeHeightThreshold: 1
+  ledgeHeightThreshold: 0.5
   <ObstacleLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
@@ -6703,11 +6749,13 @@ MonoBehaviour:
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}
   parkourActions:
-  - {fileID: 11400000, guid: 0c94d8efe347ff84b920190e4c36dcb2, type: 2}
-  - {fileID: 11400000, guid: 77508b0b15797294da333074d59c47ab, type: 2}
-  - {fileID: 11400000, guid: 7bad752d0f2272a46861ec7aa2b59dd4, type: 2}
-  - {fileID: 11400000, guid: 6c66e78c991e8a9409391dafeb2fa4fc, type: 2}
+  - {fileID: 11400000, guid: 0f206864da0cfca4b991c4534381ae6f, type: 2}
   - {fileID: 11400000, guid: 140265c23ffe8f04b94bf6286f667146, type: 2}
+  - {fileID: 11400000, guid: 77508b0b15797294da333074d59c47ab, type: 2}
+  - {fileID: 11400000, guid: 82f641707e71bfe4a95ec9815885b347, type: 2}
+  - {fileID: 11400000, guid: 0c94d8efe347ff84b920190e4c36dcb2, type: 2}
+  - {fileID: 11400000, guid: 6c66e78c991e8a9409391dafeb2fa4fc, type: 2}
+  - {fileID: 11400000, guid: 7bad752d0f2272a46861ec7aa2b59dd4, type: 2}
   predictiveActions: []
   <RotationSpeed>k__BackingField: 500
   EnableWallRun: 0
@@ -6836,9 +6884,11 @@ MonoBehaviour:
   jumpKey: 32
   dropKey: 101
   jumpFromHangKey: 113
+  parkourKey: 108
   jumpButton: 
   dropButton: 
   jumpFromHangButton: 
+  parkourButton: 
 --- !u!114 &118808781080577492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6851,6 +6901,345 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a31f80961a0244d86cb3aca390546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upSpeed: 5
+  forwardSpeed: 2
+  Daku: {fileID: 9058946019323461212}
+  Audio: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 2b019c6187fca1e48b47e28c891dc66c, type: 3}
+  gruntClips:
+  - {fileID: 8300000, guid: 32263eda5ad12f042a8fa568c84e00a0, type: 3}
+  - {fileID: 8300000, guid: 1b100661c0a9fe24ba0eab71a74da49e, type: 3}
+  - {fileID: 8300000, guid: c53a7593826f2334b8e12efcbe78da37, type: 3}
+  - {fileID: 8300000, guid: 3a5df32249c9c6641925df80af2d10be, type: 3}
+  - {fileID: 8300000, guid: 22f4ce25f66fb3040907ff5e0f89ecd4, type: 3}
+  - {fileID: 8300000, guid: e676063a69c93b64895901c9c4a7f813, type: 3}
+  - {fileID: 8300000, guid: 8eb7062a83fb0e947b6dcd96ed071420, type: 3}
+--- !u!82 &137591029593443820
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8144463002230066274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 3765050976238994440}
+  - {fileID: 7884186207853694708}
+  - {fileID: 2073633877484074484}
+  - {fileID: 9184703803318475504}
+  - {fileID: 7986536978997494366}
+  - {fileID: 2368273915683513443}
+  - {fileID: 6051111798768629950}
+  - {fileID: 1802971097942853282}
+  - {fileID: 8348629644428828984}
+  - {fileID: 6830174700024098163}
+  - {fileID: 4792184931205893335}
+  - {fileID: 7663535288701539925}
+  - {fileID: 8630980690434112715}
+  - {fileID: 8708982099728600103}
+  - {fileID: 8415398622282543732}
+  - {fileID: 1565351452247354863}
+  - {fileID: 5736752098712320880}
+  - {fileID: 4694017007486858283}
+  - {fileID: 1552838305128620160}
+  - {fileID: 2023636880752147724}
+  - {fileID: 5739791834832730538}
+  - {fileID: 6647812138756525792}
+  - {fileID: 1827397180509121565}
+  - {fileID: 7030005027775462267}
+  - {fileID: 2529684460880334168}
+  - {fileID: 8834424335442637217}
+  - {fileID: 2359490069347629304}
+  - {fileID: 1972700506605215343}
+  - {fileID: 4636873039301192324}
+  - {fileID: 2393961602693937832}
+  - {fileID: 1871975702664235259}
+  - {fileID: 5151862365083629225}
+  - {fileID: 6871246847438212654}
+  - {fileID: 2024811670725955902}
+  - {fileID: 8116893815659555176}
+  - {fileID: 7791306684528134450}
+  - {fileID: 8390112269133826112}
+  - {fileID: 3544387913195020329}
+  - {fileID: 9087701735281170851}
+  - {fileID: 7701596990780582865}
+  - {fileID: 7806985685275232928}
+  - {fileID: 5260189866252507870}
+  - {fileID: 796220617291180814}
+  - {fileID: 7342000759789871525}
+  - {fileID: 2560539576617205214}
+  - {fileID: 3550180903229417596}
+  - {fileID: 7624940875625258684}
+  - {fileID: 7557651944240253581}
+  - {fileID: 8139747169440055125}
+  - {fileID: 1669378833724168090}
+  - {fileID: 7495531367342011149}
+  - {fileID: 6776439054670065412}
+  - {fileID: 7321426786147439669}
+  - {fileID: 3089017053052354893}
+  - {fileID: 2833749244952686672}
+  - {fileID: 2076825443162612202}
+  - {fileID: 94614828122420266}
+  - {fileID: 5609205950021814843}
+  - {fileID: 2205342727943011708}
+  - {fileID: 6332318512486784187}
+  - {fileID: 1190488042954039304}
+  - {fileID: 5481543650670632625}
+  - {fileID: 6799274393935328930}
+  - {fileID: 505878710279125432}
+  - {fileID: 6635463148217111061}
+  - {fileID: 2608841978533623180}
+  - {fileID: 6426089136420797185}
+  - {fileID: 4790916900181901217}
+  - {fileID: 337843436534927918}
+  - {fileID: 140532716770088324}
+  - {fileID: 7707944691326659829}
+  - {fileID: 8741731236590002698}
+  - {fileID: 5626548295928978697}
+  - {fileID: 7190454528927740567}
+  - {fileID: 9016163086876932319}
+  - {fileID: 5476237645588698360}
+  - {fileID: 5423024197892270127}
+  - {fileID: 3156703209119074512}
+  - {fileID: 1819597699752689607}
+  - {fileID: 8045439992739553506}
+  - {fileID: 3162012403018132647}
+  - {fileID: 8806614289051902691}
+  - {fileID: 8001231142491821930}
+  - {fileID: 8097137362588442810}
+  - {fileID: 5403587641034151846}
+  - {fileID: 6043135894958048253}
+  - {fileID: 4025953123949166706}
+  - {fileID: 7829978151037967016}
+  - {fileID: 3204486445077232909}
+  - {fileID: 8752945947004376259}
+  - {fileID: 536511017667387340}
+  - {fileID: 3270506451025812885}
+  - {fileID: 5352694862115038600}
+  - {fileID: 6493454323714726947}
+  - {fileID: 5744694960891523915}
+  - {fileID: 563132466290457165}
+  - {fileID: 2885220822166881644}
+--- !u!82 &3152545044662964917
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2540644397104200072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725b428b603f6e04dbb4a1e611dd5a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16777216
 --- !u!1 &7487747447662458559
 GameObject:
   m_ObjectHideFlags: 0
@@ -7841,7 +8230,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -7856,12 +8245,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &8956133542974154571
 GameObject:
   m_ObjectHideFlags: 0
@@ -7942,6 +8331,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

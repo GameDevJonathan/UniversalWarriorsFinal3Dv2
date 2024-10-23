@@ -31,10 +31,10 @@ MonoBehaviour:
       chargedAttack: {fileID: 0}
     - attack: {fileID: 11400000, guid: 2f19db5f0f9501843965426ec353b411, type: 2}
       canBeCharged: 1
-      chargedAttack: {fileID: 11400000, guid: 00fa3f6022647c249a3dababd0b4b3bd, type: 2}
+      chargedAttack: {fileID: 11400000, guid: 78dc2e78530e0b643b8f234b5e5aba79, type: 2}
     - attack: {fileID: 11400000, guid: 06e81c29894bef74db7d69167ca67eb2, type: 2}
-      canBeCharged: 0
-      chargedAttack: {fileID: 0}
+      canBeCharged: 1
+      chargedAttack: {fileID: 11400000, guid: 00fa3f6022647c249a3dababd0b4b3bd, type: 2}
     - attack: {fileID: 11400000, guid: 281b2c91cddb2db40a6c40ec5e063b90, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   weaponUnEquipAnimation: {fileID: 0}
   weaponDeactivationTime: 0
   canBlock: 1
-  blocking: {fileID: 7400000, guid: e401d4b84f5c67a409de27ea6d772aa6, type: 2}
+  blocking: {fileID: 7400000, guid: b63894d5189461a4a930f1ead404ca98, type: 2}
   blockedDamage: 0
   blockReactionData: {fileID: 11400000, guid: 3b18c52a9d1e9424eadbbcaca42da474, type: 2}
   blockMask: {fileID: 31900000, guid: dcfb505775d3da841bd0724a642db8b3, type: 2}

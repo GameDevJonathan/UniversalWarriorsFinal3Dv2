@@ -72,8 +72,8 @@ MonoBehaviour:
   canCounter: 1
   playActionIfCounterMisused: 0
   counterMisusedAction: {fileID: 0}
-  overrideController: {fileID: 0}
-  useRootmotion: 1
+  overrideController: {fileID: 22100000, guid: 513af5d0d4561784395c8bb64600201c, type: 2}
+  useRootmotion: 0
   overrideMoveSpeed: 0
   walkSpeed: 0
   runSpeed: 0
