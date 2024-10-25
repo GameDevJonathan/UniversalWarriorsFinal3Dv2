@@ -20,8 +20,8 @@ MonoBehaviour:
   attacks:
   - attackType: 1
     minDistance: 0
-    maxDistance: 2
-    healthThreshold: 100
+    maxDistance: 1
+    healthThreshold: 86.8
     attacks:
     - attack: {fileID: 11400000, guid: cfe702f5490a4c64e97230d15e973a79, type: 2}
       canBeCharged: 1
@@ -54,6 +54,20 @@ MonoBehaviour:
       chargedAttack: {fileID: 0}
     attack:
       attack: {fileID: 11400000, guid: 2605447e35b6f1947b59aedeba03d526, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0
+    serialized: 1
+  - attackType: 0
+    minDistance: 0
+    maxDistance: 2
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: a92fb6b14f60a574d9bced0a9dab1086, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: a92fb6b14f60a574d9bced0a9dab1086, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     animationDistance: 0
