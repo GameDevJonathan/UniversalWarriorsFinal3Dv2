@@ -55,14 +55,14 @@ MonoBehaviour:
   waitForNextAttack: 0
   waitForAttackTime: 0
   moveToTarget: 1
-  distanceFromTarget: 1.5
+  distanceFromTarget: 1
   localPositionFromTarget: {x: 0, y: 0, z: 0}
   moveStartTime: 0.01
-  moveEndTime: 0.04
+  moveEndTime: 0.07
   ignoreCollisions: 0
-  moveType: 0
+  moveType: 2
   snapType: 1
-  snapTarget: 1
+  snapTarget: 0
   weightMask: {x: 1, y: 1, z: 1}
   rootCurves:
     CurveX:
