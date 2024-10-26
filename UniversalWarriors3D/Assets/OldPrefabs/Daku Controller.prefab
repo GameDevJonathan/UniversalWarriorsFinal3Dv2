@@ -6901,8 +6901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a31f80961a0244d86cb3aca390546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upSpeed: 5
-  forwardSpeed: 2
+  upSpeed: 10
+  forwardSpeed: 3
   Daku: {fileID: 9058946019323461212}
   Audio: {fileID: 0}
   audioClips:
@@ -6915,6 +6915,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 22f4ce25f66fb3040907ff5e0f89ecd4, type: 3}
   - {fileID: 8300000, guid: e676063a69c93b64895901c9c4a7f813, type: 3}
   - {fileID: 8300000, guid: 8eb7062a83fb0e947b6dcd96ed071420, type: 3}
+  - {fileID: 8300000, guid: b4816b7b618ab9f4d9a516f7852d3763, type: 3}
+  - {fileID: 8300000, guid: 8bf456067b9c41e4b816d11e7e8a1f61, type: 3}
+  - {fileID: 8300000, guid: abca193e04f54cd4bb6ebd60d8f4a9b6, type: 3}
+  - {fileID: 8300000, guid: 45707a762719fb14d8b54a42df6da16b, type: 3}
+  - {fileID: 8300000, guid: 5a3b40707b91a1a4dab8e883cb00b077, type: 3}
+  - {fileID: 8300000, guid: 1eb776faca23b834188dfa06e96abc17, type: 3}
 --- !u!82 &137591029593443820
 AudioSource:
   m_ObjectHideFlags: 0

@@ -102,7 +102,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionPower: 0.339
+    - _EmissionPower: 0.793
     - _EmissionTilie: 0.165
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
@@ -126,3 +126,4 @@ Material:
     - _EmissionColor: {r: 1.5, g: 1.5, b: 1.5, a: 0}
     - _EmissionMultiply: {r: 1, g: 0.996146, b: 0.8602941, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
