@@ -75,7 +75,7 @@ MonoBehaviour:
   - attackType: 0
     minDistance: 0
     maxDistance: 2
-    healthThreshold: 1.8
+    healthThreshold: 10
     attacks:
     - attack: {fileID: 11400000, guid: 1c811d78a80fe7e4d87ea610ffb07a2d, type: 2}
       canBeCharged: 0
