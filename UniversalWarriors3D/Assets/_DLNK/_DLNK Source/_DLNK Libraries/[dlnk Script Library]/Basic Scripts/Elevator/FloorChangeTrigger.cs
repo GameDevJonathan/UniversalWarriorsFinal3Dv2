@@ -13,12 +13,11 @@ public class FloorChangeTrigger : MonoBehaviour
 
     private void Start()
     {
-        originalFloor = elevator.GetOriginalFloor();
-        currentTargetFloor = targetFloor;
+        originalFloor = elevator.GetOriginalFloor();  // Store the elevator's original floor
+        currentTargetFloor = targetFloor;             // Initialize the target floor
 
-        
-             // Disable the MeshRenderer component on start
-             GetComponent<MeshRenderer>().enabled = false;
+        // Disable the MeshRenderer component on start
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,15 +44,19 @@ public class FloorChangeTrigger : MonoBehaviour
         {
             int currentFloor = elevator.GetCurrentFloor();
 
-            if (useOriginalFloor && currentFloor == currentTargetFloor)
+            if (currentFloor == currentTargetFloor)
             {
+                // If the elevator is already at the target floor, set it to the opposite floor
                 currentTargetFloor = (currentFloor == originalFloor) ? targetFloor : originalFloor;
-                elevator.ChangeTargetFloor(currentTargetFloor);
             }
             else
             {
-                elevator.ChangeTargetFloor(currentTargetFloor);
+                // If elevator is not at the target, move it to the current target floor
+                currentTargetFloor = targetFloor;
             }
+
+            // Change the elevator's target floor to the determined floor
+            elevator.ChangeTargetFloor(currentTargetFloor);
 
             Debug.Log("Floor changed to " + currentTargetFloor.ToString());
         }

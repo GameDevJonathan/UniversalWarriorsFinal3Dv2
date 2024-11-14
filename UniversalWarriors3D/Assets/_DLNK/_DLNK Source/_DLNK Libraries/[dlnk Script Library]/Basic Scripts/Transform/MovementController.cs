@@ -12,11 +12,13 @@ public class MovementController : MonoBehaviour
     public Vector3 offsetRange; // Range of offset value for the transform
 
     private Vector3 initialLocalPosition;
+    private Vector3 currentVelocity; // Current velocity to maintain accurate value
 
     void Start()
     {
         // Store the initial local position of the object
         initialLocalPosition = transform.localPosition;
+        currentVelocity = initialVelocity; // Initialize current velocity
 
         // Generate random offset values within the specified range
         float randomOffsetX = Random.Range(-offsetRange.x, offsetRange.x);
@@ -44,41 +46,28 @@ public class MovementController : MonoBehaviour
 
     void MoveWithVelocityAndAcceleration()
     {
+        Vector3 displacement;
+
         if (useAcceleration)
         {
-            // Calculate the new velocity based on the acceleration and time
-            Vector3 newVelocity = initialVelocity + acceleration * Time.deltaTime;
-
-            // Calculate the displacement using the average velocity
-            Vector3 displacement = (initialVelocity + newVelocity) * 0.5f * Time.deltaTime;
-
-            // Update the position of the object locally
-            transform.localPosition += transform.localRotation * displacement;
-
-            // Update the initial velocity to the new velocity
-            initialVelocity = newVelocity;
+            // Calculate displacement based on current velocity and acceleration
+            currentVelocity += acceleration * Time.deltaTime;
+            displacement = currentVelocity * Time.deltaTime;
         }
         else
         {
-            // Update the position of the object locally using only the initial velocity
-            transform.localPosition += transform.localRotation * initialVelocity * Time.deltaTime;
+            // Calculate displacement based on the initial velocity only
+            displacement = initialVelocity * Time.deltaTime;
         }
+
+        // Move the object in its local space
+        transform.localPosition += transform.TransformDirection(displacement);
     }
 
     void RotateObject()
     {
         // Rotate the object around its respective local axis with the given rotation speed
-        if (rotationSpeed.x != 0f)
-        {
-            transform.Rotate(transform.right, rotationSpeed.x * Time.deltaTime, Space.Self);
-        }
-        if (rotationSpeed.y != 0f)
-        {
-            transform.Rotate(transform.up, rotationSpeed.y * Time.deltaTime, Space.Self);
-        }
-        if (rotationSpeed.z != 0f)
-        {
-            transform.Rotate(transform.forward, rotationSpeed.z * Time.deltaTime, Space.Self);
-        }
+        Vector3 rotation = rotationSpeed * Time.deltaTime;
+        transform.Rotate(rotation, Space.Self);
     }
 }

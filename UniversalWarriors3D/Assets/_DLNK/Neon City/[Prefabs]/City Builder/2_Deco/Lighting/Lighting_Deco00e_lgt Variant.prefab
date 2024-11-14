@@ -24,13 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8460297658249270711}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.265, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6356200968769524220}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1446044380830644075
 Light:
   m_ObjectHideFlags: 0
@@ -53,8 +54,8 @@ Light:
     m_Resolution: 0
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 0.02
+    m_NormalBias: 0.08
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -90,6 +91,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1001 &6357578054913428226
@@ -151,7 +153,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 64c1aeb7244a6b646b848ee1b429a513, type: 3}
 --- !u!4 &6356200968769524220 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4332712985844478, guid: 64c1aeb7244a6b646b848ee1b429a513,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4332712985844478, guid: 64c1aeb7244a6b646b848ee1b429a513, type: 3}
   m_PrefabInstance: {fileID: 6357578054913428226}
   m_PrefabAsset: {fileID: 0}

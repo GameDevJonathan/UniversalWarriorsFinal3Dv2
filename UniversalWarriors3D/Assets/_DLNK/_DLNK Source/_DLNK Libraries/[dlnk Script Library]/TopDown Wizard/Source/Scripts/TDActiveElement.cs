@@ -6,6 +6,7 @@ public class TDActiveElement : MonoBehaviour
 {
     [Header("[Active Element Properties]")]
     public bool UseTopDown = true;
+    public bool UseTopDownKey = true;
     public KeyCode ActiveElementKey = KeyCode.E;
     public ActiveColGo ActiveCollider;
     public bool Automatic;
@@ -41,6 +42,7 @@ public class TDActiveElement : MonoBehaviour
             tdscene = GameObject.FindWithTag("TdLevelManager").GetComponent<TDScene>();
 
             // find keycode override in scene settings
+            if (UseTopDownKey)
             ActiveElementKey = tdscene.ActiveKey;
 
             //Collider object visibility

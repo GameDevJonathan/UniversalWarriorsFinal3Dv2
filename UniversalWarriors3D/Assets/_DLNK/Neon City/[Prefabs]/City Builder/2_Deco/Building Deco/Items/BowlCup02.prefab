@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1043541673585062209, guid: fe7e5764709a36446aca14d463b044ce, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d10ba99d28d23ae489236b94f2e08eef, type: 2}
+      objectReference: {fileID: 2100000, guid: 18bd0e3dce75c0b42bb2acf3d4d5385d, type: 2}
     - target: {fileID: 2280692249236874036, guid: fe7e5764709a36446aca14d463b044ce, type: 3}
       propertyPath: m_Name
       value: BowlCup02

@@ -46,7 +46,7 @@ public class ActiveEnableGo : MonoBehaviour
             }
         }
         // check if character is leaving scene with automode
-        else if (_localAuto && activeParent.ActiveCollider.hasexit && _waiting)
+        else if (activeParent.ActiveCollider.hasexit && _waiting)
         {
             if (activeParent.AutoOnExit)
             {

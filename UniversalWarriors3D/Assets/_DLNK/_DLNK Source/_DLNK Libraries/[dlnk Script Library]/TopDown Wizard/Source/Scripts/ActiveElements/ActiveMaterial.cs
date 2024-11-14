@@ -9,9 +9,11 @@ public class ActiveMaterial : MonoBehaviour
     {
         public GameObject TargetGO;
         public Material MaterialTarget;
+        public int MaterialIndex; // New variable for material index
         [HideInInspector]
         public Material tmpMaterial;
     }
+
     public List<Target> Targets;
     public bool OverrideMatTarget;
     public bool Switched = false;
@@ -27,7 +29,12 @@ public class ActiveMaterial : MonoBehaviour
         activeParent = this.GetComponent<TDActiveElement>();
         foreach (Target tar in Targets)
         {
-            tar.tmpMaterial = tar.TargetGO.GetComponent<Renderer>().material;
+            // Store the original material at the specified index
+            Renderer renderer = tar.TargetGO.GetComponent<Renderer>();
+            if (renderer != null && tar.MaterialIndex < renderer.materials.Length)
+            {
+                tar.tmpMaterial = renderer.materials[tar.MaterialIndex];
+            }
         }
 
         // check if global auto enabled
@@ -47,10 +54,16 @@ public class ActiveMaterial : MonoBehaviour
                 {
                     foreach (Target tar in Targets)
                     {
-                        if (OverrideMatTarget)
-                            tar.TargetGO.GetComponent<Renderer>().material = OverrideMaterial;
-                        else
-                            tar.TargetGO.GetComponent<Renderer>().material = tar.MaterialTarget;
+                        Renderer renderer = tar.TargetGO.GetComponent<Renderer>();
+                        if (renderer != null && tar.MaterialIndex < renderer.materials.Length)
+                        {
+                            Material[] materials = renderer.materials;
+                            if (OverrideMatTarget)
+                                materials[tar.MaterialIndex] = OverrideMaterial;
+                            else
+                                materials[tar.MaterialIndex] = tar.MaterialTarget;
+                            renderer.materials = materials;
+                        }
                     }
                     _waiting = true;
                     Switched = true;
@@ -59,7 +72,13 @@ public class ActiveMaterial : MonoBehaviour
                 {
                     foreach (Target tar in Targets)
                     {
-                            tar.TargetGO.GetComponent<Renderer>().material = tar.tmpMaterial;
+                        Renderer renderer = tar.TargetGO.GetComponent<Renderer>();
+                        if (renderer != null && tar.MaterialIndex < renderer.materials.Length)
+                        {
+                            Material[] materials = renderer.materials;
+                            materials[tar.MaterialIndex] = tar.tmpMaterial;
+                            renderer.materials = materials;
+                        }
                     }
                     _waiting = true;
                     Switched = false;
@@ -67,7 +86,7 @@ public class ActiveMaterial : MonoBehaviour
             }
         }
         // check if character is leaving scene with automode
-        else if (_localAuto && activeParent.ActiveCollider.hasexit && _waiting)
+        else if (activeParent.ActiveCollider.hasexit && _waiting)
         {
             if (activeParent.AutoOnExit)
             {
@@ -75,10 +94,16 @@ public class ActiveMaterial : MonoBehaviour
                 {
                     foreach (Target tar in Targets)
                     {
-                        if (OverrideMatTarget)
-                            tar.TargetGO.GetComponent<Renderer>().material = OverrideMaterial;
-                        else
-                            tar.TargetGO.GetComponent<Renderer>().material = tar.MaterialTarget;
+                        Renderer renderer = tar.TargetGO.GetComponent<Renderer>();
+                        if (renderer != null && tar.MaterialIndex < renderer.materials.Length)
+                        {
+                            Material[] materials = renderer.materials;
+                            if (OverrideMatTarget)
+                                materials[tar.MaterialIndex] = OverrideMaterial;
+                            else
+                                materials[tar.MaterialIndex] = tar.MaterialTarget;
+                            renderer.materials = materials;
+                        }
                     }
                     _waiting = false;
                     Switched = true;
@@ -87,7 +112,13 @@ public class ActiveMaterial : MonoBehaviour
                 {
                     foreach (Target tar in Targets)
                     {
-                        tar.TargetGO.GetComponent<Renderer>().material = tar.tmpMaterial;
+                        Renderer renderer = tar.TargetGO.GetComponent<Renderer>();
+                        if (renderer != null && tar.MaterialIndex < renderer.materials.Length)
+                        {
+                            Material[] materials = renderer.materials;
+                            materials[tar.MaterialIndex] = tar.tmpMaterial;
+                            renderer.materials = materials;
+                        }
                     }
                     _waiting = false;
                     Switched = false;

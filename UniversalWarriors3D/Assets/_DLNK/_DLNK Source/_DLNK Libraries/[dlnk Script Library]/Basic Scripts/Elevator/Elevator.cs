@@ -6,6 +6,7 @@ public class Elevator : MonoBehaviour
     public float speed = 5f;         // Speed of the elevator
     public int originalFloor = 1;    // Original floor number (1 is the ground floor)
 
+    private Vector3 initialPosition; // Initial position of the elevator as a reference point
     private Vector3 targetPosition;
     private int targetFloor = 1;      // Target floor number
     private bool isMoving = false;    // Flag to track if the elevator is currently moving
@@ -17,6 +18,7 @@ public class Elevator : MonoBehaviour
 
     private void Start()
     {
+        initialPosition = transform.position;  // Store the initial position as a reference for originalFloor
         currentFloor = CalculateCurrentFloor();
         SetTargetPosition();
     }
@@ -35,28 +37,23 @@ public class Elevator : MonoBehaviour
                 isMoving = false;
                 currentFloor = CalculateCurrentFloor();
 
-                // Check if the elevator should return to the original floor
-                if (shouldReturn && currentFloor != originalFloor)
-                {
-                    int offset = originalFloor - currentFloor;
-                    ChangeTargetFloor(targetFloor + offset);
-                    shouldReturn = false;
-                }
+                // Reset `shouldReturn` to prevent unintended movement back
+                shouldReturn = false;
             }
-          //  Debug.Log("Current floor is "+currentFloor);
         }
     }
 
     private void SetTargetPosition()
     {
-        // Calculate the target position based on the target floor number and the original floor offset
-        targetPosition = transform.position + Vector3.up * (targetFloor - originalFloor) * floorHeight;
+        // Calculate the target position based on the target floor and initial position offset
+        targetPosition = initialPosition + Vector3.up * (targetFloor - originalFloor) * floorHeight;
     }
 
     private int CalculateCurrentFloor()
     {
-        // Calculate the current floor based on the height of the transform and the original floor offset
-        int calculatedFloor = Mathf.RoundToInt(transform.position.y / floorHeight);
+        // Calculate the current floor based on the height relative to the initial position
+        float heightOffset = transform.position.y - initialPosition.y;
+        int calculatedFloor = originalFloor + Mathf.RoundToInt(heightOffset / floorHeight);
         return calculatedFloor;
     }
 
@@ -76,8 +73,8 @@ public class Elevator : MonoBehaviour
         if (newTargetFloor == targetFloor)
             return;
 
-        // Check if the elevator should return to the original position
-        if (useOriginalFloor && newTargetFloor == originalFloor)
+        // Only set `shouldReturn` when changing to a floor that is not the current target
+        if (useOriginalFloor && newTargetFloor == originalFloor && currentFloor != originalFloor)
         {
             shouldReturn = true;
         }

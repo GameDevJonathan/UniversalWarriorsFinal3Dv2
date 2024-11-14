@@ -63,6 +63,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6151016918282483670, guid: e8caa1e7c20bb3740a7c67f230837e38, type: 3}
+      propertyPath: m_Size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151016919039859851, guid: e8caa1e7c20bb3740a7c67f230837e38, type: 3}
+      propertyPath: m_Size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151016919065240775, guid: e8caa1e7c20bb3740a7c67f230837e38, type: 3}
+      propertyPath: m_Size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151016919455915952, guid: e8caa1e7c20bb3740a7c67f230837e38, type: 3}
+      propertyPath: m_Size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7240246566286296161, guid: e8caa1e7c20bb3740a7c67f230837e38, type: 3}
       propertyPath: m_Name
       value: BuildingTank05

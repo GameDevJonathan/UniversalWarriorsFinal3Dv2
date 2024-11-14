@@ -2,24 +2,20 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ETPGrass00
   m_Shader: {fileID: 4800000, guid: 1943d357ba4d6c8438f2b80309da5570, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _ColorA
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -75,22 +71,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AOPower: 0.5
-    - _AlphaCutoff: 0.5
     - _AnimIntensity: 1
     - _BumpScale: 2
     - _ColorMask: 1.01
@@ -98,7 +80,6 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionLM: 0
-    - _EnvironmentReflections: 1
     - _Fresnel: 2
     - _Glossiness: 0
     - _LenghtAnim: 0
@@ -114,12 +95,8 @@ Material:
     - _OcclusionStrenght: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
     - _RimPower: 0
     - _Smoothness: 0.2
-    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TimeChangeColor: 0
     - _UVSec: 0
@@ -143,5 +120,3 @@ Material:
     - _LeavesGradientxy: {r: 0, g: 1, b: 0, a: 0}
     - _MotionValue: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _RimColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 1}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1

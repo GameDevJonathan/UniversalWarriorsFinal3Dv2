@@ -1,5 +1,3 @@
-using Unity.Cinemachine;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -71,7 +71,7 @@ public class ActiveAnim : MonoBehaviour
         {
             _isIn = false;
 
-            if(_localAuto && activeParent.AutoOnExit)
+            if(activeParent.AutoOnExit)
             {
                 //Debug.Log("Activando animacion de salida");
                 animator.SetTrigger("Actived");

@@ -10,15 +10,6 @@ public class ActiveColGo : MonoBehaviour
     public bool actived;
     [HideInInspector]
     public bool hasexit;
-
-    private void Start()
-    {
-        //find player in scene
-        if (activeParent.UseTopDown)
-            PlayCol = GameObject.FindWithTag("TdLevelManager").GetComponent<TDScene>().PlayerChar;
-        else 
-            PlayCol = GameObject.FindWithTag("Player").GetComponent<Collider>();
-    }
     void OnTriggerEnter(Collider trig)
     {
         //find player in scene if required

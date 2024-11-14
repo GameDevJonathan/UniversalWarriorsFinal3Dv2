@@ -40,7 +40,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""2c8480d8-c6ca-4663-9f4c-4dd66159e1c7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -85,7 +85,16 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                     ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""2ff8ab4b-eaff-43f1-a811-98d846924b25"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9712ab20-08bf-46fd-bea7-47e05258a460"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -289,6 +298,28 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                     ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d36f6179-cfad-40ea-a350-e8f1f18c3c22"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eff0e027-08a7-45a7-8d94-5d66dd340455"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -304,6 +335,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
         m_Locomotion_SprintKey = m_Locomotion.FindAction("SprintKey", throwIfNotFound: true);
         m_Locomotion_CameraInput = m_Locomotion.FindAction("CameraInput", throwIfNotFound: true);
         m_Locomotion_Interaction = m_Locomotion.FindAction("Interaction", throwIfNotFound: true);
+        m_Locomotion_Pause = m_Locomotion.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~@LocomotionInputAction()
@@ -377,6 +409,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
     private readonly InputAction m_Locomotion_SprintKey;
     private readonly InputAction m_Locomotion_CameraInput;
     private readonly InputAction m_Locomotion_Interaction;
+    private readonly InputAction m_Locomotion_Pause;
     public struct LocomotionActions
     {
         private @LocomotionInputAction m_Wrapper;
@@ -388,6 +421,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
         public InputAction @SprintKey => m_Wrapper.m_Locomotion_SprintKey;
         public InputAction @CameraInput => m_Wrapper.m_Locomotion_CameraInput;
         public InputAction @Interaction => m_Wrapper.m_Locomotion_Interaction;
+        public InputAction @Pause => m_Wrapper.m_Locomotion_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -418,6 +452,9 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
             @Interaction.started += instance.OnInteraction;
             @Interaction.performed += instance.OnInteraction;
             @Interaction.canceled += instance.OnInteraction;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(ILocomotionActions instance)
@@ -443,6 +480,9 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
             @Interaction.started -= instance.OnInteraction;
             @Interaction.performed -= instance.OnInteraction;
             @Interaction.canceled -= instance.OnInteraction;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(ILocomotionActions instance)
@@ -469,5 +509,6 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
         void OnSprintKey(InputAction.CallbackContext context);
         void OnCameraInput(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
