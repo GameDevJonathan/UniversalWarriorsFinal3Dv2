@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: ab1947c6a7a8be245b65a4fda1240357
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181685
+  packageName: TKDstyle AnimSet
+  packageVersion: 1.31
+  assetPath: Assets/TKDstyle_AnimSet/Animation/Humanoid/move_run_left.fbx
+  uploadId: 706210
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -831,10 +836,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 181685
-  packageName: TKDstyle AnimSet
-  packageVersion: 1.31
-  assetPath: Assets/TKDstyle_AnimSet/Animation/Humanoid/move_run_left.fbx
-  uploadId: 706210

@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 
 public class Menus : MonoBehaviour
 {
     [Header("All Menu's")]
     public GameObject pauseMenuUI;
     public GameObject endGameMenuUI;
+    public GameObject pauseMenuFirstItem;
+    public GameObject endGameMenuFirstItem;
     
     
 
@@ -46,6 +50,7 @@ public class Menus : MonoBehaviour
         pauseMenuUI.SetActive(false); 
         Time.timeScale = 1f;
         GameIsPause = false;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Restart()
@@ -70,6 +75,9 @@ public class Menus : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPause = true;
+
+        EventSystem.current.SetSelectedGameObject(pauseMenuFirstItem);
+
     }
 
 }
