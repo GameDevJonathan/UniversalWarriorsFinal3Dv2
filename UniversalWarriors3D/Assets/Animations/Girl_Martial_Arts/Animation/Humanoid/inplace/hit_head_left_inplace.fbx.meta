@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 1b683730ca5e47d89a38f5dad99a2d28
+guid: 2c510e1c6c9f06749a4e8c6d730732e3
 ModelImporter:
-  serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -1929627351716934578
-    second: hit_head_left
+  serializedVersion: 22200
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -17,6 +14,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -37,7 +35,7 @@ ModelImporter:
     - serializedVersion: 16
       name: hit_head_left
       takeName: hit_head_left
-      internalID: 0
+      internalID: -1929627351716934578
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -71,10 +69,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -86,6 +86,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -96,6 +97,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -853,13 +855,23 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 019907e1bcf14bf1b18afa500b859f70, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 019907e1bcf14bf1b18afa500b859f70,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181695
+  packageName: Girl Martial Arts AnimSet
+  packageVersion: 1.31
+  assetPath: Assets/Animations/Girl_Martial_Arts/Animation/Humanoid/Inplace/hit_head_left_inplace.fbx
+  uploadId: 706230

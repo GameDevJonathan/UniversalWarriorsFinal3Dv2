@@ -46,6 +46,11 @@ namespace FS_CombatSystem
         public SerializedProperty weaponHolderMask;
         public SerializedProperty minAttackDistance;
 
+        public SerializedProperty overrideDodge;
+        public SerializedProperty dodgeData;
+        public SerializedProperty overrideRoll;
+        public SerializedProperty rollData;
+
 
         WeaponData weaponData;
 
@@ -96,6 +101,11 @@ namespace FS_CombatSystem
             weaponHoldingClip = serializedObject.FindProperty("weaponHoldingClip");
             weaponHolderMask = serializedObject.FindProperty("weaponHolderMask");
             minAttackDistance = serializedObject.FindProperty("minAttackDistance");
+
+            overrideDodge = serializedObject.FindProperty("overrideDodge");
+            dodgeData = serializedObject.FindProperty("dodgeData");
+            overrideRoll = serializedObject.FindProperty("overrideRoll");
+            rollData = serializedObject.FindProperty("rollData");
 
             weaponData = target as WeaponData;
             targetData = weaponData;
@@ -233,8 +243,21 @@ namespace FS_CombatSystem
 
                 EditorGUILayout.PropertyField(minAttackDistance, new GUIContent("Min Attack Distance To Target"));
 
-                EditorGUI.indentLevel--;
                 EditorGUILayout.EndVertical();
+
+                EditorGUILayout.BeginVertical(GUI.skin.box);
+                EditorGUILayout.PropertyField(overrideDodge);
+                if(overrideDodge.boolValue)
+                    EditorGUILayout.PropertyField(dodgeData);
+                EditorGUILayout.EndVertical();
+
+                EditorGUILayout.BeginVertical(GUI.skin.box);
+                EditorGUILayout.PropertyField(overrideRoll);
+                if (overrideRoll.boolValue)
+                    EditorGUILayout.PropertyField(rollData);
+                EditorGUILayout.EndVertical();
+
+                EditorGUI.indentLevel--;
             }
 
             serializedObject.ApplyModifiedProperties();

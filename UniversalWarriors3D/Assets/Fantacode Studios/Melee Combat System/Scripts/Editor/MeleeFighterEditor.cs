@@ -19,6 +19,14 @@ namespace FS_CombatSystem
         public SerializedProperty OnGettingUpEvent;
         public SerializedProperty OnDeathEvent;
 
+        public SerializedProperty CanDodge;
+        public SerializedProperty dodgeData;
+        public SerializedProperty OnlyDodgeInCombatMode;
+
+        public SerializedProperty CanRoll;
+        public SerializedProperty rollData;
+        public SerializedProperty OnlyRollInCombatMode;
+
         bool eventFoldOut;
 
         private void OnEnable()
@@ -28,9 +36,16 @@ namespace FS_CombatSystem
             OnWeaponEquipEvent = serializedObject.FindProperty("OnWeaponEquipEvent");
             OnWeaponUnEquipEvent = serializedObject.FindProperty("OnWeaponUnEquipEvent");
             OnCounterMisusedEvent = serializedObject.FindProperty("OnCounterMisusedEvent");
+            OnGettingUpEvent = serializedObject.FindProperty("OnGettingUpEvent");
             OnDeathEvent = serializedObject.FindProperty("OnDeathEvent");
             OnKnockDownEvent = serializedObject.FindProperty("OnKnockDownEvent");
-            OnGettingUpEvent = serializedObject.FindProperty("OnGettingUpEvent");
+
+            CanDodge = serializedObject.FindProperty("CanDodge");
+            dodgeData = serializedObject.FindProperty("dodgeData");
+            OnlyDodgeInCombatMode = serializedObject.FindProperty("OnlyDodgeInCombatMode");
+            CanRoll = serializedObject.FindProperty("CanRoll");
+            rollData = serializedObject.FindProperty("rollData");
+            OnlyRollInCombatMode = serializedObject.FindProperty("OnlyRollInCombatMode");
         }
 
 
@@ -40,6 +55,23 @@ namespace FS_CombatSystem
             GUILayout.Space(5f);
 
             serializedObject.Update();
+            EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUILayout.PropertyField(CanDodge);
+            if (CanDodge.boolValue)
+            {
+                EditorGUILayout.PropertyField(dodgeData);
+                EditorGUILayout.PropertyField(OnlyRollInCombatMode);
+            }
+            EditorGUILayout.EndVertical();
+            GUILayout.Space(5f);
+            EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUILayout.PropertyField(CanRoll);
+            if (CanRoll.boolValue)
+            {
+                EditorGUILayout.PropertyField(rollData);
+                EditorGUILayout.PropertyField(OnlyRollInCombatMode);
+            }
+            EditorGUILayout.EndVertical();
 
             eventFoldOut = EditorGUILayout.Foldout(eventFoldOut, "Events");
             if (eventFoldOut)

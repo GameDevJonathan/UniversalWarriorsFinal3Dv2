@@ -104,19 +104,22 @@ namespace FS_ThirdPerson
                             else
                                 break;
 
-                            heightOrigin += transform.forward * 0.5f;
+                            heightOrigin += transform.forward * 0.4f;
                         }
                         else
+                        {
+                            hitData.ledgeHitFound = false;
                             break;
+                        }
                     }
-                    if (hitData.ledgeHitFound) hitData.ledgeHitFound = !Physics.CheckSphere(hitData.ledgeHit.point + Vector3.up * 0.5f, 0.2f, ObstacleLayer) && i < 7;
+                    if (hitData.ledgeHitFound) 
+                        hitData.ledgeHitFound = !Physics.CheckSphere(hitData.ledgeHit.point + Vector3.up * 0.5f, 0.3f, ObstacleLayer) && i < 7;
                 }
 
             }
 
             return hitData;
         }
-
     }
     public struct ObstacleHitData
     {

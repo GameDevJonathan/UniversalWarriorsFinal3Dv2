@@ -128,19 +128,29 @@ namespace FS_ParkourSystem
             if (validModel)
             {
                 var playerPrefab = (GameObject)Resources.Load("Parkour Controller");
+                var footTriggerPrefab = (GameObject)Resources.Load("FootTrigger");
                 var parkourController = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-
-                //var camera = Instantiate(cameraPrefab, Vector3.zero, Quaternion.identity);
                 var model = Instantiate(this.model, Vector3.zero, Quaternion.identity);
                 var player = parkourController.GetComponentInChildren<LocomotionController>().gameObject;
                 model.transform.SetParent(player.transform);
                 parkourController.GetComponentInChildren<CameraController>().followTarget = model.transform;
-                player.GetComponent<Animator>().avatar = this.model.GetComponent<Animator>().avatar;
-                //camera.name = "Third Person Camera";
+
+                var animator = player.GetComponent<Animator>();
+                animator.avatar = this.model.GetComponent<Animator>().avatar;
                 parkourController.name = playerPrefab.name;
                 model.name = this.model.name;
-                this.model = null;
-                //player.GetComponent<FootIK>().root = model.transform;
+
+                var rightFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot).transform;
+                var leftFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot).transform;
+                var rightCollider = PrefabUtility.InstantiatePrefab(footTriggerPrefab, rightFoot) as GameObject;
+                var leftCollider = PrefabUtility.InstantiatePrefab(footTriggerPrefab, leftFoot) as GameObject;
+                rightCollider.transform.localPosition = Vector3.zero;
+                leftCollider.transform.localPosition = Vector3.zero;
+
+                if (!(rightCollider.layer != LayerMask.NameToLayer("FootTrigger")))
+                    rightCollider.layer = LayerMask.NameToLayer("FootTrigger");
+                if (!(leftCollider.layer != LayerMask.NameToLayer("FootTrigger")))
+                    leftCollider.layer = LayerMask.NameToLayer("FootTrigger");
 
                 Undo.RegisterCreatedObjectUndo(parkourController, "new character controller added");
                 Undo.RegisterCreatedObjectUndo(model, "new character added");

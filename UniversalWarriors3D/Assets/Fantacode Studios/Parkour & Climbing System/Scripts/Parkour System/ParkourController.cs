@@ -128,11 +128,11 @@ namespace FS_ParkourSystem
                 return;
             }
 
+            //Perform Parkour Actions
             if(inputManager.Parkour && player.IsGrounded)
             {
                 var hitData = environmentScanner.ObstacleCheck();
                 HandleParkourAction(hitData);
-
             }
 
             // Pefrom Parkour Actions or Predictive Jump/Climb
@@ -641,9 +641,8 @@ namespace FS_ParkourSystem
 
                 yield return null;
             }
-            if (IsInFocus)
-                transform.rotation = targetRot;
-
+            
+            playerController.IsInAir = false;
             inAirOfPredictiveJump = false;
             IsHanging = false;
 
@@ -651,9 +650,12 @@ namespace FS_ParkourSystem
 
             matchFootToTarget = false;
 
-           
-                
-            player.OnEndSystem(this);
+
+            if (IsInFocus)
+            {
+                transform.rotation = targetRot;
+                player.OnEndSystem(this);
+            }
             ResetRootMotion();
             InAction = false;
             inPredictiveJump = false;
@@ -1060,7 +1062,7 @@ namespace FS_ParkourSystem
                 transform.rotation = targetRot;
             else
                 IsHanging = false;
-
+            playerController.IsInAir = false;
             inAirOfPredictiveJump = false;
             ResetRootMotion();
             inPredictiveJump = false;

@@ -31,7 +31,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f0154cd1-84b9-41c4-8df8-0b483da8cf2d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -40,7 +40,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                     ""name"": ""Block"",
                     ""type"": ""Button"",
                     ""id"": ""a97793d9-c227-4b10-b550-211e208758ee"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -67,6 +67,24 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                     ""name"": ""HeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""23a6de03-589f-4b1f-8a94-471f2bf2ff3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""e38e333b-47de-4b66-9a69-1ba85f7a40a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""37cba397-6d8c-4a06-ab95-7820d77fa06b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -110,7 +128,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""75699d44-1da7-4cdd-8f51-5457ad49b1ac"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -132,7 +150,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""83a850d7-96ce-4c38-bbfd-b3ac4a2854b2"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -154,7 +172,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3e284574-d346-4100-b72e-f776d1dd6eb5"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -176,11 +194,55 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""68b09ddc-5478-4e4a-acf3-6f005d0408a3"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed8ac07b-da83-4bea-82ad-cbda431a9165"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96cd8d77-9869-42cc-a2b7-6cbe39ae4ed6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f130cf62-2399-4d1a-8d2b-311feb6177bf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12748d56-4b5d-423e-a464-d055f327ba07"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -230,6 +292,8 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
         m_Combat_CombatMode = m_Combat.FindAction("Combat Mode", throwIfNotFound: true);
         m_Combat_Counter = m_Combat.FindAction("Counter", throwIfNotFound: true);
         m_Combat_HeavyAttack = m_Combat.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_Combat_Dodge = m_Combat.FindAction("Dodge", throwIfNotFound: true);
+        m_Combat_Roll = m_Combat.FindAction("Roll", throwIfNotFound: true);
     }
 
     ~@CombatInputAction()
@@ -301,6 +365,8 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_CombatMode;
     private readonly InputAction m_Combat_Counter;
     private readonly InputAction m_Combat_HeavyAttack;
+    private readonly InputAction m_Combat_Dodge;
+    private readonly InputAction m_Combat_Roll;
     public struct CombatActions
     {
         private @CombatInputAction m_Wrapper;
@@ -310,6 +376,8 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
         public InputAction @CombatMode => m_Wrapper.m_Combat_CombatMode;
         public InputAction @Counter => m_Wrapper.m_Combat_Counter;
         public InputAction @HeavyAttack => m_Wrapper.m_Combat_HeavyAttack;
+        public InputAction @Dodge => m_Wrapper.m_Combat_Dodge;
+        public InputAction @Roll => m_Wrapper.m_Combat_Roll;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +402,12 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
             @HeavyAttack.started += instance.OnHeavyAttack;
             @HeavyAttack.performed += instance.OnHeavyAttack;
             @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @Dodge.started += instance.OnDodge;
+            @Dodge.performed += instance.OnDodge;
+            @Dodge.canceled += instance.OnDodge;
+            @Roll.started += instance.OnRoll;
+            @Roll.performed += instance.OnRoll;
+            @Roll.canceled += instance.OnRoll;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -353,6 +427,12 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
             @HeavyAttack.started -= instance.OnHeavyAttack;
             @HeavyAttack.performed -= instance.OnHeavyAttack;
             @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @Dodge.started -= instance.OnDodge;
+            @Dodge.performed -= instance.OnDodge;
+            @Dodge.canceled -= instance.OnDodge;
+            @Roll.started -= instance.OnRoll;
+            @Roll.performed -= instance.OnRoll;
+            @Roll.canceled -= instance.OnRoll;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -404,5 +484,7 @@ public partial class @CombatInputAction: IInputActionCollection2, IDisposable
         void OnCombatMode(InputAction.CallbackContext context);
         void OnCounter(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
 }

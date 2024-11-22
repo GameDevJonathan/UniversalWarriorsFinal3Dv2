@@ -229,7 +229,7 @@ namespace FS_CombatSystem
 
         public override void HandleUpdate()
         {
-            if (playerController.FocusedSystemState == SystemState.Combat)
+            if (IsInFocus)
                 GroundCheck();
             else
                 isGrounded = player.IsGrounded;
@@ -262,6 +262,22 @@ namespace FS_CombatSystem
 
             if (meleeFighter.IsBlocking && !CombatMode)
                 CombatMode = true;
+
+            if (meleeFighter.CanDodge && inputManager.Dodge && !meleeFighter.IsBusy)
+            {
+                if (meleeFighter.OnlyDodgeInCombatMode && !IsInFocus) return;
+
+                StartCoroutine(meleeFighter.Dodge(player.MoveDir));
+                return;
+            }
+
+            if (meleeFighter.CanRoll && inputManager.Roll && !meleeFighter.IsBusy)
+            {
+                if (meleeFighter.OnlyRollInCombatMode && !IsInFocus) return;
+
+                StartCoroutine(meleeFighter.Roll(player.MoveDir));
+                return;
+            }
 
             if (!CombatMode)
                 return;
@@ -304,7 +320,6 @@ namespace FS_CombatSystem
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
                     rotationSpeed * Time.deltaTime);
             }
-
 
 
             // Split the velocity into it's forward and sideward component and set it into the forwardSpeed and strafeSpeed

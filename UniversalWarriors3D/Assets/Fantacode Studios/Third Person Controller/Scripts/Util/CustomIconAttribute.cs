@@ -45,7 +45,7 @@ namespace FS_ThirdPerson
                 }
                 else if (icon == null)
                 {
-                    Debug.LogError($"Custom icon not found at the specified path: {iconAttribute.IconPath} for {objectType.Name}");
+                    //Debug.LogError($"Custom icon not found at the specified path: {iconAttribute.IconPath} for {objectType.Name}");
                 }
             }
         }

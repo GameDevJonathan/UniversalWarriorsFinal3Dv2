@@ -153,6 +153,9 @@ MonoBehaviour:
   blockedDamage: 25
   blockReactionData: {fileID: 11400000, guid: c05e53600afde0e468c7f46d59ffed37, type: 2}
   blockMask: {fileID: 0}
+  canCounter: 1
+  playActionIfCounterMisused: 0
+  counterMisusedAction: {fileID: 0}
   overrideController: {fileID: 0}
   useRootmotion: 0
   overrideMoveSpeed: 0
@@ -160,6 +163,25 @@ MonoBehaviour:
   runSpeed: 0
   sprintSpeed: 0
   combatMoveSpeed: 0
+  overrideDodge: 0
+  dodgeData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  overrideRoll: 0
+  rollData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyRollInCombatMode: 1
   weaponHoldingClip: {fileID: 0}
   weaponHolderMask: {fileID: 0}
   weaponEquipSound: {fileID: 0}

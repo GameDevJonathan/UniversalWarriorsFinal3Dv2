@@ -7,8 +7,11 @@ namespace FS_ThirdPerson
         public float speed;
         void Update()
         {
+            if (Input.GetKeyDown("3"))
+                Debug.Break();
+
             if (Input.GetKeyDown("1"))
-                Time.timeScale = Time.timeScale > 0 ? speed : 1f;
+                Time.timeScale = 1f;
 
             if (Input.GetKeyDown("2"))
                 Time.timeScale = .1f;

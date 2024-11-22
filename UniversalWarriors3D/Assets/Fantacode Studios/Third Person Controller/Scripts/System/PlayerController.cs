@@ -14,6 +14,7 @@ namespace FS_ThirdPerson
         Climbing,
         Combat,
         GrapplingHook,
+        Swing,
         Other
     }
     public enum SubSystemState
@@ -94,6 +95,9 @@ namespace FS_ThirdPerson
 
         public bool IsInAir { get; set; }
         public bool PreventRotation { get; set; }
+
+        public bool PreventFallingFromLedge { get; set; } = true;
+
 
         // Awake all registered scripts
         void Awake()

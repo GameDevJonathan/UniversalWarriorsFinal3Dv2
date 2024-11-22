@@ -88,6 +88,17 @@ namespace FS_CombatSystem
         [Tooltip("Movement speed while the character is in combat mode(Locked into a target).")]
         [SerializeField] float combatMoveSpeed = 2f;
 
+        [Tooltip("Indicates if the fighter can dodge.")]
+        [SerializeField] bool overrideDodge;
+        [SerializeField] DodgeData dodgeData;
+
+        [Tooltip("Indicates if the fighter can roll.")]
+        [SerializeField] bool overrideRoll;
+        [SerializeField] DodgeData rollData;
+
+        [Tooltip("If true, fighter will only be able to roll in combat mode.")]
+        public bool OnlyRollInCombatMode = true;
+
         [Tooltip("Animation clip for the weapon holding pose, used to create a specific layer for the holding pose.")]
         [SerializeField] AnimationClip weaponHoldingClip;
 
@@ -142,6 +153,10 @@ namespace FS_CombatSystem
         public float SprintSpeed => sprintSpeed;
         public float CombatModeSpeed => combatMoveSpeed;
 
+        public bool OverrideDodge => overrideDodge;
+        public DodgeData DodgeData => dodgeData;
+        public bool OverrideRoll => overrideRoll;
+        public DodgeData RollData => rollData;
 
         public AnimationClip WeaponHoldingClip => weaponHoldingClip;
         public AvatarMask WeaponHolderMask => weaponHolderMask;

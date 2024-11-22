@@ -7,6 +7,8 @@ namespace FS_CombatSystem
         [Header("Keys")]
         [SerializeField] KeyCode attackKey = KeyCode.Mouse0;
         [SerializeField] KeyCode blockKey = KeyCode.Mouse1;
+        [SerializeField] KeyCode dodgeKey = KeyCode.LeftAlt;
+        [SerializeField] KeyCode rollKey = KeyCode.Space;
         [SerializeField] KeyCode combatModeKey = KeyCode.F;
         [SerializeField] KeyCode heavyAttackKey = KeyCode.R;
         [SerializeField] KeyCode counterKey = KeyCode.Q;
@@ -15,14 +17,17 @@ namespace FS_CombatSystem
         [Header("Buttons")]
         [SerializeField] string attackButton;
         [SerializeField] string blockButton;
+        [SerializeField] string dodgeButton;
+        [SerializeField] string rollButton;
         [SerializeField] string combatModeButton;
         [SerializeField] string counterButton;
         [SerializeField] string heavyAttackButton;
 
-        public bool Block { get; set; }
-        public bool CombatMode { get; set; }
-
         public event Action<float, bool, bool, bool> OnAttackPressed;
+        public bool Block { get; set; }
+        public bool Dodge { get; set; }
+        public bool Roll { get; set; }
+        public bool CombatMode { get; set; }
 
         bool attackDown;
         bool heavyAttackDown;
@@ -66,28 +71,23 @@ namespace FS_CombatSystem
             //Block
             HandleBlock();
 
+            HandleDodge();
+            HandleRoll();
+
             //Combat Mode
             HandleCombatMode();
         }
 
         void HandleAttack()
         {
-            if (
-#if !UNITY_ANDROID && !UNITY_IOS
-                    Input.GetKeyDown(attackKey) || IsButtonDown(attackButton) || 
-#endif
-                    IsNewInputAttackDown())
+#if inputsystem
+            if (input.Combat.Attack.WasPressedThisFrame())
             {
                 attackDown = true;
             }
-
             if (attackDown)
             {
-                if (AttackHoldTime >= chargeTime ||
-#if !UNITY_ANDROID && !UNITY_IOS
-                        Input.GetKeyUp(attackKey) || IsButtonUp(attackButton) || 
-#endif
-                        IsNewInputAttackUp())
+                if (AttackHoldTime >= chargeTime || input.Combat.Attack.WasReleasedThisFrame())
                 {
                     OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime);
                     attackDown = false;
@@ -95,26 +95,36 @@ namespace FS_CombatSystem
                 }
                 AttackHoldTime += Time.deltaTime;
             }
+#else
+
+            if ( Input.GetKeyDown(attackKey) || IsButtonDown(attackButton))
+            {
+                attackDown = true;
+            }
+            if (attackDown)
+            {
+                if (AttackHoldTime >= chargeTime || Input.GetKeyUp(attackKey) || IsButtonUp(attackButton))
+                {
+                    OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime);
+                    attackDown = false;
+                    AttackHoldTime = 0f;
+                }
+                AttackHoldTime += Time.deltaTime;
+            }
+#endif
         }
 
         void HandleHeavyAttack()
         {
-            if (
-#if !UNITY_ANDROID && !UNITY_IOS
-        Input.GetKeyDown(heavyAttackKey) || IsButtonDown(heavyAttackButton) || 
-#endif
-            IsNewInputHeavyAttackDown())
+#if inputsystem
+            if (input.Combat.HeavyAttack.WasPressedThisFrame())
             {
                 heavyAttackDown = true;
             }
 
             if (heavyAttackDown)
             {
-                if (HeavyAttackHoldTime >= chargeTime ||
-#if !UNITY_ANDROID && !UNITY_IOS
-            Input.GetKeyUp(heavyAttackKey) || IsButtonUp(heavyAttackButton) || 
-#endif
-            IsNewInputHeavyAttackUp())
+                if (HeavyAttackHoldTime >= chargeTime || input.Combat.HeavyAttack.WasReleasedThisFrame())
                 {
                     OnAttackPressed?.Invoke(HeavyAttackHoldTime, true, false, HeavyAttackHoldTime >= chargeTime);
                     heavyAttackDown = false;
@@ -123,52 +133,78 @@ namespace FS_CombatSystem
 
                 HeavyAttackHoldTime += Time.deltaTime;
             }
+#else
+            if (Input.GetKeyDown(heavyAttackKey) || IsButtonDown(heavyAttackButton))
+            {
+                heavyAttackDown = true;
+            }
 
+            if (heavyAttackDown)
+            {
+                if (HeavyAttackHoldTime >= chargeTime || Input.GetKeyUp(heavyAttackKey) || IsButtonUp(heavyAttackButton))
+                {
+                    OnAttackPressed?.Invoke(HeavyAttackHoldTime, true, false, HeavyAttackHoldTime >= chargeTime);
+                    heavyAttackDown = false;
+                    HeavyAttackHoldTime = 0f;
+                }
+
+                HeavyAttackHoldTime += Time.deltaTime;
+            }
+#endif
         }
 
         void HandleCounter()
         {
-            if (!useAttackInputForCounter && (
-#if !UNITY_ANDROID && !UNITY_IOS
-                Input.GetKeyDown(counterKey) || IsButtonDown(counterButton) || 
+            if (!useAttackInputForCounter)
+            {
+#if inputsystem
+                if (input.Combat.Counter.WasPressedThisFrame())
+                {
+                    OnAttackPressed?.Invoke(0f, false, true, false);
+                }
+#else
+                if(Input.GetKeyDown(counterKey) || IsButtonDown(counterButton))
+                {
+                    OnAttackPressed?.Invoke(0f, false, true, false);
+                }
 #endif
-                IsNewInputCounterDown()))
-                OnAttackPressed?.Invoke(0f, false, true, false);
+            }
         }
 
         void HandleBlock()
         {
-            Block = false;
-
-#if !UNITY_ANDROID && !UNITY_IOS
-            if (Input.GetKey(blockKey) || 
-                (!string.IsNullOrEmpty(blockButton) && Input.GetButton(blockButton)))
-            {
-                Block = true;
-            }
+#if inputsystem
+            Block = input.Combat.Block.inProgress;
+#else
+            Block = Input.GetKey(blockKey) || (!string.IsNullOrEmpty(blockButton) && Input.GetButton(blockButton));
 #endif
+        }
+
+        void HandleDodge()
+        {
 
 #if inputsystem
-            Block = Block || input.Combat.Block.inProgress;
+                Dodge = input.Combat.Dodge.WasPressedThisFrame();
+#else
+                Dodge = Input.GetKeyDown(dodgeKey) || (!string.IsNullOrEmpty(dodgeButton) && Input.GetButtonDown(dodgeButton));
+#endif
+        }
+
+        void HandleRoll()
+        {
+#if inputsystem
+            Roll = input.Combat.Roll.WasPressedThisFrame();
+#else
+            Roll = Input.GetKeyDown(rollKey) || (!string.IsNullOrEmpty(rollButton) && Input.GetButtonDown(rollButton));
 #endif
         }
 
         void HandleCombatMode()
         {
-            CombatMode = false;
-
-#if !UNITY_ANDROID && !UNITY_IOS
-            if (Input.GetKeyDown(combatModeKey) || (!string.IsNullOrEmpty(combatModeButton) && Input.GetButtonDown(combatModeButton)))
-            {
-                CombatMode = true;
-            }
-#endif
-
 #if inputsystem
-            if (input.Combat.CombatMode.WasPressedThisFrame())
-            {
-                CombatMode = true;
-            }
+            CombatMode = input.Combat.CombatMode.WasPressedThisFrame();
+#else
+            CombatMode = Input.GetKeyDown(combatModeKey) || (!string.IsNullOrEmpty(combatModeButton) && Input.GetButtonDown(combatModeButton));
 #endif
         }
 
@@ -189,51 +225,6 @@ namespace FS_CombatSystem
                 return Input.GetButtonUp(buttonName);
             else
                 return false;
-        }
-
-        public bool IsNewInputAttackDown()
-        {
-#if inputsystem
-            return input.Combat.Attack.WasPressedThisFrame();
-#else
-            return false;
-#endif
-        }
-
-        public bool IsNewInputAttackUp()
-        {
-#if inputsystem
-            return input.Combat.Attack.WasReleasedThisFrame();
-#else
-            return false;
-#endif
-        }
-
-        public bool IsNewInputHeavyAttackDown()
-        {
-#if inputsystem
-            return input.Combat.HeavyAttack.WasPressedThisFrame();
-#else
-            return false;
-#endif
-        }
-
-        public bool IsNewInputHeavyAttackUp()
-        {
-#if inputsystem
-            return input.Combat.HeavyAttack.WasReleasedThisFrame();
-#else
-            return false;
-#endif
-        }
-
-        public bool IsNewInputCounterDown()
-        {
-#if inputsystem
-            return input.Combat.Counter.WasPressedThisFrame();
-#else
-            return false;
-#endif
         }
     }
 }

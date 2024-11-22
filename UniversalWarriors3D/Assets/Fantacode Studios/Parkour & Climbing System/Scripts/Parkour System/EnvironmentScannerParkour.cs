@@ -10,6 +10,9 @@ namespace FS_ThirdPerson
 
         [field: Tooltip("Jump will only be performed if the distance to the target position is greater than this value")]
         [field: SerializeField] public float MinJumpDistance { get; private set; } = 0.8f;
+        [field: Tooltip("Jump to the closest ledge for Predictive Jump")]
+        public bool jumpToTheClosestLedge = false;
+
 
         [field: Tooltip("Uses Player Forward for Predictive Jump")]
         public bool alwaysUsePlayerForward = false;
@@ -44,101 +47,101 @@ namespace FS_ThirdPerson
             return ledgeHit.transform;
         }
 
-            public bool ClimbLedgeCheck(Vector3 dir, out ClimbLedgeData climbLedgeData)
-            {
-                climbLedgeData = new ClimbLedgeData();
+        public bool ClimbLedgeCheck(Vector3 dir, out ClimbLedgeData climbLedgeData)
+        {
+            climbLedgeData = new ClimbLedgeData();
 
-                if (dir == Vector3.zero)
-                    return false;
-
-                var origin = transform.position + Vector3.up;
-
-                for (int i = 0; i < 15; ++i)
-                {
-                    if (Physics.Raycast(origin + new Vector3(0, 0.15f, 0) * i, dir, out RaycastHit hit, 1f, LedgeLayer))
-                    {
-                        climbLedgeData.ledgeHit = hit;
-                        return true;
-                    }
-                }
-
+            if (dir == Vector3.zero)
                 return false;
-            }
 
-            public bool DropLedgeCheck(Vector3 moveDir, out ClimbLedgeData climbLedgeData)
+            var origin = transform.position + Vector3.up;
+
+            for (int i = 0; i < 15; ++i)
             {
-                climbLedgeData = new ClimbLedgeData();
-
-                var origin = transform.position + transform.forward * 1 + Vector3.down * 0.1f;
-
-                //Debug.DrawRay(origin, -transform.forward * 1f, Color.cyan);
-                if (Physics.SphereCast(origin, 0.1f, -transform.forward, out RaycastHit hit, 1f + 0.4f, LedgeLayer))
+                if (Physics.Raycast(origin + new Vector3(0, 0.15f, 0) * i, dir, out RaycastHit hit, 1f, LedgeLayer))
                 {
                     climbLedgeData.ledgeHit = hit;
                     return true;
                 }
-
-                return false;
             }
 
-            public bool LedgeCheck(Vector3 moveDir, out LedgeData ledgeData)
+            return false;
+        }
+
+        public bool DropLedgeCheck(Vector3 moveDir, out ClimbLedgeData climbLedgeData)
+        {
+            climbLedgeData = new ClimbLedgeData();
+
+            var origin = transform.position + transform.forward * 1 + Vector3.down * 0.1f;
+
+            //Debug.DrawRay(origin, -transform.forward * 1f, Color.cyan);
+            if (Physics.SphereCast(origin, 0.1f, -transform.forward, out RaycastHit hit, 1f + 0.4f, LedgeLayer))
             {
-                ledgeData = new LedgeData();
-
-                if (moveDir == Vector3.zero)
-                    moveDir = transform.forward;
-
-                var rigthVec = Vector3.Cross(Vector3.up, moveDir);
-
-                var origin = transform.position + moveDir * 0.6f + Vector3.up;
-                //PhysicsUtil.ThreeRayCasts(origin, Vector3.down, 0.25f, rigthVec,
-                //    out List<RaycastHit> hits, 50f, ObstacleLayer, false, false);
-
-                //    var validHits = hits.Where(h => transform.position.y - h.point.y > ledgeHeightThreshold).ToList();
-
-                //    if (validHits.Count > 0)
-                //    {
-                //        var hit = validHits.First();
-
-                //        float hitHeight = transform.position.y - hit.point.y;
-                //        if (hitHeight > ledgeHeightThreshold)
-                //        {
-                var surfaceOrgin = transform.position + moveDir.normalized * 0.8f + Vector3.down * 0.05f;
-                //var surfaceRayDir = transform.position + Vector3.down * 0.05f - surfaceOrgin;
-
-                if (ledgeData.surfaceHitFound = Physics.Raycast(surfaceOrgin, -moveDir, out ledgeData.surfaceHit, 1f, ObstacleLayer))
-                {
-                    //Debug.DrawRay(surfaceOrgin, -moveDir, Color.cyan);
-                    //Debug.DrawRay(ledgeData.surfaceHit.point, ledgeData.surfaceHit.normal, Color.blue);
-
-                    //ledgeData.height = hitHeight;
-                    ledgeData.angle = Vector3.Angle(transform.forward, ledgeData.surfaceHit.normal);
-
-                    var distPoint = ledgeData.surfaceHit.point;
-                    distPoint.y = transform.position.y;
-                    var distVec = distPoint - transform.position;
-
-                    ledgeData.distance = Vector3.Dot(distVec, ledgeData.surfaceHit.normal);
-
-                    surfaceOrgin = transform.position + Vector3.up * ledgeHeightThreshold + moveDir.normalized * 1f;
-                    //surfaceOrgin = ledgeData.surfaceHit.point + moveDir.normalized * 0.05f;
-                    RaycastHit heightHit;
-                    if (Physics.Raycast(surfaceOrgin, Vector3.down, out heightHit, 2f, ObstacleLayer))
-                        if ((ledgeData.height = heightHit.distance) < ledgeHeightThreshold * 2)
-                        {
-                            return false;
-                        }
-
-                    return true;
-                }
-                //else
-                //    return true;
-                //    }
-                //}
-
-
-                return false;
+                climbLedgeData.ledgeHit = hit;
+                return true;
             }
+
+            return false;
+        }
+
+        public bool LedgeCheck(Vector3 moveDir, out LedgeData ledgeData)
+        {
+            ledgeData = new LedgeData();
+
+            if (moveDir == Vector3.zero)
+                moveDir = transform.forward;
+
+            var rigthVec = Vector3.Cross(Vector3.up, moveDir);
+
+            var origin = transform.position + moveDir * 0.6f + Vector3.up;
+            //PhysicsUtil.ThreeRayCasts(origin, Vector3.down, 0.25f, rigthVec,
+            //    out List<RaycastHit> hits, 50f, ObstacleLayer, false, false);
+
+            //    var validHits = hits.Where(h => transform.position.y - h.point.y > ledgeHeightThreshold).ToList();
+
+            //    if (validHits.Count > 0)
+            //    {
+            //        var hit = validHits.First();
+
+            //        float hitHeight = transform.position.y - hit.point.y;
+            //        if (hitHeight > ledgeHeightThreshold)
+            //        {
+            var surfaceOrgin = transform.position + moveDir.normalized * 0.8f + Vector3.down * 0.05f;
+            //var surfaceRayDir = transform.position + Vector3.down * 0.05f - surfaceOrgin;
+
+            if (ledgeData.surfaceHitFound = Physics.Raycast(surfaceOrgin, -moveDir, out ledgeData.surfaceHit, 1f, ObstacleLayer))
+            {
+                //Debug.DrawRay(surfaceOrgin, -moveDir, Color.cyan);
+                //Debug.DrawRay(ledgeData.surfaceHit.point, ledgeData.surfaceHit.normal, Color.blue);
+
+                //ledgeData.height = hitHeight;
+                ledgeData.angle = Vector3.Angle(transform.forward, ledgeData.surfaceHit.normal);
+
+                var distPoint = ledgeData.surfaceHit.point;
+                distPoint.y = transform.position.y;
+                var distVec = distPoint - transform.position;
+
+                ledgeData.distance = Vector3.Dot(distVec, ledgeData.surfaceHit.normal);
+
+                surfaceOrgin = transform.position + Vector3.up * ledgeHeightThreshold + moveDir.normalized * 1f;
+                //surfaceOrgin = ledgeData.surfaceHit.point + moveDir.normalized * 0.05f;
+                RaycastHit heightHit;
+                if (Physics.Raycast(surfaceOrgin, Vector3.down, out heightHit, 2f, ObstacleLayer))
+                    if ((ledgeData.height = heightHit.distance) < ledgeHeightThreshold * 2)
+                    {
+                        return false;
+                    }
+
+                return true;
+            }
+            //else
+            //    return true;
+            //    }
+            //}
+
+
+            return false;
+        }
 
         public class LandableTarget
         {
@@ -258,7 +261,7 @@ namespace FS_ThirdPerson
                 var origin = lastPos - dispDir * parabolaBoxCastHalf.y;
 
                 hitFound = Physics.BoxCast(origin, parabolaVaryingBoxHalf, dispDir, out hitVarying, Quaternion.LookRotation(dispDir), dispLen, ObstacleLayer);
-                BoxCastDebug.DrawBoxCastBox(origin, parabolaVaryingBoxHalf, Quaternion.LookRotation(dispDir), dispDir, dispLen, Color.yellow);
+                //BoxCastDebug.DrawBoxCastBox(origin, parabolaVaryingBoxHalf, Quaternion.LookRotation(dispDir), dispDir, dispLen, Color.yellow);
 
                 //GizmosExtend.drawBoxCastBox(origin, parabolaVaryingBoxHalf, Quaternion.LookRotation(dispDir), dispDir, dispLen, Color.green);
                 //var babu = origin;
@@ -366,7 +369,10 @@ namespace FS_ThirdPerson
                     var diff = p.position.y - prevPoint.y;
                     if (Mathf.Abs(diff) > 0.2f)
                         group = new List<LandableTarget>();
-                    group.Insert(0, p);
+                    if (!jumpToTheClosestLedge)
+                        group.Insert(0, p);
+                    else
+                        group.Add(p);
                     if (group.Count > 0 && !priorityGroup.Contains(group))
                         priorityGroup.Add(group);
                     prevPoint = p.position;
@@ -376,7 +382,10 @@ namespace FS_ThirdPerson
                 {
                     while (item.Count > 0)
                     {
-                        targetPoint = item[Mathf.Clamp(item.Count / 2, 0, 3)];
+                        if (!jumpToTheClosestLedge)
+                            targetPoint = item[Mathf.Clamp(item.Count / 2, 0, 3)];
+                        else
+                            targetPoint = item[Mathf.Clamp(0, 0, item.Count - 1)];
 
                         var disXZ = targetPoint.position - transform.position;
                         var disY = disXZ.y;

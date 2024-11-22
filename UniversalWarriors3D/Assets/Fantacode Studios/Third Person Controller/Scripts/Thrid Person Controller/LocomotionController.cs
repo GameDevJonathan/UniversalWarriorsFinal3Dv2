@@ -7,40 +7,99 @@ namespace FS_ThirdPerson
     public static partial class AnimatorParameters
     {
         public static int moveAmount = Animator.StringToHash("moveAmount");
+        public static int strafeAmount = Animator.StringToHash("strafeAmount");
         public static int IsGrounded = Animator.StringToHash("IsGrounded");
         public static int fallAmount = Animator.StringToHash("fallAmount");
         public static int idleType = Animator.StringToHash("idleType");
         public static int crouchType = Animator.StringToHash("crouchType");
         public static int rotation = Animator.StringToHash("rotation");
         public static int turnback_Mirror = Animator.StringToHash("turnback Mirror");
+        public static int runToStopAmount = Animator.StringToHash("RunToStopAmount");
     }
 
     public class LocomotionController : SystemBase, ICharacter
     {
-        [field: Tooltip("Automatically stopping movement on ledges")]
-        [SerializeField] bool preventFallingFromLedge = true;
-        [field: Tooltip("Enables balance walking on narrow beams")]
-        public bool enableBalanceWalk = true;
-        [field: Tooltip("Enables to play turning animations")]
-        public bool enableTurningAnim = true;
-        public bool verticalJump;
-        [field: Space(10)]
+        [Header("Movement Parameters")]
 
         [SerializeField] float sprintSpeed = 6.5f;
         [SerializeField] float runSpeed = 4.5f;
         [SerializeField] float walkSpeed = 2f;
+        [SerializeField] float rotationSpeed = 2.5f;
+
+        [field: Space(2)]
+        public float acceleration = 8f;
+        public float deceleration = 6f;
+
+        [field: Space(2)]
+        [Tooltip("Disables Sprinting")]
+        public bool enableSprint = true;
+        [Tooltip("sets running to default")]
+        public bool setDefaultStateToRunning = true;
+
+        [field: Space(2)]
+        [Header("Additional Features")]
+
+        public bool useMultiDirectionalAnimation;
+
+        [Tooltip("When set to 0 player faces moving Direction. When set to 1 player faces camera Direction")]
+        [Range(0, 1)]
+        public float playerDirectionBlend = 1f;
+
+        [Tooltip("If true, then player will always face the camera's forward even in idle")]
+        public bool faceCameraForwardWhenIdle;
+
+        [Tooltip("Use this multiplier if you want different speed for multi directional animations")]
+        public float speedMultiplier = 0.8f;
+
+        [Tooltip("Only sprints if player is facing forward by this percentage")]
+        [Range(0, 1)]
+        public float sprintDirectionThreshold = 0.9f;
+
+
+        [Range(0, 1)]
+        public float forwardHipRotationBlend = 0.5f;
+        public bool rotateHipForBackwardAnimation = true;
+        [Range(0, 1)]
+        public float backwardHipRotationBlend = 0.8f;
+
+        Vector3 currentSpeed;
+
+
+        public bool verticalJump;
+
         [Tooltip("Defines how long it takes for the character to reach the peak of the jump")]
         public float timeToJump = 0.4f;
-        public float jumpMoveSpeed = 1f;
+        [Tooltip("Movement speed while the player is in the air")]
+        public float jumpMoveSpeed = 4f;
 
         float moveSpeed = 0;
-        [SerializeField] float rotationSpeed = 2.5f;
+
+        [field: Space(3)]
+        [field: Tooltip("Automatically stopping movement on ledges")]
+        [SerializeField] bool preventFallingFromLedge = true;
+        [field: Tooltip("Sliding movement threshold on ledges")]
+        [Range(-1, 1)]
+        [SerializeField] float slidingMovementThresholdFromLedge = -1f;
+        [field: Tooltip("Prevents player rotation at ledges when not able to move")]
+        [SerializeField] bool preventLedgeRotation = false;
+        [field: Tooltip("Enables balance walking on narrow beams")]
+        [field: Space(3)]
+        public bool enableBalanceWalk = true;
+        public BalanceWalkDetectionType balanceWalkDetectionType = BalanceWalkDetectionType.Dynamic;
+        public enum BalanceWalkDetectionType { Dynamic, Tagged, Both }
 
         [Header("Optional Animations")]
         [field: Tooltip("plays turning animations")]
-        public bool playTurningAnimations = true;
+        public bool enableTurningAnim = true;
+        [field: Tooltip("plays quick turn animation")]
+        public bool playQuickTurnAnimation = true;
+        [field: Tooltip("plays quick turn animation only above this moveAmount threshhold")]
+        public float QuickTurnThreshhold = -0.01f;
         [field: Tooltip("plays quick stop animation")]
-        public bool playQuickStopAnimation = true;
+        public bool playQuickStopAnimation = false;
+        [field: Tooltip("plays quick stop animation only above this moveAmount threshhold")]
+        public float runToStopThreshhold = 0.4f;
+
 
         [Header("Ground Check Settings")]
         [Tooltip("Radius of ground detection sphere")]
@@ -67,8 +126,8 @@ namespace FS_ThirdPerson
         Quaternion targetRotation;
 
         float rotationValue = 0;
-        bool isRunning = true;
         float crouchVal = 0;
+        float DynamicCrouchVal = 0;
         float footOffset = .1f;
         float footRayHeight = .8f;
 
@@ -134,14 +193,6 @@ namespace FS_ThirdPerson
                 groundLayer += 1 << LayerMask.NameToLayer("Ledge");
         }
 
-        //private void Reset()
-        //{
-        //    priority = 10;
-        //    playerController = GetComponent<PlayerController>();
-        //    if (playerController)
-        //        playerController.Register(this, true);
-        //}
-
         private void OnAnimatorIK(int layerIndex)
         {
             var hipPos = animator.GetBoneTransform(HumanBodyBones.Hips).transform;
@@ -150,30 +201,35 @@ namespace FS_ThirdPerson
 
             var offset = Vector3.Distance(hipPos.position, headPos);
             animator.SetLookAtPosition(cameraGameObject.transform.position + cameraGameObject.transform.forward * (5f) + new Vector3(0, offset, 0));
-
-            //if ((!parkourController.ControlledByParkour && !parkourController.IsHanging) && IsGrounded)
-            //{
-            //    headIK = Mathf.Clamp01(headIK + 0.1f * Time.deltaTime) * 0.3f;
-            //    animator.SetLookAtWeight(headIK);
-            //}
-            //else if (!parkourController.IsHanging)
-            //{
-            //    headIK = Mathf.Clamp01(headIK - 0.2f * Time.deltaTime) * 0.3f;
-            //    animator.SetLookAtWeight(headIK);
-            //}
+            //animator.SetLookAtWeight(headIK);
         }
 
         public override void HandleFixedUpdate()
         {
             if (enableBalanceWalk)
-                HandleBalanceOnNarrowBeam();
+            {
+                if (balanceWalkDetectionType == BalanceWalkDetectionType.Dynamic)
+                    HandleBalanceOnNarrowBeam();
+                else if (balanceWalkDetectionType == BalanceWalkDetectionType.Tagged)
+                    HandleBalanceOnNarrowBeamWithTag();
+                else if (balanceWalkDetectionType == BalanceWalkDetectionType.Both)
+                {
+                    if (DynamicCrouchVal < 0.5f)
+                        HandleBalanceOnNarrowBeamWithTag();
+                    if (crouchVal < 0.5f || DynamicCrouchVal > 0.5f)
+                    {
+                        HandleBalanceOnNarrowBeam();
+                        DynamicCrouchVal = crouchVal;
+                    }
+                }
+            }
         }
 
         private void Update()
         {
             GetInput();
 #if UNITY_ANDROID || UNITY_IOS
-            if (isRunning)
+            if (setDefaultStateToRunning)
             {
                 if (moveAmount == 1)
                     sprintModeTimer += Time.deltaTime;
@@ -190,6 +246,8 @@ namespace FS_ThirdPerson
                 ySpeed = Gravity / 4;
                 return;
             }
+
+            animator.SetFloat("locomotionType", useMultiDirectionalAnimation ? 1 : 0);
 
             var wasGroundedPreviously = isGrounded;
             GroundCheck();
@@ -218,29 +276,45 @@ namespace FS_ThirdPerson
                 ySpeed = Gravity / 2;
                 //footIk.IkEnabled = true;
 
-                isRunning = inputManager.ToggleRun ? !isRunning : isRunning;
+                setDefaultStateToRunning = inputManager.ToggleRun ? !setDefaultStateToRunning : setDefaultStateToRunning;
 
-                float normalizedSpeed = isRunning ? 1 : .2f;
-                normalizedSpeed = (inputManager.SprintKey || sprintModeTimer > 2f) ? 1.5f : normalizedSpeed;
+                float normalizedSpeed = setDefaultStateToRunning ? 1 : .2f;
 
-                moveSpeed = normalizedSpeed == 1 ? runSpeed : walkSpeed;
-                moveSpeed = normalizedSpeed == 1.5f ? sprintSpeed : moveSpeed;
+                if (enableSprint)
+                    normalizedSpeed = (inputManager.SprintKey || sprintModeTimer > 2f) ? 1.5f : normalizedSpeed;
+                else
+                    normalizedSpeed = (inputManager.SprintKey || sprintModeTimer > 2f) ? 1f : normalizedSpeed;
+
+                //moveSpeed = normalizedSpeed == 1 ? runSpeed : walkSpeed;
+                //moveSpeed = normalizedSpeed == 1.5f ? sprintSpeed : moveSpeed;
+                var curSpeedDir = currentSpeed;
+                curSpeedDir.y = 0;
+                moveSpeed = normalizedSpeed == 0.2f ? walkSpeed : runSpeed;
+
+                var SprintDir = Vector3.Dot(curSpeedDir.normalized, transform.forward);
+
+                SprintDir = SprintDir > sprintDirectionThreshold ? SprintDir : 0;
+
+                moveSpeed = normalizedSpeed == 1.5f ? Mathf.Lerp(moveSpeed, sprintSpeed, Mathf.Clamp01(SprintDir)) : moveSpeed;
+
+                var currentRunSpeed = runSpeed;
+
 
                 if (crouchVal == 1)
                     moveSpeed *= .6f;
+                else if (useMultiDirectionalAnimation)
+                {
+                    moveSpeed *= speedMultiplier;
+                    currentRunSpeed *= speedMultiplier;
+                }
 
                 animator.SetFloat(AnimatorParameters.idleType, crouchVal, 0.5f, Time.deltaTime);
 
                 velocity = desiredMoveDir * moveSpeed;
 
+
                 if (enableTurningAnim)
                     HandleTurning();
-
-                // LedgeMovement will stop the player from moving if there is ledge in front.
-                // Pass your moveDir and velocity to the LedgeMovment function and it will return the new moveDir and Velocity while also taking ledges to the account
-
-                if (preventFallingFromLedge)
-                    (moveDir, velocity) = LedgeMovement(desiredMoveDir, velocity);
 
                 if (inputManager.Drop && MoveDir != Vector3.zero && !preventLocomotion && IsGrounded && isOnLedge)
                 {
@@ -254,32 +328,35 @@ namespace FS_ThirdPerson
                     }
                 }
 
-                float animSmoothTime = 0.15f;
-                if (velocity == Vector3.zero)
-                    animSmoothTime = 0.15f;   // If player stopped moving, then deccelerate 
+                if (velocity.magnitude != 0)
+                    currentSpeed = Vector3.MoveTowards(currentSpeed, velocity, acceleration * Time.deltaTime);
                 else
-                {
-                    float acceleration = 0.6f;
-                    if (addedMomentum > 0)
-                    {
-                        acceleration += addedMomentum;
-                        addedMomentum = 0f;
-                    }
-                    var mag = Mathf.MoveTowards(characterController.velocity.magnitude, velocity.magnitude, acceleration * 400f * Time.deltaTime);
-                    velocity = Vector3.ClampMagnitude(velocity, mag);
+                    currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
 
-                    animSmoothTime = acceleration;
-                }
+                var characterVelocity = characterController.velocity;
+                characterVelocity.y = 0;
 
-                animator.SetFloat(AnimatorParameters.moveAmount, Mathf.Min(normalizedSpeed, characterController.velocity.magnitude) * moveInput.magnitude, animSmoothTime, Time.deltaTime);
+                float forwardSpeed = Vector3.Dot(characterVelocity, transform.forward);
+                animator.SetFloat(AnimatorParameters.moveAmount, forwardSpeed / currentRunSpeed, 0.2f, Time.deltaTime);
+
+                float strafeSpeed = Vector3.Dot(characterVelocity, transform.right);
+                animator.SetFloat(AnimatorParameters.strafeAmount, strafeSpeed / currentRunSpeed, 0.2f, Time.deltaTime);
 
                 // If we're playing running animation but the velocity is close to zero, then play run to stop action
-                if (playQuickStopAnimation && MoveAmount > 0.6f && characterController.velocity.magnitude < sprintSpeed * 0.2f && crouchVal < 0.5f)
+                if (playQuickStopAnimation && ((MoveAmount > runToStopThreshhold && velocity.magnitude == 0) ||
+                    (forwardSpeed / currentRunSpeed < 0.1f && MoveAmount > runToStopThreshhold)) && animator.GetFloat(AnimatorParameters.idleType) < 0.2f)
                 {
-                    StartCoroutine(DoLocomotionAction("Run To Stop", onComplete: () =>
+                    currentSpeed = Vector3.zero;
+                    animator.SetBool(AnimatorParameters.turnback_Mirror, strafeSpeed > 0.03f);
+                    animator.SetFloat(AnimatorParameters.runToStopAmount, MoveAmount);
+                    StartCoroutine(DoLocomotionAction("Run To Stop", useRootmotionMovement: false, crossFadeTime: 0.3f, onComplete: () =>
                     {
                         animator.SetFloat(AnimatorParameters.moveAmount, 0);
                     }));
+                }
+                else if (playQuickTurnAnimation)
+                {
+                    Turnback();
                 }
             }
             else
@@ -287,19 +364,75 @@ namespace FS_ThirdPerson
                 //footIk.IkEnabled = false;
                 ySpeed = Mathf.Clamp(ySpeed + Gravity * Time.deltaTime, -30, Mathf.Abs(Gravity) * timeToJump);
             }
+            currentSpeed.y = 0;
+
+            // LedgeMovement will stop the player from moving if there is ledge in front.
+            // Pass your moveDir and velocity to the LedgeMovment function and it will return the new moveDir and Velocity while also taking ledges to the account
+            if (preventFallingFromLedge && playerController.PreventFallingFromLedge)
+            {
+                var (ledgeMoveDir, ledgeCurrentSpeed) = LedgeMovement(currentSpeed.normalized, currentSpeed);
+
+                if (Vector3.Dot(currentSpeed.normalized, ledgeMoveDir.normalized) >= slidingMovementThresholdFromLedge - 0.02f)
+                {
+                    moveDir = ledgeMoveDir;
+                    currentSpeed = ledgeCurrentSpeed;
+                }
+                else
+                {
+                    moveDir = ledgeMoveDir;
+                    currentSpeed = Vector3.zero;
+                }
+            }
+            else
+            {
+                moveDir = currentSpeed.normalized;
+            }
 
             velocity.y = ySpeed;
 
-            if (velocity != Vector3.zero)
-                characterController.Move(velocity * Time.deltaTime);
+            currentSpeed.y = ySpeed;
+            //if (currentSpeed != Vector3.zero)
+            characterController.Move(currentSpeed * Time.deltaTime);
+            currentSpeed.y = 0;
 
             if (!playerController.PreventRotation)
             {
-                if (moveAmount > 0 && moveDir.magnitude > 0.2)
-                    targetRotation = Quaternion.LookRotation(moveDir);
+                setTargetRotation(moveDir, ref targetRotation);
 
-                float turnSpeed = Mathf.Lerp(rotationSpeed * 100f, 2 * rotationSpeed * 100f, moveSpeed / sprintSpeed);
+                float turnSpeed = Mathf.Lerp(rotationSpeed * 100f, 2 * rotationSpeed * 100f, moveSpeed / runSpeed);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+                //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 100f);
+            }
+        }
+        void setTargetRotation(Vector3 moveDir, ref Quaternion targetRotation)
+        {
+            var cameraForward = cameraGameObject.transform.forward;
+            cameraForward.y = 0;
+
+            var dotProd = 1f;
+
+            if (useMultiDirectionalAnimation && rotateHipForBackwardAnimation)
+                dotProd = Vector3.Dot(cameraForward, moveDir) + 0.35f;
+
+            if (moveDir.magnitude > 0f)
+            {
+                if (!useMultiDirectionalAnimation)
+                {
+                    targetRotation = Quaternion.LookRotation(moveDir);
+                    return;
+                }
+
+                if (dotProd > 0 || animator.GetFloat(AnimatorParameters.idleType) > 0.5f)
+                    targetRotation = Quaternion.LookRotation(Vector3.Lerp(moveDir, cameraForward, playerDirectionBlend - animator.GetFloat(AnimatorParameters.idleType)));
+                else
+                    targetRotation = Quaternion.LookRotation(Vector3.Lerp(-moveDir, cameraForward, playerDirectionBlend - backwardHipRotationBlend - animator.GetFloat(AnimatorParameters.idleType)));
+
+                var playerMoveDirDot = Vector3.Dot(targetRotation * Vector3.forward, moveDir.normalized) - (1 - forwardHipRotationBlend);
+                targetRotation = Quaternion.LookRotation(Vector3.Lerp(targetRotation * Vector3.forward, moveDir, playerMoveDirDot - animator.GetFloat(AnimatorParameters.idleType)));
+            }
+            else if (faceCameraForwardWhenIdle)
+            {
+                targetRotation = Quaternion.LookRotation(cameraForward);
             }
         }
 
@@ -347,7 +480,6 @@ namespace FS_ThirdPerson
 
         void HandleTurning()
         {
-
             var rotDiff = transform.eulerAngles - prevAngle;
             var threshold = moveSpeed >= runSpeed ? 0.025 : 0.1;
             if (rotDiff.sqrMagnitude < threshold)
@@ -357,57 +489,60 @@ namespace FS_ThirdPerson
             else
             {
                 rotationValue = Mathf.Sign(rotDiff.y) * .5f;
-
-                var angle = Vector3.Angle(transform.forward, MoveDir);
-                if (angle > 100)
-                {
-                    // If the rotation angle is high (like turning back), then reduce velocity 
-                    velocity = velocity / 4;
-                }
-                else
-                {
-                    // If not in crouch, then reduce the velocity during rotation
-                    if (crouchVal == 0)
-                        velocity *= 0.75f;
-                }
             }
+
             animator.SetFloat(AnimatorParameters.rotation, rotationValue, 0.35f, Time.deltaTime);
 
             prevAngle = transform.eulerAngles;
+
+
         }
 
-
+        bool isTurning = false;
 
         void GetInput()
         {
             float h = inputManager.DirectionInput.x;
             float v = inputManager.DirectionInput.y;
 
-            moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
+            //moveAmount = Mathf.Clamp01(Mathf.Abs(h) + Mathf.Abs(v));
             moveInput = (new Vector3(h, 0, v));
+            moveAmount = moveInput.magnitude;
             desiredMoveDir = playerController.CameraPlanarRotation * moveInput;
+            desiredMoveDir = Vector3.ClampMagnitude(desiredMoveDir, 1);
+            //if (desiredMoveDir.magnitude < 0.2f)
+            //    desiredMoveDir = Vector3.zero;
+
             //desiredMoveDir = Vector3.MoveTowards(prevDir, cameraController.PlanarRotation * moveInput,Time.deltaTime * rotationSpeed * 2);
             moveDir = desiredMoveDir;
 
         }
 
+        Quaternion velocityRotation;
         bool Turnback()
         {
-            GetInput();
-            var angle = Vector3.SignedAngle(transform.forward, MoveDir, Vector3.up);
+            if (moveInput == Vector3.zero || desiredMoveDir == Vector3.zero) return false;
 
-            if (Mathf.Abs(angle) > 120 && MoveAmount > .8f && crouchVal < 0.5f && Physics.Raycast(transform.position + Vector3.up * 0.1f + transform.forward, Vector3.down, 0.3f) && !Physics.Raycast(transform.position + Vector3.up * 0.1f, transform.forward, 0.6f))
+            setTargetRotation(desiredMoveDir, ref velocityRotation);
+            var angle = Vector3.SignedAngle(transform.forward, velocityRotation * Vector3.forward, Vector3.up);
+
+            if (Mathf.Abs(angle) > 130 && MoveAmount > QuickTurnThreshhold && animator.GetFloat(AnimatorParameters.idleType) < 0.2f && Physics.Raycast(transform.position + Vector3.up * 0.1f + transform.forward * 0.3f + transform.forward * MoveAmount / 1.5f, Vector3.down, 0.3f) && !Physics.Raycast(transform.position + Vector3.up * 0.1f, transform.forward, 0.6f))
             {
                 turnBack = true;
                 animator.SetBool(AnimatorParameters.turnback_Mirror, angle <= 0);
+                bool isInLocomotionBlendTree = animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion");
 
                 StartCoroutine(DoLocomotionAction("Running Turn 180", onComplete: () =>
                 {
-                    animator.SetFloat(AnimatorParameters.moveAmount, 0.3f);
-                    addedMomentum = 0.3f;
+
+                    //animator.SetFloat(AnimatorParameters.moveAmount, 0.3f);
+
+                    currentSpeed = runSpeed * transform.forward * (MoveAmount);
+                    characterController.Move(currentSpeed * Time.deltaTime);
+
                     targetRotation = transform.rotation;
                     turnBack = false;
-                }, crossFadeTime: 0.05f));
+                }, crossFadeTime: isInLocomotionBlendTree ? 0.08f : 0.2f, setMoveAmount: true)); ;
                 return true;
             }
             return false;
@@ -433,7 +568,7 @@ namespace FS_ThirdPerson
                 animator.SetFloat(AnimatorParameters.rotation, 0);
         }
 
-        public IEnumerator DoLocomotionAction(string anim, bool useRootmotionMovement = false, Action onComplete = null, float crossFadeTime = .2f, Quaternion? targetRotation = null)
+        public IEnumerator DoLocomotionAction(string anim, bool useRootmotionMovement = false, Action onComplete = null, float crossFadeTime = .2f, Quaternion? targetRotation = null, bool setMoveAmount = false)
         {
             if (!enableTurningAnim) yield break;
             preventLocomotion = true;
@@ -449,12 +584,14 @@ namespace FS_ThirdPerson
             {
                 if (!turnBack && Turnback()) yield break;
 
-                if (targetRotation.HasValue  && !playerController.PreventRotation) transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.Value, 500f * Time.deltaTime);
+                if (setMoveAmount)
+                    animator.SetFloat(AnimatorParameters.moveAmount, moveAmount * (setDefaultStateToRunning ? 1f : 0.5f), animState.length * 1.3f, 1f * Time.deltaTime);
+
+                if (targetRotation.HasValue && !playerController.PreventRotation) transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation.Value, 500f * Time.deltaTime);
 
                 timer += Time.deltaTime;
                 yield return null;
             }
-
             DisableRootMotion();
             this.useRootmotionMovement = false;
             onComplete?.Invoke();
@@ -517,6 +654,7 @@ namespace FS_ThirdPerson
             //Calculates the initial vertical velocity required for jumping
             var velocityY = Mathf.Abs(Gravity) * timeToJump;
             preventLocomotion = true;
+            currentSpeed *= 0.1f;
 
             animator.SetFloat(AnimatorParameters.moveAmount, 0);
             isGrounded = false;
@@ -539,12 +677,18 @@ namespace FS_ThirdPerson
                     jumpMaxPosY = transform.position.y;
 
                 if (moveDir != Vector3.zero && !playerController.PreventRotation)
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDir), Time.deltaTime * 100 * rotationSpeed);
+                {
+                    if (useMultiDirectionalAnimation)
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 100 * rotationSpeed);
+                    else
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDir), Time.deltaTime * 100 * rotationSpeed);
+                }
                 yield return null;
 
                 if (playerController.CurrentSystemState != State)
-                    yield break;    
+                    yield break;
             }
+            targetRotation = transform.rotation;
             playerController.IsInAir = false;
             yield return VerticalJumpLanding();
             //parkourController.IsJumping = false;
@@ -570,7 +714,7 @@ namespace FS_ThirdPerson
                 //if (!hasSpaceForRoll && heightHiting)
                 //    yield return DoLocomotionAction("FallingToRoll", crossFadeTime: .1f);
                 //else
-                yield return DoLocomotionAction("LandFromFall", crossFadeTime: .1f);
+                yield return DoLocomotionAction("Landing", crossFadeTime: .1f);
                 DisableRootMotion();
                 OnEndSystem(this);
             }
@@ -629,12 +773,12 @@ namespace FS_ThirdPerson
 
                 if (!rightFound || !leftFound)
                 {
-                    if (!(!rightFound && !leftFound)) //to restrict rot
+                    if (!(!rightFound && !leftFound) && preventLedgeRotation) //to restrict rot
                         currMoveDir = Vector3.zero;
                     currVelocity = Vector3.zero;
                 }
             }
-            else if (!rightFound || !leftFound)
+            else if ((!rightFound || !leftFound))
             {
                 if (rightFound)
                 {
@@ -659,7 +803,7 @@ namespace FS_ThirdPerson
             return (new Vector3(currVelocity.x, 0, currVelocity.z), currVelocity);
         }
 
-#region changeSpeed
+        #region changeSpeed
 
         float _walkSpeed;
         float _runSpeed;
@@ -678,9 +822,9 @@ namespace FS_ThirdPerson
             sprintSpeed = _sprintSpeed;
         }
 
-#endregion
+        #endregion
 
-#region Interface
+        #region Interface
 
         public void OnStartSystem(SystemBase systemBase)
         {
@@ -688,12 +832,13 @@ namespace FS_ThirdPerson
             systemBase.FocusScript();
             systemBase.EnterSystem();
             preventLocomotion = true;
+            currentSpeed *= 0f;
             playerController.SetSystemState(systemBase.State);
             targetRotation = transform.rotation;
             isGrounded = false;
             StartCoroutine(TweenVal(animator.GetFloat(AnimatorParameters.moveAmount), 0, 0.15f, (lerpVal) => { animator.SetFloat(AnimatorParameters.moveAmount, lerpVal); }));
-            //StartCoroutine(TweenVal(animator.GetFloat(AnimatorParameters.moveAmount), 0, 0.15f, (lerpVal) => { animator.SetFloat(AnimatorParameters.moveAmount, lerpVal); }));
             StartCoroutine(TweenVal(animator.GetFloat(AnimatorParameters.rotation), 0, 0.15f, (lerpVal) => { animator.SetFloat(AnimatorParameters.rotation, lerpVal); }));
+            StartCoroutine(TweenVal(animator.GetFloat(AnimatorParameters.idleType), 0, 0.15f, (lerpVal) => { animator.SetFloat(AnimatorParameters.idleType, lerpVal); }));
         }
 
         public void OnEndSystem(SystemBase systemBase)
@@ -706,7 +851,6 @@ namespace FS_ThirdPerson
         }
         public Vector3 MoveDir { get { return desiredMoveDir; } set { desiredMoveDir = value; } }
         public bool IsGrounded => isGrounded;
-        
         public float Gravity => -20;
         public bool PreventAllSystems { get; set; } = false;
         public Animator Animator

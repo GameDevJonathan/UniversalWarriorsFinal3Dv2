@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Left Hook
   m_EditorClassIdentifier: 
   clip: {fileID: -2130649362664310939, guid: a23211b199355fa419f6cc26a815f17f, type: 3}
-  animationSpeed: 1
   isFinisher: 0
-  canHitMultipleTargets: 0
   rotateToTarget: 1
   hitDirection: 4
   reactionTag: Weak
@@ -45,28 +43,16 @@ MonoBehaviour:
   blockSyncStartTime: 0
   rotateTargetInBlocked: 1
   rotationOffsetInBlocked: 0
-  canBeCountered: 1
+  canBeCountered: 0
   counterAttacks:
-  - counterAttack: {fileID: 11400000, guid: 4fcc5ab65b872424097b9898bf897a5e, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
-    healthThresholdForCounter: 25
-    foldOut: 1
-    serialized: 1
-  - counterAttack: {fileID: 11400000, guid: 9bbfe5fe2665d4344b167e9de01716fc, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
-    healthThresholdForCounter: 40.5
-    foldOut: 1
-    serialized: 1
-  - counterAttack: {fileID: 11400000, guid: 2079ae985e0e12c439ba11f200312984, type: 2}
-    counterStartTime: 0.56
-    maxDistanceForCounter: 1
+  - counterAttack: {fileID: 11400000, guid: c9d423ef548aae446b6521f295c930ef, type: 2}
+    counterStartTime: 0
+    maxDistanceForCounter: 2
     healthThresholdForCounter: 100
     foldOut: 1
     serialized: 1
   hitboxToUse: 0
-  damage: 0
+  damage: 5
   impactStartTime: 0.56
   impactEndTime: 0.66
   waitForNextAttack: 1
@@ -105,10 +91,7 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
-  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76,
-    type: 3}
+  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76, type: 3}
   hittingTime: 0
   blockedHitEffect: {fileID: 0}
   blockedHittingTime: 0
-  cameraShakeAmount: 0.3
-  cameraShakeDuration: 0.2

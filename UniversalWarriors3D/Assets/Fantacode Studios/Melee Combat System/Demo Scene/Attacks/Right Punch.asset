@@ -15,7 +15,7 @@ MonoBehaviour:
   clip: {fileID: 1270684749343247563, guid: 4964645b52af9594fac01a7fc7db6d73, type: 3}
   animationSpeed: 1
   isFinisher: 0
-  canHitMultipleTargets: 0
+  isSplashAttack: 0
   rotateToTarget: 1
   hitDirection: 5
   reactionTag: Weak
@@ -34,8 +34,7 @@ MonoBehaviour:
   rotationOffset: 0
   overrideBlockedReaction: 1
   blockedReaction:
-    animationClip: {fileID: 1949148441884433929, guid: 0a7ae22bfd3a500449a101a6d2e66adc,
-      type: 3}
+    animationClip: {fileID: 1949148441884433929, guid: 0a7ae22bfd3a500449a101a6d2e66adc, type: 3}
     willBeKnockedDown: 0
     knockDownDirection: 0
     lyingDownTimeRange: {x: 1, y: 3}
@@ -46,22 +45,10 @@ MonoBehaviour:
   blockSyncStartTime: 0
   rotateTargetInBlocked: 1
   rotationOffsetInBlocked: 0
-  canBeCountered: 1
-  counterAttacks:
-  - counterAttack: {fileID: 11400000, guid: 2057fc99a1c3c2741b796d24e007e6fa, type: 2}
-    counterStartTime: 0
-    maxDistanceForCounter: 2
-    healthThresholdForCounter: 100
-    foldOut: 1
-    serialized: 1
-  - counterAttack: {fileID: 11400000, guid: 96ffbc16a34e7a245b5b340e17cdbc0e, type: 2}
-    counterStartTime: 0
-    maxDistanceForCounter: 2
-    healthThresholdForCounter: 10
-    foldOut: 1
-    serialized: 1
+  canBeCountered: 0
+  counterAttacks: []
   hitboxToUse: 1
-  damage: 0
+  damage: 5
   impactStartTime: 0.36
   impactEndTime: 0.49
   waitForNextAttack: 0
@@ -100,8 +87,7 @@ MonoBehaviour:
   hitSound: {fileID: 0}
   blockedHitSound: {fileID: 0}
   reactionSound: {fileID: 0}
-  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76,
-    type: 3}
+  hitEffect: {fileID: 1093524190895648044, guid: 8891f7718792b1f4bbdba4f1c91bec76, type: 3}
   hittingTime: 0
   blockedHitEffect: {fileID: 0}
   blockedHittingTime: 0.508

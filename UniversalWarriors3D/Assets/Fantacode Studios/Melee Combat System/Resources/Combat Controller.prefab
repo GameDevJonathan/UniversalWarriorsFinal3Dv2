@@ -153,20 +153,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 4630635357551870830}
+  defaultSettings:
+    distance: 2.5
+    framingOffset: {x: 0, y: 1.5, z: 0}
+    followSmoothTime: 0.2
+    sensitivity: 0.6
+    minVerticalAngle: -45
+    maxVerticalAngle: 70
+    invertX: 0
+    invertY: 1
+    enableCameraCollisions: 1
+    minDistanceFromTarget: 0.2
+    serialized: 1
   advancedCameraRotation: 1
-  sensitivity: 0.6
-  distance: 2.5
-  dragEffectDistance: 0.75
-  minVerticalAngle: -45
-  maxVerticalAngle: 70
-  framingOffset: {x: 0, y: 1, z: 0}
-  invertX: 0
-  invertY: 1
-  layerMask:
+  collisionLayers:
     serializedVersion: 2
     m_Bits: 1
   lockCursor: 1
-  cameraShakeAmount: 0.6
+  distanceSmoothTime: 0.3
+  distanceSmoothTimeWhenOcluded: 0
+  framingSmoothTime: 0.5
+  collisionPadding: 0.05
+  overrideCameraSettings:
+  - state: 2
+    settings:
+      distance: 2.5
+      framingOffset: {x: 0, y: 1, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 70
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  - state: 5
+    settings:
+      distance: 2.5
+      framingOffset: {x: 0, y: 1, z: 0}
+      followSmoothTime: 0.2
+      sensitivity: 0.6
+      minVerticalAngle: -45
+      maxVerticalAngle: 70
+      invertX: 0
+      invertY: 1
+      enableCameraCollisions: 1
+      minDistanceFromTarget: 0.2
+      serialized: 1
+  nearClipPlane: 0.1
 --- !u!1 &8110822529306596904
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +222,8 @@ GameObject:
   - component: {fileID: 5827507068346487342}
   - component: {fileID: 2337012673119009542}
   - component: {fileID: 7881369014826707743}
+  - component: {fileID: 1484984334677372550}
+  - component: {fileID: 9044887051195973368}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -237,23 +274,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6903193317393294783d91aa6a5e2111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preventFallingFromLedge: 1
-  enableBalanceWalk: 1
-  enableTurningAnim: 1
-  verticalJump: 0
   sprintSpeed: 6.5
   runSpeed: 4.5
   walkSpeed: 2
+  rotationSpeed: 2
+  acceleration: 8
+  deceleration: 6
+  enableSprint: 1
+  setDefaultStateToRunning: 1
+  useMultiDirectionalAnimation: 1
+  playerDirectionBlend: 0
+  faceCameraForwardWhenIdle: 0
+  speedMultiplier: 0.8
+  sprintDirectionThreshold: 0
+  forwardHipRotationBlend: 0.5
+  rotateHipForBackwardAnimation: 0
+  backwardHipRotationBlend: 0
+  verticalJump: 0
   timeToJump: 0.4
   jumpMoveSpeed: 1
-  rotationSpeed: 2.5
-  playTurningAnimations: 1
-  playQuickStopAnimation: 1
-  groundCheckRadius: 0.25
-  groundCheckOffset: {x: 0, y: 0.2, z: 0.07}
+  preventFallingFromLedge: 0
+  slidingMovementThresholdFromLedge: -1
+  preventLedgeRotation: 0
+  enableBalanceWalk: 1
+  balanceWalkDetectionType: 0
+  enableTurningAnim: 1
+  playQuickTurnAnimation: 0
+  QuickTurnThreshhold: -0.01
+  playQuickStopAnimation: 0
+  runToStopThreshhold: 0.4
+  groundCheckRadius: 0.2
+  groundCheckOffset: {x: 0, y: 0.15, z: 0.07}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
 --- !u!114 &2217664491456493462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +372,26 @@ MonoBehaviour:
     - {fileID: 2848032600552524514, guid: a04805c4175e5d540af792dede20fe56, type: 3}
     - {fileID: -8845216213218993073, guid: df58d2601f9edff4aaccdffdfefebd36, type: 3}
   attachedWeapons: []
+  CanDodge: 0
+  dodgeData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyDodgeInCombatMode: 1
+  CanRoll: 1
+  rollData:
+    clip: {fileID: 1320186275283828524, guid: 0bb4085089e951e4c9a10ccbc411fbc7, type: 3}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyRollInCombatMode: 1
   OnWeaponEquipEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -331,6 +405,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnCounterMisusedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKnockDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGettingUpEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7702192315210600633
@@ -386,11 +469,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackKey: 323
   blockKey: 324
+  dodgeKey: 308
+  rollKey: 32
   combatModeKey: 102
   heavyAttackKey: 114
   counterKey: 113
   attackButton: 
   blockButton: 
+  dodgeButton: 
+  rollButton: 
   combatModeButton: 
   counterButton: 
   heavyAttackButton: 
@@ -440,17 +527,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790464fff7e4b964994dec7090824467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GrapplingLedgeLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
   <MinJumpDistance>k__BackingField: 0.8
+  jumpToTheClosestLedge: 0
   alwaysUsePlayerForward: 0
+  <SwingLedgeLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
   heightRayLength: 4
+  obstacleCheckRange: 0.7
+  ledgeHeightThreshold: 1
   <ObstacleLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
   <LedgeLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
-  obstacleCheckRange: 0.7
-  ledgeHeightThreshold: 1
+--- !u!136 &1484984334677372550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110822529306596904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.87, z: 0.08}
+--- !u!114 &9044887051195973368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110822529306596904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c127b2031be937e438715f8ce6a271a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepSounds:
+  - {fileID: 8300000, guid: dbdca68d3e91dce438e50a580944f109, type: 3}
+  - {fileID: 8300000, guid: 1db0ddb4016fedd4ebf3429952e476e0, type: 3}
+  - {fileID: 8300000, guid: 2ea9ebae353cfc94d8a4680fdda0c76c, type: 3}
+  - {fileID: 8300000, guid: 478fa7e4d9f0afa4692b3709afe45da2, type: 3}
+  footStepParticles: []
+  overrideStepEffects: []
+  overrideType: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  soundIgnoreStates: 050000000400000006000000
+  particleIgnoreStates: 040000000500000006000000
+  adjustVolumeBasedOnSpeed: 1
+  minVolume: 0.2
 --- !u!1 &9043861118546868083
 GameObject:
   m_ObjectHideFlags: 0

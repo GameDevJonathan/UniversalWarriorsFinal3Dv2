@@ -30,7 +30,7 @@ MonoBehaviour:
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     - attack: {fileID: 11400000, guid: 2f19db5f0f9501843965426ec353b411, type: 2}
-      canBeCharged: 1
+      canBeCharged: 0
       chargedAttack: {fileID: 11400000, guid: 78dc2e78530e0b643b8f234b5e5aba79, type: 2}
     - attack: {fileID: 11400000, guid: 06e81c29894bef74db7d69167ca67eb2, type: 2}
       canBeCharged: 1
@@ -121,6 +121,25 @@ MonoBehaviour:
   runSpeed: 4.5
   sprintSpeed: 6.5
   combatMoveSpeed: 2
+  overrideDodge: 0
+  dodgeData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  overrideRoll: 0
+  rollData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyRollInCombatMode: 1
   weaponHoldingClip: {fileID: 0}
   weaponHolderMask: {fileID: 0}
   weaponEquipSound: {fileID: 0}

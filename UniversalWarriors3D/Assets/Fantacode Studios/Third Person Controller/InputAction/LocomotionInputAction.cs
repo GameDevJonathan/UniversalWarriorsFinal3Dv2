@@ -40,7 +40,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""2c8480d8-c6ca-4663-9f4c-4dd66159e1c7"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -85,7 +85,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                     ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""2ff8ab4b-eaff-43f1-a811-98d846924b25"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -93,7 +93,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""9712ab20-08bf-46fd-bea7-47e05258a460"",
+                    ""id"": ""fa6fdc82-eb00-4e06-8103-d2a98a7cfa1d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -301,7 +301,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d36f6179-cfad-40ea-a350-e8f1f18c3c22"",
+                    ""id"": ""1941cf6b-f7c8-4839-a49a-a52194ceb675"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -312,7 +312,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eff0e027-08a7-45a7-8d94-5d66dd340455"",
+                    ""id"": ""881fb95a-e86d-4115-8dd4-59d05060a0c8"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",

@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 3267239891810993967}
   - component: {fileID: 7784292676249782440}
   - component: {fileID: 3860432325940434849}
+  - component: {fileID: 5887340040373979061}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -258,18 +259,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6903193317393294783d91aa6a5e2111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preventFallingFromLedge: 1
-  enableBalanceWalk: 1
-  enableTurningAnim: 1
-  verticalJump: 0
   sprintSpeed: 6.5
   runSpeed: 4.5
   walkSpeed: 2
-  timeToJump: 0.4
-  jumpMoveSpeed: 1
   rotationSpeed: 2.5
-  playTurningAnimations: 1
-  playQuickStopAnimation: 1
+  acceleration: 8
+  deceleration: 6
+  enableSprint: 1
+  setDefaultStateToRunning: 1
+  useMultiDirectionalAnimation: 0
+  playerDirectionBlend: 1
+  faceCameraForwardWhenIdle: 0
+  speedMultiplier: 0.8
+  sprintDirectionThreshold: 0.9
+  forwardHipRotationBlend: 0.5
+  rotateHipForBackwardAnimation: 1
+  backwardHipRotationBlend: 0.8
+  verticalJump: 0
+  timeToJump: 0.4
+  jumpMoveSpeed: 4
+  preventFallingFromLedge: 1
+  slidingMovementThresholdFromLedge: -1
+  preventLedgeRotation: 0
+  enableBalanceWalk: 1
+  balanceWalkDetectionType: 0
+  enableTurningAnim: 1
+  playQuickTurnAnimation: 1
+  QuickTurnThreshhold: -0.01
+  playQuickStopAnimation: 0
+  runToStopThreshhold: 0.4
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: 0.15, z: 0.07}
   groundLayer:
@@ -428,7 +446,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   <MinJumpDistance>k__BackingField: 0.8
+  jumpToTheClosestLedge: 0
   alwaysUsePlayerForward: 0
+  <SwingLedgeLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
   heightRayLength: 4
   obstacleCheckRange: 0.7
   ledgeHeightThreshold: 1
@@ -525,6 +547,34 @@ MonoBehaviour:
   jumpButton: 
   dropButton: 
   jumpFromHangButton: 
+--- !u!114 &5887340040373979061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347263941410744840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c127b2031be937e438715f8ce6a271a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepSounds:
+  - {fileID: 8300000, guid: dbdca68d3e91dce438e50a580944f109, type: 3}
+  - {fileID: 8300000, guid: 1db0ddb4016fedd4ebf3429952e476e0, type: 3}
+  - {fileID: 8300000, guid: 2ea9ebae353cfc94d8a4680fdda0c76c, type: 3}
+  - {fileID: 8300000, guid: 478fa7e4d9f0afa4692b3709afe45da2, type: 3}
+  footStepParticles:
+  - {fileID: 7340628589888034654, guid: 416233d292b77c140add74a052a71672, type: 3}
+  overrideStepEffects: []
+  overrideType: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  soundIgnoreStates: 050000000400000006000000
+  particleIgnoreStates: 040000000500000006000000
+  adjustVolumeBasedOnSpeed: 1
+  minVolume: 0.2
 --- !u!1001 &7823187629793186776
 PrefabInstance:
   m_ObjectHideFlags: 0

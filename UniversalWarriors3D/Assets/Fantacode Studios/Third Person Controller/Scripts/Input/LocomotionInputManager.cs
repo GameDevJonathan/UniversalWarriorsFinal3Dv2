@@ -78,90 +78,64 @@ namespace FS_ThirdPerson
         {
 #if inputsystem
             DirectionInput = input.Locomotion.MoveInput.ReadValue<Vector2>();
-            if (DirectionInput == Vector2.zero)
+#else
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            DirectionInput = new Vector2(h, v);
 #endif
-
-            {
-                float h = Input.GetAxisRaw("Horizontal");
-                float v = Input.GetAxisRaw("Vertical");
-                DirectionInput = new Vector2(h, v);
-            }
         }
 
         void HandlecameraInput()
         {
-#if !UNITY_ANDROID && !UNITY_IOS
 #if inputsystem
             CameraInput = input.Locomotion.CameraInput.ReadValue<Vector2>();
-            if (CameraInput == Vector2.zero)
-#endif
-
-            {
-                float x = Input.GetAxis("Mouse X");
-                float y = Input.GetAxis("Mouse Y");
-                CameraInput = new Vector2(x, y);
-            }
+#else
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+            CameraInput = new Vector2(x, y);
 #endif
         }
 
         void HandleJumpKeyDown()
         {
-            JumpKeyDown = false;
-#if !UNITY_ANDROID && !UNITY_IOS
-            JumpKeyDown = Input.GetKeyDown(jumpKey) || (String.IsNullOrEmpty(jumpButton) ? false : Input.GetButtonDown(jumpButton));
-#endif
-
 #if inputsystem
-            JumpKeyDown = JumpKeyDown || input.Locomotion.Jump.WasPressedThisFrame();
+            JumpKeyDown = input.Locomotion.Jump.WasPressedThisFrame();
+#else
+            JumpKeyDown = Input.GetKeyDown(jumpKey) || (String.IsNullOrEmpty(jumpButton) ? false : Input.GetButtonDown(jumpButton));
 #endif
         }
 
         void HandleDrop()
         {
-            Drop = false;
-#if !UNITY_ANDROID && !UNITY_IOS
-            Drop = Input.GetKey(dropKey) || (String.IsNullOrEmpty(dropButton) ? false : Input.GetButton(dropButton));
-#endif
 #if inputsystem
-            Drop = Drop || input.Locomotion.Drop.inProgress;
+            Drop = input.Locomotion.Drop.inProgress;
+#else
+            Drop = Input.GetKey(dropKey) || (String.IsNullOrEmpty(dropButton) ? false : Input.GetButton(dropButton));
 #endif
         }
 
         void HandleToggleRun()
         {
-            ToggleRun = false;
-
-#if !UNITY_ANDROID && !UNITY_IOS
-            ToggleRun = Input.GetKeyDown(moveType) || IsButtonDown(moveTypeButton);
-#endif
-
 #if inputsystem
-            ToggleRun = ToggleRun || input.Locomotion.MoveType.WasPressedThisFrame();
+            ToggleRun = input.Locomotion.MoveType.WasPressedThisFrame();
+#else
+            ToggleRun = Input.GetKeyDown(moveType) || IsButtonDown(moveTypeButton);
 #endif
         }
 
         void HandleSprint()
         {
-            SprintKey = false;
-
-#if !UNITY_ANDROID && !UNITY_IOS
-            SprintKey = Input.GetKey(sprintKey) || (String.IsNullOrEmpty(sprintButton) ? false : Input.GetButton(sprintButton));
-#endif
-
 #if inputsystem
-            SprintKey = SprintKey || input.Locomotion.SprintKey.inProgress;
+            SprintKey = input.Locomotion.SprintKey.inProgress;
+#else
+            SprintKey = Input.GetKey(sprintKey) || (String.IsNullOrEmpty(sprintButton) ? false : Input.GetButton(sprintButton));
 #endif
         }
 
         void HandleInteraction()
         {
-            interactionButtonDown = false;
-
-            if (
-#if !UNITY_ANDROID && !UNITY_IOS
-        Input.GetKeyDown(interactionKey) || IsButtonDown(interactionButton) || 
-#endif
-        IsNewInputInteractionDown())
+#if inputsystem
+            if (input.Locomotion.Interaction.WasPressedThisFrame())
             {
                 interactionButtonDown = true;
                 Interaction = true;
@@ -173,11 +147,7 @@ namespace FS_ThirdPerson
 
             if (interactionButtonDown)
             {
-                if ((
-#if !UNITY_ANDROID && !UNITY_IOS
-            Input.GetKeyUp(interactionKey) || IsButtonUp(interactionButton) || 
-#endif
-            IsNewInputInteractionUp()))
+                if (input.Locomotion.Interaction.WasReleasedThisFrame())
                 {
                     interactionButtonDown = false;
                     InteractionButtonHoldTime = 0f;
@@ -185,6 +155,30 @@ namespace FS_ThirdPerson
 
                 InteractionButtonHoldTime += Time.deltaTime;
             }
+
+#else
+
+            if (Input.GetKeyDown(interactionKey) || IsButtonDown(interactionButton))
+            {
+                interactionButtonDown = true;
+                Interaction = true;
+            }
+            else
+            {
+                Interaction = false;
+            }
+
+            if (interactionButtonDown)
+            {
+                if (Input.GetKeyUp(interactionKey) || IsButtonUp(interactionButton))
+                {
+                    interactionButtonDown = false;
+                    InteractionButtonHoldTime = 0f;
+                }
+
+                InteractionButtonHoldTime += Time.deltaTime;
+            }
+#endif
         }
 
 
@@ -202,24 +196,6 @@ namespace FS_ThirdPerson
                 return Input.GetButtonUp(buttonName);
             else
                 return false;
-        }
-
-        public bool IsNewInputInteractionDown()
-        {
-#if inputsystem
-            return input.Locomotion.Interaction.WasPressedThisFrame();
-#else
-            return false;
-#endif
-        }
-
-        public bool IsNewInputInteractionUp()
-        {
-#if inputsystem
-            return input.Locomotion.Interaction.WasReleasedThisFrame();
-#else
-            return false;
-#endif
         }
     }
 }

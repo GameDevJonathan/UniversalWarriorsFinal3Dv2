@@ -3,13 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 namespace FS_CombatSystem
 {
     public enum AttackStates { Idle, Windup, Impact, Cooldown }
-    public enum FighterState { None, Attacking, Blocking, TakingHit, TakingBlockedHit, KnockedDown, GettingUp, SwitchingWeapon, Dead, Taunt, Other}
+    public enum FighterState { None, Attacking, Blocking, Dodging, TakingHit, TakingBlockedHit, KnockedDown, GettingUp, SwitchingWeapon, Dead, Taunt, Other}
 
     public class MeleeFighter : MonoBehaviour
     {
@@ -46,7 +49,9 @@ namespace FS_CombatSystem
         public bool IsInSyncedAnimation { get; private set; } = false;
         public AttackData CurrSyncedAction { get; private set; }    // To avoid on attack to prevent reseting IsInSyncedAnimation set by another attack
 
-        public bool CanTakeHit { get; set; } =true;
+        public bool CanTakeHit { get; set; } = true;    // While false, AI won't try to hit player
+        public bool IsInvinsible { get; set; } = false;  // While true, the AI will hit the player, but it won't have any effect
+
         bool isBlocking;
         public bool IsBlocking {
             get => isBlocking;
@@ -88,6 +93,20 @@ namespace FS_CombatSystem
         bool doCombo;
         int comboCount = 0;
         int hitCount = 0;
+
+        [Tooltip("Indicates if the fighter can dodge.")]
+        [HideInInspector] public bool CanDodge;
+        [HideInInspector] public DodgeData dodgeData;
+
+        [Tooltip("If true, fighter will only be able to dodge in combat mode.")]
+        [HideInInspector] public bool OnlyDodgeInCombatMode = true;
+
+        [Tooltip("Indicates if the fighter can roll.")]
+        [HideInInspector] public bool CanRoll;
+        [HideInInspector] public DodgeData rollData;
+
+        [Tooltip("If true, fighter will only be able to roll in combat mode.")]
+        [HideInInspector] public bool OnlyRollInCombatMode = true;
 
 
         [Space(10)]
@@ -244,8 +263,8 @@ namespace FS_CombatSystem
 
             if (CurrentWeapon.Attacks != null && CurrentWeapon.Attacks.Count > 0)
             {
-                var possibleAttacks = CurrentWeapon.Attacks;
-                if (isHeavyAttack) possibleAttacks = CurrentWeapon.HeavyAttacks;
+                var possibleAttacks = CurrentWeapon.Attacks.ToList();
+                if (isHeavyAttack) possibleAttacks = CurrentWeapon.HeavyAttacks.ToList();
 
                 var normalAttacks = possibleAttacks.Where(a => a.AttackType == AttackType.Single || a.AttackType == AttackType.Combo).OrderBy(a => a.MinDistance).ToList();
                 var normalAttacksWithoutSyncedAndFinishers = normalAttacks.Where(a => a.AttackSlots.Any(s => !s.Attack.IsSyncedReaction && !s.Attack.IsFinisher)).ToList();
@@ -487,7 +506,7 @@ namespace FS_CombatSystem
                 }
             }
 
-            animGraph.CrossFade(attack.Clip, 0.1f, transitionOut: 0.1f,animationSpeed:attack.AnimationSpeed);
+            animGraph.CrossFade(attack.Clip, 0.2f, transitionOut: 0.1f,animationSpeed:attack.AnimationSpeed);
 
             MatchingTargetDeltaPos = Vector3.zero;
             IsMatchingTarget = false;
@@ -655,7 +674,7 @@ namespace FS_CombatSystem
             if (isBlocking && !wasPreviouslyBlocking)
             {
                 SetState(FighterState.Blocking);
-                animGraph.CrossfadeAvatarMaskAnimation(CurrentWeapon.Blocking, Mask.Hand, mask: CurrentWeapon.BlockMask, transitionTime: .1f);
+                animGraph.CrossfadeAvatarMaskAnimation(CurrentWeapon.Blocking, Mask.Hand, mask: CurrentWeapon.BlockMask, transitionInTime: .1f);
 
             }
             else if (!isBlocking && wasPreviouslyBlocking)
@@ -663,6 +682,74 @@ namespace FS_CombatSystem
                 ResetStateToNone(FighterState.Blocking);
                 animGraph.RemoveAvatarMask();
 
+            }
+        }
+
+        public IEnumerator Dodge(Vector3 dodgeDir)
+        {
+            if (CanDodge)
+            {
+                var dodge = CurrentWeapon != null && CurrentWeapon.OverrideDodge? CurrentWeapon.DodgeData : dodgeData;
+
+                if (dodgeDir == Vector3.zero)
+                    dodgeDir = dodge.GetDodgeDirection(transform, Target?.transform);
+
+                var dodgeClip = dodge.GetClip(transform, dodgeDir);
+
+                OnStartAction?.Invoke();
+                SetState(FighterState.Dodging);
+                IsInvinsible = true;
+
+                animGraph.CrossFade(dodgeClip, 0.2f);
+
+                float timer = 0f;
+                while (timer <= dodgeClip.length * 0.8f)
+                {
+                    if (!dodge.useDifferentClipsForDirections)
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dodgeDir), 1000 * Time.deltaTime);
+
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
+
+                IsInvinsible = false;
+                ResetStateToNone(FighterState.Dodging);
+                if (!IsBusy)
+                    OnEndAction?.Invoke();
+            }
+        }
+
+        public IEnumerator Roll(Vector3 rollDir)
+        {
+            if (CanRoll)
+            {
+                var roll = CurrentWeapon != null && CurrentWeapon.OverrideRoll ? CurrentWeapon.RollData : rollData;
+
+                if (rollDir == Vector3.zero)
+                    rollDir = roll.GetDodgeDirection(transform, Target?.transform);
+
+                var rollClip = roll.GetClip(transform, rollDir);
+
+                OnStartAction?.Invoke();
+                SetState(FighterState.Dodging);
+                IsInvinsible = true;
+
+                animGraph.CrossFade(rollClip, 0.2f);
+
+                float timer = 0f;
+                while (timer <= rollClip.length * 0.8f)
+                {
+                    if (!roll.useDifferentClipsForDirections)
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rollDir), 1000 * Time.deltaTime);
+
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
+
+                IsInvinsible = false;
+                ResetStateToNone(FighterState.Dodging);
+                if (!IsBusy)
+                    OnEndAction?.Invoke();
             }
         }
 
@@ -683,7 +770,7 @@ namespace FS_CombatSystem
                 Quaternion orientation = activeBoxCollider.transform.rotation;
 
                 RaycastHit hit;
-                var checkCollision = Physics.OverlapBox(prevColliderPos, halfExtents, orientation, 1 << target.gameObject.layer);
+                var checkCollision = Physics.OverlapBox(prevColliderPos, halfExtents, orientation, 1 << target.gameObject.layer, QueryTriggerInteraction.Collide);
                 //GizmosExtend.drawBoxCastBox(prevColliderPos, halfExtents, orientation, direction, distance);
 
                 if (checkCollision.Length > 0 && prevGameObj != checkCollision[0].gameObject)
@@ -694,7 +781,7 @@ namespace FS_CombatSystem
                 }
                 else
                 {
-                    bool isHit = Physics.BoxCast(prevColliderPos, halfExtents, direction, out hit, orientation, distance, 1 << target.gameObject.layer);
+                    bool isHit = Physics.BoxCast(prevColliderPos, halfExtents, direction, out hit, orientation, distance, 1 << target.gameObject.layer,QueryTriggerInteraction.Collide);
                     //GizmosExtend.drawBoxCastBox(prevColliderPos, halfExtents, orientation, direction, distance);
                     if (isHit && prevGameObj != hit.transform.gameObject)
                     {
@@ -710,7 +797,7 @@ namespace FS_CombatSystem
         
         private void OnTriggerEnterAction(Collider other)
         {
-            if (other.tag == "Hitbox" && CanTakeHit)
+            if (other.tag == "Hitbox" && CanTakeHit && !IsInvinsible)
             {
                 var attacker = other.GetComponentInParent<MeleeFighter>();
                 var currAttack = attacker.CurrAttack;
@@ -1004,8 +1091,11 @@ namespace FS_CombatSystem
         FighterState prevState;
         public void SetState(FighterState state)
         {
-            prevState = State;
-            State = state;
+            if (State != state)
+            {
+                prevState = State;
+                State = state;
+            }
         }
 
         public void ResetStateToNone(FighterState stateToReset)
@@ -1309,7 +1399,7 @@ namespace FS_CombatSystem
             if (!IsDead)
                 yield return animGraph.CrosseFadeOverrideController(newController, .2f);
             if (weaponData != null)
-                animGraph.CrossfadeAvatarMaskAnimation(weaponData.WeaponHoldingClip,mask : weaponData.WeaponHolderMask, transitionTime: 0.1f);
+                animGraph.CrossfadeAvatarMaskAnimation(weaponData.WeaponHoldingClip,mask : weaponData.WeaponHolderMask, transitionInTime: 0.1f);
             else
                 animGraph.RemoveAvatarMask();
 
@@ -1393,22 +1483,22 @@ namespace FS_CombatSystem
         public List<Rigidbody> rigidbodies { get; set; }
         public void SetRagdollState(bool state)
         {
-            if (rigidbodies.Count > 0 && !state)
-            {
-                var modelTransform = transform.GetComponentsInChildren<Animator>().ToList().FirstOrDefault(a => a != animator);
-                if (modelTransform != null)
-                {
-                    transform.position = modelTransform.transform.position;
-                    modelTransform.transform.localPosition = Vector3.zero;
-                }
-            }
-            foreach (Rigidbody rb in rigidbodies)
-            {
-                rb.isKinematic = !state;
-                rb.GetComponent<Collider>().enabled = state;
-            }
-            if(rigidbodies.Count > 0)
-            animator.enabled = !state;
+            //if (rigidbodies.Count > 0 && !state)
+            //{
+            //    var modelTransform = transform.GetComponentsInChildren<Animator>().ToList().FirstOrDefault(a => a != animator);
+            //    if (modelTransform != null)
+            //    {
+            //        transform.position = modelTransform.transform.position;
+            //        modelTransform.transform.localPosition = Vector3.zero;
+            //    }
+            //}
+            //foreach (Rigidbody rb in rigidbodies)
+            //{
+            //    rb.isKinematic = !state;
+            //    rb.GetComponent<Collider>().enabled = state;
+            //}
+            //if(rigidbodies.Count > 0)
+            //animator.enabled = !state;
         }
     }
 
@@ -1427,4 +1517,83 @@ namespace FS_CombatSystem
         [Space(10)]
         public List<AnimationClip> deathAnimation = new List<AnimationClip>();
     }
+
+    [Serializable]
+    public class DodgeData
+    {
+        public AnimationClip clip;
+        public DodgeDirection defaultDirection;
+        public bool useDifferentClipsForDirections;
+
+        public AnimationClip frontClip;
+        public AnimationClip backClip;
+        public AnimationClip leftClip;
+        public AnimationClip rightClip;
+
+        public Vector3 GetDodgeDirection(Transform transform, Transform target)
+        {
+            if (defaultDirection == DodgeDirection.Forward || (defaultDirection == DodgeDirection.TowardsTarget && target == null))
+                return transform.forward;
+            else if (defaultDirection == DodgeDirection.Backward || (defaultDirection == DodgeDirection.AwayFromTarget && target == null))
+                return -transform.forward;
+            else if (defaultDirection == DodgeDirection.AwayFromTarget)
+                return -(target.position - transform.position);
+            else if (defaultDirection == DodgeDirection.TowardsTarget)
+                return (target.position - transform.position);
+
+            return -transform.forward;
+        }
+
+        public AnimationClip GetClip(Transform transform, Vector3 direction)
+        {
+            if (!useDifferentClipsForDirections)
+                return clip;
+
+            var dir = transform.InverseTransformDirection(direction);
+            //Debug.Log(dir);
+
+            float h = dir.x;
+            float v = dir.z;
+
+            if (Math.Abs(v) >= Math.Abs(h))
+                return (v > 0) ? frontClip : backClip;
+            else
+                return (h > 0) ? rightClip : leftClip;
+        }
+    }
+
+    public enum DodgeDirection { AwayFromTarget, TowardsTarget, Backward, Forward }
+
+#if UNITY_EDITOR
+
+    [CustomPropertyDrawer(typeof(DodgeData))]
+    public class DodgeDataEditor : PropertyDrawer
+    {
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            SerializedProperty clip = property.FindPropertyRelative("clip");
+            SerializedProperty defaultDirection = property.FindPropertyRelative("defaultDirection");
+            SerializedProperty useDifferentClipsForDirections = property.FindPropertyRelative("useDifferentClipsForDirections");
+
+            SerializedProperty frontClip = property.FindPropertyRelative("frontClip");
+            SerializedProperty backClip = property.FindPropertyRelative("backClip");
+            SerializedProperty leftClip = property.FindPropertyRelative("leftClip");
+            SerializedProperty rightClip = property.FindPropertyRelative("rightClip");
+
+            if (!useDifferentClipsForDirections.boolValue)
+                EditorGUILayout.PropertyField(clip);
+
+            EditorGUILayout.PropertyField(defaultDirection);
+            EditorGUILayout.PropertyField(useDifferentClipsForDirections);
+            if (useDifferentClipsForDirections.boolValue)
+            {
+                EditorGUILayout.PropertyField(frontClip);
+                EditorGUILayout.PropertyField(backClip);
+                EditorGUILayout.PropertyField(leftClip);
+                EditorGUILayout.PropertyField(rightClip);
+            }
+        }
+    }
+
+#endif
 }

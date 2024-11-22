@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 7610927208941987945}
   - component: {fileID: 9220466856773788415}
   - component: {fileID: 2924515076509103957}
+  - component: {fileID: 4010696878989737317}
   m_Layer: 9
   m_Name: Enemy Controller
   m_TagString: Untagged
@@ -156,6 +157,26 @@ MonoBehaviour:
     - {fileID: 2848032600552524514, guid: a04805c4175e5d540af792dede20fe56, type: 3}
     - {fileID: -8845216213218993073, guid: df58d2601f9edff4aaccdffdfefebd36, type: 3}
   attachedWeapons: []
+  CanDodge: 0
+  dodgeData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyDodgeInCombatMode: 1
+  CanRoll: 0
+  rollData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyRollInCombatMode: 1
   OnWeaponEquipEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -169,6 +190,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnCounterMisusedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKnockDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGettingUpEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3202947083047128969
@@ -309,6 +339,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e626e5db5d9b5f2418e1612f6e95a7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4010696878989737317
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3587791682976705998}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.87, z: 0.08}
 --- !u!1 &5851790213343701592
 GameObject:
   m_ObjectHideFlags: 0

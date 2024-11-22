@@ -6428,6 +6428,7 @@ GameObject:
   - component: {fileID: 8144463002230066274}
   - component: {fileID: 3152545044662964917}
   - component: {fileID: 2540644397104200072}
+  - component: {fileID: 2747413963959657082}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -6481,18 +6482,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6903193317393294783d91aa6a5e2111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preventFallingFromLedge: 1
-  enableBalanceWalk: 1
-  enableTurningAnim: 0
-  verticalJump: 0
   sprintSpeed: 6.5
   runSpeed: 4.5
   walkSpeed: 2
+  rotationSpeed: 2.5
+  acceleration: 8
+  deceleration: 6
+  enableSprint: 1
+  setDefaultStateToRunning: 1
+  useMultiDirectionalAnimation: 0
+  playerDirectionBlend: 1
+  faceCameraForwardWhenIdle: 0
+  speedMultiplier: 0.8
+  sprintDirectionThreshold: 0.9
+  forwardHipRotationBlend: 0.5
+  rotateHipForBackwardAnimation: 1
+  backwardHipRotationBlend: 0.8
+  verticalJump: 0
   timeToJump: 0.4
   jumpMoveSpeed: 4
-  rotationSpeed: 2.5
-  playTurningAnimations: 0
+  preventFallingFromLedge: 1
+  slidingMovementThresholdFromLedge: -1
+  preventLedgeRotation: 0
+  enableBalanceWalk: 1
+  balanceWalkDetectionType: 0
+  enableTurningAnim: 0
+  playQuickTurnAnimation: 1
+  QuickTurnThreshhold: -0.01
   playQuickStopAnimation: 0
+  runToStopThreshhold: 0.4
   groundCheckRadius: 0.37
   groundCheckOffset: {x: 0, y: 0.1, z: 0.07}
   groundLayer:
@@ -6510,7 +6528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc70c16ee4ffe644b14fed8480dfaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 1
   rotationSpeed: 500
   targetSelectionCriteria: 0
   directionScaleFactor: 0.1
@@ -6566,6 +6584,26 @@ MonoBehaviour:
     - {fileID: 2848032600552524514, guid: a04805c4175e5d540af792dede20fe56, type: 3}
     - {fileID: -8845216213218993073, guid: df58d2601f9edff4aaccdffdfefebd36, type: 3}
   attachedWeapons: []
+  CanDodge: 0
+  dodgeData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyDodgeInCombatMode: 1
+  CanRoll: 0
+  rollData:
+    clip: {fileID: 0}
+    defaultDirection: 0
+    useDifferentClipsForDirections: 0
+    frontClip: {fileID: 0}
+    backClip: {fileID: 0}
+    leftClip: {fileID: 0}
+    rightClip: {fileID: 0}
+  OnlyRollInCombatMode: 1
   OnWeaponEquipEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6642,11 +6680,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackKey: 120
   blockKey: 97
+  dodgeKey: 308
+  rollKey: 32
   combatModeKey: 115
   heavyAttackKey: 100
   counterKey: 102
   attackButton: 
   blockButton: 
+  dodgeButton: 
+  rollButton: 
   combatModeButton: 
   counterButton: 
   heavyAttackButton: 
@@ -6697,6 +6739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MinJumpDistance>k__BackingField: 0.2
+  jumpToTheClosestLedge: 0
   alwaysUsePlayerForward: 0
   heightRayLength: 4
   obstacleCheckRange: 0.7
@@ -6884,11 +6927,9 @@ MonoBehaviour:
   jumpKey: 32
   dropKey: 101
   jumpFromHangKey: 113
-  parkourKey: 108
   jumpButton: 
   dropButton: 
   jumpFromHangButton: 
-  parkourButton: 
 --- !u!114 &118808781080577492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7246,6 +7287,33 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 16777216
+--- !u!114 &2747413963959657082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367994543752358055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c127b2031be937e438715f8ce6a271a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepSounds:
+  - {fileID: 8300000, guid: 2ea9ebae353cfc94d8a4680fdda0c76c, type: 3}
+  - {fileID: 8300000, guid: dbdca68d3e91dce438e50a580944f109, type: 3}
+  - {fileID: 8300000, guid: 1db0ddb4016fedd4ebf3429952e476e0, type: 3}
+  - {fileID: 8300000, guid: 478fa7e4d9f0afa4692b3709afe45da2, type: 3}
+  footStepParticles: []
+  overrideStepEffects: []
+  overrideType: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8388609
+  soundIgnoreStates: 
+  particleIgnoreStates: 
+  adjustVolumeBasedOnSpeed: 1
+  minVolume: 0.2
 --- !u!1 &7487747447662458559
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,8 +8169,8 @@ Camera:
   m_GameObject: {fileID: 8889885805213154095}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

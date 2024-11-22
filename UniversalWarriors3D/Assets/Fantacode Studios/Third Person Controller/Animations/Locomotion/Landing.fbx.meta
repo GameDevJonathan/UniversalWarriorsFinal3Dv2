@@ -912,7 +912,8 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4bc658412b1deef49a1ccdbd6e2838e9, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4bc658412b1deef49a1ccdbd6e2838e9,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -924,3 +925,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262354
+  packageName: FS - Melee Combat System
+  packageVersion: 1.2
+  assetPath: Assets/Fantacode Studios/Third Person Controller/Animations/Locomotion/Landing.fbx
+  uploadId: 708569

@@ -57,10 +57,10 @@ MonoBehaviour:
     maxDistance: 1
     healthThreshold: 100
     attacks:
-    - attack: {fileID: 11400000, guid: 8ffbc83747ed52649af0b4d58fc405b5, type: 2}
+    - attack: {fileID: 11400000, guid: a33616ea159230841a61fbf46c81a2f2, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
-    - attack: {fileID: 11400000, guid: a33616ea159230841a61fbf46c81a2f2, type: 2}
+    - attack: {fileID: 11400000, guid: 8ffbc83747ed52649af0b4d58fc405b5, type: 2}
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     - attack: {fileID: 11400000, guid: ec90147ede7287b47808c597b4545a31, type: 2}
@@ -71,6 +71,34 @@ MonoBehaviour:
       canBeCharged: 0
       chargedAttack: {fileID: 0}
     animationDistance: 1.0060813
+    serialized: 1
+  - attackType: 0
+    minDistance: 0.8
+    maxDistance: 1.2
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: 1ee22c6bea4c2d4428672ddd654badb3, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: 1ee22c6bea4c2d4428672ddd654badb3, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0.91431475
+    serialized: 1
+  - attackType: 0
+    minDistance: 1.2
+    maxDistance: 4
+    healthThreshold: 100
+    attacks:
+    - attack: {fileID: 11400000, guid: 1b231d3f4e3e9d946aac053cf6f690b0, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    attack:
+      attack: {fileID: 11400000, guid: 1b231d3f4e3e9d946aac053cf6f690b0, type: 2}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 2.2809844
     serialized: 1
   heavyAttacks: []
   reactionData: {fileID: 11400000, guid: 6036ddc2962f52e47ba682d6078af963, type: 2}
@@ -83,9 +111,6 @@ MonoBehaviour:
   blockedDamage: 25
   blockReactionData: {fileID: 11400000, guid: c05e53600afde0e468c7f46d59ffed37, type: 2}
   blockMask: {fileID: 0}
-  canCounter: 1
-  playActionIfCounterMisused: 0
-  counterMisusedAction: {fileID: 0}
   overrideController: {fileID: 0}
   useRootmotion: 0
   overrideMoveSpeed: 0

@@ -299,6 +299,7 @@ namespace FS_ThirdPerson
         Climbing,
         Combat,
         GrapplingHook,
+        Swing,
         Other,
         Crouching
     }

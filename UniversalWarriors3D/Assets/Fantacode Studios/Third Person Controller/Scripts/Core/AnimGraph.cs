@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 
 namespace FS_ThirdPerson
 {
-    public enum Mask { Hand, UpperBody }
+    public enum Mask { Hand, UpperBody, RightFinger }
 
     public class AnimGraph : MonoBehaviour
     {
@@ -21,6 +21,7 @@ namespace FS_ThirdPerson
         public Animator animator;
         AvatarMask handMask;
         AvatarMask upperBodyMask;
+        AvatarMask rightFingerMask;
         Dictionary<string, object> savedParameters;
 
         bool maskRemoving = false;
@@ -48,7 +49,7 @@ namespace FS_ThirdPerson
             if (animator == null)
                 animator = GetComponent<Animator>();
             SetupAnimationGraph();
-            SetDefaultMask();
+            CreateDefaultMask();
 
             playableAnimator = AnimatorControllerPlayable.Create(graph, runtimeAnimatorController == null ? animator.runtimeAnimatorController : runtimeAnimatorController);
             actionMixer = AnimationMixerPlayable.Create(graph, 2);
@@ -357,12 +358,12 @@ namespace FS_ThirdPerson
             }
         }
 
-        public void CrossfadeAvatarMaskAnimation(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f, bool removeMaskAfterComplete = true)
+        public void CrossfadeAvatarMaskAnimation(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionInTime = 0f, bool removeMaskAfterComplete = true, float animationSpeed = 1)
         {
-            StartCoroutine(CrossfadeAvatarMaskAnimationAsync(clip, targetMask, transitionBack, mask, transitionTime, removeMaskAfterComplete));
+            StartCoroutine(CrossfadeAvatarMaskAnimationAsync(clip, targetMask, transitionBack, mask, transitionInTime, removeMaskAfterComplete, animationSpeed));
         }
 
-        public IEnumerator CrossfadeAvatarMaskAnimationAsync(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionTime = 0f, bool removeMaskAfterComplete = true)
+        public IEnumerator CrossfadeAvatarMaskAnimationAsync(AnimationClip clip, Mask targetMask = Mask.Hand, bool transitionBack = false, AvatarMask mask = null, float transitionInTime = 0f, bool removeMaskAfterComplete = true, float animationSpeed = 1)
         {
             maskAdding = true;
             yield return new WaitUntil(() => maskRemoving == false);
@@ -381,6 +382,9 @@ namespace FS_ThirdPerson
                     case Mask.UpperBody:
                         mask = upperBodyMask;
                         break;
+                    case Mask.RightFinger:
+                        mask = rightFingerMask;
+                        break;
                     default:
                         break;
                 }
@@ -388,6 +392,7 @@ namespace FS_ThirdPerson
             layerMixerList.Add(AnimationLayerMixerPlayable.Create(graph, 2));
             var layerMixer = layerMixerList.Last();
             var clipPlayable = AnimationClipPlayable.Create(graph, clip);
+            clipPlayable.SetSpeed(animationSpeed);
             var source = actionMixer.GetInput(0);
             actionMixer.DisconnectInput(0);
 
@@ -403,9 +408,10 @@ namespace FS_ThirdPerson
 
             float timer = 0f;
             float weight = 0f;
-            while (timer < transitionTime && layerMixer.IsValid() && !maskRemoving)
+            transitionInTime = transitionInTime / animationSpeed;
+            while (timer < transitionInTime && layerMixer.IsValid() && !maskRemoving)
             {
-                weight = Mathf.Lerp(0, 1, timer / transitionTime);
+                weight = Mathf.Lerp(0, 1, timer / transitionInTime);
                 layerMixer.SetInputWeight(1, weight);
                 timer += Time.deltaTime;
                 yield return null;
@@ -415,8 +421,8 @@ namespace FS_ThirdPerson
 
             if (transitionBack)
             {
-                yield return new WaitForSeconds(clip.length - transitionTime);
-                if(removeMaskAfterComplete)
+                yield return new WaitForSeconds(clip.length/animationSpeed - transitionInTime);
+                if (removeMaskAfterComplete)
                     RemoveAvatarMask();
             }
             maskAdding = false;
@@ -469,7 +475,7 @@ namespace FS_ThirdPerson
             }
             maskRemoving = false;
         }
-        void SetDefaultMask()
+        void CreateDefaultMask()
         {
             handMask = new AvatarMask();
             for (int i = 0; i < (int)AvatarMaskBodyPart.LastBodyPart; i++)
@@ -490,8 +496,15 @@ namespace FS_ThirdPerson
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightFingers, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftFingers, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftArm, true);
+            upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightHandIK, true);
+            upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftHandIK, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Body, true);
             upperBodyMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Head, true);
+
+            rightFingerMask = new AvatarMask();
+            for (int i = 0; i < (int)AvatarMaskBodyPart.LastBodyPart; i++)
+                rightFingerMask.SetHumanoidBodyPartActive((AvatarMaskBodyPart)i, false);
+            rightFingerMask.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightFingers, true);
         }
 
 
@@ -617,6 +630,7 @@ namespace FS_ThirdPerson
             if (transitionBack)
             {
                 yield return new WaitForSeconds(clip1.length - transitionTime);
+               
                 if (removeMaskAfterComplete)
                     RemoveAvatarMask();
             }

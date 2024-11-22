@@ -68,11 +68,19 @@ namespace FS_CombatSystem
 
                 SetColliders(modelAnimator);
 
-                var characterController = playerGameObject.GetComponent<CharacterController>();
-                var collider = playerGameObject.AddComponent<CapsuleCollider>();
-                collider.radius = characterController.radius;
-                collider.center = characterController.center;
-                collider.height = characterController.height;
+                var footTriggerPrefab = (GameObject)Resources.Load("FootTrigger");
+                var rightFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot).transform;
+                var leftFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot).transform;
+                var rightCollider = PrefabUtility.InstantiatePrefab(footTriggerPrefab, rightFoot) as GameObject;
+                var leftCollider = PrefabUtility.InstantiatePrefab(footTriggerPrefab, leftFoot) as GameObject;
+                rightCollider.transform.localPosition = Vector3.zero;
+                leftCollider.transform.localPosition = Vector3.zero;
+
+                if (!(rightCollider.layer != LayerMask.NameToLayer("FootTrigger")))
+                    rightCollider.layer = LayerMask.NameToLayer("FootTrigger");
+                if (!(leftCollider.layer != LayerMask.NameToLayer("FootTrigger")))
+                    leftCollider.layer = LayerMask.NameToLayer("FootTrigger");
+
 
                 if (!(playerGameObject.layer != LayerMask.NameToLayer("Player")))
                     playerGameObject.layer = LayerMask.NameToLayer("Player");
@@ -107,13 +115,6 @@ namespace FS_CombatSystem
                 model.name = this.model.name;
 
                 SetColliders(modelAnimator);
-
-                var characterController = enemyController.GetComponent<CharacterController>();
-                var collider = enemyController.AddComponent<CapsuleCollider>();
-                collider.radius = characterController.radius;
-                collider.center = characterController.center;
-                collider.height = characterController.height;
-
 
                 if (!(enemyController.layer != LayerMask.NameToLayer("Enemy")))
                     enemyController.layer = LayerMask.NameToLayer("Enemy");
