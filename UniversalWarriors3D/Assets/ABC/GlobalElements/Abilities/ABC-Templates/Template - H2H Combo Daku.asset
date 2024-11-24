@@ -19,7 +19,7 @@ MonoBehaviour:
   - Template
   - Damage
   - Melee
-  creationDate: 29/06/2021 12:05:42
+  creationDate: 11/23/2024 11:02:10 AM
   createdBy: ABC
   officialABC: 1
   elementType: 1
@@ -408,7 +408,7 @@ MonoBehaviour:
     globalAbilitiesEnableGameTypeModification: 0
     globalAbilitiesGameTypeModification: 0
     name: H2H Combo
-    abilityID: 111010966
+    abilityID: 143282767
     autoCast: 0
     abilityTags: []
     allowAbilityGroupAssignment: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
     enableAbilityActivationLinks: 0
     activationLinkAbilityIDs: 03000000
     enableAbilityTriggerLinks: 1
-    triggerLinkAbilityIDs: 72e49d06a2e29d069de29d0690e49d06
+    triggerLinkAbilityIDs: 87508a081c528a089f528a0851518a08
     enableCriticalHit: 1
     potencyCriticalHitBaseChance: 5
     potencyCriticalHitEnableChanceStatModification: 1
@@ -591,7 +591,7 @@ MonoBehaviour:
     scrollQuickKey: 0
     scrollSwapDuration: 1
     triggerType: 0
-    keyInputCombo: 00000000
+    keyInputCombo: 
     keyInputType: 1
     keyButton: LightAttack
     globalAbilityOverrideKeyTrigger: 0
@@ -642,7 +642,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 6cf0948c0f0142e48b5006184a0c60d4, type: 2}
-      effectAbilityID: 111010966
+      effectAbilityID: 143282767
       effectID: 11607900
       effectName: 
       potency: 10
@@ -751,13 +751,49 @@ MonoBehaviour:
     setEulerRotation: 0
     travelDrag: 0
     startingPosition: 6
-    additionalStartingPositions: []
+    additionalStartingPositions:
+    - startingDelayType: 1
+      startingDelay: 0.1
+      startingDelayInitiatingAnimationPercentage: 27
+      startingPosition: 6
+      startingPositionOnObject:
+        refVal: {fileID: 0}
+        refName: 
+        refUpdateDateTime: 
+      startingPositionOnTag: ABC/LeftHand
+      startingPositionOffset: {x: 0, y: 0, z: 0}
+      startingPositionForwardOffset: 0
+      startingPositionRightOffset: 0
+      startingRotation: {x: 0, y: 0, z: 0}
+      setEulerRotation: 0
+      repeatInitiatingGraphic: 0
+      repeatInitiatingGraphicDelay: 0.3
+      useWeaponTrail: 0
+      weaponTrailGraphicIteration: 0
+    - startingDelayType: 1
+      startingDelay: 0.15
+      startingDelayInitiatingAnimationPercentage: 44
+      startingPosition: 6
+      startingPositionOnObject:
+        refVal: {fileID: 0}
+        refName: 
+        refUpdateDateTime: 
+      startingPositionOnTag: ABC/RightHand
+      startingPositionOffset: {x: 0, y: 0, z: 0}
+      startingPositionForwardOffset: 0
+      startingPositionRightOffset: 0
+      startingRotation: {x: 0, y: 0, z: 0}
+      setEulerRotation: 0
+      repeatInitiatingGraphic: 0
+      repeatInitiatingGraphicDelay: 0.3
+      useWeaponTrail: 0
+      weaponTrailGraphicIteration: 0
     affectOriginObject: 0
     startingPositionOnObject:
       refVal: {fileID: 0}
       refName: 
       refUpdateDateTime: 
-    startingPositionOnTag: ABC/LeftHand
+    startingPositionOnTag: ABC/RightHand
     startingPositionOffset: {x: 0, y: 0, z: 0}
     startingPositionForwardOffset: 0
     startingPositionRightOffset: 0
@@ -845,16 +881,16 @@ MonoBehaviour:
     initiatingAestheticsPositionForwardOffset: 0
     initiatingAestheticsPositionRightOffset: 0
     initiatingAnimationRunnerClip:
-      refVal: {fileID: 7400036, guid: e1dc717923f59d44483c076fae553460, type: 3}
-      refName: 19_Frank_Punch_Right_Straight
-      refUpdateDateTime: 11/22/2024 4:45:26 PM
+      refVal: {fileID: 7400000, guid: 59b40ea6509af8b4e9d451f7bce9364a, type: 2}
+      refName: H2H_Atk_01
+      refUpdateDateTime: 06/06/2021 14:10:39
     initiatingAnimationRunnerMask:
       refVal: {fileID: 0}
       refName: 
       refUpdateDateTime: 28/02/2021 14:40:45
     initiatingAnimationRunnerClipSpeed: 1
     initiatingAnimationRunnerClipDelay: 0
-    initiatingAnimationRunnerClipDuration: 0.4
+    initiatingAnimationRunnerClipDuration: 0.8
     initiatingAnimationRunnerOnEntity: 1
     initiatingAnimationRunnerOnScrollGraphic: 0
     initiatingAnimationRunnerOnWeapon: 0
@@ -1159,7 +1195,7 @@ MonoBehaviour:
     abEndAestheticDuration: 2
     stopMovementOnInitiate: 1
     stopMovementOnInitiateDuration: 0
-    stopMovementOnInitiateFreezePosition: 0
+    stopMovementOnInitiateFreezePosition: 1
     stopMovementOnInitiateDisableComponents: 1
     stopMovementOnInitiateRaiseEvent: 1
     stopMovementOnPreparing: 0
@@ -1172,15 +1208,15 @@ MonoBehaviour:
     globalAbilitiesEnableGameTypeModification: 0
     globalAbilitiesGameTypeModification: 0
     name: H2H Combo II
-    abilityID: 111010930
+    abilityID: 143282311
     autoCast: 0
     abilityTags: []
     allowAbilityGroupAssignment: 0
     assignedAbilityGroupIDs: 00000000
     abilityGroupListChoice: 0
     assignedAbilityGroupNames: []
-    inspectorParentAbilityListChoice: 2
-    parentAbilityID: 111010966
+    inspectorParentAbilityListChoice: 1
+    parentAbilityID: 143282767
     showChildrenInInspector: 0
     description: Hand to Hand combo attack which inflicts damage on the enemy hit
     iconImage:
@@ -1406,7 +1442,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 6cf0948c0f0142e48b5006184a0c60d4, type: 2}
-      effectAbilityID: 111010930
+      effectAbilityID: 143282311
       effectID: 11606244
       effectName: 
       potency: 10
@@ -1515,13 +1551,31 @@ MonoBehaviour:
     setEulerRotation: 0
     travelDrag: 0
     startingPosition: 6
-    additionalStartingPositions: []
+    additionalStartingPositions:
+    - startingDelayType: 1
+      startingDelay: 0.2
+      startingDelayInitiatingAnimationPercentage: 42
+      startingPosition: 6
+      startingPositionOnObject:
+        refVal: {fileID: 0}
+        refName: 
+        refUpdateDateTime: 
+      startingPositionOnTag: ABC/RightFoot
+      startingPositionOffset: {x: 0, y: 0, z: 0}
+      startingPositionForwardOffset: 0
+      startingPositionRightOffset: 0
+      startingRotation: {x: 0, y: 0, z: 0}
+      setEulerRotation: 0
+      repeatInitiatingGraphic: 0
+      repeatInitiatingGraphicDelay: 0.3
+      useWeaponTrail: 0
+      weaponTrailGraphicIteration: 0
     affectOriginObject: 0
     startingPositionOnObject:
       refVal: {fileID: 0}
       refName: 
       refUpdateDateTime: 
-    startingPositionOnTag: ABC/LeftHand
+    startingPositionOnTag: ABC/RightFoot
     startingPositionOffset: {x: 0, y: 0, z: 0}
     startingPositionForwardOffset: 0
     startingPositionRightOffset: 0
@@ -1609,9 +1663,9 @@ MonoBehaviour:
     initiatingAestheticsPositionForwardOffset: 0
     initiatingAestheticsPositionRightOffset: 0
     initiatingAnimationRunnerClip:
-      refVal: {fileID: 7400050, guid: e1dc717923f59d44483c076fae553460, type: 3}
-      refName: 26_Frank_Punch_Combination03
-      refUpdateDateTime: 11/22/2024 4:52:57 PM
+      refVal: {fileID: 7400000, guid: b1c835c8ce958784280c030782dfab28, type: 2}
+      refName: H2H_Atk_02
+      refUpdateDateTime: 06/06/2021 14:10:47
     initiatingAnimationRunnerMask:
       refVal: {fileID: 0}
       refName: 
@@ -1936,15 +1990,15 @@ MonoBehaviour:
     globalAbilitiesEnableGameTypeModification: 0
     globalAbilitiesGameTypeModification: 0
     name: H2H Combo III
-    abilityID: 111010466
+    abilityID: 143282716
     autoCast: 0
     abilityTags: []
     allowAbilityGroupAssignment: 0
     assignedAbilityGroupIDs: 00000000
     abilityGroupListChoice: 0
     assignedAbilityGroupNames: []
-    inspectorParentAbilityListChoice: 2
-    parentAbilityID: 111010966
+    inspectorParentAbilityListChoice: 1
+    parentAbilityID: 143282767
     showChildrenInInspector: 0
     description: Hand to Hand combo attack which inflicts damage on the enemy hit
     iconImage:
@@ -2170,7 +2224,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 6cf0948c0f0142e48b5006184a0c60d4, type: 2}
-      effectAbilityID: 111010466
+      effectAbilityID: 143282716
       effectID: 11609368
       effectName: 
       potency: 10
@@ -2736,15 +2790,15 @@ MonoBehaviour:
     globalAbilitiesEnableGameTypeModification: 0
     globalAbilitiesGameTypeModification: 0
     name: H2H Combo IV
-    abilityID: 111010461
+    abilityID: 143282847
     autoCast: 0
     abilityTags: []
     allowAbilityGroupAssignment: 0
     assignedAbilityGroupIDs: 00000000
     abilityGroupListChoice: 0
     assignedAbilityGroupNames: []
-    inspectorParentAbilityListChoice: 2
-    parentAbilityID: 111010966
+    inspectorParentAbilityListChoice: 1
+    parentAbilityID: 143282767
     showChildrenInInspector: 0
     description: Hand to Hand combo attack which inflicts damage on the enemy hit
     iconImage:
@@ -2970,7 +3024,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 6cf0948c0f0142e48b5006184a0c60d4, type: 2}
-      effectAbilityID: 111010461
+      effectAbilityID: 143282847
       effectID: 11609855
       effectName: 
       potency: 10
@@ -3536,15 +3590,15 @@ MonoBehaviour:
     globalAbilitiesEnableGameTypeModification: 0
     globalAbilitiesGameTypeModification: 0
     name: H2H Combo VIII
-    abilityID: 111010960
+    abilityID: 143282513
     autoCast: 0
     abilityTags: []
     allowAbilityGroupAssignment: 0
     assignedAbilityGroupIDs: 00000000
     abilityGroupListChoice: 0
     assignedAbilityGroupNames: []
-    inspectorParentAbilityListChoice: 2
-    parentAbilityID: 111010966
+    inspectorParentAbilityListChoice: 1
+    parentAbilityID: 143282767
     showChildrenInInspector: 0
     description: Hand to Hand combo attack which inflicts damage on the enemy hit
     iconImage:
@@ -3768,10 +3822,10 @@ MonoBehaviour:
     boomerangDelay: 0
     effects:
     - effectPool: []
-      foldOut: 0
+      foldOut: 1
       globalEffect: {fileID: 0}
-      effectAbilityID: 111010960
-      effectID: 111010960
+      effectAbilityID: 143282513
+      effectID: 143282513
       effectName: Delay
       potency: 0
       modifyPotencyUsingStats: 0
@@ -3869,7 +3923,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 6cf0948c0f0142e48b5006184a0c60d4, type: 2}
-      effectAbilityID: 111010960
+      effectAbilityID: 143282513
       effectID: 11624353
       effectName: 
       potency: 10
@@ -3968,7 +4022,7 @@ MonoBehaviour:
     - effectPool: []
       foldOut: 0
       globalEffect: {fileID: 11400000, guid: 2dee30f45a9846248a794aea4e637318, type: 2}
-      effectAbilityID: 111010960
+      effectAbilityID: 143282513
       effectID: 111010666
       effectName: 
       potency: 10

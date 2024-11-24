@@ -1,0 +1,1889 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="Position_&_Travel_Type">
+        <h2>Position & Travel Type</h2>
+
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The position & travel type settings declare where the ability starts from and how it travels, i.e in a straight line or to a target entity. There is many different travel
+                    types which are all detailed below. Each travel type once selected will load settings relating to it. 
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/PositionTravelType.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Starting_Position">Starting Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the starting position for all types of abilities (Particle Effect, Melee, Raycast).
+                    After the ability is initiated it will appear at the selected starting position which has
+                    been chosen from the dropdown provided. The following options are available:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target of the entity.
+                                If no target is selected and “Auxiliary SoftTarget” is ticked then
+                                the graphic will as a backup appear at the current soft target of the entity.
+                                If no target/soft target is selected then the graphic will appear at the
+                                entity as if ‘Self’ was selected
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting
+                                ‘Select Object’. Any object can be dragged or selected onto the setting field.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world target of the entity.
+                                If no target is selected then the graphic will appear at the entity as
+                                if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag
+                                which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’
+                                so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity
+                                object the ABC system is attached too or any child objects linked to the
+                                entity which also has a tag which matches the tag defined in additional
+                                setting ‘Select Tag’. Only Unity defined tags can be selected from the dropdown.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Position_Offset">Position Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the ability is positioned
+                    from it’s starting position. I.e 90 in the X box will move the ability up
+                    the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the ability object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the ability object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Starting_Rotation">Starting Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the starting rotation for the ability and which way the object is facing.
+                    X, Y, Z values can be entered to adjust the abilities starting rotation by the values provided.
+                    I.e rotate the ability around the X axis by 90. Setting is not used or displayed if ability is set to type Raycast.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Set_Euler_Rotation">Set Euler Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the starting rotation amendments will also be applied to the abilities Local Euler Angles.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Travel_Type">Travel Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Sets the behaviour behind how the ability will travel. A number of different travel options
+                    detailed below can be selected.
+                    Depending on the type of ability, the ability will travel in the following way:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Particle Effects
+                            <ol>
+                                Determines how the ability gameobject will physically travel across the game and in what direction.
+                            </ol>
+                        </li>
+                        <li>
+                            Raycast
+                            <ol>
+                                Determines the direction the ray is casted in from the ability starting point. activating effects on entities hit.
+                            </ol>
+                        </li>
+                        <li>
+                            Melee
+                            <ol>
+                                Travel Type dropdown will disappear as Melee types do not travel as they become a child of the
+                                starting position object, allowing for animations to control the movement of the ability
+                                (like a sword swipe). Additional settings will however still load relating to melee abilities.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    When a travel type is selected from the dropdown additional settings will appear allowing for further customisation.
+                </p>
+                <p class="doc-note">
+                    NOTE: Once GUI logging is setup in the ABC Controller configuration
+                    then any information regarding activation restrictions caused by the additional setting will
+                    be added to the logs i.e the entity is not in range etc. 
+                    For more information on setting the GUI log then please click the following link:
+                    <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'GUI_Log')">Setting Up The GUI Log</a>.  
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Forward">Travel Type - Forward</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Ability will travel forward in a straight line from the starting position.
+                    This is done by adding the travel speed defined in settings to the objects forward transform.
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate To Camera Center
+                            <ol>
+                                If enabled then the entity will turn to face the same direction that the camera is
+                                facing when activating the ability.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Travel_Type_-_Selected_Target">Travel Type - Selected Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will travel towards the object the entity was targeting when the ability was activated.
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that
+                                it will travel towards the targets position + the offset (so the destination will be slightly
+                                above/below/to the side of the target position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the targets current position + 5
+                                in the Y Axis, which should make the ability aim slightly higher then the targets transform position.
+                                This can be used to make the ability hit at the targets feet for example rather than in the chest.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it
+                                will travel towards the targets position + the forward offset
+                                (so the destination will be slightly forward or behind the target position depending on the value set).
+                                If a negative value is entered it will modify the ability target position to a point
+                                behind the targets current position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that
+                                it will travel towards the targets position + the right offset
+                                (so the destination will be slightly to the left or to the right of the
+                                target position depending on the value set). If a negative value is entered
+                                it will modify the ability target position to a point to the left of the
+                                target's current position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                               If ticked then the ability has the potential to miss the target depending on the originators miss chance and values 
+                               else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                               offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here: 
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>    
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the target
+                                position and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight
+                                line in its starting direction until the delay is over in which it will then start
+                                travelling towards the selected target. I.e an ability can be setup to travel up
+                                from the starting position into the air for 3 seconds before it then starts
+                                travelling back down to the target.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the target when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Face Target Required
+                            <ol>
+                                If enabled then the entity must be facing the target to activate the ability.
+                                If the entity is not facing the target then the ability will not activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Use Range
+                            <ol>
+                                If enabled then the ability can only be activated if the entity is
+                                within a certain range of the selected target. When ticked a “Range Greater Than”
+                                and a “Range Less Than” box will appear to set the range.
+                            </ol>
+                            <ol>
+                                For example if 5 is added to the greater than box and 15 is added to the
+                                less than box then the entities distance has to be further then 5 from the
+                                target but less  then 15 for the ability to activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the targets current position
+                                even if the target moves, like a homing missile. If disabled then the projectile will
+                                start travelling towards the targets current position but will always keep going in that
+                                direction no matter if the target moves.
+                            </ol>
+                        </li>
+                        <li>
+                            Affect Only Target
+                            <ol>
+                                If enabled then the ability will only collide and apply effects to the selected target,
+                                ignoring all other entities on the way.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Before Target
+                            <ol>
+                                If ticked then the ability will wait for a target to be selected before activating.
+                                A target selection is required even if the entity already has a target although there
+                                is nothing stopping the user from selecting the same object the entity is already targeting.
+                            </ol>
+                            <ol>
+                                Useful for turn based games where a command (ability) is selected before a target.
+                            </ol>
+                            <ol>
+                                The ability can be interrupted before a target is selected, cancelling the activation as normal
+                            </ol>
+                        </li>
+                        <li>
+                            Force SoftTarget
+                            <ol>
+                                Whilst the ability is waiting for a target to activate. If this setting is enabled any targets
+                                picked will first be selected as a soft target. Once the soft target is confirmed into a
+                                target the ability will then activate.
+                            </ol>
+                            <ol>
+                                Settings to configure which key/button trigger converts a soft target to a target can
+                                be found in the ABC Controller Settings, click the following link for more information: 
+                                <a onclick="HyperLink('ControllerConfig', 'Target Settings', 'HeaderTarget_AND_Soft_Target', 'Soft_Target_to_Target_Input_Type')">Soft Target to Target Input Type</a>	
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled
+                            </ol>
+                        </li>
+                        <li>
+                            Loop Till Target Found
+                            <ol>
+                                If enabled then the ability will continue waiting to activate until the right
+                                target has been selected. If disabled then the ability will interrupt its activation
+                                if it’s not allowed to activate against the first target which was selected.
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled
+                            </ol>
+                        </li>
+                        <li>
+                            Auxiliary SoftTarget
+                            <ol>
+                                If enabled and the entity currently has no selected target then the ability
+                                will as a backup treat the entities current Soft Target as the selected target.
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is disabled.
+                            </ol>
+                        </li>
+                        <li>
+                            Always Travel
+                            <ol>
+                                If ticked then the ability will activate and travel in a straight line
+                                in the situation that no target/soft target is available.
+                            </ol>
+                            <ol>
+                                If disabled then the ability will not activate if the entity
+                                does not currently have a target/soft target selected.
+                            </ol>
+                            <ol>
+                                The travel will act as if the travel type was set to Forward, i.e the ability will have
+                                the travel speed defined in settings applied to the objects forward transform
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is disabled.
+                            </ol>
+                        </li>
+                        <li>
+                            Restrict Targets
+                            <ol>
+                                If enabled then the ability will only be allowed to activate on entities
+                                that have an ABC or Unity Tag which matches any tags defined in the list box.
+                            </ol>
+                            <ol>
+                                Clicking the “+” sign will create a new text box to allow for Tags to be entered.
+                                You can then delete a tag by clicking the “x” or change the ordering with the arrow keys.
+                                Both ABC and Unity tagging systems are used when trying to match Tags.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Travel_Type_-_Self">Travel Type - Self</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will travel from its starting position towards the entity that activated the ability.
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination
+                                so that it will travel towards the activating entities position + the offset
+                                (so the destination will be slightly above/below/to the side of the activating
+                                entities position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the
+                                activating entities current position + 5 in the Y Axis, which
+                                should make the ability aim slightly higher then the entities transform position.
+                                This can be used to make the ability hit at the entities feet for example rather than in the chest.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so
+                                that it will travel towards the activating entities position + the forward offset
+                                (so the destination will be slightly forward or behind the entities position depending on the value set).
+                                If a negative value is entered it will modify the ability target position to a point behind
+                                the entities current position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards
+                                the activating entities position + the right offset
+                                (so the destination will be slightly to the left or to the right of the entities position depending on the value set).
+                                If a negative value is entered it will modify the ability target position to a point to the left of the entities
+                                current position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                                If ticked then the ability has the potential to miss the target depending on the originators miss chance and values
+                                else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                                offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the position of the entity which activated
+                                the ability and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line
+                                in its starting direction until the delay is over in which it will then start travelling
+                                towards the activating entity. I.e an ability can be setup to travel up from the starting
+                                position into the air for 3 seconds before it then starts travelling back down to the entity.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the activating
+                                entities current position even if the entity moves, like a homing missile.
+                                If disabled then the projectile will start travelling towards the activating
+                                entities current position but will always keep going in that direction no matter
+                                if the entity moves.
+                            </ol>
+                        </li>
+                        <li>
+                            Affect Only Target
+                            <ol>
+                                If enabled then the ability will only collide and apply effects to the activating entity,
+                                ignoring all other objects on the way.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    If the starting position is Target or On World then following settings will also appear:
+                </p>
+                <p>
+                    <ol>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the target/world target position
+                                (where the ability is starting from) when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Face Target Required
+                            <ol>
+                                If enabled then the entity must be facing the target (where the ability is starting from) to
+                                activate the ability.
+                                If the entity is not facing the target then the ability will not activate.
+                            </ol>
+                            <ol>
+                                Only required if starting position is set to Target
+                            </ol>
+                        </li>
+                        <li>
+                            Use Range
+                            <ol>
+                                If enabled then the ability can only be activated if the entity is within a certain
+                                range of the selected target/world position(where the ability is starting from).
+                                When ticked a “Range Greater Than” and a “Range Less Than” box will appear to set the range.
+                            </ol>
+                            <ol>
+                                For example if 5 is added to the greater than box and 15 is added to the less than
+                                box then the entities distance has to be further then 5 from the target/world
+                                target position but less  then 15 for the ability to activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Before Target
+                            <ol>
+                                If ticked then the ability will wait for a target/world target position to
+                                be selected (where the ability will start from) before activating.
+                                A target/world target position selection is required even if the entity
+                                already has a target/world target position although there is nothing
+                                stopping the user from selecting the same object/position the entity is already targeting.
+                            </ol>
+                            <ol>
+                                If the entity has <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'In_Range_World_Target_Indicator')">World Target Indicators</a>. 
+                                setup in the ABC Controller Configuration then they will become visible if the starting position is set to "On World"
+                                The indicators will show where the ability will travel towards if that world position is selected.
+                            </ol>
+                            <ol>
+                                The ability can be interrupted before a target/world target position is selected,
+                                cancelling the activation as normal
+                            </ol>
+                        </li>
+                        <li>
+                            Scale To Effect Radius
+                            <ol>
+                                If enabled then “World Target Indicators” setup will indicate the effect
+                                radius taking into account any area of effect splashing.
+                                The indicators size will modify and any entities which stand inside the
+                                indicator graphic will be affected by the ability.
+                            </ol>
+                            <ol>
+                                Indicators can be setup in the ABC Controller Configuration and are only
+                                shown when ability has ‘Ability Before Target’ setup.
+                                More information on setting up the world target indicators can be found by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'In_Range_World_Target_Indicator')">World Target Indicators</a>
+
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled  and the starting position is set to On World
+                            </ol>
+                        </li>
+                        <li>
+                            Loop Till Target Found
+                            <ol>
+                                If enabled then the ability will continue waiting to activate until the right
+                                target/world target position has been selected. If disabled then the ability will interrupt
+                                its activation if it’s not allowed to activate against the first target/world
+                                target position which was selected.
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled
+                            </ol>
+                        </li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_To_World">Travel Type - To World</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will travel from its starting position towards the entities current world target position.
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that it will travel
+                                towards the world target position + the offset (so the destination will be slightly above/below/to
+                                the side of the entities current world target position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the world target position + 5
+                                in the Y Axis, which should make the ability aim slightly higher than the world
+                                target position. This can be used to make the ability hit at the entities feet
+                                for example rather than in the chest.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel
+                                towards the the world target position + the forward offset (so the destination will be slightly
+                                forward or behind the world target position depending on the value set). If a negative
+                                value is entered it will modify the ability target position to a point behind the the
+                                world target current position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will
+                                travel towards the world target position + the right offset (so the destination will be
+                                slightly to the left or to the right of the entities world target position depending
+                                on the value set). If a negative value is entered it will modify the ability target
+                                position to a point to the left of the entities current world target position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                                If ticked then the ability has the potential to miss the target depending on the originators miss chance and values
+                                else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                                offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the position of the entity which activated
+                                the ability and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line in its
+                                starting direction until the delay is over in which it will then start travelling towards
+                                the entities world target position. I.e an ability can be setup to travel up from the starting
+                                position into the air for 3 seconds before it then starts travelling back down to the ground.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate To Target
+                            <ol>
+                                If ticked then the entity will turn to face the world target position when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Use Range
+                            <ol>
+                                If enabled then the ability can only be activated if the entity is within a certain range of the
+                                selected world target position. When ticked a “Range Greater Than” and a “Range Less Than” box
+                                will appear to set the range.
+                            </ol>
+                            <ol>
+                                For example if 5 is added to the greater than box and 15 is added to the less than box then the
+                                entities distance has to be further then 5 from the world target position but less then 15 for the ability to activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the world target position, like a homing missile.
+                                If disabled then the projectile will start travelling towards the world target position but will
+                                always keep going in that direction no matter if the target moves.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Before Target
+                            <ol>
+                                If ticked then the ability will wait for a world target to be selected before activating.
+                                A world target selection is required even if the entity already has a world position target
+                                set although there is nothing stopping the user from selecting the same position the entity is already targeting.
+                            </ol>
+                            <ol>
+                                If the entity has <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'In_Range_World_Target_Indicator')">World Target Indicators</a> 
+                                setup in the ABC Controller Configuration then they will become visible
+                                during this time. The indicators will show where the ability will travel towards if that world position is selected.
+                            </ol>
+                            <ol>
+                                If “Use Range” has also been setup then the “Out Of Range World Target Indicators” will also become visible when the
+                                world position about to be selected is out of range for the ability to activate.
+                            </ol>
+                            <ol>
+                                The ability can be interrupted before a target is selected, cancelling the activation as normal
+                            </ol>
+                        </li>
+                        <li>
+                            Scale To Effect Radius
+                            <ol>
+                                If enabled then the “World Target Indicators” will indicate the effect radius taking into account any area of effect splashing.
+                                The indicators size will modify and any entities which stand inside the indicator graphic will be affected by the ability.
+                            </ol>
+                            <ol>
+                                Indicators can be setup in the ABC Controller Configuration and are only shown when ability has ‘Ability Before Target’ setup.
+                                More information on setting up the world indicators can be found by clicking the following link: 
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'In_Range_World_Target_Indicator')">World Target Indicators</a>
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled
+                            </ol>
+                        </li>
+                        <li>
+                            Loop Till Target Found
+                            <ol>
+                                If enabled then the ability will continue waiting to activate until the right world position has been selected.
+                                If disabled then the ability will interrupt its activation if it’s not allowed to activate on the the first
+                                world position which was selected (due to being out of range etc).
+                            </ol>
+                            <ol>
+                                Will only display if Ability Before Target is enabled
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Mouse_2D">Travel Type - Mouse 2D</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will travel from its starting position towards the mouse position recorded when the ability initiates.
+                    The Z-Index will not be recorded as this setup should be used for 2D games. If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that it will travel towards the recorded mouse position +
+                                the offset (so the destination will be slightly above/below/to the side of the recorded mouse position  depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the recorded mouse position + 5 in the Y Axis, which should make the
+                                ability aim slightly higher then the mouse position.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the recorded mouse position
+                                + the forward offset (so the destination will be slightly forward or behind the mouse position depending on the value set).
+                                If a negative value is entered it will modify the recorded mouse position to a point behind the current mouse position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the recorded mouse position
+                                + the right offset (so the destination will be slightly to the left or to the right of the entities position depending on the value set).
+                                If a negative value is entered it will modify the recorded mouse position to a point to the left of the current mouse position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                                If ticked then the ability has the potential to miss the target depending on the originators miss chance and values
+                                else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                                offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the recorded mouse position and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line in its starting direction until the
+                                delay is over in which it will then start travelling towards the recorded mouse position. I.e an ability can be setup
+                                to travel up from the starting position into the air for 3 seconds before it then starts travelling back to the recorded mouse position.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Before Target
+                            <ol>
+                                If ticked then the ability will wait for the mouse target position to be selected before activating.
+                            </ol>
+                            <ol>
+                                The ability can be interrupted before a target is selected, cancelling the activation as normal
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the recorded mouse position when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the recorded mouse position, like a homing
+                                missile stopping at the position destination. If disabled then the projectile will start travelling
+                                towards the recorded mouse position but will always keep going in that direction not stopping when the position is reached.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_No_Travel">Travel Type - No Travel</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will not travel and will remain at its starting position. If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel w/ Entity
+                            <ol>
+                                If enabled then the ability will become a child of the object linked to the
+                                starting position resulting in the ability moving with the entity.
+                            </ol>
+                            <ol>
+                                For example if the starting position is “Self” then the ability will become a
+                                child of the entity that activated the ability moving when the entity does.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Crosshair">Travel Type - Crosshair</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ability type is “Raycast” then when activated a cast will travel towards the crosshair center activating effects on entities hit,
+                    If set to “Particle Effect” then before the ability initiates a raycast
+                    will be sent towards the crosshair center recording the first object point hit. This point will then act as the destination for the
+                    ability to travel towards, If no objects are hit then it will travel to a set distance down the cast line.
+                </p>
+                <p>
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that it will travel towards
+                                the raycast hit position + the offset (so the destination will be slightly above/below/to the side of the target
+                                position depending on the values set).  i.e 5 in the Y box will make the ability move towards the raycast hit position + 5 in the Y Axis,
+                                which should make the ability aim slightly higher then the hit position.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the raycast hit position and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line in its starting direction until the delay
+                                is over in which it will then start travelling towards the raycast hit position. I.e an ability can be setup to travel up from
+                                the starting position into the air for 3 seconds before it then starts travelling back down to the hit position.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the raycast hit position when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the raycast hit position stopping once it’s reached, like a homing missile.
+                                If disabled then the projectile will start travelling towards the raycast hit position but will always keep going in that direction.
+                            </ol>
+                        </li>
+                        <li>
+                            Affect Layer
+                            <ol>
+                                Before the ability initiates a raycast will be sent towards the crosshair center recording the first object point hit.
+                                This point will then act as the destination for the ability to travel towards. This setting determines what Unity Layer the
+                                raycast will be on (only objects on the same layer as the raycast can be hit).
+                            </ol>
+                        </li>
+                        <li>
+                            Crosshair Raycast Radius
+                            <ol>
+                                Before the ability initiates a raycast will be sent towards the crosshair center recording the first object point hit.
+                                This point will then act as the destination for the ability to travel towards. This setting determines how wide the raycast radius is.
+                                The higher the radius the bigger the height and width of the cast hitting more entities.
+                            </ol>
+                        </li>
+                        <li>
+                            Returned Distance
+                            <ol>
+                                Before the ability initiates a raycast will be sent towards the crosshair center recording the first object point hit.
+                                This point will then act as the destination for the ability to travel towards. This setting defines the distance point
+                                down the raycast line the ability will travel too if if no objects have been hit or the “Distance Point Only” setting below is enabled.
+                            </ol>
+                        </li>
+                        <li>
+                            Distance Point Only
+                            <ol>
+                                Before the ability initiates a raycast will be sent towards the crosshair center, normally it would find its destination point from the
+                                first object point hit. However if this setting is enabled then the ability will instead always record a destination point
+                                down the raycast line (defined by the “Returned Distance” setting above). The ability will then travel towards this point.
+                            </ol>
+                            <ol>
+                                Use this setting if you don’t want the destination to be modified due to objects hit by the raycast and always want
+                                the ability to travel a set distance towards the crosshair center.
+                            </ol>
+                        </li>
+                        <li>
+                            Record Target On Activation
+                            <ol>
+                                If ticked then the raycast sent towards the crosshair center to find the ability destination point will be recorded when the ability first activates (before preparing etc).
+                                If disabled then the destination point will instead be recorded just before the ability initiates (after preparation etc).
+                            </ol>
+                            <ol>
+                                Tick if you want to have the ability travel towards an objects sitting in the crosshair on activation even if they move before the ability initiates.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Mouse_Forward">Travel Type - Mouse Forward</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Originator will be rotated to face the mouse position at which point the ability will travel forward in a straight line from the starting position.
+                    This is done by adding the travel speed defined in settings to the objects forward transform. If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed. Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Mouse Front Only
+                            <ol>
+                                If enabled then the mouse position will always be in front of the player. If false then the position can be recorded all around in world position.
+                            </ol>
+                        </li>
+                        <li>
+                            Lock X, Y, Z
+                            <ol>
+                                Any ticked coordinates will not be recorded when the system retrieves the mouse position. For example, if the Y coordinate is
+                                locked then no matter where the mouse is the ability will never travel up or down. It will stay the same elevation as when it
+                                was initiated still travelling towards the mouse position.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Custom_Script">Travel Type - Custom Script</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A travel script can be set which will be added to the ability when it initiates this is used instead of the normal travel system
+                    integrated into the ABC system. Normal travel functionality will be lost as the travel now depends on the custom script that has been defined.
+                </p>
+                <p>
+                    Once selected a “Custom Script” setting will show, a script then needs to be dragged and dropped into the box. This script will then be added and enabled when the ability initiates.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Mouse_Target">Travel Type - Mouse Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ability type is “Raycast” then when activated a cast will travel towards the mouse position activating effects on entities hit.
+                    else if set to “Particle Effect” The ability will travel from its starting position towards the mouse position recorded when the ability initiates.  
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that it will travel towards the recorded
+                                mouse position + the offset (so the destination will be slightly above/below/to the side of the mouse position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the recorded mouse position + 5 in the Y Axis, which should make the ability aim
+                                slightly higher than the destination mouse position.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the recorded mouse position +
+                                the forward offset (so the destination will be slightly forward or behind the mouse position depending on the value set).
+                                If a negative value is entered it will modify the ability destination position to a point behind the recorded mouse position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards
+                                the recorded mouse position + the right offset (so the destination will be slightly to the left or to the right
+                                of the target position depending on the value set). If a negative value is entered it will modify the ability
+                                destination to a point to the left of the recorded mouse position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                                If ticked then the ability has the potential to miss the target depending on the originators miss chance and values
+                                else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                                offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the recorded mouse position  and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line in its starting direction
+                                until the delay is over in which it will then start travelling towards the recorded mouse position.
+                                I.e an ability can be setup to travel up from the starting position into the air for 3 seconds before
+                                it then starts travelling back down to the mouse position.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the recorded mouse position when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the recorded mouse position  stopping once it’s reached, like a homing missile.
+                                If disabled then the projectile will start travelling towards the recorded mouse position but will always keep going in that direction.
+                            </ol>
+                        </li>
+                        <li>
+                            Mouse Front Only
+                            <ol>
+                                If enabled then the mouse position recorded will always be in front of the player.
+                                If false then the position can be recorded all around in world position.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Before Target
+                            <ol>
+                                If ticked then after the ability is triggered it will wait for a click to confirm the recorded mouse position before activating.
+                            </ol>
+                            <ol>
+                                Useful for turn based games where a command (ability) is selected before its direction (through a mouse click).
+                            </ol>
+                            <ol>
+                                The ability can be interrupted before a mouse position is confirmed, cancelling the activation as normal
+                            </ol>
+                        </li>
+                        <li>
+                            Lock X, Y, Z
+                            <ol>
+                                Any ticked coordinates will not be recorded when the system retrieves the mouse position. For example,
+                                if the Y coordinate is locked then no matter where the mouse is the ability will never travel up or down.
+                                It will stay the same elevation as when it was initiated still travelling towards the mouse position.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Nearest_Tag">Travel Type - Nearest Tag</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability will travel towards a random entity with a specific ABC/Unity tag.
+                    Entities are checked for a matching tag within a defined range of the ability starting position.
+                    If selected the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Physics
+                            <ol>
+                                Velocity or Force can be selected from the dropdown. Velocity will move the ability at a constant speed.
+                                Force will move the ability increasing speed over time.
+                            </ol>
+                        </li>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities destination so that it will travel towards the selected entities
+                                position + the offset (so the destination will be slightly above/below/to the side of the selected entities position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the entities current position + 5 in the Y Axis, which should make the ability aim slightly
+                                higher then the selected entities transform position. This can be used to make the ability hit at the targets feet for example rather than in the chest.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the selected entities
+                                position + the forward offset (so the destination will be slightly forward or behind the selected entities position depending
+                                on the value set). If a negative value is entered it will modify the ability destination position to a point
+                                behind the selected entities current position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards
+                                the selected entities position + the right offset (so the destination will be slightly to the left or to the
+                                right of the entities position depending on the value set). If a negative value is entered it will modify the
+                                ability destination position to a point to the left of the entities current position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Can Miss
+                            <ol>
+                                If ticked then the ability has the potential to miss the target depending on the originators miss chance and values
+                                else if unticked it will never take the miss chance into account and always go to the position it was meant to. If missing the ability will
+                                offsetting randomly on to the position it was intended to go to. More information regarding the miss chance setting can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Global_Ability_Miss_Chance')">Global Ability Miss Chance Setting</a>
+                            </ol>
+                        </li>
+                        <li>
+                            Target Travel
+                            <ol>
+                                If disabled then the ability will instantly appear at the selected entities position and will not travel from it’s starting position.
+                            </ol>
+                        </li>
+                        <li>
+                            Seek Target Delay
+                            <ol>
+                                If a value over 0 is entered then the ability will travel forward in a straight line in its starting direction until the
+                                delay is over in which it will then start travelling towards the selected entities position. I.e an ability can be setup
+                                to travel up from the starting position into the air for 3 seconds before it then starts travelling back down to the selected entity.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the selected entity with the matching tag when activating the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Face Target Required
+                            <ol>
+                                If enabled then the entity activating the ability must be facing the selected entity with the matching tag  to activate the ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Continuously Turn To Destination
+                            <ol>
+                                If ticked then the ability will continuously travel to the selected entities current position even if the entity moves, like a homing missile.
+                                If disabled then the projectile will start travelling towards the selected entities current position but will always keep going in that
+                                direction no matter if the entity moves.
+                            </ol>
+                        </li>
+                        <li>
+                            Affect Only Target
+                            <ol>
+                                If enabled then the ability will only collide and apply effects to the selected entity with the matching tag, ignoring all other objects on the way.
+                            </ol>
+                        </li>
+                        <li>
+                            Always Travel
+                            <ol>
+                                If ticked then the ability will activate and travel in a straight line in the situation that no entity has been found with a matching tag.
+                            </ol>
+                            <ol>
+                                If disabled then the ability will not activate if no entity is found with a matching tag.
+                            </ol>
+                            <ol>
+                                The travel will act as if the travel type was set to Forward, i.e the ability will have the travel speed
+                                defined in settings applied to the objects forward transform
+                            </ol>
+                        </li>
+                        <li>
+                            Nearest Tag Range Amount
+                            <ol>
+                                Defines the range the ability will search within from its starting point when trying to find an entity with a matching tag.
+                                Only objects found within this range are checked for a matching.
+                            </ol>
+                        </li>
+                        <li>
+                            Ignore Activating Entity
+                            <ol>
+                                If enabled then the activating entity is not considered when the ability is searching for an object to travel too that matches a tag defined.
+                            </ol>
+                        </li>
+                        <li>
+                            Randomise Search
+                            <ol>
+                                If ticked then the entities found within the range are shuffled before the system chooses one by cycling through and checking for a matching tag
+                            </ol>
+                        </li>
+                        <li>
+                            Target Nearest Tag
+                            <ol>
+                                Defines the ABC or a Unity tags which the ability searches for when checking the tags of entities within the range defined.
+                                The ability will travel towards an entity found with a matching tag.
+                            </ol>
+                            <ol>
+                                Clicking the “+” sign will create a new text box to allow for Tags to be entered. You can then delete a tag by clicking
+                                the “x” or change the ordering with the arrow keys. Both ABC and Unity tagging systems are used when trying to match Tags.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Type_-_Melee">Travel Type - Melee</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The travel type will default to Melee if the ability type is set to “Melee”.  Melee abilities do not travel as they become a 
+                    child of the starting position object, allowing for animations to control the movement of the ability (like a sword swipe). 
+                    However additional settings can still be set which change the behaviour behind the melee attack (i.e is a selected target 
+                    required to activate the melee attack, if yes then does the entity rotate towards the target on activation) etc.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Always Activate
+                            <ol>
+                                If ticked then the melee ability will always activate.
+                            </ol>
+                            <ol>
+                                If disabled then the ability will not activate if the entity does not currently have a target/soft target selected.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate to Target
+                            <ol>
+                                If ticked then the entity will turn to face the entities current target when activating the ability.
+                            </ol>
+                            <ol>
+                                If “Always Activate” is enabled and there is no current target then the entity will not rotate
+                            </ol>
+                        </li>
+                        <li>
+                            Keep Rotating to Target
+                            <ol>
+                                If enabled then the entity will continue to rotate towards the target for the whole melee ability even after 
+                                activation has finished i.e rotation will occur until the ability is disabled and the melee attack has finished
+                            </ol>
+                            <ol>
+                                If “Always Activate” is enabled and there is no current target then the entity will not rotate
+                            </ol>
+                        </li>
+                        <li>
+                            Auxiliary SoftTarget
+                            <ol>
+                                If enabled and the entity currently has no selected target then the melee ability will as a backup 
+                                treat the entities current Soft Target as the selected target.
+                            </ol>
+                        </li>
+                        <li>
+                            Use Range
+                            <ol>
+                                If enabled then the melee ability can only be activated if the entity is within a certain range of the selected target. 
+                                When ticked a “Range Greater Than” and a “Range Less Than” box will appear to set the range.
+                            </ol>
+                            <ol>
+                                For example if 1 is added to the greater than box and 7 is added to the less than box then the entities distance has to 
+                                be further then 1 from the target but less  than 7 for the ability to activate.
+                            </ol>
+                            <ol>
+                                If “Always Activate” is enabled then the range is only considered if the entity currently has a target/soft target. If the entity has no 
+                                target and “Always Activate” is ticked then the ability will activate until a target has been selected in which the range will be checked again.
+                            </ol>
+                        </li>
+                        <li>
+                            Face Target Required
+                            <ol>
+                                If enabled then the entity must be facing the target/soft target to activate the ability. 
+                                If the entity is not facing the target then the ability will not activate.
+                            </ol>
+                            <ol>
+                                If “Always Activate” is enabled then the facing target requirement is only considered if the entity currently 
+                                has a target/soft target. If the entity has no target and “Always Activate” is ticked then the ability will 
+                                activate until a target has been selected in which the facing target requirement will be checked again.
+                            </ol>
+                        </li>
+                        <li>
+                            Rotate To Camera Center
+                            <ol>
+                                If enabled then the entity will turn to face the same direction that the camera is facing when activating the melee ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Hit Prevention Will Immediately Stop Melee Attack
+                            <ol>
+                                If true then the entity activating the ability will immediately stop the melee attack when the entities ability activation 
+                                has been interrupted from an ability hit (effect being applied) i.e the entity has been hit by another ability. 
+                                The melee ability will be instantly destroyed.
+                            </ol>
+                            <ol>
+                                Requires <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_AND_Error', 'Hits_Can_Interrupt_Activation')">“Hits Can Interrupt Activation”</a> setting 
+                                to be enabled in the entities ABC Controller Settings. 
+                            </ol>
+                            <ol>
+                                If the abilities <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Hit_Prevention_Wont_Interrupt_Activation')">“Hit Prevention Won’t Interrupt Activation”</a>  
+                                is enabled then the ability 
+                                activation will never be interrupted from a hit so naturally the melee attack will never be stopped early.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Travelling">
+
+        <h2>Travelling</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The travelling settings defined in this section 
+                    are additional modifications to how the ability will travel, including such things as travel delay and duration, gravity, bounce 
+                    behaviour (bounce between enemies) and boomerang (ability returns to the activating entity).
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/PositionTravelling.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Travel_Delay">Travel Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Sets the delay before the ability will start travelling. If set to 0 then the ability will start travelling as soon as it’s initiated.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Apply_Travel_Duration">Apply Travel Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled the the ability will travel for a duration before stopping. When ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Travel Duration Time
+                            <ol>
+                                Float value which determines how long the ability will travel for.
+                            </ol>
+                        </li>
+                        <li>
+                            Stop Instantly
+                            <ol>
+                                If enabled then the abilities velocity will instantly be set to 0 after the travel duration.
+                                If disabled the ability will stop on its own accord (using physics if force is used etc)
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Mass">Mass</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Defines the mass of the ability (will be applied to the mass property in the abilities Rigidbody component)
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Travel_Drag">Travel Drag</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Defines the travel drag of the ability (will be applied to the drag property in the abilities Rigidbody component)
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Apply_Gravity">Apply Gravity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will have gravity turned on (the use gravity property will be set to true in the abilities Rigidbody component).
+                    If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Gravity Delay
+                            <ol>
+                                Sets a delay before gravity is enabled on the ability.
+                            </ol>
+                            <ol>
+                                Useful for abilities that are thrown, i.e after some momentum gravity is applied and it will start falling.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Is_Kinematic">Is Kinematic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the ability's rigidbody kinematic setting will be set to true. Use this in situations where the ability is going to be a child
+                    of an object and you want it to travel with that object.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Never_Sleep">Never Sleep</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If true then the ability will never sleep and always look for collisions. 
+                    Sleeping occurs when a Rigidbody is moving slower than a defined minimum linear or rotational speed, the physics engine assumes it has come to a halt
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Boomerang">Boomerang</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will travel back to the entity that activated the ability after a set delay.
+                    Once the ability returns to the entity it will be disabled, applying any splash effects, ability end graphics etc.
+                    The ability is capable of being destroyed/disabled before it returns back to the entity. If enabled the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Delay
+                            <ol>
+                                Sets the delay before the ability will start returning to the activating entity
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Bounce">Bounce</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    After the ability collides it will bounce between a set number of nearby targets depending on the bounce target type. 
+                    An example of use is for a lightning ability which will strike a foe and then head to another foe etc. 
+                    The ability is capable of being destroyed/disabled before it finishes bouncing. If enabled the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Bounce Amount
+                            <ol>
+                                Sets how many times the ability will bounce between targets,
+                                i.e if 3 is set then after the initial collision the ability
+                                will head towards another target, collide and then head towards its final target.
+                            </ol>
+                        </li>
+                        <li>
+                            Bounce Range
+                            <ol>
+                                Defines the range nearby targets have to be within for the ability to bounce to it.
+                                If there is no nearby targets within the range set the ability will not bounce.
+                            </ol>
+                        </li>
+                        <li>
+                            Random Bounce
+                            <ol>
+                                If ticked then the bounce selection will be more random, i.e the list of potential bounce targets
+                                found in range will be shuffled before the next bounce target is selected.
+                            </ol>
+                        </li>
+                        <li>
+                            Bounce On Activating Entity
+                            <ol>
+                                If enabled then the ability can bounce on the entity that activated the ability,
+                                if disabled then the ability will never bounce on the activating entity
+                            </ol>
+                        </li>
+                        <li>
+                            Start Bounce On Specific Tag
+                            <ol>
+                                If enabled then the ability will only start bouncing if it collides with an object matching a specific ABC/Unity tag.
+                                If disabled then the ability will start bouncing after hitting any object.
+                            </ol>
+                            <ol>
+                                If ticked a new “Tag Required To Start Ability Bouncing” section will appear . Clicking the “+” sign will create a
+                                new text box to allow for Tags to be entered. You can then delete a tag by clicking the “x” or change the ordering
+                                with the arrow keys. Both ABC and Unity tagging systems are used when trying to match Tags.
+                            </ol>
+                        </li>
+                        <li>
+                            Position Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will change the abilities bounce destination so that it will travel towards the bounce target position
+                                + the offset (so the destination will be slightly above/below/to the side of the target's current world target position depending on the values set).
+                                i.e 5 in the Y box will make the ability move towards the bounce target position + 5 in the Y Axis, which should make the ability aim slightly higher
+                                than the world target position. This can be used to make the ability hit at the entities feet for example rather than in the chest.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the the bounce target position 
+                                + the forward offset (so the destination will be slightly forward or behind the bounce target position depending on the value set). 
+                                If a negative value is entered it will modify the ability target position to a point behind the bounce target current position rather than forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will change the abilities destination so that it will travel towards the bounce target position 
+                                + the right offset (so the destination will be slightly to the left or to the right of the bounce target position depending on the value set). 
+                                If a negative value is entered it will modify the ability target position to a point to the left of the bounce targets current position rather than to the right.
+                            </ol>
+                        </li>
+                        <li>
+                            Bounce Target
+                            <ol>
+                                Determines the type of target the ability will bounce too. 3 options can be selected from the dropdown: Nearest ABC StateManager, Nearest Tag, Nearest Object.
+                            </ol>
+                            <ol>
+                                “Nearest ABC StateManager” will ensure the ability only bounces between entities that have the ABC StateManager component.
+                            </ol>
+                            <ol>
+                                “Nearest Object” will have the ability bounce between any object within the range
+                            </ol>
+                            <ol>
+                                “Nearest Tag” will have the ability bounce between objects within range that has an ABC/Unity tag that matches one of the tags specified. 
+                                If this option is selected a new “Bounce Tag” section will appear. Clicking the “+” sign will create a new text box to allow 
+                                for Tags to be entered. You can then delete a tag by clicking the “x” or change the ordering with the arrow keys. 
+                                Both ABC and Unity tagging systems are used when trying to match Tags.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Additional_Starting_Positions">
+
+        <h2>Additional Starting Positions</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    An extra Ability object will be created for each Additional Starting Position. The object is an additional duplicate of the normal 
+                    Ability object and will operate in the same way. The only difference being it will start from another place. This functionality can be used for example 
+                    to have 2 fireballs fire from both hands or for melee attacks to have each fist apply damage. With this functionality you can have many of the same ability projectiles fire at once. 
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AdditionalStartingPosition.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Starting_Position">Starting Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the starting position for all types of abilities (Particle Effect, Melee, Raycast).
+                    After the ability is initiated it will appear at the selected starting position which has
+                    been chosen from the dropdown provided. The following options are available:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target of the entity.
+                                If no target is selected and “Auxiliary SoftTarget” is ticked then
+                                the graphic will as a backup appear at the current soft target of the entity.
+                                If no target/soft target is selected then the graphic will appear at the
+                                entity as if ‘Self’ was selected
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting
+                                ‘Select Object’. Any object can be dragged or selected onto the setting field.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world target of the entity.
+                                If no target is selected then the graphic will appear at the entity as
+                                if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag
+                                which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’
+                                so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity
+                                object the ABC system is attached too or any child objects linked to the
+                                entity which also has a tag which matches the tag defined in additional
+                                setting ‘Select Tag’. Only Unity defined tags can be selected from the dropdown.
+                                The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Starting_Delay">Starting Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                   The delay before the additional ability object will be created at the additional starting position
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Position_Offset">Position Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the ability is positioned
+                    from it’s starting position. I.e 90 in the X box will move the ability up
+                    the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the ability object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the ability object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Starting_Rotation">Starting Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the starting rotation for the ability and which way the object is facing.
+                    X, Y, Z values can be entered to adjust the abilities starting rotation by the values provided.
+                    I.e rotate the ability around the X axis by 90. Setting is not used or displayed if ability is set to type Raycast.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Set_Euler_Rotation">Set Euler Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the starting rotation amendments will also be applied to the abilities Local Euler Angles.
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

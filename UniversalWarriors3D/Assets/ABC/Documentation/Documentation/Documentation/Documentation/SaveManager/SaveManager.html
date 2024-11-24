@@ -1,0 +1,241 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="Save_Manager">
+        <h2>Save Manager</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The Save Manager is ABC functionality which manages the saving and loading of ABC related data and other extras like transforms, enable states and scenes.
+                    The manager is a singleton which means it can easily be accessed by other scripts. There is 2 parts to the ABC_SaveManager. One part is the component which you can setup to save and load data locally
+                    or retrieve the save and load data to be placed in a Database. The other part is function calls to create and load the game data which
+                    should be used if you create your own Save System. Encryption can be used throughout for security. 
+                </p>
+                <p>
+                    <b>
+                        For the Save data to be correctly loaded it is recommend that all objects in your scene have unique names so the right data is loaded onto the right objects.
+                        Any objects without unique names may be loaded incorrectly.
+                    </b>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Saving_&_Loading_Via_Code">Saving & Loading Via Code</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    There is a number of calls which can be made from any of your scripts to save and load your games. Detailed further in the code docs is all the function calls. Below is an example of how to call the function to save
+                    and load locally using the settings set in the editor:
+                </p>
+                <p>
+                    The below code can be written anywhere and will save the game locally to the address set in the editor: 
+                    <br />
+                    <code>              
+                        saveManagerCont.SaveGameLocally();
+                    </code>                    
+                </p>
+                <p>
+                    To load the save configured in the editor simply write the following: 
+                    <br />
+                    <code>
+                        saveManagerCont.LoadGameLocally();
+                    </code>
+                </p>
+                <p>
+                    To create a new save simply call the same function but provide a new name for the save
+                    <br />
+                    <code>
+                        saveManagerCont.SaveGameLocally("Save3");
+                    </code>
+                </p>
+                <p>
+                    To load a new save simply call the load function but provide the name of the save you wish to load. You can also pass in a second parameter if you want to only load the persistant objects
+                    in the situation where your progressed to a new scene with a character you want to load data of from the save
+                    <br />
+                    <code>
+                        saveManagerCont.NewLoadGameLocally("Save3", true/false);
+                    </code>
+                </p>
+                <p>There is also function calls to save and load the game not locally, which will return a string of the save data which you can store where you wish including in a DB. The load function will require
+                the data back as a string in the parameter which you can pass through once you retrieve it from the DB</p>
+            </div>
+        </div>
+
+        <h3 id="Creating_You_Own_Save_System">Creating Your Own Save System</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If you have created your own save system and do not want to use the settings configured in the save manager inspector then you can call functions to just grab all the data which can then be loaded back again.
+                    The ABC Save Manager uses these calls itself as an example when saving/loading using the settings in its inspector. The CreateSaveData function requires a list of gameobjects to save and the cryptokey which is optional
+                    to encrypt the data. If you want to grab all the ABC objects in the game to pass into this function you can use the following code:
+                    <br />
+                    <code>
+                        ABC_Utilities.GetAllABCObjects(); 
+                    </code>
+                </p>
+                <p>
+                    An update function also exists which takes in previous save data, the objects to save and any objects to not delete from the existing save. 
+                </p>
+                <p>
+                    To load any data you have created simply call the load function passing through the data you have previously saved. 
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Saving_Using_The_manager">Saving Using The Manager</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ABC Save Manager can save/load data locally or provide the save data in a string for you to save and retrieve from a DB. It uses settings configured in the editor to determine what to save, what data to never delete
+                    and what parts to load. It will naturally save every ABC object in the current scene and also some additional information like transform, scene and enable state.
+                </p>
+                <p>
+                    You can hook the Save Manager to call its function from a button press by adding a button to your game, dragging the save manager object into the OnClick box then selecting the function to call i.e SaveGameLocally
+                </p>
+            </div>
+        </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <img src="../DocImages/EditorScreens/SaveManager.png" alt="Image showing the ABC Save Manager UI" class="img-responsive image-border doc-img">
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <img src="../DocImages/EditorScreens/SaveManagerButton.png" alt="Image showing the ABC Save Manager UI" class="img-responsive image-border doc-img">
+                    </p>
+                </div>
+            </div>
+
+        <h3 id="Save_File_Name">Save File Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                   The name of the save which will either be created locally in a file or stored in the data object which can be created to store in a database. This setting also determines which file is loaded when saving/loading
+                   locally. Loading will not occur if no save is found that matches the name provided. 
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Use_Persistant_Data_Path">Use Persistant Data Path</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                   If enabled then the Unity Persistant Data Path will be used which automatically saves your files in accordance to the unity functionality
+                </p>
+                <p>
+                    If disabled the following setting will appear: 
+                    <ul>
+                        <li>
+                            Save File Path
+                            <ol>
+                               Allows for you to configure where the save will be placed. A Select Path Location button can be selected in the editor which will open a dialogue allowing you to select a location. 
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Key_32_Char">Key 32 Char</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A 32 character encryption key can be configured in this setting. The key can be any value but has to be 32 characters long. If a key is set then the save data/file will be encrypted
+                    allowing you the files to be more secure and less easier to be tampered with. If empty then the save data/file will not be encrypted and will show all the data values. It is recommend that the file is 
+                    encrypted and you should only leave blank for debugging purposes. 
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Include_Obj_Tags">Include Obj Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Allows for a list of tags defined by string text to be entered. Any tags listed in this section will also be included in the save file. Naturally all ABC objects in the scene will be saved
+                    this setting allows for additional objects which may not have any ABC elements on to also be saved, useful for Camera or environmental objects which you want to record the transform or save state. 
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Persistant_Entity_Names">Persistant Entity Names</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Allows for a list of objects to be defined by string text. Any objects named here will always remain in the save file even if the object is not in the current scene. This should be used if you want to keep
+                    data on certain objects which may appear in later scenes. This way you can load the objects data when they do appear in your game at a later date. Useful if you have different characters playable at different times
+                    but you want to persist any changes to their abilities/stats etc. 
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Load_Transform">Load Transform</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                   If ticked then the transform for each object will be loaded. If unticked then the transforms will not be changed for objects when loading. 
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Load_Enable_State">Load Enable State</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the enable state (if an object is enabled or disabled) for each object will be loaded. If unticked then the enable state will not be changed for objects when loading.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Load_Scene">Load Scene</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the scene which was saved on will be loaded. If unticked then the scene which was saved will not be loaded.
+                </p>
+            </div>
+        </div>
+
+
+
+
+</div>
+
+</div>

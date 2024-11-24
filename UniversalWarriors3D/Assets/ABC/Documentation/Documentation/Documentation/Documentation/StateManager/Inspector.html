@@ -1,0 +1,85 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="Inspector_Settings">
+        <h2>Inspector Settings</h2>
+
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-9">
+                <p>
+                    StateManager needs to be added to objects to recieve ability effects and be known by the ABC system for other functionality. The component once attached can open up an editor window. 
+                    There is also additional settings in the inspector window which are detailed below.   
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/ABCSMInspector.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Show_Help_Boxes">Show Help Boxes</h3>
+        <div class="row">
+            <div class="col-md-9">
+                <p>
+                    If ticked then blue help boxes will appear all over the configuration with setting information and tips.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Update_Editor_At_Run_Time">Update Editor At Run Time</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the configuration window will update when the window isn’t in focus.
+                    This will decrease performance but is useful to use when on the diagnostic screens
+                    (as the logs will update without having to keep clicking the configuration window).
+                    If disabled then the window will update whilst it is focused.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="State_Manager">State Manager</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Clicking this button will load the State Manager Configuration Window. 
+                    This can also be opened from Windows > ABC > State Manager. More information on the settings within the State Manager Window can be found by 
+                    clicking the following link: <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderGeneral_AND_Stats', 'Overview')">State Manager Config Documentation</a>.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

@@ -12,15 +12,16 @@ public class ActiveColGo : MonoBehaviour
     public bool hasexit;
     void OnTriggerEnter(Collider trig)
     {
+        Debug.Log("Other: " + trig);
         //find player in scene if required
         if (PlayCol == null)
-        {
-            if (activeParent.UseTopDown)
-                PlayCol = GameObject.FindWithTag("TdLevelManager").GetComponent<TDScene>().PlayerChar;
-            else
-                PlayCol = GameObject.FindWithTag("Player").GetComponent<Collider>();
-        }
-        //Debug.Log("Player is " + PlayCol);
+            {
+                if (activeParent.UseTopDown)
+                    PlayCol = GameObject.FindWithTag("TdLevelManager").GetComponent<TDScene>().PlayerChar;
+                else
+                    PlayCol = GameObject.FindWithTag("Player").GetComponent<Collider>();
+            }
+        Debug.Log("Player is " + PlayCol);
         //Check character in range and keycode pressed or automatic to start action
         if (trig.GetComponent<Collider>() == PlayCol)
         {

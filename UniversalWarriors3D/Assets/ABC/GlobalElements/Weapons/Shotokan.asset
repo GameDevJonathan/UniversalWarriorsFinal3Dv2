@@ -31,7 +31,7 @@ MonoBehaviour:
       refName: 
       refUpdateDateTime: 
     weaponMoveSpeedModification: 0
-    inspectorEquipWeapon: 0
+    inspectorEquipWeapon: 1
     globalWeaponOverrideEnableStatus: 0
     weaponEnabled: 1
     allowWeaponGroupAssignment: 0
@@ -64,9 +64,9 @@ MonoBehaviour:
     enableDuration: 1
     disableDuration: 1
     enableWeaponOnCycle: 1
-    enableWeaponOnInput: 0
-    weaponEnableInputType: 0
-    weaponEnableButton: 
+    enableWeaponOnInput: 1
+    weaponEnableInputType: 1
+    weaponEnableButton: LightAttack
     weaponEnableKey: 0
     weaponGraphics: []
     useWeaponAnimatorOverrides: 1
@@ -75,9 +75,9 @@ MonoBehaviour:
       - Combat_Stance
       exactNameRequired: 0
       animationRunnerClip:
-        refVal: {fileID: 7400000, guid: b2e752e79675f7a4eaa5f791b796f6c7, type: 2}
-        refName: 22_Idle_(IP)
-        refUpdateDateTime: 11/21/2024 6:49:05 PM
+        refVal: {fileID: 7400000, guid: 4be3a35516f1c4c4a818ce52a377e327, type: 2}
+        refName: 01_Frank_Moves_Idle_Copy
+        refUpdateDateTime: 11/23/2024 4:07:15 PM
       animationRunnerClipSpeed: 1
       animationRunnerClipDelay: 0
       animationRunnerMask:
@@ -242,7 +242,7 @@ MonoBehaviour:
     activateAbilityAfterParrying: 0
     abilityIDToActivateAfterParrying: 0
     activateAbilityAfterParryListChoice: 0
-    useWeaponParryAesthetics: 0
+    useWeaponParryAesthetics: 1
     weaponParryAnimationRunnerClip:
       refVal: {fileID: 0}
       refName: 

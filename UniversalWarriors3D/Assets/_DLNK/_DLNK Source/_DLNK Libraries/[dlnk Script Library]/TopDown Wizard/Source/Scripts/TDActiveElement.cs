@@ -25,7 +25,7 @@ public class TDActiveElement : MonoBehaviour
     public GameObject TrigSelected;
     [SerializeField]
     private TDScene _tdScene;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +34,19 @@ public class TDActiveElement : MonoBehaviour
         ActiveCollider.gameObject.GetComponent<Collider>().isTrigger = true;
 
         //Check if TopDown exists in the scene
-        if(_tdScene)
+        if (_tdScene)
             UseTopDown = false;
 
         //Link TopDown control if enabled
-            if (UseTopDown)
+        if (UseTopDown)
         {
             // find scene control component
-            if(_tdScene != null)
-            tdscene = _tdScene.GetComponent<TDScene>();
+            if (_tdScene != null)
+                tdscene = _tdScene.GetComponent<TDScene>();
 
             // find keycode override in scene settings
             if (UseTopDownKey)
-            ActiveElementKey = tdscene.ActiveKey;
+                ActiveElementKey = tdscene.ActiveKey;
 
             //Collider object visibility
             if (!tdscene.VisibleTriggers)

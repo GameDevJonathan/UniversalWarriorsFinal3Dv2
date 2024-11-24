@@ -57,10 +57,15 @@ public class ApplyRootMotion : MonoBehaviour
 
     private void FixedUpdate()
     {
-        upperCutUpDirection = Daku.transform.up * upSpeed;
-        upperCutFwdDirection = Daku.transform.forward * forwardSpeed;
-        upperCutDirection = upperCutUpDirection + upperCutFwdDirection;
-        if ( startLifting) characterController.Move(upperCutDirection * Time.deltaTime) ;
+        if (Daku)
+        {
+            upperCutUpDirection = Daku.transform.up * upSpeed;
+            upperCutFwdDirection = Daku.transform.forward * forwardSpeed;
+            upperCutDirection = upperCutUpDirection + upperCutFwdDirection;
+            if (startLifting) characterController.Move(upperCutDirection * Time.deltaTime);
+
+        }
+        
 
     }
 

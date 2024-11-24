@@ -1,0 +1,2489 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="Preparing">
+        <h2>Preparing</h2>
+
+        <h3 id="Use_Preparing_Aesthetics">Use Preparing Aesthetics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then graphics and animations can be setup to activate whilst the ability is preparing
+                    (after being activated). The abilities prepare time can be determined in the General tab under
+                    Settings. More details can be found
+                    by clicking the following link: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Prepare_Time')">Ability Prepare Time</a>.
+
+                    once the prepare time is over the ability will initiate.
+                    An example of use is adding animation and graphics which make the entity look like they
+                    are conjuring a spell. Once enabled further settings will appear to setup the animations and graphics etc.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesPrep.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animation_Clip">Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation whilst the ability is preparing,
+                    the animation will repeat until the ability preparation stage is over.
+                </p>
+                <p>
+                    Animation Clips defined
+                    will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Animate on Entity
+                            <ol>
+                                If ticked then the animation clip will run on the entity that the ABC component is on.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Scroll Ability Graphic
+                            <ol>
+                                If ticked then the animation clip will run on the current scroll abilities graphic (if it exists).
+                                This setting should be ticked if the current scroll ability graphic object has its own preparing animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Weapon
+                            <ol>
+                                If ticked then the animation clip will run on the current weapon graphics (if it exists).
+                                This setting should be ticked if the current weapon has its own animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Animator_Parameter">Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation whilst the ability is preparing,
+                    the animation will repeat until the ability preparation stage is over. The animation
+                    system links directly into the Unity animation controller attached to the entity
+                    and is required for the animations to activate. To determine which animation to
+                    play the “Animation Parameter” which has been setup in Unity needs to be written
+                    in the parameter config box, then the matching parameter type needs to be selected
+                    from the drop down, depending on the parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and
+                                will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts
+                                preparing and then deactivate with the Off value after the
+                                preparation stage is over. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts preparing and
+                                then deactivate with the Off value after the preparation stage is over. Only “True” should be entered
+                                in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the entity that the ABC component is on.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Scroll_Ability_Graphic">Animate on Scroll Ability Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current scroll abilities graphic (if it exists).
+                    This setting should be ticked if the current scroll ability graphic object has its own preparing animation you want to active.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animate_on_Entity">Animate on Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current weapon graphic (if it exists).
+                    This setting should be ticked if the current weapon graphic object has its own  animation you want to active.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Restrict_Movement_When_Preparing">Restrict Movement When Preparing</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will not be able to move whilst the ability is preparing, once the preparation stage
+                    is over the entity will be able to move again. When ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Freeze Position
+                            <ol>
+                                If ticked then the entity will have movement stopped due to a transform position freeze.
+                                This will add the ABC_FreezePosition component to the entity.
+                                This works by ensuring the entity always remains at the position they was at when the component was added.
+                            </ol>
+                        </li>
+                        <li>
+                            Disable Components
+                            <ol>
+                                If ticked then the entity will have movement stopped due to specific components being disabled.
+                                This will add the ABC_DisableMovementComponents script  to the entity. This works by disabling
+                                common movement scripts including: CharacterController and NavMeshAgent. The rigidbody is also halted by making sure the velocity is always at 0.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Determines how long to stop the movement for when preparing. If value is 0 then it will automatically stop after the preparation animation (or when ability is Interrupted)
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Raise_Restrict_Movement_Event">Raise Restrict Movement Event</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then a restrict movement delegate event will be raised when the movement is enabled or disabled which can be connected to from any script.
+                    This way any movement scripts outside of the system can execute methods when a call to stop movement has been made by ABC. When ticked the following setting will also appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Duration
+                            <ol>
+                                Linked with the Duration setting above. Determines how long to stop the movement for when preparing.
+                                If value is 0 then it will automatically stop after the preparation animation (or when ability is Interrupted)
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    Code example to subscribe to the event delegate:
+                </p>
+                <p>
+                    <pre>
+                    <code>
+                               private void OnEnable() {
+                                this.movementEventsABC = meTransform.GetComponentInChildren&lt;ABC_StateManager&gt;();
+                                                                                                                       
+                                    //subscribe to the event
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement += this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement += this.DisableMovement;
+                                    }
+                                }
+
+                                public void EnableMovement() {
+                                //Code to enable movement
+                                }
+
+
+                                public void DisableMovement() {
+                                //Code to disable movement
+                                }
+
+
+                                private void OnDisable() {
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement -= this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement -= this.DisableMovement;
+                                    }
+                                }
+                        </code>
+                    </pre>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Move_Self_When_Preparing">Move Self When Preparing</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will move to an offset position when preparing.
+                    Useful if the preparation animation being used has no root motion. After a defined delay the entity will
+                    move gradually to the offset position set, reaching the position after the duration provided.
+                    If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Move Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will set the new destination in relation to the entities current position.
+                                The destination is where the entity will be moved too gradually, reaching the final position after a duration.
+                                I.e if a value is entered in the Y box then the entity will elevate up from its current position
+                                reaching a point determined by the value provided.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here to move the entity forward from its current position.
+                                The entity will reach the new forward position gradually once the ability starts preparing,
+                                reaching the destination after a duration. If negative value is entered it will move the entity backwards rather then forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here to move the entity to the right from its current position.
+                                The entity will reach the new right position gradually once the ability starts preparing, reaching
+                                the destination after a duration.  If negative value is entered it will move the entity left rather then right.
+                            </ol>
+                        </li>
+                        <li>
+                            Start Delay
+                            <ol>
+                                The delay before the entity starts moving to the new position determined by the offset settings.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Sets how long it takes the entity to reach the new position determined by the offset settings.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Move_To_Target_When_Preparing">Move To Target When Preparing</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will move to the ability target during preparing.
+                    If the ability doesn't use targets (Forward Travel Type etc) then the entity will move towards the current target
+                    or soft target.
+
+                    Once ticked the below settings will appear allowing you to modify the delay before the entity starts moving to the target
+                    and how long it takes to reach the target. You can also define an offset to the target position and a stop distance which determines
+                    the position to which the entity will move to (for example slightly above the target stopping a certain distance infront)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will set the new destination in relation to the ability targets current position.
+                                The destination is where the entity will be moved too gradually, reaching the final position after a duration.
+                                I.e if a value is entered in the Y box then the entity will travel to a point above the target
+                                reaching a point determined by the value provided.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will make the entity move to a position infront or behind the target depending on the forward offset value
+                                The entity will reach the new forward position gradually once the ability starts preparing,
+                                reaching the destination after a duration. If negative value is entered the entity will move to a position behind the target
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will make the entity move to a position to the right or left of the target depending on the right offset value
+                                The entity will reach the new right position gradually once the ability starts preparing, reaching
+                                the destination after a duration.  If negative value is entered the entity will move to a position to the left or right of the target
+                            </ol>
+                        </li>
+                        <li>
+                            Start Delay
+                            <ol>
+                                The delay before the entity starts moving to the target
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Sets how long it takes the entity to reach the target position taking into account the offset settings.
+                            </ol>
+                        </li>
+                        <li>
+                            Stop Distance
+                            <ol>
+                                The stop distance will determine how far from the target position the entity will stop. The entity will stop moving towards the target when the distance from the target position is reached.
+                                At 0 the entity will move to the exact target position, setting a value of 5 will make the entity stop a little distance before the target position. The higher the number the further away from the target
+                                the entity will stop.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Defy_Gravity">Defy Gravity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the activating entity will defy gravity for a duration when the ability starts preparing, essentially
+                    making the entity float for a set time. This for example can be used for abilities which are charged in the air
+                    before being released to enemies below. The system will stop the entity from falling by stopping any rigidbody
+                    velocity then turning off the rigidbody gravity for a duration. If enabled the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Defy Duration
+                            <ol>
+                                Determines how long the entity will defy gravity for once the ability starts preparing.
+                            </ol>
+                        </li>
+                        <li>
+                            Raise Event
+                            <ol>
+                                If ticked then a enable and disable gravity delegate event will be raised when the gravity is enabled or disabled which can be connected to from any script.
+                                This way any movement scripts outside of the system can execute methods when a call to stop/start gravity has been made by ABC.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the ability starts preparing.
+                    A particle object for example can be set here which indicates that the entity is
+                    casting a spell. If no object is added then no graphic will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the ability starts preparing.
+                    A particle object for example can be set here which indicates that the entity is
+                    casting a spell. If no object is added then no graphic will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Position">Graphic Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will appear. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any child objects
+                                linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’. Only Unity defined tags
+                                can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Use_Prepare_Time_Duration">Use Prepare Time Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the graphic will show for as long as the ability is preparing. Untick setting if you want to add a custom duration
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will only show if Use Prepare Time Duration setting above is disabled. Determines how long the graphic will last for after the ability starts preparing.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Offset">Graphic Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the graphic object is positioned from it’s starting position.
+                    I.e 90 in the X box will move the object up the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="Section hidden" id="Initiating">
+        <h2>Initiating</h2>
+
+        <h3 id="Use_Initiating_Aesthetics">Use Initiating Aesthetics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then graphics and animations can be setup to activate when the ability initiates.
+                    The initiation stage is the last step before the ability will appear in game moments later.
+                    An example of use is adding animation and graphics which will position the entities hand ready for the
+                    spell to shoot out or adding the combat animation which will guide the melee ability.
+                    Once enabled further settings will appear to setup the animations and graphics etc.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesInit.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Delay_Between_Initiating_&_Projectile">Delay Between Initiating & Projectile</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be set with defines the interval between the initiation stage and the ability appearing in game.
+                    Once the ability starts initiating the ability object will be created in game after the delay set.
+                    This allows for any animations or initiating graphics to play out before the ability appears.
+                </p>
+                <p>
+                    It can be used for example to wait for the entities hand to become fully raised before the ability
+                    shoots out or to time when the melee ability will appear allowing for the entity to start
+                    swinging the sword before it can collide with enemies.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animation_Clip">Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the ability initiates, the animation will
+                    run for the duration defined in the settings. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Animate on Entity
+                            <ol>
+                                If ticked then the animation clip will run on the entity that the ABC component is on.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Scroll Ability Graphic
+                            <ol>
+                                If ticked then the animation clip will run on the current scroll abilities graphic (if it exists).
+                                This setting should be ticked if the current scroll ability graphic object has its own initiating animation you want to play (like gun recoil when it shoots).
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Weapon
+                            <ol>
+                                If ticked then the animation clip will run on the current weapon graphics (if it exists).
+                                This setting should be ticked if the current weapon has its own animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animator_Parameter">Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the ability initiates, the animation will
+                    run for the duration defined in the settings. If the animation is shorter than the duration then the animation may repeat.
+                    The animation system links directly into the Unity animation controller attached to the entity and is required for the
+                    animations to activate. To determine which animation to play the “Animation Parameter”
+                    which has been setup in Unity needs to be written in the parameter config box, then the
+                    matching parameter type needs to be selected from the drop down, depending on the
+                    parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and
+                                will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts
+                                initiating and then deactivate with the Off value after the duration set. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts
+                                initiating and then deactivate with the Off value after the duration set. Only “True”
+                                should be entered in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the entity that the ABC component is on.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current weapon graphic (if it exists).
+                    This setting should be ticked if the current weapon graphic object has its own  animation you want to active.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Scroll_Ability_Graphic">Animate on Scroll Ability Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current scroll abilities graphic (if it exists).
+                    This setting should be ticked if the current scroll ability graphic object has its own initiating animation you want to active (like gun recoil when it shoots).
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Restrict_Movement_When_Initiating">Restrict Movement When Initiating</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will not be able to move whilst the ability is being initiated,
+                    once the ability initiates the entity will be able to move again. When ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Freeze Position
+                            <ol>
+                                If ticked then the entity will have movement stopped due to a transform position freeze.
+                                This will add the ABC_FreezePosition component to the entity.
+                                This works by ensuring the entity always remains at the position they was at when the component was added.
+                            </ol>
+                        </li>
+                        <li>
+                            Disable Components
+                            <ol>
+                                If ticked then the entity will have movement stopped due to specific components being disabled.
+                                This will add the ABC_DisableMovementComponents script  to the entity. This works by disabling
+                                common movement scripts including: CharacterController and NavMeshAgent. The rigidbody is also halted by making sure the velocity is always at 0.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Determines how long to stop the movement for when initiating. If value is 0 then it will automatically stop after the initiation animation ends (or when ability is toggled off/Interrupted)
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Raise_Restrict_Movement_Event">Raise Restrict Movement Event</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then a restrict movement delegate event will be raised when the movement is enabled or disabled which can be connected to from any script.
+                    This way any movement scripts outside of the system can execute methods when a call to stop movement has been made by ABC. When ticked the following setting will also appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Duration
+                            <ol>
+                                Linked with the Duration setting above. Determines how long to stop the movement for when initiating.
+                                If value is 0 then it will automatically stop after the initiation animation ends (or when ability is toggled off/Interrupted)
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    Code example to subscribe to the event delegate:
+                </p>
+                <p>
+                    <pre>
+                    <code>
+                               private void OnEnable() {
+                                this.movementEventsABC = meTransform.GetComponentInChildren&lt;ABC_StateManager&gt;();
+
+                                    //subscribe to the event
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement += this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement += this.DisableMovement;
+                                    }
+                                }
+
+                                public void EnableMovement() {
+                                //Code to enable movement
+                                }
+
+
+                                public void DisableMovement() {
+                                //Code to disable movement
+                                }
+
+
+                                private void OnDisable() {
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement -= this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement -= this.DisableMovement;
+                                    }
+                                }
+                        </code>
+                    </pre>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Move_Self_When_Initiating">Move Self When Initiating</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will move to an offset position when the ability is initiating.
+                    Useful if the initiation animation (like a melee attack) being used has no root motion.
+                    After a defined delay the entity will move gradually to the offset position set, reaching
+                    the position after the duration provided. If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Move Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will set the new destination in relation to the entities current position.
+                                The destination is where the entity will be moved too gradually, reaching the final position after a duration.
+                                I.e if a value is entered in the Y box then the entity will elevate up from its current position
+                                reaching a point determined by the value provided.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here to move the entity forward from its current position.
+                                The entity will reach the new forward position gradually once the ability starts initiating,
+                                reaching the destination after a duration. If negative value is entered it will move the entity backwards rather then forwards.
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here to move the entity to the right from its current position.
+                                The entity will reach the new right position gradually once the ability starts initiating,
+                                reaching the destination after a duration.
+                                If negative value is entered it will move the entity left rather then right.
+                            </ol>
+                        </li>
+                        <li>
+                            Start Delay
+                            <ol>
+                                The delay before the entity starts moving to the new position determined by the offset settings.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Sets how long it takes the entity to reach the new position determined by the offset settings.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Move_To_Target_When_Initiating">Move To Target When Initiating</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will move to the ability target when initiating.
+                    If the ability doesn't use targets (Forward Travel Type etc) then the entity will move towards the current target
+                    or soft target.
+
+                    Once ticked the below settings will appear allowing you to modify the delay before the entity starts moving to the target
+                    and how long it takes to reach the target. You can also define an offset to the target position and a stop distance which determines
+                    the position to which the entity will move to (for example slightly above the target stopping a certain distance infront)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Target Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will set the new destination in relation to the ability targets current position.
+                                The destination is where the entity will be moved too gradually, reaching the final position after a duration.
+                                I.e if a value is entered in the Y box then the entity will travel to a point above the target
+                                reaching a point determined by the value provided.
+                            </ol>
+                        </li>
+                        <li>
+                            Forward Offset
+                            <ol>
+                                A float value can be entered here which will make the entity move to a position infront or behind the target depending on the forward offset value
+                                The entity will reach the new forward position gradually once the ability starts initiating,
+                                reaching the destination after a duration. If negative value is entered the entity will move to a position behind the target
+                            </ol>
+                        </li>
+                        <li>
+                            Right Offset
+                            <ol>
+                                A float value can be entered here which will make the entity move to a position to the right or left of the target depending on the right offset value
+                                The entity will reach the new right position gradually once the ability starts initiating, reaching
+                                the destination after a duration.  If negative value is entered the entity will move to a position to the left or right of the target
+                            </ol>
+                        </li>
+                        <li>
+                            Start Delay
+                            <ol>
+                                The delay before the entity starts moving to the target
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Sets how long it takes the entity to reach the target position taking into account the offset settings.
+                            </ol>
+                        </li>
+                        <li>
+                            Stop Distance
+                            <ol>
+                                The stop distance will determine how far from the target position the entity will stop. The entity will stop moving towards the target when the distance from the target position is reached.
+                                At 0 the entity will move to the exact target position, setting a value of 5 will make the entity stop a little distance before the target position. The higher the number the further away from the target
+                                the entity will stop.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Defy_Gravity">Defy Gravity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the activating entity will defy gravity for a duration when the ability starts initiating,
+                    essentially making the entity float for a set time. This for example can be used for melee abilities
+                    which are activated in the air, keeping the entity a float for a small duration to finish the attack.
+                    The system will stop the entity from falling by stopping any rigidbody velocity then turning off the
+                    rigidbody gravity for a duration. If enabled the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Defy Duration
+                            <ol>
+                                Determines how long the entity will defy gravity for once the ability starts initating.
+                            </ol>
+                        </li>
+                        <li>
+                            Raise Event
+                            <ol>
+                                If ticked then a enable and disable gravity delegate event will be raised when the gravity is enabled or disabled which can be connected to from any script.
+                                This way any movement scripts outside of the system can execute methods when a call to stop/start gravity has been made by ABC.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the ability initiates.
+                    A particle object for example can be set here which indicates that the entity
+                    is casting a spell. If no object is added then no graphic will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A second object can be added here which will become a child of the Main Graphic described above.
+                    This object like the main graphic will appear when the ability initiates.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Position">Graphic Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will appear. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any child objects
+                                linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’. Only Unity defined tags
+                                can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the graphic will last for after the ability starts initiating.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Delay">Graphic Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The delay before the graphic will show after the ability starts initiating
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Offset">Graphic Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the graphic object is positioned from it’s starting position.
+                    I.e 90 in the X box will move the object up the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="Section hidden" id="Ability_End">
+        <h2>Ability End</h2>
+
+        <h3 id="Use_Ability_End_Aesthetics">Use Ability End Aesthetics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then graphics can be setup to activate whenever the ability is destroyed and disabled.
+                    The ability can be destroyed due to the duration being up or from colliding with another entity
+                    depending on collision configuration set. The graphic will activate at the position the ability was destroyed.
+                    An example of use is adding an explosion effect whenever a fireball is destroyed.
+                </p>
+                <p>
+                    For Raycast ability types the ability end graphics will appear at the raycast hit point i.e
+                    it will appear at the object which was hit by the raycast ability. An example of use is adding bullet hit sparks whenever a “gun ability” hits a point.
+                </p>
+                <p>
+                    Once enabled further settings will appear to setup the graphics.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesAbEnd.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the ability is destroyed and disabled.
+                    An explosive particle object can be set here which will activate every time a fireball
+                    ability is destroyed. If no object is added then no graphic will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A second object can be added here which will become a child of the Main Graphic described above.
+                    This object like the main graphic will appear when the ability is destroyed.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the graphic will appear for after the ability is destroyed.
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Graphic_To_Start">
+        <h2>Graphic To Start</h2>
+
+        <h3 id="Use_Projectile_To_Start_Position">Use Projectile To Start Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then a graphic/object can be setup which will travel from a set location to the abilities starting position during the preparation stage.
+                    Unless a duration greater than 0 has been set the  graphic will be destroyed at the end of the preparation stage just before the ability initiates.
+                    This graphic does not interact with anything and is only useful for preparation aesthetic purposes. For example an ability can be setup so at the
+                    preparation stage the entity will summon down a lightning strike from the sky to their hand before they then send it off in the direction of enemies.
+                </p>
+                <p class="doc-note">
+                    Note: To set the ability to prepare before it’s initiated then a number needs to be entered in the “Prepare Time” setting under the General tab in Settings. 
+                    More information on setting up the prepare time can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Prepare_Time')">Prepare Time Setting</a>
+                </p>
+                <p>
+                    Settings also exist to use the original ability instead of a new separate graphic/object,
+                    this will create the main ability object early making it travel towards its starting position from the set location.
+                    If the original ability is used then it will not be destroyed at the end of the preparation stage and will not
+                    interact until it has been initiated.  Once enabled further settings will appear to setup the graphics etc.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesGraphToStart.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic__Start_Position">Graphic Start Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will first appear before it travels to the abilities starting position. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any child objects
+                                linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’. Only Unity defined tags
+                                can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Position_Offset">Position Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the graphic object is positioned from it’s starting position.
+                    I.e 90 in the X box will move the object up the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Rotate_To_Target">Rotate To Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the graphic will be turned to face the ability starting position it will travel towards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Starting_Rotation">Starting Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the starting rotation for the graphic, which way the object is facing. X, Y, Z values can
+                    be entered to adjust the graphics starting rotation by the values provided.
+                    I.e rotate the graphic around the X axis by 90. Setting is not used or displayed if Rotate To Target setting is enabled.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Set_Euler_Rotation">Set Euler Rotation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the starting rotation amendments will also be applied to the graphics Local Euler Angles.
+                    Setting is not used or displayed if Rotate To Target setting is enabled.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Seconds_To_Target">Seconds To Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long it takes the graphic to reach the abilities starting position.
+                    I.e if 5 is entered then the graphic will take 5 seconds to reach the ability starting point.
+                </p>
+                <p>
+                    If 0 is entered then the graphic will just stay where it first appears and not travel. however it
+                    will execute code as if it already reached the ability starting point so will start hovering or
+                    move with the starting position target if set too etc.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Travel_Delay">Travel Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Sets the delay before the graphic will start travelling towards the abilities starting position.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Move_With_Target">Move With Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then once the graphic reaches the abilities starting position or the Seconds To Target
+                    setting is 0 then the graphic will become a child of the abilities starting position entity
+                    (i.e the activating entity, target, world etc). This will naturally mean the graphic will move with the target entity.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Hover_On_Spot">Hover On Spot</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then once the graphic reaches the abilities starting position or the Seconds To Target setting is
+                    0 then the graphic will starting hovering up and down. If ticked the following setting will appear:
+                </p>
+                <p>
+                    <ol>
+                        <li>
+                            Hover Distance
+                            <ol>
+                                Sets the amount of hovering done by the graphic, the higher the number the further it will go up and down.
+                            </ol>
+                        </li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Use_Original_Projectile">Use Original Projectile</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then this will create the main ability object early instead of a separate graphic.
+                    The ability object will travel towards its starting position from the set location.
+                    Unlike the separate graphic the original ability will not be destroyed at the end of
+                    the preparation stage but will stay at the starting point till it has been initiated.
+                    The original ability will not interact until it has been initiated.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will act as the graphic which will travel to the abilities starting position from a destination set.
+                    A rock particle object for example can be set here which will travel up from the ground on preparation before being sent towards enemies on initiation.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A second object can be added here which will become a child of the Main Graphic described above. This object will appear at the same time as the main graphic.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the graphic will appear for.
+                    If the duration is less then the “Seconds To Target” number then
+                    the graphic will be destroyed before it reaches the abilities starting position.
+                    If 0 is entered in this field then the graphic will be destroyed just before initiation when the preparation stage ends.
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="Section hidden" id="Scrollable_Ability">
+        <h2>Scrollable Ability</h2>
+
+        <h3 id="Use_Scroll_Ability_Aesthetics">Use Scroll Ability Aesthetics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then graphics and animations can be setup to activate when a scroll ability is enabled/‘equipped’ and disabled/‘unequipped’.
+                    Only one scrollable ability can be enabled at once and scrolling through will deactivate the current scroll ability disabling its
+                    “Scroll Ability Aesthetic” graphics and enabling the next scroll ability activating its “Scroll Ability Aesthetic” graphics.
+                </p>
+                <p>
+                    This can be used to switch weapons, for example  in FPS type games setup can be made to display a different gun object for each scroll
+                    ability that becomes enabled/‘equipped’. This results in the player being able to cycle through different guns to fire.
+                    This can also be used for games similar to Skyrim, where you scroll through to new abilities showing a graphic which represents
+                    what type of ability will initiate when the scroll ability share key/button trigger is pressed.
+                </p>
+                <p>
+                    Animations can be setup which will play when the scroll ability is both enabled/‘equipped’ and/or disabled/‘unequipped.
+                    Once enabled further settings will appear to setup the animations and graphics etc.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesScrollable.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Animation_Clip">Enable Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the scroll ability is enabled/‘equipped’.
+                    The animation will run for the duration set. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Animate on Entity
+                            <ol>
+                                If ticked then the animation clip will run on the entity that the ABC component is on.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Scroll Ability Graphic
+                            <ol>
+                                If ticked then the animation clip will run on the current scroll abilities graphic (if it exists).
+                                This setting should be ticked if the current scroll ability graphic object has its own equipping animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Weapon
+                            <ol>
+                                If ticked then the animation clip will run on the current weapon graphics (if it exists).
+                                This setting should be ticked if the current weapon has its own animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Animator_Parameter">Enable Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the scroll ability is enabled/‘equipped’.
+                    The animation will run for the duration set. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    The animation system links directly into the Unity animation controller attached to the entity and is required for the animations to activate.
+                    To determine which animation to play the “Animation Parameter” which has been setup in Unity needs to be written in the parameter config box,
+                    then the matching parameter type needs to be selected from the drop down, depending on the parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the scroll ability is
+                                enabled/‘equipped’ and then deactivate with the Off value after the duration set. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the scroll ability
+                                is enabled/‘equipped’ and then deactivate with the Off value after the duration set.
+                                Only “True” should be entered in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the entity that the ABC component is on.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Scroll_Ability_Graphic">Animate on Scroll Ability Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the scroll abilities graphic objects (detailed below) animator (if it exists).
+                    This setting should be ticked if the current scroll ability graphic object has its own equipping animation you want to activate.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animate_on_Entity">Animate on Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current weapon graphic (if it exists).
+                    This setting should be ticked if the current weapon graphic object has its own  animation you want to active.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animation_Duration">Animation Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the animation will play out for. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Disable_Animation_Clip">Disable Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the scroll ability is disabled/‘unequipped’.
+                    The animation will run for the duration set. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Animate on Entity
+                            <ol>
+                                If ticked then the animation clip will run on the entity that the ABC component is on.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Scroll Ability Graphic
+                            <ol>
+                                If ticked then the animation clip will run on the current scroll abilities graphic (if it exists).
+                                This setting should be ticked if the current scroll ability graphic object has its own unequipping animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Disable_Animator_Parameter">Disable Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the scroll ability is disabled/‘unequipped’.
+                    The animation will run for the duration set. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    The animation system links directly into the Unity animation controller attached to the entity and is required for the animations to activate.
+                    To determine which animation to play the “Animation Parameter” which has been setup in Unity needs to be written in the parameter config box,
+                    then the matching parameter type needs to be selected from the drop down, depending on the parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On
+                                value when the scroll ability is is disabled/‘unequipped’ and then deactivate with the Off
+                                value after the duration set. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the scroll ability is
+                                disabled/‘unequipped’ and then deactivate with the Off value after the duration set.
+                                Only “True” should be entered in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the entity that the ABC component is on.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Scroll_Ability_Graphic">Animate on Scroll Ability Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the scroll abilities graphic objects animator (if it exists).
+                    This setting should be ticked if the current scroll ability graphic object has its own unequipping animation you want to activate.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animate_on_Entity">Animate on Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current weapon graphic (if it exists).
+                    This setting should be ticked if the current weapon graphic object has its own  animation you want to active.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animation_Duration">Animation Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the animation will play out for. If the animation is shorter than the duration then the animation may repeat
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the scroll ability is enabled/‘equipped’.
+                    A gun object for example can be set to appear for as long as the ability is active as the entities
+                    current scroll ability. This can also be used for a flashy particle effect which shows for a
+                    few seconds representing a switch to the ability.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A second object can be added here which will become a child of the Main Graphic described above.
+                    This object like the main graphic will appear when the scroll ability is enabled/‘equipped’.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Position">Graphic Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will appear. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>..
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any child objects
+                                linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’. Only Unity defined tags
+                                can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Delay">Graphic Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The delay before the graphic will show when the scroll ability is enabled/‘equipped’.
+                    If “Persistent Duration Type” is used then this determines how long before the ability is
+                    moved from its inactive disabled/‘unequipped’ position to it’s normal enabled/‘equipped’ position.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Duration_Type">Duration Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the type of duration for the scroll ability graphic.
+                    2 options can be chosen from the dropdown; Duration and Persistent.
+                </p>
+                <p>
+                    If set to “Duration” then after the scroll ability is enabled/‘equipped’
+                    the graphic will show for a set time (unless the scroll ability is disabled earlier).
+                    If 0 is entered in the duration the graphic will show until the scroll
+                    ability is disabled/‘unequipped’.
+                </p>
+                <p>
+                    If set to Persistent then the graphic will always show even if the scroll ability is not currently enabled/‘equipped’.
+                    An inactive position can be chosen where the graphic will be placed when the ability is disabled/‘unequipped’.
+                    Once the scroll ability is enabled/‘equipped’ the graphic will move to its normal position after the graphic delay.
+                    This can be used to simulate an entity putting a gun/weapon on his back when not in use.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will appear if “Duration” is selected in the type dropdown box described above.
+                    Determines how long the graphic will show for when the scroll ability is enabled/‘equipped’.
+                    If the scroll ability is disabled before the duration time then the graphic will disappear early.
+                    If 0 is entered then the graphic will show until the scroll ability is disabled/‘unequipped’.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Inactive_Delay">Inactive Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will appear if “Persistent” is selected in the type dropdown box described above.
+                    Determines the delay before the graphic is moved to it’s inactive position when the ability is disabled/‘unequipped’.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Inactive_Position">Inactive Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will be placed when the ability is disabled/‘unequipped’. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was last activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was last activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any
+                                child objects linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Offset">Graphic Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the scroll ability graphic
+                    object is positioned from it’s starting position.
+                    I.e 90 in the X box will move the object up the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the scroll ability graphic object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the scroll ability graphic object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="Section hidden" id="Reloading">
+        <h2>Reloading</h2>
+
+        <h3 id="Use_Reload_Ability_Aesthetics">Use Reload Ability Aesthetics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then graphics and animations can be setup to activate when the ability reloads. Reloading can only occur on Scrollable
+                    Abilities that have both <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Use Reload</a>
+                    and <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Ammo')">Use Ammo</a> enabled in the General tab under Settings.
+
+
+                    The reload trigger key/button also needs to be setup in the ABC Controller Configuration, further information on setting the reload trigger
+                    can be found by clicking the following link:
+                    <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderScrollable_AND_Reload', 'Reload_Input_Type')">Reload Input Type</a>.
+                </p>
+                <p>
+                    An example of use is adding animation and graphics which will change the clip in a gun.
+                    Once enabled further settings will appear to setup the animations and graphics etc.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/AesReload.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animation_Clip">Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the ability reloads. The animation will run for the duration of the reload.
+                    The reload duration is defined in the General tab under Settings. Further information on setting the reload duration
+                    can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Reload Duraion</a>.
+
+                    If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Animate on Entity
+                            <ol>
+                                If ticked then the animation clip will run on the entity that the ABC component is on.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Scroll Ability Graphic
+                            <ol>
+                                If ticked then the animation clip will run on the current scroll abilities graphic (if it exists).
+                                This setting should be ticked if the current scroll ability graphic object has its own reloading animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Animate on Weapon
+                            <ol>
+                                If ticked then the animation clip will run on the current weapon graphics (if it exists).
+                                This setting should be ticked if the current weapon has its own animation you want to play.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animator_Parameter">Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the ability reloads. The animation will run  for the duration of the reload.
+                    The reload duration is defined in the General tab under Settings. further information on setting the reload duration
+                    can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Reload Duraion</a>.
+
+                    If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    If “Reload Fill Clip” is enabled then the animation will keep running whilst the clip is filled one by one (using the duration as an interval).
+                    In this scenario It's recommended to time how long it takes for the animation to play out once and use that for the reload duration as this will then
+                    flow nicely with the clip being filled up by 1 after each loop of the animation.
+
+                    Further information on setting "Reload Fill Clip" can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Use Reload</a>
+                </p>
+                <p>
+                    The animation system links directly into the Unity animation controller attached to the entity and is required for the animations to activate.
+                    To determine which animation to play the “Animation Parameter” which has been setup in Unity needs to be written in the parameter config box,
+                    then the matching parameter type needs to be selected from the drop down, depending on the parameter selected the following settings will appear with default values:
+
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and
+                                will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered. The animation will
+                                activate the parameter with the On value when the ability starts reloading and
+                                then deactivate with the Off value after the reload ends. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts reloading and then
+                                deactivate with the Off value after the reload ends. Only “True” should be entered in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Entity">Animate on Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the entity that the ABC component is on.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animate_on_Scroll_Ability_Graphic">Animate on Scroll Ability Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current scroll abilities graphic (if it exists).
+                    This setting should be ticked if the current scroll ability graphic object has its own reloading animation you want to activate.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animate_on_Entity">Animate on Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the animation will activate on the animator attached to the current weapon graphic (if it exists).
+                    This setting should be ticked if the current weapon graphic object has its own  animation you want to active.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Main_Graphic">Main Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any object can be added here which will appear when the ability reloads.
+                    A particle object for example can be set here which indicates that the entity is recharging his energy.
+                    If no object is added then no graphic will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Sub_Graphic">Sub Graphic</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A second object can be added here which will become a child of the Main Graphic described above.
+                    This object like the main graphic will appear when the ability reloads.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Position">Graphic Position</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting defines where the graphic will appear. The following options can be selected from the dropdown:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Self
+                            <ol>
+                                The graphics starting position will be at the entity object the ABC system is attached too
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Target
+                            <ol>
+                                The graphics starting position will be at the current target the entity had when the ability was activated.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the target
+                            </ol>
+                        </li>
+                        <li>
+                            On Object
+                            <ol>
+                                The graphics starting position will be at a gameobject defined in additional setting ‘Select Object’.
+                                Any object can be dragged or selected onto the setting field. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the Object added to the setting.
+                            </ol>
+                        </li>
+                        <li>
+                            On World
+                            <ol>
+                                The graphics starting position will be at the current world position the entity had when the ability was activated.
+                                If no target is selected then the graphic will appear at the entity as if ‘Self’ was selected
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the world target.
+                            </ol>
+                        </li>
+                        <li>
+                            Camera Center
+                            <ol>
+                                The graphics starting position will be at the entities defined camera or the main camera if none has been defined.
+                                More information on setting the entities camera can be found  by clicking the following link:
+                                <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the camera
+                            </ol>
+                        </li>
+                        <li>
+                            On Tag
+                            <ol>
+                                The graphics starting position will be at a gameobject which has a tag which matches the tag defined in additional setting ‘Select Tag’.
+                                Only Unity defined tags can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The gameobject with the tag is chosen using ‘FindGameObjectWithTag’ so objects found may vary if more then one exists with the same tag.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the tag.
+                            </ol>
+                        </li>
+                        <li>
+                            On Self Tag
+                            <ol>
+                                The graphics starting position will be at a object which is either the entity object the ABC system is attached too or any child objects
+                                linked to the entity which also has a tag which matches the tag defined in additional setting ‘Select Tag’. Only Unity defined tags
+                                can be selected from the dropdown. The setting will appear when this option is selected.
+                            </ol>
+                            <ol>
+                                The graphic will become a child of the gameobject found when searching for the self tag.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Duration">Graphic Duration</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines how long the graphic will last for after the ability starts initiating.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Delay">Graphic Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The delay before the graphic will show after the ability starts reloading
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Offset">Graphic Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    X, Y, Z float values can be entered which will modify where the graphic object is positioned from it’s starting position.
+                    I.e 90 in the X box will move the object up the X axis by 90 from the position it starts at.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Forward_Offset">Forward Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object forward from it’s starting position.
+                    If negative value is entered it will move the graphic backwards rather then forwards.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Right_Offset">Right Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A float value can be entered here to move the graphic object to the right from its starting position.
+                    If negative value is entered it will move the indicator left rather then right.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

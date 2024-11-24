@@ -1,0 +1,523 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="General">
+        <h2>General</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    In this section are the general settings for the weapon pickup where you can define what weapon to enable/import, any tags required to pick up.
+                    A trigger (if needed) to pick up the weapon and the graphic/collider information.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/WeaponPickUpGeneral.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Pick_Up_Mode">Pick Up Mode</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines what will happen when the weapon is picked up, either 'Enable' or 'Import' can be selected. Enable mode will enable a weapon matched by ID or name which is already setup on the entity picking up the weapon. Import mode
+                    Will import a weapon (including the choice to also import linking abilities, groups and UI) from a linked gameobject which has the weapon setup. Depending on the configuration the import can be done directly from the linked gameobject
+                    with the weapon setup or saved so the linked gameobject no longer needs to exist. Importing allows for any entity to pick up the weapon without needing to have the weapon configured in their ABC Controller.
+                </p>
+                <p>
+                    The mode can be selected by clicking the dropdown and selecting the option. Depending on the option different settings appear when are detailed below.
+                </p>
+
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Pick_Up_Mode">Enable Pick Up Mode</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If 'Enable' is selected as the pick up mode then when an entity picks up the weapon the system will enable a weapon already setup on the entity that matches an ID or name configured. If no match can be found then no weapon will be enabled and the pick up
+                    will remain until it is successfully picked up. When Enable is selected in the dropdown the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Enable Using Weapon Name
+                            <ol>
+                                If ticked then on pickup the system will check for a matching name on the entity enabling that weapon, this is useful if you have slightly different weapons on different characters with different ID's
+                                When each character picks up the weapon it will enable their own 'sword' etc as long as the names match. If ticked a text box labelled Weapon Name will appear allowing you to enter the weapon name to match and enable.
+                            </ol>
+                        </li>
+                        <li>
+                            Weapon ID
+                            <ol>
+                                If Enable Using Weapon Name is not ticked then a box will appear labelled Weapon ID allow you to put in the ID of the weapon you want to enable on the entity that picks up the weapon.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Import_Pick_Up_Mode">Import Pick Up Mode</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If 'Import' is selected as the pick up mode then when an entity picks up the weapon the system will import a weapon (including the choice to also import linking abilities, groups and UI) from a linked gameobject which has the weapon setup.
+                    The linked gameobject can be setup as a 'weapon manager' which holds all weapons in your game which can be imported or this can also be setup so the weapon pick up object has it's own ABC Controller which just has the weapon you want to import.
+                    There is a number of different setups you can do as long as there is an object with the weapon setup then that object can be used to import from. When Import is selected in the dropdown the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            ABC Controller Object
+                            <ol>
+                                Drop a gameobject on this setting which has the ABC Controller with the weapon you want to import. Once dropped a dropdown will appear next to the box with a list of weapons setup on that objects ABC Controller.
+                                Once a weapon has been selected you can press the 'Update' button to link that weapon to the pickup, which will then be imported when an entity picks up the weapon. A label exists below showing which weapon
+                                is currently selected to be imported
+                            </ol>
+                        </li>
+                        <li>
+                            Direct Import
+                            <ol>
+                                If ticked then the weapon will be imported from the linked object in real time, meaning the weapon and object needs to remain during play. If unticked then a version of the weapon selected to import is copied into the weapon pick up
+                                manager, saving the data. This means that the weapon can be imported without the original object link needing to exist, however, an update will need to be redone when changes are made to the weapon linked (as the data needs to be resaved).
+                                You can update the data saved by reclicking the 'Update' button.
+                            </ol>
+                        </li>
+                        <li>
+                            Import Enable Abilities
+                            <ol>
+                                If ticked then the enable abilities linked to the weapon will also be imported to the entity picking up the weapon
+                            </ol>
+                        </li>
+                        <li>
+                            Import Groups
+                            <ol>
+                                If ticked then the groups linked to the weapon will also be imported to the entity picking up the weapon
+                            </ol>
+                        </li>
+                        <li>
+                            Import UI
+                            <ol>
+                                If ticked then the UI linked to the weapon will also be imported to the entity picking up the weapon
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable/Import_Delay">Enable/Import Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The delay before the weapon is enabled or animation, can be timed with the animation to have it look like the entity is picking up the weapon
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Update_Ammo_On_Pickup">Update Ammo On Pickup</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the weapons ammo will be updated on pickup to the value set. Once enabled the following
+                    setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Ammo
+                            <ol>
+                                The amount of ammo to set on the weapon once it has been picked up. This value can also be updated from a weapon drop, the setting to enable this can be found here:
+                                <a onclick="HyperLink('ControllerConfig', 'Weapon Settings', 'HeaderWeapon_Drop', 'Update_Weapon_Drop_Ammo')">Update Weapon Drop Ammo</a> 
+                                This setting allows for you to setup how much ammo this weapon pick up has. If the update weapon drop ammo is also true as linked above then once the weapon is dropped
+                                the next entity to pick up the weapon will have the same ammo avaliable as what was dropped
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Equip_Weapon_On_Pickup">Equip Weapon On Pickup</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the weapon will be equipped on pickup, else it will just be imported/enabled
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Drop_Current_Weapon_On_Pick_Up">Drop Current Weapon On Pick Up</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the entity will drop it's current weapon before picking up the new weapon.
+                    Use this for FPS like games where the entity can only carry x amount of weapons at once, dropping the current one when a new one is picked up.
+                    This will take into account drop restrictions on the entity. More information on setting up drop restriction can be found by clicking the following link:
+                    <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderWeapons', 'Restrict_Weapon_Drop')">Restrict Weapon Drop</a>
+                    If not ticked the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Unequip Current Weapon Before Pick Up
+                            <ol>
+                                If enabled then the entity will unequip its current weapon before it starts picking up the new weapon
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Tags_Required_To_Pick_Up">Tags Required To Pick Up</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then only entities with a matching tag or ABC tag is allowed to pick up weapons, else without the tag no pick up event is executed.
+                </p>
+                <p>
+                    When enabled a box will appear allowing you to insert tags. Press the "+" to add a new tag, which will display an empty textbox to type in the tag. The tag
+                    Can be moved with the arrows at the end of the line or deleted by pressing the red "X".
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Trigger_Required_To_Pick_Up">Trigger Required To Pick Up</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the player needs to trigger the pick up with input, if not enabled then the entity will automatically pick up the weapon on collision. If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the pick up weapon event,
+                                either a hardcoded key can be inserted or a button string which
+                                links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string
+                                setup in the Unity Input Manager. This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+
+            </div>
+        </div>
+
+
+        <h3 id="Disable_Pick_Up_Once_Equipped">Disable Pick Up Once Equipped</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the weapon pick up object will be disabled once it's picked up, stopping additional entities from picking up the weapon.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Use Graphics">Use Graphics</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will create a graphic object configured during play, you can either add your own graphics to the same object this component is attached to or have the system create and pool them for you by adding a object yourself.
+                    Once ticked the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Pick Up Graphic
+                            <ol>
+                                Will allow you to drop or select an object to display for the weapon pick up graphic, this for example can be the same graphic as the actual weapon that gets enabled/imported like a sword, or even a chest which is opened
+                                to get the weapon
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Add_Collider">Add Collider</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If selected then the weapon pick up system will add a collider ready for interaction, if you rather add your own collider then untick this setting and simply add your own collider to the object which has the weapon pick up component.
+                    Once ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Collider Offset
+                            <ol>
+                                X, Y, Z float values can be entered which will modify where the collider is positioned
+                                on the object. I.e 90 in the X box will move the collider up
+                                the X axis by 90 from the position it appears at.
+                            </ol>
+                        </li>
+                        <li>
+                            Is trigger
+                            <ol>
+                                If ticked then the collider added will be marked as 'Is Trigger'
+                            </ol>
+                        </li>
+                        <li>
+                            Radius
+                            <ol>
+                                The radius size of the collider
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Section" id="Animations">
+        <h2>Animations</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    In this section you can setup animations which will run when the weapon is being picked up, the animations will run on the entity which is picked up the weapon.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/WeaponPickUpAnimations.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Use_Pick_Up_Animations">Use Pick Up Animations</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then weapon pick up animations will run, else they will not.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animation_Clip">Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the weapon is picked up, the animation will
+                    run for the duration defined in the settings. If the animation is shorter than the duration then the animation may repeat.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Animator_Parameter">Animator Parameter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation when the weapon is picked up, the animation will
+                    run for the duration defined in the settings. If the animation is shorter than the duration then the animation may repeat.
+                    The animation system links directly into the Unity animation controller attached to the entity and is required for the
+                    animations to activate. To determine which animation to play the “Animation Parameter”
+                    which has been setup in Unity needs to be written in the parameter config box, then the
+                    matching parameter type needs to be selected from the drop down, depending on the
+                    parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and
+                                will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts
+                                initiating and then deactivate with the Off value after the duration set. Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a On Value and Off Value can be entered.
+                                The animation will activate the parameter with the On value when the ability starts
+                                initiating and then deactivate with the Off value after the duration set. Only “True”
+                                should be entered in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="Section" id="UI">
+        <h2>UI</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    In this section you can configured text which will appear in game indicating and aiding the player to pick up the weapon. For example when the player is standing over the weapon
+                    a message can appear on screen stating ("Press P to pick up the weapon").
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/WeaponPickUpUI.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Display_Pick_Up_Text">Display Pick Up Text</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then taxt can be setupto be displayed to the user to help with picking up the weapon
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Text_Object">Text Object</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Unity Text Object where the pick up text information will be displayed. This can be any Unity Text Object
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Text">Text</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The text to display, If #Key# is anywhere in the message then this will be replaced with the input required to pick up the weapon
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Only_Display_When_Colliding">Only Display When Colliding</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the display will only show when the pick up weapon is colliding
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Only_Display_For_Pick_Up_Tags">Only Display For Pick Up Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the display text will only show when the pick up tags set up collide (limits when the display will show). More information on setting up pick up tags can be
+                    found by clicking the following link: <a onclick="HyperLink('WeaponPickUp', 'Settings', 'General', 'Tags_Required_To_Pick_up')">Weapon Pick Up Tags Required</a>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Only_Display_For_Pick_Up_Tags">Always Face Camera</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If true then the text will always turn to face the camera. Should only be used if the text is an object in game and not used on a canvas.
+                </p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>

@@ -1,0 +1,301 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+
+    <div class="Section" id="Game_Creator_Integration">
+        <h2>Game Creator Integration</h2>
+
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    ABC includes features which allows you to seamlessly integrate with Catsoft Studios <a href="https://gamecreator.io/">Game Creator</a> Asset. This section details all the Game Creator (GC) functionality 
+                    that ABC can use and instructions on how to configure the integration. Currently ABC intergates with the following Game Creator functionality:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Activating Abilities using GC Action
+                        </li>
+                        <li>
+                            Triggering Actions/Conditions from Ability Collision (Ability Collision as a new GC Trigger)
+                        </li>
+                        <li>
+                            Using/Adjusting GC Health/Mana
+                        </li>
+                        <li>
+                            Using GC Stats to enhance ABC Effects
+                        </li>  
+                        <li>
+                            Modifying GC Stats/Attributes
+                        </li>
+                        <li>
+                            Adding/Removing Status Effects
+                        </li>     
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enabling_Game_Creator">Enabling Game Creator</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    By default Game Creator integration will not be enabled in ABC. To Enable Game Creator please follow the below steps: 
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            1. Add ABC_Controller or ABC_StateManager component to any object and in the inspector click the "Integrations" toggle. Once toggled
+                        </li>
+                        <li>
+                            2. In the inspector click the "Integrations" toggle
+                        </li>
+                        <li>
+                            3. Once toggled, click the "Enable Game Creator Integration" button
+                        </li>
+                        <li>
+                            4. To disable Game Creator integration simply click the button again which will now display "Disable Game Creator Integration"
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                        <b>PLEASE NOTE: ABC will error if Game Creator integration has been enabled but you have not imported Game Creator yet. Please ensure Game Creator has been installed before clicking this button</b>
+                </p>         
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/GameCreatorEnable.png" alt="Image showing Game Creator Integration Button" class="img-responsive image-border" style="width:70%">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Activating_Abilities_Using_GC_Action">Activating Abilities Using GC Action</h3>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    GC Action has been created which allows for you to activate abilities. The Activate Ability action can be found when adding new GC actions under the "ABC Integration" section
+                </p>
+                <p>
+                    When configuring the action you are able to configure 3 settings: 
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Target 
+                            <ol>
+                                Who will activate the ability 
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Ref Type
+                            <ol>
+                                The ability reference type, either "Ability Name" or "Ability ID" can be selected
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Name
+                            <ol>
+                               If reference type is set to "Ability Name" then a text box will appear allowing you to enter the name of the ability to activate
+                            </ol>
+                        </li>
+                        <li>
+                            Ability ID
+                            <ol>
+                                If reference type is set to "Ability ID" then a number box will appear allowing you to enter the ID of the ability you want to activate
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/GameCreatorAction.png" alt="Image showing Game Creator Action Setup" class="img-responsive image-border" style="width:70%">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ability_Collision_GC_Trigger">Ability Collision GC Trigger</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                   A Ability Collision Trigger has been added to GC. This allows you to trigger GC actions or GC conditions when an ABC ability collides with an object. The "On Collision With ABC Ability" trigger
+                    can be found when changing the GC trigger under the "ABC Integration" section
+                </p>
+                <p>
+                    When configuring the trigger you are able to configure 3 settings:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Ability Ref Type
+                            <ol>
+                             Determines the reference type of the ability, depending on the choice selected you can configure for the trigger to only activate when specific or all abilities collide. 
+                            There is currently 4 reference types: "Ability Name", "Ability ID", "Effect", "All"
+                            </ol>
+                        </li>
+                        <li>
+                            Ability ID
+                            <ol>
+                                If "Ability ID" is selected as the reference type then only Abilities with the matching ID placed in this box will activate the trigger on collision
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Name
+                            <ol>
+                                If "Ability Name" is selected as the reference type then only Abilities with the matching name placed in this box will activate the trigger on collision
+                            </ol>
+                        </li>
+                        <li>
+                            Effect
+                            <ol>
+                                If reference type is set to "Effect" then any Abilities that collide which have the "GC Ability Collision Trigger" effect will activate the trigger. This can be further filtered down 
+                                by adding a value in the "Effect Misc Value" box. If the value is empty then all Abilities with the effect will activate the trigger, else if a value is present then only Abilities with the effect 
+                                and the same matching "Misc Property" value configured in the effect settings in ABC will activate the trigger. More 
+                                information on the effect can be found by clicking the following link: <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'GC_Ability_Collision_Trigger')">GC Ability Collision Trigger Effect</a>
+                            </ol>
+                        </li>
+                        <li>
+                            All
+                            <ol>
+                                All ABC Abilities will activate the trigger on collision
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <img src="../DocImages/GameCreatorTrigger.png" alt="Image showing Game Creator Trigger Setup" class="img-responsive image-border" style="width:70%">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="GC_Health_&_Mana">GC Health & Mana</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <b>(Requires GC Stats Module)</b> Functionality exists so that you can choose to use GC Health & Mana Attributes instead of ABC own Health and Mana system. If configured then ABC will instead retrieve and adjust 
+                    the GC Health and/or Mana instead of it's own Health and Mana. This means that both ABC and GC functionality can be used. For example you may wish to use the ABC functionality to regen GC health/mana per second or
+                    you can choose to not use this and just use GC functionality. 
+                </p>
+                <p>
+                    If ABC is set to use GC health/mana then all ABC functionality relating to health/mana will use GC Health/Mana instead. This includes adjusting health through an Ability Effect (i.e Adjust Health effect will now change GC health) or adding
+                    a mana cost on abilities (which will now use GC mana)                   
+                </p>
+                <p>
+                    To configure which system to use change the "Integration Type" setting which can be found in both the Health & Mana sections. Simply click which system to use in the dropdown, either "ABC" or "Game Creator". If Game Creator
+                    is selected then an additional ID setting will appear allowing you to insert the ID of the health and mana attribute in Game Creator. This tells ABC which GC attribute represents health and mana.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <img src="../DocImages/GameCreatorHealthMana.png" alt="Image showing Game Creator Health and Mana Setup" class="img-responsive image-border" >
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Using_GC_Stats_To_Modify_Effects">Using GC Stats To Modify Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    ABC has functionality which allows for stats to affect the potency/power/force/value etc
+                    behind an effect. For example with an “AdjustHealth” effect the originators
+                    attack stat may modify the potency reducing more health (doing more damage)
+                    however the effect may also have it’s potency modified again depending on the
+                    targets defence so it doesn’t reduce as much as it would have.
+                </p>
+                <p>
+                    With GC integration you can now choose to modify the potency/power/force/value etc of an effect using Stats 
+                    created in GC. 
+                </p>
+                <p>
+                    To configure this select either "ABC" or "Game Creator" from the dropdown when configuring the stat modifications then simply add the ID of the GC stat in the "Stat:" text box. 
+                    You can use both ABC and GameCreator stats at the same time by adding more then one stat modification to an effect
+                </p>
+                <p>
+                    i.e if the row says "Add 100% of Originator Game Creator Stat: attack" then 100% of the GC stat value with the ID of attack will be be added to the effects potency
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <img src="../DocImages/GameCreatorEffectStat.png" alt="Image showing Game Creator Effect Stat Setup" class="img-responsive image-border">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Modifying_GC_Stats_&_Attributes">Modifying GC Stats & Attributes</h3>
+        <div class="row">
+            <div class="col-md-12">
+              <p>
+                  ABC is able to modify Game Creator Stats and Attributes via 2 Ability Effects. If the effects are added to an Ability and Game Creator integration has been enabled then the effects will apply
+                  with no further setup. Details for the 2 effects can be found in the effects documentation found by clicking the following link: <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Adjust_GC_Stat_Value')">Adjust GC Stats & Attributes</a>
+              </p>
+            </div>
+        </div>
+
+
+        <h3 id="Adding_&_Removing_Status_Effects">Adding & Removing Status Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    ABC is able to add and remove Game Creator Status Effects via 2 Ability Effects. If the effects are added to an Ability and Game Creator integration has been enabled then the effects will apply
+                    with no further setup. Details for the 2 effects can be found in the effects documentation found by clicking the following link: <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Add_GC_Status_Effect')">Add & Remove GC Status Effect</a>
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+   
+
+</div>
+
+
+
+

@@ -1,0 +1,1813 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+
+    <div class="Section" id="Effect_Event_Subscriber">
+        <h2>Effect Event Subscriber</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A script component is avaliable named ABC_EffectEventSubscriber which will allow for you to easily integrate other components when effects are applied and/or removed. When an entity is inflicted
+                    by a certain effect you can link that to call other methods in your own scripts. An example is making an ability which when used will apply a custom "interact" effect to near by objects.
+                    The nearby objects with the effect subscriber component attached will listen for the "interact effect", running certain methods once the effect is applied. Doing this you can simulate
+                    a character opening a door - the character can have the interact effect ability and the door can have the event subscriber. 
+                </p>          
+            </div>
+        </div>
+
+
+        <h3 id="Setting_Up_The_Subscriber">Setting Up The Subscriber</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Follow the below steps to set-up the effect event subscriber: 
+                </p>
+                <p>
+                    1. Add the ABC_EffectEventSubscriber to the entity which will listen for effects applied to itself. 
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut1.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    2. Change the size of the Custom Effect Events or Custom Effect Removal Events. Each increment allows for an extra custom effect to listen out for. 
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut2.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    3. Enter the name of the Effect you want the subscriber to listen for in the "Effect Name" text box
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut3.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    4. Add a Unity Event by pressing the "+" button. The Unity Event we are about to setup here will determine what function(s) to call once the custom effect defined in step 3 is added/removed. 
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut4.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    5. Find and select the GameObject which holds the component and the method you wish to invoke when the custom effect is added and or removed. Once the Gameobject is selected drag it into the box below the "Runtime Only" dropdown.
+                    This GameObject does not have to be the same entity that has the subscriber component attached, so it is possible to have an entity which just listens out for certain effects which then runs methods on other Objects. 
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut5.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    6. Once the GameObject has been inserted the dropdown to the right of the "Runtime Only" dropdown will become avaliable enabling you to selection the function which will run. 
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/EffectSubTut6.png" alt="Image showing the ABC_EffectEventSubscriber component" class="img-responsive image-border doc-img-small">
+                </p>
+                <p>
+                    7. Setup has been completed. Now the function selected will be called 
+                    everytime the entity with the ABC_EffectEventSubscriber component is inflicted with an Effect that matches the text in the
+                    "Effect Name" box.
+                </p>
+                <p>
+                    Note: For an ability effect to raise the event picked up by the ABC_EffectEventSubscriber the effects Event Type needs to be either "Raise Event" or "Both Simultaniously".
+                    Information on changing the effects Event Type can be found by clicking the following link: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderEffects', 'Event_Type')">Event Type</a>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="Section hidden" id="Effect_Details">
+        <h2>Effect Details</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Below lists all the effects which can be setup on abilities. Effects can be applied to any entities that abilities collide and hit.
+                    Entities require the ABC_StateManager Component for effects to activate.
+                </p>
+                <p>
+                    In this section you will find details on what each effect does and how to modify its behaviour and potency through the 3 additional settings (PotencyValue, MiscProperty and AltProperty).
+                    For example the Push effect can be modified by adjusting the push distance via the potency value, how long it takes the entity to reach the push distance via the misc property and
+                    the lift force via the alt misc property.
+                </p>
+                <p>
+                    This section also details what happens when certain effects are removed from the entity
+                    (if setup to do so via the <a onclick="HyperLink('AbilityManager', 'General', 'HeaderEffects', 'Enable_Remove_Effect')">Enable Remove Effect</a> setting).
+                    For example the Adjust Stat Value effect will increase a stat value
+                    like strength. If the effect is removed the stat value will then revert back to what it was before the effect was applied.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/GeneralEffects.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Adjust_Health">Adjust Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will increase or decrease the entities current health. Use this to apply damage to enemies or heal allies
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust health by (can be a positive or negative value)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Mana">Adjust Mana</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will increase or decrease the entities current mana. Use this to recover or reduce mana. Mana can be used to activate abilities
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust mana by (can be a positive or negative value)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Random_Hit_Animation">Random Hit Animation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will activate a random hit animation which has been setup in the entities ABC StateManager Component.
+                    More information on setting up hit animations can be found by clicking the following link
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderHit_Animations', 'Setting_Up_Hit_Animations')">Setting Up Hit Animations</a>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Hit_Animation">Hit Animation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will activate a specfic hit animation which has been setup in the entities ABC StateManager Component.
+                    More information on setting up hit animations can be found by clicking the following link
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderHit_Animations', 'Setting_Up_Hit_Animations')">Setting Up Hit Animations</a>
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the hit animation to play. The value entered needs to match the name of the hit animation setup.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Set_Stat_Value">Set Stat Value</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will set the stat to the value provided. Stats can be setup in the entities ABC StateManager Component.
+                    For example the effect can set the entities strength value by the potency provided.
+                    More information on setting up stats can be found by clicking the following link
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderGeneral_AND_Stats', 'Entity_Stats')">Setting Up Entity Stats</a>
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to set stat too (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: Name of the stat to change. The value entered needs to match the name of the stat setup in the ABC StateManager Component
+                            If no stat matches then nothing will occur in game.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Adjust_Stat_Value">Adjust Stat Value</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will increase or decrease a stat value if it exists. Stats can be setup in the entities ABC StateManager Component.
+                    For example the effect can adjust the entities strength value increasing/decreasing it by the potency provided.
+                    More information on setting up stats can be found by clicking the following link
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderGeneral_AND_Stats', 'Entity_Stats')">Setting Up Entity Stats</a>
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to change stat by (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: Name of the stat to change. The value entered needs to match the name of the stat setup in the ABC StateManager Component
+                            If no stat matches then nothing will occur in game.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted stat value. For example if the effect added 5 to the entities strength stat then on removal the strength will be reduced by 5.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Shake_Camera">Shake Camera</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will shake the camera for the amount duration and speed provided in the additional settings. Use this to add 'juice' to the ability impact.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount of shake to apply to the camera
+                        </li>
+                        <li>
+                            Misc Property: Duration of the shake
+                        </li>
+                        <li>
+                            Alt Misc Property: Speed of the camera shake.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Shake_Object">Shake Object</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will shake the entity hit for the amount provided the shake then decreases over time depending on the decay. Once shake decays to 0 the shake will stop. Use this to add 'juice' to the ability impact.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: The amount of shake performed
+                        </li>
+                        <li>
+                            Misc Property: The amount of the shake decreased each cycle. Also determines the duration, once shake decays to 0 the shake will stop
+                        </li>
+                        <li>
+                            Alt Misc Property: Delay of the shake object
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Shake_Object">Switch Color</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will activate a color switch for a duration before reverting back to the entites original color
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Duration for the color switch before it reverts back
+                        </li>
+                        <li>
+                            Misc Property: Hex code of the color to change to (i.e #880000)
+                        </li>
+                        <li>
+                            Alt Misc Property: (Boolean) if true then the emission color will be changed if enable, else the normal color will change
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Bullet_Time">Bullet Time</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will modify the game speed, either slowing it down or speeding it up for the duration provided
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to slow down or speed game up. 1 is normal speed, adding a value lower then 1 will slow down the game. Adding a value higher then 1 will speed up the game.
+                        </li>
+                        <li>
+                            Misc Property: Duration of the game speed change
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Adjust_Max_Health">Adjust Max Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities max health
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to increase the max health by (can be positive or negative).
+                        </li>
+                        <li>
+                            Misc Property: (True/False) if true then current health will be restored to full, else it will remain the same and only the max health will be adjusted
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted max health value. For example if the effect added 30 to the entities max health then on removal the max health will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Max_Mana">Adjust Max Mana</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities max Mana
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to increase the max mana by (can be positive or negative).
+                        </li>
+                        <li>
+                            Misc Property: (True/False) if true then current mana will be restored to full, else it will remain the same and only the max mana will be adjusted
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted max mana value. For example if the effect added 30 to the entities max mana then on removal the max mana will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Health_Regen">Adjust Health Regen</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities health regen
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to increase health regen by (can be positive or negative).
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted health regen value. For example if the effect added 5 to the entities health regen then on removal the health regen will be reduced by 5.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Mana_Regen">Adjust Mana Regen</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities mana regen
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to increase mana regen by (can be positive or negative).
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted mana regen value. For example if the effect added 5 to the entities mana regen then on removal the mana regen will be reduced by 5.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Adjust_Ability_Ammo">Adjust Ability Ammo</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust an abilities ammo count
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust ammo by (can be positive or negative).
+                        </li>
+                        <li>
+                            Misc Property: ID of the ability which will have its ammo adjusted i.e if 5 is entered then the ability with an ID of 5 will have it's ammo adjusted
+                            by this effect.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Adjust_Ability_Global_Prepare_Time">Adjust Ability Global Prepare Time</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the global prepare time of all abilities by the percentage value
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: % value to adjust global prepare time by (can be positive or negative).
+                            the global prepare time default is 100%, lowering this value will means abilities will take less time to prepare before activating. Increasing this value
+                            will result in all abilities having longer prepare times. <br />
+
+                            For example if this effect adjusted the global prepare time by -80(%) resulting in a value of 20 (from the 100 default) then all ability prepare times will now only take 20% of their normal times
+                            preparing then activating 80% faster. meaning an ability with a 10 second prepare time will now only take 2 seconds.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted ability global prepare time value. For example if the effect added -80% global prepare time then on removal the -80%  prepare time will be removed</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Ability_Global_Cooldown">Adjust Ability Global Cooldown</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the global cooldown of all abilities by the percentage value
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: % value to adjust global cooldown by (can be positive or negative).
+                            the global cooldown default is 100%, lowering this value will speed up the the cooldown for all abilities. Increasing this value
+                            will result in all abilities having longer cooldowns. <br />
+
+                            For example if this effect adjusted the global cooldown by -80(%) resulting in a value of 20 (from the 100 default) then all global cooldowns will now only take 20% of their normal times
+                            cooling down 80% faster. meaning an ability with a 10 second cooldown will now only take 2 seconds.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted ability global cooldown value. For example if the effect added -80% global cooldown then on removal the -80% cooldown will be removed</p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Adjust_Ability_Global_Initation_Speed">Adjust Ability Global Initiation Speed</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the initiation speed of all abilities
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: % value to adjust global initiation speed by (can be positive or negative).
+                            the global speed default is 100%, lowering this value will slow down the initiation speed for all abilities, making a sword swing take longer etc. Increasing this value
+                            will result in all abilities initiating faster.<br />
+
+                            For example if this effect adjusted the global initiation speed by -25(%) resulting in a value of 75 (from the 100 default) then all initiations will be running 25% slower.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted ability global initiation speed value. For example if the effect added -25% global cooldown then on removal the -25% cooldown will be removed</p>
+            </div>
+        </div>
+
+
+        <h3 id="Temp_Ability_Activation_Interval_Adjustment">Temp Ability Activation Interval Adjustment</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will temporarily adjust the entities ability activation interval. This adjustment is reset once the interval wait has passed.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Value to adjust ability activation interval by (can be positive or negative). The lower the interval
+                            the less time the entity has to wait between activating abilities
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Add_ABC_Tag">Add ABC Tag</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will add an ABC Tag to the entity
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the tag to add. <br />
+
+                            Both ABC tags and Unity tags are used by functionality across the system when checking against
+                            certain conditions. An example of this is creating an effect that only applies to entities
+                            with an “Enemy” tag. There is never the circumstance where an ABC tag will just be checked
+                            over the normal Unity tag. Both are checked on every instance.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the ABC tag which was added by the effect</p>
+            </div>
+        </div>
+
+        <h3 id="Remove_ABC_Tag">Remove ABC Tag</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will remove an ABC Tag from the entity if it exists
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the tag to remove. <br />
+
+                            Both ABC tags and Unity tags are used by functionality across the system when checking against
+                            certain conditions. An example of this is creating an effect that only applies to entities
+                            with an “Enemy” tag. There is never the circumstance where an ABC tag will just be checked
+                            over the normal Unity tag. Both are checked on every instance.
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will add the ABC tag which was removed by the effect</p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Effect_Protection">Toggle Effect Protection</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable effect protection, if enabled then the entity is immune to all effects unless the ability has effect protection bypass enabled.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then effect protection will be enabled, else disabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the effect protection if it was initially disabled or disable the protection if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Ability_Activation">Toggle Ability Activation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable ability activation
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then ability activation will be enabled, else disabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the entities ability activation if it was initially disabled or disable the entities ability activation if it was initially enabled.</p>
+            </div>
+        </div>
+
+        <h3 id="Destroy_Entity">Destroy Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will disable the gameobject
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Ignore_Ability_Collision">Toggle Ignore Ability Collision</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable or disable 'ignore ability collision' on entity. For example if enabled then the entity will ignore all ability collisions.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then ability activation will be enabled, else disabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the entities toggle ability collision initially disabled or disable the entities toggle ability collision if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Display_Health_Reduction_Image">Display Health Reduction Image</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will trigger to show the health reduction image that has been configured, this will automatically dissapear depending on what has been setup.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Dispel_Ability_ID_Effects">Dispel Ability ID Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will dispel effects which have been applied by the ability ID provided (if the effect is active on the entity)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value:  ID of the ability whos effects will be removed
+                        </li>
+                        <li>
+                            Misc Property: (Boolean) if true then dispellable restrictions will be ignored
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Dispel_Ability_Name_Effects">Dispel Ability Name Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will dispel effects which have been applied by the ability name provided (if the effect is active on the entity)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property:  Name of the ability whos effects will be removed
+                        </li>
+                        <li>
+                            Alt Misc Property: (Boolean) if true then dispellable restrictions will be ignored
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Restrict_Movement">Restrict Movement</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will restrict movement by freezing the entity in it's position
+                </p>
+                <p><b>Removal Effect:</b> Will unrestrict the entities movement.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Restrict_Movement_Components">Restrict Movement Components</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will restrict movement by turning off common movement components
+                </p>
+                <p><b>Removal Effect:</b> Will unrestrict the entities movement.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Restrict_Movement_Raise_Event">Restrict Movement Raise Event</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will raise the restrict movement event which other components can subscribe too
+                </p>
+                <p><b>Removal Effect:</b> Will raise the unrestrict movement event.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Movement">Enable Movement</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will enable movement by unfreezing the entity
+                </p>
+                <p><b>Removal Effect:</b> Will restrict the entities movement.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Movement_Components">Enable Movement Components</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will enable movement by turning back on any common movement componenets attached to the object
+                </p>
+                <p><b>Removal Effect:</b> Will restrict the entities movement.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Movement_Raise_Event">Enable Movement Raise Event</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will raise the enable movement event which other componenets can subscribe too
+                </p>
+                <p><b>Removal Effect:</b> Will raise the restrict movement event.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Component">Toggle Component</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable a component defined by its name
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (String) Component name to enable or disable
+                        </li>
+                        <li>
+                            Alt Misc Property: (Boolean) enable (true) or disable (false) component
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the component if initially disabled or disable the component if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_AI">Toggle AI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable ability AI
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then ability AI will be enabled, else disabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the ability AI if initially disabled or disable the ability AI if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Trigger_Ability">Trigger Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will trigger an ability to activate
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the ability which will be triggered for activation
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Trigger_Ability_By_Name">Trigger Ability By Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will trigger an ability to activate
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the ability which will be triggered for activation
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Enable_Ability">Enable Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable an ability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the ability which will be enabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will disable the ability.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Disable_Ability">Disable Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will disable an ability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the ability which will be disabled
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the ability.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Equip_Scroll_Ability_By_ID">Enable Scroll Ability By ID</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/'equip' a scroll ability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the scroll ability to enable/equip/switch too
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Equip_Scroll_Ability_By_Name">Enable Scroll Ability By Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/'equip' a scroll ability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the scroll ability to enable/equip/switch too
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Equip_Next_Scroll_Ability">Equip Next Scroll Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/'equip' the next scroll ability in the list
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then the scroll equip aesthetics will play, else they won't and the scroll ability will be equiped instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Equip_Previous_Scroll_Ability">Equip Previous Scroll Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/'equip' the previous scroll ability in the list
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then the scroll equip aesthetics will play, else they won't and the scroll ability will be equiped instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Disable_Current_Scroll_Ability">Disable Current Scroll Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will disable/'unequip' thethe current scroll ability used by the entity
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) if true then the current scroll ability will only be disabled if x or greater scroll abilities are enabled
+                        </li>
+                        <li>
+                            Alt Misc Property: How many scroll abilities need to be currently enabled for the current one to be disabled (requires misc property to be true)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Swap_Current_Scroll_Ability">Swap Current Scroll Ability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will 'swap' the current scroll ability with another scroll ability defined by ID. The current scroll ability will be disabled and the new scroll ability enabled
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the new scroll ability to enable and swap with the current scroll ability which will be disabled
+                        </li>
+                        <li>
+                            Misc Property: (Boolean) if true then the current scroll ability will only be disabled if x or greater scroll abilities are enabled
+                        </li>
+                        <li>
+                            Alt Misc Property: How many scroll abilities need to be currently enabled for the current one to be disabled (requires misc property to be true)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Adjust_Group_Enable_Point">Adjust Group Enable Point</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust ability group points, use this to enable a group after a certain amount of ability hits etc
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust the group points by
+                        </li>
+                        <li>
+                            Misc Property: ID of the group to adjust points for
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Ability_Group">Toggle Ability Group</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable the ability group linked to the ID provided
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the ability group to enable/disable
+                        </li>
+                        <li>
+                            Misc Property: True to enable ability group, else false to disable
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the ability group if initially disabled or disable the ability group if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Push">Push</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will push the entity back
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to push back
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the push distance
+                        </li>
+                        <li>
+                            Alt Misc Property: The amount of lift produced by the push
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Push_Side">Push Side</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will push the entity to the right or left (side)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to push to the side (positive is right, negative is left)
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the side push distance
+                        </li>
+                        <li>
+                            Alt Misc Property: The amount of lift produced by the push
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Push_Random_Side">Push Random Side</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will push the entity randomly to either the right or left (side)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to push to the random side
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the side push distance
+                        </li>
+                        <li>
+                            Alt Misc Property: The amount of lift produced by the push
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Push_On_Axis">Push On Axis</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will push the entity on the Axis provided (X/Y/Z)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to push on Axis
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the push distance
+                        </li>
+                        <li>
+                            Alt Misc Property: Which Axis to push on (X, Y, Z)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Lift">Lift</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will lift the entity up
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to lift up
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the lift distance
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Pull">Pull</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will pull the entity forward
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to pull forward
+                        </li>
+                        <li>
+                            Misc Property: How long it takes for entity to reach the pull distance
+                        </li>
+                        <li>
+                            Alt Misc Property: The amount of lift produced by the push
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Gravitate_To_Originator">Gravitate To Originator</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will gravitate the entity to the activating originator (the entity who activated the ability)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How long it takes for the entity to reach the originator
+                        </li>
+                        <li>
+                            Misc Property: How far infront of originator the entity will stop
+                        </li>
+                        <li>
+                            Alt Misc Property: How far to the side of the originator the entity will stop (positive for right, negative for left)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Gravitate_To_Projectile">Gravitate To Projectile</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will gravitate the entity to the ability projectile (if no projectile exists like for raycasts then the entity will gravitate to the originator)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How long it takes for the entity to reach the projectile
+                        </li>
+                        <li>
+                            Misc Property: How far randomly infront or behind of projectile the entity will stop
+                        </li>
+                        <li>
+                            Alt Misc Property: Projectile size override (If 0 then code will try and work out the size from the renderer)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Look_At_Originator">Look At Originator</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will make the entity look at the activating originator (the entity who activated the ability)
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Explosive_Force">Explosive Force</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will apply an explosion to the entities rigidbody
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: the amount of Explosion Force
+                        </li>
+                        <li>
+                            Misc Property: the Explosion Radius amount
+                        </li>
+                        <li>
+                            Alt Misc Property: the amount of Lift Force
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Toggle_Hover">Toggle Hover</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable hovering
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Hover Distance
+                        </li>
+                        <li>
+                            Misc Property: True if to enable hovering, else false to disable
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable hovering if initially disabled or disable hovering if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Toggle_Visibility">Toggle Visibility</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable/disable renderer making entity invisible
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: False to enable invisibility, else false to make entity visible
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable visibility if initially disabled or disable visibility if it was initially enabled.</p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Forward">Teleport Forward</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity forward
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to teleport forward
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Side">Teleport Side</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity to the side
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Distance to teleport to the side (positive value for right, negative for left)
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Behind_Current_Target">Teleport Behind Current Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity behind the originators (the entity who activated the ability) current target
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How far behind the current target the entity will teleport too
+                        </li>
+                        <li>
+                            Misc Property: If true then softtarget will be used as the current target, if a current target doesn't exist
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Infront_Current_Target">Teleport Infront Current Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity infront of the originators (the entity who activated the ability) current target
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How far infront of the current target the entity will teleport too
+                        </li>
+                        <li>
+                            Misc Property: If true then softtarget will be used as the current target, if a current target doesn't exist
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Side_Current_Target">Teleport Side Current Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity to the side of the originators (the entity who activated the ability) current target
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How far to the side of the current target the entity will teleport too (positive for right, negative for left)
+                        </li>
+                        <li>
+                            Misc Property: If true then softtarget will be used as the current target, if a current target doesn't exist
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Teleport_Random_Side_Current_Target">Teleport Random Side Current Target</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will teleport the entity to a random side of the originators (the entity who activated the ability) current target
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: How far to the side of the current target the entity will teleport too
+                        </li>
+                        <li>
+                            Misc Property: If true then softtarget will be used as the current target, if a current target doesn't exist
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_GC_Stat_Value">Adjust GC Stat Value</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    (Game Creator Integration) Will increase or decrease the entities Game Creator Stat by the value provided. Use this to add a strength or defence boost etc.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to change stat by (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: Name of Game Creator Stat to change
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted stat value. For example if the effect added 5 to the entities strength stat then on removal the strength will be reduced by 5.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_GC_Attribute_Value">Adjust GC Attribute Value</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    (Game Creator Integration) Will increase or decrease the entities Game Creator Attribute by the value provided. Use this to add health or mana etc.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to change attribute by (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: Name of Game Creator attribute to change
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted attribute value. For example if the effect added 5 to the entities health attribute then on removal the health will be reduced by 5.</p>
+            </div>
+        </div>
+
+        <h3 id="Add_GC_Status_Effect">Add GC Status Effect</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    (Game Creator Integration) Will add a Game Creator Status Effect to the entity
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of Game Creator Status Effect to add
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the Game Creator Status Effect
+            </div>
+        </div>
+
+        <h3 id="Remove_GC_Status_Effect">Remove GC Status Effect</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    (Game Creator Integration) Will remove a Game Creator Status Effect from the entity
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of Game Creator Status Effect to remove
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will add the Game Creator Status Effect
+            </div>
+        </div>
+
+        <h3 id="GC_Ability_Collision_Trigger">GC Ability Collision Trigger</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    (Game Creator Integration) Will allow for this ability to activate a Game Creator "Ability Collision" Trigger which has been configured to only trigger on abilities
+                    with this effect added
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: ID which has to match any ID added to the Game Creator Ability Collision Trigger, this is optional
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Global_Ability_Miss_Chance">Adjust Global Ability Miss Chance</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the global ability miss chance by by the value provided
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: % value to adjust global ability miss chance by (can be positive or negative)
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted ability miss chance value. For example if the effect added +10% miss chance then on removal the -10% miss chance will be removed</p>
+            </div>
+        </div>
+
+        <h3 id="Equip_Weapon_By_Name">Equip Weapon By Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will equip a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: name of the weapon to equip
+                        </li>
+                        <li>
+                            Alt Misc Property: True if quick toggle will be applied, equipping the weapon instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Equip_Weapon_By_ID">Equip Weapon By ID</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will equip a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the weapon to equip
+                        </li>
+                        <li>
+                            Misc Property: True if quick toggle will be applied, equipping the weapon instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Equip_Next_Weapon">Equip Next Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will equip the next weapon in the list
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: True if quick toggle will be applied, equipping the weapon instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Equip_Next_Weapon">Equip Previous Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will equip the previous weapon in the list
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: True if quick toggle will be applied, equipping the weapon instantly
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Weapon">Enable Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the weapon to enable
+                        </li>
+                        <li>
+                            Misc Property: If true then the weapon will also be equipped
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will disable the weapon</p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Weapon_By_Name">Enable Weapon By Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the weapon to enable
+                        </li>
+                        <li>
+                            Alt Misc Property: If true then the weapon will also be equipped
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will disable the weapon</p>
+            </div>
+        </div>
+
+        <h3 id="Disable_Weapon">Disable Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will disable a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: ID of the weapon to disable
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the weapon</p>
+            </div>
+        </div>
+
+        <h3 id="Disable_Weapon_By_Name">Disable Weapon By Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will disable a weapon
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: Name of the weapon to disable
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable the weapon</p>
+            </div>
+        </div>
+
+        <h3 id="Toggle_Gravity">Toggle Gravity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will enable or disable gravity
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: 'True' to enable gravity, else 'False' to disable gravity
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable gravity if originally disabled, or disable gravity if originally enabled</p>
+            </div>
+        </div>
+
+        <h3 id="Toggle_Gravity_Raise_Event">Toggle Gravity Raise Event</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will raise the enable or disable gravity event which other components can subscribe too
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: 'True' to enable gravity, else 'False' to disable gravity
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will raise the event to enable gravity if originally disabled, or raise the event to disable gravity if originally enabled</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Weapon_Ammo">Adjust Weapon Ammo</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust a weapons ammo count
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust ammo by (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: ID of weapon whos ammo is being adjusted
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Max_Block_Durability">Adjust Max Block Durability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities max block durability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to increase max block durability by (can be positive or negative)
+                        </li>
+                        <li>
+                            Misc Property: (Boolean) if true then current block durability will be restored to full, else it will remain the same and only the max block durability will be adjusted
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted max block durability. For example if the effect added 30 to the entities max block durability then on removal the max block durability will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Block_Durability">Adjust Block Durability</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities current block durability
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust block durability by (can be positive or negative)
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjust block durability. For example if the effect added 30 to the entities block durability then on removal the block durability will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Block_Durability_Regen">Adjust Block Durability Regen</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities block durability regen rate
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust the block durability regen by (can be positive or negative)
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted block durability regen. For example if the effect added 30 to the entities max block durability then on removal the block durability regen will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Mitigate_Melee_Damage">Adjust Mitigate Melee Damage</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities current melee damage mitigation percentage
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust melee damage mitigation percentage by (can be positive or negative)
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted mitigated melee damage percentage. For example if the effect added 30% to the entities mitigated melee damage percentage then on removal the mitigated melee damage percentage will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Adjust_Mitigate_Projectile_Damage">Adjust Mitigate Projectile Damage</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will adjust the entities current projectile damage mitigation percentage
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount to adjust projectile damage mitigation percentage by (can be positive or negative)
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will remove the adjusted mitigated projectile damage percentage. For example if the effect added 30% to the entities mitigated projectile damage percentage then on removal the mitigated projectile damage percentage will be reduced by 30.</p>
+            </div>
+        </div>
+
+        <h3 id="Toggle_Prevent_Melee_Effects">Toggle Prevent Melee Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will enable/disable prevent melee effects status
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) True to enable the prevention of melee effects, else false to allow melee effects
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable melee effects if originally disabled, or disable melee effects if originally enabled</p>
+            </div>
+        </div>
+
+        <h3 id="Toggle_Prevent_Projectile_Effects">Toggle Prevent Projectile Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will enable/disable prevent projectile effects status
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Misc Property: (Boolean) True to enable the prevention of projectile effects, else false to allow projectile effects
+                        </li>
+                    </ul>
+                </p>
+                <p><b>Removal Effect:</b> Will enable projectile effects if originally disabled, or disable projectile effects if originally enabled</p>
+            </div>
+        </div>
+
+        <h3 id="Emerald_AI _Damage">Emerald AI Damage</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    will damage the entity using Emerald AI (Call damage method in Emerald AI)
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Potency Value: Amount of damage to apply
+                        </li>
+                        <li>
+                            Misc Property: (Boolean) True if target type is player, else false for AI
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+</div>

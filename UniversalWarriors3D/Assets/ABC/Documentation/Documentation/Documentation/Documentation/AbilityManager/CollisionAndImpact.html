@@ -1,0 +1,694 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="Collider">
+        <h2>Collider</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This section of the editor determines if a collider should be added to the ability, the collider can be added through different ways like a time delay 
+                    or after a input trigger. You can also determine the radius and how it collides (on enter, on stay etc). If you rather use your own collider then this can
+                    be disabled
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/CollisionCollider.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Add_Collider">Add Collider</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If disabled then the ability will initiate without a collider being added.
+                    Any colliders already present on the ability (through the graphic object) will remain.
+                    If enabled then a collider will be added inheriting the settings defined below.
+                </p>
+                <p>
+                    Disable this if you want to add your own custom collider which differs from the ABC sphere collider.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Is_Trigger">Is Trigger</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the abilities added collider will be set as a trigger.
+                    Refer to Unity documentation on the difference between the trigger flag being enabled/disabled.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Radius">Graphic Radius</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the radius of the added collider will be automatically determined by the ability graphic used.
+                    This should set the abilities collider to the radius of the graphic.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Collider_Radius">Collider Radius</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Sets the radius of the abilities added collider.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Collider_Offset">Collider Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Sets the offset of the added collider with XYZ values, where the collider will be position on the ability.
+                    This will move the collider from the original transform point. I.e adding a value into the X box will move the collider up the ability.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Apply_To_Parent">Apply To Parent</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then a collider configured with the settings defined will be added to the main ability (parent) object.
+                    If disabled the collider will not be added to the parent object.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Apply_To_Children">Apply To Children</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then a collider configured with the settings defined will be added to every child object of the ability.
+                    If disabled the collider will not be added to the child objects.
+                </p>
+                <p>
+                    This might be used in the scenario that you have a rock throwing ability, you will want to attach a collider to each child
+                    ‘rock’ graphic for collision and not the empty parent which sits in the middle  as the child rocks origin point.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Time_Delay">Time Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the collider will be enabled after a set delay. Once ticked the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Time
+                            <ol>
+                                Sets the delay before the collider is added
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Key_Delay">Key Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the collider will be enabled after a key/button trigger. Once ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the collider enable event, either a hardcoded key can be inserted
+                                or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Collider_Collision_Type">Collider Collision Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Any colliders attached to the ability added manually or automatically by the ABC system can be configured to collide using the
+                    following types: On Enter, On Exit, On Stay, On Particle Collision. Ticking the boxes will enable the collision type for the ability.
+                </p>
+                <p class="doc-note">
+                    Tip: If “Particle Collision” is ticked make sure the “World Collision” setting is enabled on the main graphic.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Enable_Collision_After_Key_Press">Enable Collision After Key Press</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will not process ABC collisions until a key/button has been triggered.
+                    This does not disable colliders but will instead not run ABC collision code until the trigger has
+                    been pressed by the player. Not running collision code means for example that abilities will not apply effects,
+                    be destroyed or initiate other events which occur when the ability collides with another object.
+                </p>
+                <p>
+                    This is useful for remote bomb type abilities that can be initiated in game which then explodes at a later
+                    date when the player triggers a key/button afflicting damage to enemies near. If enabled the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to enable the abilities ABC collision, either a hardcoded key can be inserted or a
+                                button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager. This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Collision">
+
+        <h2>Collision</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The Collision section allows you to choose the behaviour when the ability collides. You can choose if it can collide with the activating entity, terrain 
+                    other abilities or setup to only collide on certain tagged entities and more. This is also where the flag can be set to activate hit animations on collision. 
+                    The Impact Destroy section determines what type of collision is required for it to be destroyed.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/CollisionCollision.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Collide_w/_Activating_Entity">Collide w/ Activating Entity</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will be able to collide with the activating entity.
+                    If disabled then all collision is ignored on the activating entity through Unity’s physics Ignore Collision functionality.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Ability_Collision">Ability Collision</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines if the ABC ability collision functionality should run when the ability collides with other abilities during play.
+                    Collision functionality includes splash effects, destroying the ability etc. One of the following options can be selected from the dropdown provided:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Ignore All
+                            <ol>
+                                The ability will never raise ABC collision events when colliding with another ability.
+                            </ol>
+                        </li>
+                        <li>
+                            Ignore Foreign Abilities
+                            <ol>
+                                The ability will never raise ABC collision events when colliding with abilities activated by other entities.
+                                It will however raise collision events if the ability collides with another ability activated by the same entity.
+                            </ol>
+                        </li>
+                        <li>
+                            Ignore Self Abilities
+                            <ol>
+                                The ability will never raise ABC collision events when colliding with abilities activated by the same entity.
+                                It will however raise collision events if the ability collides with another ability activated by other entities.
+                            </ol>
+                        </li>
+                        <li>
+                            Ignore None
+                            <ol>
+                                The ability will raise ABC collision events when colliding with any ability during play.
+                            </ol>
+                        </li>
+                        <li>
+                            Always Collide All
+                            <ol>
+                                If selected then the ability will always raise ABC collision events when colliding with
+                                another ability, even if the other ability has this setting set to Ignore Abilities.
+                            </ol>
+                        </li>
+                        <li>
+                            Always Collide Foreign Abilities
+                            <ol>
+                                If selected then the ability will always raise ABC collision events when colliding with abilities
+                                activated by other entities, even if the other ability has this setting set to Ignore Abilities.
+                            </ol>
+                        </li>
+                        <li>
+                            Always Collide Self Abilities
+                            <ol>
+                                If selected then the ability will always raise ABC collision events when colliding with
+                                abilities activated by the same entity, even if the other ability has this setting set to Ignore Abilities.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The always collide options should be used as a bypass on special abilities which will block other
+                    abilities when normally the game doesn’t have abilities collide i.e like a shield spell.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Add_to_Layer">Add to Layer</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will be added to a chosen layer. Unity layers can be used to avoid
+                    collision with objects on another layer. Once ticked the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Layer
+                            <ol>
+                                A text field where the name of the layer the ability will be assigned too can be entered.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Ignore_Terrain">Ignore Terrain</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability will ignore any collision with the active terrain using Unity’s
+                    physics Ignore Collision functionality. If disabled then the ability will collide with the terrain.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Override_Ignore_Ability_Collision">Override Ignore Ability Collision</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If the ability collides with an entity that is currently in “Ignore Ability Collision” mode
+                    then this setting if ticked will bypass the setting allowing the ability to collide
+                    with the entity. More information on the “Ignore Ability Collision” mode can be found by clicking the following link: 
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Ignore_All_Ability_Collision')">Ignore All Ability Collision</a>.                   
+                </p>
+                <p class="doc-note">
+                    Tip: Use this setting for special abilities that can’t be dodged no matter the circumstance.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_Animation_From_Hit">Activate Animation From Hit</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then entities “Hit Animations” will activate when an entity collides with the ability.
+                    Hit Animations can be setup in the ABC StateManager Configuration more information can be found by clicking the following link:
+                    <a onclick="HyperLink('StateManagerConfig', 'Settings', 'HeaderHit_Animations', 'Setting_Up_Hit_Animations')">Setting Up Hit Animations</a>
+                    If disabled then the ability may only activate Hit Animations from ability effects.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_Animation_From_Hit">Ability Collide Required Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will limit the ability to only run ABC collision functionality if the entity the ability
+                    collided with has a ABC/Unity tag that matches one of the tags defined in the list box.
+                </p>
+                <p>
+                    Clicking the “+” sign will create a new text box to allow for Tags to be entered.
+                    You can then delete a tag by clicking the “x” or change the ordering with the arrow keys.
+                    Both ABC and Unity tagging systems are used when trying to match Tags.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ability_Collide_Ignore_Tags">Ability Collide Ignore Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will limit the ability to only run ABC collision functionality if the entity the ability collided
+                    with does not have a ABC/Unity tag that matches one of the tags defined in the list box.
+                </p>
+                <p>
+                    Clicking the “+” sign will create a new text box to allow for Tags to be entered. You can then delete a tag by clicking the “x”
+                    or change the ordering with the arrow keys. Both ABC and Unity tagging systems are used when trying to match Tags.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Destroy_Delay">Destroy Delay</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The delay before the ability is destroyed once the destroy event is raised. The destroy event can be raised from ability collision or the
+                    ability reaching its active duration etc. If 0 is inserted then the ability is destroyed instantly after the destroy event is raised.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Impact_Destroy">Impact Destroy</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines what type of entity will destroy the ability on collision. If the ability collides with an object
+                    that fits the option selected then the ability destroy event will be raised. One of the following can be selected from the dropdown provided:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Destroy On All
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with any object during play.
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On ABC Projectiles
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with any other ability during play.
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On ABC StateManagers
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with any entity
+                                which has the ABC StateManager component (i.e any object that can receive effects).
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On All ABC
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with another ability or an entity which has the ABC StateManager component.
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On Target Only
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with the target/soft target the ability was activated on.
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On Terrain Only
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with the active terrain i.e the environment/ground.
+                            </ol>
+                        </li>
+                        <li>
+                            Don't Destroy
+                            <ol>
+                                The ability destroy event will never be raised from a collision. No collisions will ever destroy/disable the ability.
+                                It will simply be disabled through other events (like from ability duration)
+                            </ol>
+                        </li>
+                        <li>
+                            Destroy On All Not ABC Projectile
+                            <ol>
+                                The ability destroy event will be raised when the ability collides with any object that isn’t another ability.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Don’t_Destroy_On_Below_Tags">Don’t Destroy On Below Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will stop the destroy event from being raised if the ability collides with any entities that have a ABC/Unity tag that
+                    matches one of the tags defined in the list box. For example if you don’t want the ability to be destroyed when it collides
+                    with a specific object, then add that objects tags into the list box provided.
+                </p>
+                <p>
+                    Clicking the “+” sign will create a new text box to allow for Tags to be entered. You can then delete a tag by clicking the
+                    “x” or change the ordering with the arrow keys. Both ABC and Unity tagging systems are used when trying to match Tags.
+                </p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Impact">
+
+        <h2>Impact</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The Impact settings if configured will add some juice to the collision like the option to slow/speed game time, shake the camera, add an explosion to push entities away 
+                    or splash the effects so surrounding entities in a certain range of the collision will also be inflicted by the abilities effects i.e can setup aoe attacks
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/CollisionImpact.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Splash_Effects">Splash Effects</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the ability will splash its effects when it’s destroyed. This will apply
+                    the abilities effects to entities in a set radius around where the ability is destroyed.
+                    For example an ability can explode when its destroyed causing damage in a certain
+                    radius to all entities near. When enabled the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Radius
+                            <ol>
+                                Determines the radius in which effects will be applied to nearby entities when the ability is destroyed.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Modify_Game_Speed">Modify Game Speed</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will slow down or speed up the game for a set duration when the ability collides during play.
+                    For example a more impactful hit can be created by slowing down the game for a short while
+                    when a melee ability hits an enemy. If enabled the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Speed Factor
+                            <ol>
+                                The game speed will be changed to the speed factor set. This is done using Time.timeScale.
+                                1 is normal game speed. Lower the value to slow down the game. Increase the value to speed up the game.
+                            </ol>
+                        </li>
+                        <li>
+                            Duration
+                            <ol>
+                                Determines how long the game speed will be changed for.
+                                By the time the duration is up the speed will have gradually reverted back to the normal speed.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Shake_Camera">Shake Camera</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will shake the entities camera by the amount, speed and duration provided when the ability collides during play.
+                    More information on setting the entities camera can be found  by clicking the following link:
+                    <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderGeneral_&_Error', 'Entities_Camera')">Setting Entities Camera</a>.
+                    If enabled the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the camera will shake for
+                            </ol>
+                        </li>
+                        <li>
+                            Shake Amount
+                            <ol>
+                                How much shake to apply to the camera, the greater the number the bigger the shake.
+                            </ol>
+                        </li>
+                        <li>
+                            Shake Speed
+                            <ol>
+                                The speed of the shake
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Splash_Explosion">Splash Explosion</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Will add an explosive force to nearby Rigidbodies in a set radius when the ability is destroyed. 
+                    Force is applied using Unitys Rigidbody.AddExplosionForce. If enabled the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Explosion Radius
+                            <ol>
+                                The radius of the explosion, any entities within the radius (from the ability destroy point)
+                                will have the explosive force applied to their Rigidbody component.
+                            </ol>
+                        </li>
+                        <li>
+                            Explosion Power
+                            <ol>
+                                The potency behind the explosion, the greater the value the bigger the force applied
+                            </ol>
+                        </li>
+                        <li>
+                            Uplift Power
+                            <ol>
+                                The potency behind uplift force, the greater the value the bigger the up force applied, lifting entities into the air.
+                            </ol>
+                        </li>
+                        <li>
+                            Only Explode On Tags
+                            <ol>
+                                Will only apply the splash explosion to entities that have a ABC/Unity tag that matches one of the tags defined in the list box. 
+                                For example if you only want a certain entity to have explosive force applied from the ability then add one of that entities tags into the list box provided.
+                            </ol>
+                            <ol>
+                                Clicking the “+” sign will create a new text box to allow for Tags to be entered. 
+                                You can then delete a tag by clicking the “x” or change the ordering with the arrow keys. Both ABC and Unity tagging systems are used when trying to match Tags.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+</div>

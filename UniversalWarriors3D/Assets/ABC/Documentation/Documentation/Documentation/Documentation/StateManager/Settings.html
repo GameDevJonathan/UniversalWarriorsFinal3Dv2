@@ -1,0 +1,936 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="General_&_Stats">
+        <h2>General & Stats</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Below details the general config relating to the entity can be setup like extra tagging used by the system, stat creation and GUI logging.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsGeneralError.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="ABC_Tags">ABC Tags</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    ABC Tags is an additional tagging system similar to the tag system in Unity.
+                    Both ABC tags and Unity tags are used by functionality across the system when checking against
+                    certain conditions. An example of this is creating an effect that only applies to entities
+                    with an “Enemy” tag. There is never the circumstance where an ABC tag will just be checked
+                    over the normal Unity tag. Both are checked on every instance.
+                </p>
+                <p>
+                    There is no limit to the amount of ABC Tags that can be added. Clicking the “+” sign will create
+                    a new text box to allow for text to be entered. You can then easily delete a tag by clicking the “x” or
+                    change the ordering with the arrow keys.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Ignore_All_Ability_Collision">Ignore All Ability Collision</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will ignore all ability collisions no matter the circumstance.
+                    This setting can also be applied for a duration using the “Toggle Ignore Ability Collision” Effect. LINK TO EFFECT PAGE
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Block_Duplicate_Effect_Activation">Block Duplicate Effect Activation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity can not have the same ability effects from the same originator applied more than once.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Block_Surrounding_Object_Status">Block Surrounding Object Status</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity can never be used as a surrounding object. Surrounding objects are essentially
+                    GameObjects which will travel with the ability, explained further here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderAdditional_Settings', 'Include_Surrounding_Objects')">Include Surrounding Objects</a>.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Hits_Can_Stop_Movement">Hits Can Stop Movement</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entities movement can be stopped after being hit (from a correctly setup effect being applied).
+                    If disabled then movement can never be stopped by a hit. If the box is ticked then the following additional settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Stop Movement Duration
+                            <ol>
+                                A float number can be entered here to determine how long the entities movement is stopped for
+                            </ol>
+                        </li>
+                        <li>
+                            Freeze Position
+                            <ol>
+                                If enabled then the entity will be frozen in place by the current transform position being frozen.
+                                This is done by temporarily adding the ABC_FreezePosition script. This script works by keeping the
+                                transform position the same as when the component was added and also keeping the rigidbody velocity at
+                                0 if the component exists on the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Disable Components
+                            <ol>
+                                If enabled then general unity movement components will be disabled and then re-enabled
+                                after the “Stop Movement Duration”. This is done by temporarily adding the ABC_DisableMovementComponents
+                                script which covers such components as navagent, character controller, rigidbody and more.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    On top of the above settings a delegate event will also be raised when the movement
+                    is either enabled or disabled which can be connected to from any script.
+                    This way any movement scripts outside of the system can execute methods when a call
+                    to stop movement has been made by ABC.
+                </p>
+                <p>
+                    Code example to subscribe to the event delegate:
+                </p>
+                <p>
+                    <pre>
+                    <code>
+                                private void OnEnable() {
+                                this.movementEventsABC = meTransform.GetComponentInChildren&lt;ABC_StateManager&gt;();
+
+                                    //subscribe to the event
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement += this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement += this.DisableMovement;
+                                    }
+                                }
+
+                                public void EnableMovement() {
+                                //Code to enable movement
+                                }
+
+
+                                public void DisableMovement() {
+                                //Code to disable movement
+                                }
+
+
+                                private void OnDisable() {
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement -= this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement -= this.DisableMovement;
+                                    }
+                                }
+                        </code>
+                    </pre>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Effect_GUI_Log">Effect GUI Log</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires an Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                    This object can be placed anywhere on the screen and will display all effect text which has been set up to
+                    show when an effect is applied to an entity, more detail on setting up effect applied text can be found here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderEffects', 'Effect_Log')">Effect Log</a>	
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be
+                    added to the Hierarchy and the txtEffectLog will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Graphic_Log">Graphic Log</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a canvas object with the render mode set to “World Space” which also
+                    includes a Text component in the object or any of its children. This is used to display
+                    effect text which has been setup to show when an effect is applied to an entity in the actual
+                    game as an object rather than on the UI. More detail on setting up effect
+                    applied text can be found here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderEffects', 'Graphic_Log')">Graphic Log</a>	.
+                </p>
+                <p>
+                    An example of its use is to add damage bubbles which shows when an entity takes damage.
+                    More information on this can be found in Unity documentation by searching for “Creating a World Space UI”
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_EffectTextCanvas
+                    default prefab will be added to the setting. This example can be used, referenced or edited and
+                    includes a animation to have the text travel upwards and then fade out.
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Entity_Stats">Entity Stats</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Stats can be setup to change the ‘potency’ of effects on abilities. Detailed further by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderEffects', 'Modify_Potency_Using_Stats')">Modify Potency Using Stats</a>.
+                    In a nutshell the ‘potency’ of the effect can be adjusted by
+                    both the ability originator stats and the entities stats the effect is being applied on.
+                </p>
+                <p>
+                    An example of use is to setup an Attack stat which affects the potency of an attack and a defence
+                    stat which lowers the potency of an incoming attack
+                </p>
+                <p>
+                    Stats can be added by clicking the “+ Add Stat” button and removed by clicking the red ‘x’.
+                    Once a stat is added the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Stat Name
+                            <ol>
+                                The name of the stat in text, the same text will need to be typed later when setting up effects
+                                which have its potency change depending on stats
+                            </ol>
+                        </li>
+                        <li>
+                            Stat Value
+                            <ol>
+                                This setting requires a float details configures the current value of the stat. This value can be adjusted using effects.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    By clicking the More Settings toggle further settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Text Stat Name
+                            <ol>
+                                This setting which requires a Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                                This object can be placed anywhere on the screen and will display the name of the Stat
+                            </ol>
+                        </li>
+                        <li>
+                            Text Stat Value
+                            <ol>
+                                This setting which requires a Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                                This object can be placed anywhere on the screen and will display the current value of the Stat
+                            </ol>
+                        </li>
+                        <li>
+                            Only Show Text When Selected
+                            <ol>
+                                If enabled then the Text objects displaying the name and value will only appear if the entity is currently targeted.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Section hidden" id="Health">
+
+        <h2>Health</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This sections details how to setup health for the entity, this includes how much regens each second, health reduction images, 0 hp animations, GUI and more. 
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsHealth.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Max_Health">Max Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting configures the max health the entity can have. This accepts float values but will
+                    always be rounded to display a whole number in any game UI setup. The max health can be changed
+                    during play from ability effects.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Current_Health">Current Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Setting displays the current health of the entity, this will never go below 0 or higher then the max health.
+                    This value will change during play if the current health is adjusted due to an attack.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Regen_Per_Second">Regen Per Second</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting determines how much health is recovered every second. This accepts floats values. If 0 then no health is recovered.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Full_Health_On_Enable">Full Health On Enable</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the entities current health will always be full to the max whenever the object
+                    is enabled during play. Useful for objects that ‘respawn’.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Stop_Movement_On_0_Health">Stop Movement On 0 Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity movement will be disabled once the current health reaches 0,
+                    the movement will not be enabled again until the current health is greater than 0. If ticked
+                    then the following additional settings will appear:.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Stop Movement Duration
+                            <ol>
+                                A float number can be entered here to determine how long the entities movement is stopped for
+                            </ol>
+                        </li>
+                        <li>
+                            Freeze Position
+                            <ol>
+                                If enabled then the entity will be frozen in place by the current transform position being frozen.
+                                This is done by temporarily adding the ABC_FreezePosition script. This script works by keeping the
+                                transform position the same as when the component was added and also keeping the rigidbody velocity at
+                                0 if the component exists on the entity
+                            </ol>
+                        </li>
+                        <li>
+                            Disable Components
+                            <ol>
+                                If enabled then general unity movement components will be disabled and then re-enabled
+                                after the “Stop Movement Duration”. This is done by temporarily adding the ABC_DisableMovementComponents
+                                script which covers such components as navagent, character controller, rigidbody and more.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    On top of the above settings a delegate event will also be raised when the movement
+                    is either enabled or disabled which can be connected to from any script.
+                    This way any movement scripts outside of the system can execute methods when a call
+                    to stop movement has been made by ABC.
+                </p>
+                <p>
+                    Code example to subscribe to the event delegate:
+                </p>
+                <p>
+                    <pre>
+                    <code>
+                                private void OnEnable() {
+                                this.movementEventsABC = meTransform.GetComponentInChildren&lt;ABC_StateManager&gt;();
+
+                                    //subscribe to the event
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement += this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement += this.DisableMovement;
+                                    }
+                                }
+
+                                public void EnableMovement() {
+                                //Code to enable movement
+                                }
+
+
+                                public void DisableMovement() {
+                                //Code to disable movement
+                                }
+
+
+                                private void OnDisable() {
+                                    if (this.movementEventsABC != null) {
+                                    this.movementEventsABC.onEnableMovement -= this.EnableMovement;
+                                    this.movementEventsABC.onDisableMovement -= this.DisableMovement;
+                                    }
+                                }
+                        </code>
+                    </pre>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Disable_On_0_Health">Disable on 0 Health</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity object will be disabled after a delay. If ticked then the following setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Disable Delay
+                            <ol>
+                                Determines the delay before the entity is disabled, will accept float values.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="0_Health_Swap_Model">0 Health Swap Model</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the object will be replaced with another. Commonly used in game design to swap an
+                    object for a more damaged one, i.e swapping a car for a broken one on fire once health reaches 0 or
+                    swapping a column for a model with broken pieces. If ticked then the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Disable Model
+                            <ol>
+                                This setting requires a game object which will be disabled when the entities health reaches 0
+                            </ol>
+                        </li>
+                        <li>
+                            Enable Model
+                            <ol>
+                                This setting requires a game object which will be enabled when the entities health reaches 0
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p class="doc-note">
+                    Note: It is recommended that both the disable and enable model is a child of an object in the
+                    Hierarchy which has the ABC_StateManager script. This ensures when the disable model child object is
+                    deactivated that the component is still running correctly on the parent
+                </p>
+            </div>
+        </div>
+
+        <h3 id="0_Health_Animation_Clip">0 Health Animation Clip</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation once the entities health reaches 0.
+                </p>
+                <p>
+                    Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                    To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                    one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                    Once an Animation Clip is selected the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="0_Health_Animation">0 Health Animation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Configuration can be setup to play an animation once the entities health reaches 0.
+                    The animation system links directly into the Unity animation controller attached to the entity
+                    and is required for the animations to activate. To determine which animation to play
+                    the “Animation Parameter” which has been setup in Unity needs to be written in the parameter
+                    config box, then the matching parameter type needs to be selected from the drop down,
+                    depending on the parameter selected the following settings will appear with default values:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and will just activate once as per Unity system
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a Animation Duration,
+                                On Value and Off Value can be entered. The animation will activate the parameter
+                                with the On value and then deactivate with the Off value after the Duration.
+                                Only a float/integer value should be entered.
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a Animation Duration, On Value and Off
+                                Value can be entered. The animation will activate the parameter with the On value and
+                                then deactivate with the Off value after the Duration. Only “True” should be entered
+                                in the On value and “False” entered in the off value.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Show_Image_On_Health_Reduction">Show Image On Health Reduction</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then an image can be setup which will show every time the entities health is reduced.
+                    An example of its use would be to show a blood splatter overlay everytime the entity gets attacked.
+                    If the box is ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Health Reduction Image
+                            <ol>
+                                This setting which requires a Unity image object which can be created from the
+                                Unity menu: GameObject > UI > Image or Raw Image. This object can be placed anywhere on
+                                the screen and will display for a duration every time the entities health is reduced.
+                            </ol>
+                            <ol>
+                                If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default
+                                prefab will be added to the Hierarchy and the healthReductionImage object will be added
+                                to the setting. This example can be used, referenced or edited.
+                            </ol>
+                        </li>
+                        <li>
+                            Image Duration
+                            <ol>
+                                This setting determines how long the health reduction image is enabled for.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Health_GUI">Health GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Health GUI can be added which will show the Current and Max health in sliders and text.
+                    This is updated during play. Multiple sliders and text can be setup on the entity by
+                    pressing the “+ Add Health GUI” button and can be removed by clicking the “X” for each health GUI section.
+                </p>
+                <p>
+                    Once a health GUI section is added the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Health Slider
+                            <ol>
+                                This setting requires a Unity Slider object which can be created from the
+                                Unity menu: GameObject > UI > Slider. The slider will show the current health
+                                during play and will always make sure the max value matches the max health to accurately
+                                represent how ‘filled’ the bar should be.
+                            </ol>
+                            <ol>
+                                If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default
+                                prefab will be added to the Hierarchy and the sliderHealth object will be added to the setting.
+                                This example can be used, referenced or edited.
+                            </ol>
+                        </li>
+                        <li>
+                            Health Over Time Slider
+                            <ol>
+                                This setting requires a Unity Slider object which can be created from the
+                                Unity menu: GameObject > UI > Slider. This slider unlike the Health Slider will
+                                update over a duration after a delay everytime the health is reduced for an impactful effect.
+                                This can be used for example to add a background colour which depletes slower than the normal
+                                Health Slider (which is instant) showing how much damage the entity has just received. 
+                            </ol>
+                            <ol>
+                                If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button"> is clicked then the ABC_GUI default prefab will be added to the
+                                Hierarchy and the sliderHealthOverTime object will be added to the setting. This example can be used, referenced or edited.
+                            </ol>
+                            <ol>
+                                If an object is placed in the Health Over Time Slider then the “Update Over Time Delay” and
+                                “Update Over Time Duration” can be configured adjusting how fast the over time slider
+                                reduces its fill after a set delay.
+                            </ol>
+                        </li>
+                        <li>
+                            Only Show Sliders When Selected
+                            <ol>
+                                If enabled then the sliders setup in this section will only show whilst the
+                                entity is being targeted by another ABC entity. If disabled then the sliders will always show.
+                            </ol>
+                        </li>
+                        <li>
+                            Health Text
+                            <ol>
+                                This setting which requires a Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                                This object can be placed anywhere on the screen and will display the current health and the max
+                                health in the following format: CurrentHealth/MaxHealth
+                            </ol>
+                            <ol>
+                                If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be
+                                added to the Hierarchy and the txtHealthValue object will be added to the setting. This example
+                                can be used, referenced or edited.
+                            </ol>
+                        </li>
+                        <li>
+                            Only Show Text When Selected
+                            <ol>
+                                If enabled then the text object setup in this section will only show whilst the entity is being
+                                targeted by another ABC entity. If disabled then the text will always show.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="Section hidden" id="Hit_Animations">
+        <h2>Hit Animations</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Hit animations can be setup below which can trigger when the entity is hit from either ability impacts or effects.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsHitAnimations.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Activate_From_Hit">Activate From Hit</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then one of the Hit Animations setup will activate whenever any ability (particle/raycast/melee)
+                    collides and hits the entity. This requires the ability to have the <a onclick="HyperLink('AbilityManager', 'Collision AND Impact', 'HeaderCollision', 'Activate_Animation_From_Hit')">Activate Animation From Hit</a> setting 
+                    enabled.
+                    If disabled then Hit Animations may only be activated from ability effects.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_From_Effect">Activate From Effect </h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then Hit Animations may be activated either randomly or selectively from the ability effect: 
+                    <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Random_Hit_Animation')">Random Hit Animation/Hit Animation</a>. 
+                    If disabled then Hit Animations may only be activated from ability hits.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Randomize_Animations">Randomize Animations</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the order of the animations in the list will be shuffled before they are cycled through when 
+                    the system tries to find one to activate. The system will always start with the animation at the top of 
+                    the list seeing if the random value sits between the min and max possibility.  
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Set_Up_Hit_Animations">Setting Up Hit Animations</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    When clicking the “+ Add Hit Animation” Button the below settings will appear in a section. 
+                    The animation sections can be removed by pressing the “X” or reordered using the arrow buttons
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Name
+                            <ol>
+                                The name of the Hit Animation, this name is used when setting up the Hit Animation ability effect, 
+                                this effect can directly play an animation of choice rather than leaving it to be randomly chosen.
+                                Click the following link for more details on the Hit Animation ability effect
+                                <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Hit_Animation')">Hit Animation</a>. 
+                            </ol>
+                        </li>
+                        <li>
+                            Enabled
+                            <ol>
+                                If ticked then the Hit Animation can be activated during play, else it is ignored. 
+                            </ol>
+                        </li>
+                        <li>
+                            Only Activate from Effect 
+                            <ol>
+                                If enabled then the Hit Animation can only be activated directly from an ability effect,      
+                                Click the following link for more details on the Hit Animation ability effect
+                                <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Random_Hit_Animation')">Random Hit Animation/Hit Animation</a>. 
+                            </ol>
+                        </li>
+                        <li>
+                            Probability Min/Probability Max
+                            <ol>
+                                These 2 settings determine the probability that the Hit Animation will be chosen to 
+                                activate on hit or when the random hit animation effect is applied to the entity. 
+                            </ol>
+                            <ol>
+                                When the system tries to find a Hit Animation to activate it will roll a dice for a value, 
+                                it will then check each Hit Animation in order to see if the value sits within the min and max. 
+                                If it does then the animation will play else it will go to the next in the list. 
+                                The higher the Min/Max gap the higher the chance it will activate
+                            </ol>
+                        </li>
+                        <li>
+                            Animation Clip
+                            <ol>
+                                Animation Clips defined will play on ABC's own Animation Runner system which means you can set to run animations without using Unity's Animator.
+                                To determine which animation to play simply select or drag and drop an Animation Clip into the setting. With all animations in ABC you have the option of using
+                                one or both of the animation systems (Unity Animator/ABC Animation Runner). It is recommended however that only one is used.
+                                Once an Animation Clip is selected the following settings will appear:
+                            </ol>
+                        </li>
+                        <li>
+                            Animation Clip Duration
+                            <ol>
+                                How long the animation clip will run for before it is stopped
+                            </ol>
+                        </li>
+                        <li>
+                            Animation Clip Speed
+                            <ol>
+                                The speed of the animation clip. 1 is normal speed. A higher value will speed up the animation clip. A lower number will slow the animation clip down.
+                            </ol>
+                        </li>
+                        <li>
+                            Animation Clip Delay
+                            <ol>
+                                Defines the delay before the animation clip is run
+                            </ol>
+                        </li>
+                        <li>
+                            Animation Clip Interrupt Current Animation
+                            <ol>
+                                Due to hit animations running at random times when being attacked you can choose if the hit animation clip will interrupt any animation clips currently playing. 
+                                If Interrupt Current Animation is not ticked (false) then the hit animation will never interrupt another animation currently playing (like an attack).
+                                If ticked (true) then the hit animation will interrupt any animation clip playing. 
+                            </ol>
+                        </li>
+                        <li>
+                            Animation (Using Unity Animator)
+                            <ol>
+                                The animation system links directly into the Unity animation controller attached to the entity and 
+                                is required for the animations to activate. To determine which animation to play the “Animation Parameter” 
+                                which has been setup in Unity needs to be written in the parameter config box, then the 
+                                matching parameter type needs to be selected from the drop down, depending on the parameter 
+                                selected the following settings will appear with default values: 
+                            </ol>
+                        </li>
+                        <li>
+                            Trigger Parameter
+                            <ol>
+                                No further settings will appear as the animation type is a trigger and will just activate once as 
+                                per Unity system 
+                            </ol>
+                        </li>
+                        <li>
+                            Float, Integer Parameter
+                            <ol>
+                                If either of these options are selected then a Animation Duration, 
+                                On Value and Off Value can be entered. The animation will activate the 
+                                parameter with the On value and then deactivate with the Off value after 
+                                the Duration. Only a float/integer value should be entered. 
+                            </ol>
+                        </li>
+                        <li>
+                            Bool Parameter
+                            <ol>
+                                If either of these options are selected then a Animation Duration, On Value 
+                                and Off Value can be entered. The animation will activate the parameter with 
+                                the On value and then deactivate with the Off value after the Duration. 
+                                Only “True” should be entered in the On value and “False” entered in the off value. 
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="Section hidden" id="Targeter_Limitations">
+        <h2>Targeter Limitations</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Target limitations will put a restriction on the number of objects that can target the entity at once. 
+                    Limits will only apply to the tags defined. Once the limit is reached no other object can target the 
+                    entity unless the object has recently been hit by the entity, giving it priority or a reset has been 
+                    activated giving other objects a chance to target the entity. 
+                </p>
+                <p class="doc-note">
+                    STOP NOTE: The entity can be targeted by an unlimited number of objects If no limitations have been setup 
+                    or objects exist having tags that are not setup in any limitation.
+                </p>
+                <p>
+                    Multiple Targeter Limitations can be added by pressing the “+ Add Targeter Limitation button”. 
+                    The limitation config sections can also be removed by hitting the “X” or reordered with the arrow buttons. 
+                </p>
+                <p>
+                    An example of this is setting up limitations so a max of 3 enemies tagged as “Mages” can target 
+                    the entity at once and then setting up so only 1 enemy tagged as “Melee” can target the entity at once. 
+                    This stops all objects attacking the player at once creating a more fun experience.
+                </p>
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsTargetLimits.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img" style="width: 50%;">
+                </p>
+                <p>
+                    Each section contains the following settings: 
+                </p>
+                <p>
+                   <ul>
+                       <li>
+                           Enable Targeter Limit
+                           <ol>
+                               Will enable or disable the Targeter Limitation. If enabled then only the 
+                               max configured number of objects with the tag defined can target the entity. 
+                           </ol>
+                       </li>
+                       <li>
+                           Max Number Of Targeters 
+                           <ol>
+                               Determines how many objects with the tag defined can target the entity at once
+                           </ol>
+                       </li>
+                       <li>
+                           Enable Targetter Resets 
+                           <ol>
+                               If enabled then during play the system will reset the current allowed targeters 
+                               every interval defined, giving other objects the chance to target the entity. 
+                           </ol>
+                       </li>
+                       <li>
+                           Reset Interval 
+                           <ol>
+                               Determines how often the Targeter Reset is done. 
+                           </ol>
+                       </li>
+                       <li>
+                           Target Tags 
+                           <ol>
+                               The tags which determine which objects will have their targeting on the 
+                               entity limited depending on how many other objects with the same tag are currently targeting the entity.
+                           </ol>
+                           <ol>
+                               Tags can be added using the “+” button, removed using the “x” button or reordered with the arrow buttons 
+                           </ol>
+                       </li>
+                   </ul>
+
+                </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>

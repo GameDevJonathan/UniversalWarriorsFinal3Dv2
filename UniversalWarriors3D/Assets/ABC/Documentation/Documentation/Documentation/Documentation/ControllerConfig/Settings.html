@@ -1,0 +1,1592 @@
+﻿<link href="../../Content/ABCDocs.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<link href="../../Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+<script src="../../Scripts/ABCDocs.js"></script>
+<script src="../../Scripts/ABC.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        GenerateNavigationList();
+    });
+</script>
+
+
+<div id="Main-Sidebar" class="bg-sidedoc-color">
+    <ul id="Main-Sidebar-Nav" class="nav nav-list bg silver-text">
+        <!--<li class="divider"></li>-->
+    </ul>
+</div>
+
+
+<div id="Main-Content">
+    <div class="Section" id="General_&_Error">
+        <h2>General & Error</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>General settings can be configured below which will setup the entity to activate abilities, including activation intervals, error information and log configuration </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsGeneralError.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ability_Activation_Interval">Ability Activation Interval</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The ability activation interval determines the time till another ability can be activated globally,
+                    the smaller the number the faster the entity can activate abilities one after another. The setting can take a float value.
+                    For example if the entity activates an ability then another one can be activated after the value entered in this setting.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Input_Combo_Recycle_Interval">Input Combo Recycle Interval</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The interval between the last recorded input before the combination of recent inputs is recycled to start fresh. This setting links directly to the functionality to 
+                    trigger abilities from a combination of key inputs i.e F > F> B will do a special attack. This setting determines when the inputs recorded will be refreshed ready for 
+                    a new set of input combinations. For example, if F > F is entered then the player has up until the interval to enter the B to do the special attack, if done after
+                    the interval the ability will not trigger and the player has to enter in again F > F > B. 
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Global_Prepare_Time_Adjustment">Global Prepare Time Adjustment</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting is used to speed up or slow down all ability prepare times (how long it takes an ability to initiate) as a percentage.
+                    100% means all abilities will prepare at the normal rate defined for each ability. If for example the
+                    number is 50 then all ability prepare times will be halved. The lower the number the less time each ability will prepare for before activating. If higher then prepare times will globally increase.
+                    If 0 is entered then it will default to 100. This can be modified during play by the ability effect:
+                    <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Adjust_Ability_Global_Prepare_Time')">Adjust Ability Global Prepare Time</a>.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Global_Cooldown_Adjustment">Global Cooldown Adjustment</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting is used to speed up or slow down all ability cooldowns as a percentage.
+                    100% means all abilities will cooldown at the normal rate defined for each ability. If for example the
+                    number is 50 then all ability cooldowns will be halved. The lower the number the faster each ability cooldown will be. If higher then cooldowns will globally increase.
+                    If 0 is entered then it will default to 100. This can be modified during play by the ability effect:
+                    <a onclick="HyperLink('AbilityEffects', 'Effects', 'HeaderEffect_Details', 'Adjust_Ability_Global_Cooldown')">Adjust Ability Global Cooldown</a>.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Global_Ability_Miss_Chance">Global Ability Miss Chance</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting is used to determine the chance for an ability to miss the target.
+                    Determines the chance that an ability can miss the target. by offsetting randomly on to the position it was intended to go to. The higher the miss chance the more the entities abilities will miss.
+                    Abilities can be set to never miss by enabling the following setting:
+                    <a onclick="HyperLink('AbilityManager', 'Position AND Travel', 'Position_AND_Travel_Type', 'Travel_Type_-_Selected_Target')">Ability Can Miss</a>.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Miss_Min_Offset">Miss Min Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The minimum offset which will be applied to the abilities intended target position if the ability is set to miss, the ability miss chance is defined in the setting above. Both negative and positive
+                    values can be used
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Miss_Max_Offset">Miss Max Offset</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The Maximum offset which will be applied to the abilities intended target position if the ability is set to miss, the ability miss chance is defined in the setting above. Both negative and positive
+                    values can be used
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Input_Cancel">Input Cancel</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then key bindings can be setup to trigger cancel events which when pressed will cancel
+                    different features depending on the following scenarios, including; Interrupting any ability currently activating,
+                    cancel the wait for a target to be selected (interrupting any ability waiting for a target to be chosen) and disabling any
+                    active Target, Soft Target or World Target.
+                </p>
+                <p>
+                    If ticked then the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the cancel event,
+                                either a hardcoded key can be inserted or a button string which
+                                links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Input Cancel Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string
+                                setup in the Unity Input Manager. This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+
+            </div>
+        </div>
+
+
+        <h3 id="Hits_Can_Prevent_Activation">Hits Can Prevent Activation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entities ability activation can be prevented for a duration after being hit (from a correctly setup effect being applied).
+                </p>
+                <p>
+                    If disabled then ability activation will never be prevented by a hit. If the box is ticked then the following additional settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Prevent Activation Duration
+                            <ol>
+                                Requires a float value which determines how long after a hit the entity can once again activate abilities.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Hits_Can_Interrupt_Activation">Hits Can Interrupt Activation</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then any ability the entity is currently activating can be interrupted after being hit (from a correctly setup effect being applied).
+                    If disabled then no abilities being activated by the entity can be interrupted by a hit.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Ability_Random_Position_Swap">Enable Ability Random Position Swap</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the ability manager will randomly swap positions of abilities which are setup to do so.
+                    More information on the setting to enable abilities to be randomly swapped can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderKey_AND_Combo', 'Randomly_Swap_Ability_Position')">Randomly Swap Ability Position</a>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Entities_Camera">Entities Camera</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The setting requires the camera setup for the entity.
+                    This can be the main camera in the scene or another other camera.
+                    This camera is used when recording raycasts from camera and working out crosshair
+                    positions and applying the camera shake effect. It’s recommend this camera be the one that follows the entity.
+                    If no Camera is set then Camera.Main is used instead.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="GUI_Log">GUI Log</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires an Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                    This object can be placed anywhere on the screen and will display a number of different ability and target events
+                    which can be turned on and off, detailed further below. Examples of events include when an ability is ready to cast again,
+                    if not enough mana is available to cast the ability of when a target has been selected.
+                </p>
+                <p class="doc-note">
+                    Note: There is an additional setting found when creating abilities which can stop that specific ability from logging information.
+                    More information on that setting can be found here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderAdditional_Settings', 'Logging_Enabled')">Ability Logging Enabled</a>
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and the
+                    txtAbilityLog will be added to the setting. This example can be used, referenced or edited.
+                </p>
+                <p>
+                    If a Unity text object is added the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Enable Duration
+                            <ol>
+                                If enabled then the log will appear for a duration everytime text is added. The time is refreshed if new text is
+                                added before the log disappears.
+                            </ol>
+                        </li>
+                        <li>
+                            Log Duration
+                            <ol>
+                                If enable duration is ticked then this setting will appear which determines how long the log text is shown for.
+                            </ol>
+                        </li>
+                        <li>
+                            Max Logging Lines
+                            <ol>
+                                This setting determines how many lines of text can be added before the top line is removed. So if this setting was 10 then at any one time
+                                the log will only hold a max of 10 lines. If a new line is added then the oldest line is removed from the top.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="GUI_Log_Filter">GUI Log Filter</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Logging filters can be applied which allows the option of picking what type of events are logged.
+                    If the box is ticked and enabled then text relating to the box will appear in the log during play.
+                </p>
+                <p>
+                    The options which can be filtered are:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Ready To Activate
+                            <ol>
+                                Writes to the log when an ability is ready to activate again
+                            </ol>
+                        </li>
+                        <li>
+                            Range
+                            <ol>
+                                Writes to the log when an ability is unable to activate on the target due to being out of range
+                            </ol>
+                        </li>
+                        <li>
+                            Facing Target
+                            <ol>
+                                Writes to the log when an ability requires the entity to face the target to activate and the entity is not
+                                currently facing the target
+                            </ol>
+                        </li>
+                        <li>
+                            Target Selection
+                        </li>
+                        <li>
+                            Soft Target Selection
+                        </li>
+                        <li>
+                            World Target Selection
+                        </li>
+                        <li>
+                            Activation Error
+                            <ol>
+                                Writes to the log if the ability is unable to activate for a number of reasons i.e a target is required
+                            </ol>
+                        </li>
+                        <li>
+                            Not enough Mana
+                            <ol>
+                                Writes to the log if the ability is unable to activate due to the entity not having enough mana
+                            </ol>
+                        </li>
+                        <li>
+                            Preparing Ability
+                            <ol>
+                                Writes to the log when an ability starts preparing
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Interrupted
+                            <ol>
+                                Writes to the log when an ability has started activating but has been interrupted
+                            </ol>
+                        </li>
+                        <li>
+                            Initiating Ability
+                            <ol>
+                                Writes to the log when an ability starts initiating
+                            </ol>
+                        </li>
+                        <li>
+                            Activating Ability
+                            <ol>
+                                Writes to the log when the ability activates (projectile created/raycast sent) etc
+                            </ol>
+                            <ol>
+                                Also writes to the log when the ability is waiting for a new target to activate
+                            </ol>
+                        </li>
+                        <li>
+                            Scroll Ability Equip
+                            <ol>
+                                Writes to the log when a scroll ability is equipped and active
+                            </ol>
+                        </li>
+                        <li>
+                            Ammo Information
+                            <ol>
+                                Writes to the log if a reload is required for the current scroll ability
+                            </ol>
+                            <ol>
+                                Writes to the log when ammo is required to activate the ability but the entity does not have enough
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="In_Idle_Mode">In Idle Mode</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the entity will be in ‘Idle Mode’ and can not activate abilities. If configured too then
+                    enabling/disabling the setting will play any current ‘equipped’ scroll abilities activation/deactivate animation
+                    which can be setup to draw/sheath a sword for example. The tick box will represent the idle mode status during play.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Idle_Mode_Toggle">Enable Idle Mode Toggle</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then ABC can be setup to toggle idle mode on and off during play. If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Toggle Delay
+                            <ol>
+                                Defines how long it takes for the entity to switch in and out of Idle mode. Once the duration is over
+                                the entity is able to activate abilities once again
+                            </ol>
+                        </li>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the idle toggle event, either a hardcoded key can be
+                                inserted or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Idle Toggle Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Idle Toggle Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                        <li>
+                            Deactivate Idle Mode On Ability Input
+                            <ol>
+                                If enabled then whilst in idle mode triggering an ability will quickly take the entity out of idle mode instantly,
+                                this will skip any enabling animations linked to the current scroll ability if setup.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Preparing_Slider">Preparing Slider</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity Slider object which can be created from the Unity menu: GameObject > UI > Slider.
+                    The slider will show the current progress of an ability that is preparing i.e a casting bar. Once the slider reaches the
+                    end of the bar then the ability will initiate.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and the
+                    sliderPreparing object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Preparing_Text">Preparing Text</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting which requires a Unity text object which can be created from the Unity menu:
+                    GameObject > UI > Text. This object can be placed anywhere on the screen and will display what ability is currently activating.
+                    It will also display text when the ability is interrupted.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and the
+                    txtPreparing object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="In_Range_World_Target_Indicator">In Range World Target Indicator</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Requires a GameObject which will indicate when an ability is in range when the user is required to select a
+                    world space before the ability is activated. Ability requires ‘Ability Before Target’ setup for this to show found under the position and travel tab in the ability manager setting.
+                </p>
+                <p>
+                    The object will appear when the user is required to select a world space after triggering an ability which has been
+                    set with ‘Ability Before Target’ and the cursor is in range. Any gameobject can be added the default example is a horizontal quad with a
+                    transparent circle on it as an indicator.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and the ABC_WorldTargetIndicator
+                    object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Out_Of_Range_World_Target_Indicator">Out Of Range World Target Indicator</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Requires a GameObject which will indicate when an ability is out of range when the user is required to select a world
+                    space before the ability is activated. Ability requires ‘Ability Before Target’ setup for this to show found under the position and travel tab in the ability manager setting.
+                </p>
+                <p>
+                    The object will appear when the user is required to select a world space after triggering an
+                    ability which has been set with ‘Ability Before Target’ and the cursor is out of range. Any gameobject can be added the
+                    default example is a horizontal quad with a transparent circle on it as an indicator.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the
+                    Hierarchy and the ABC_WorldTargetOutRangeIndicator object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Section hidden" id="Mana">
+
+        <h2>Mana</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Abilities can be setup to cost mana upon activation. Below will setup the amount of mana the entity has and additional setup to configure mana GUI</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsMana.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Max_Mana">Max Mana</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting configures the max mana the entity can have. This accepts float values but will always be rounded to
+                    display a whole number in any game UI setup. The max mana can be changed during play from ability effects.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Current_Mana">Current Mana</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Setting displays the current mana of the entity, this will never go below 0 or higher then the max mana.
+                    This value will change during play if mana is reduced from activating abilities or lost/gained through ability effects.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Current_Mana">Regen Per Second</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting determines how much mana is recovered every second. This accepts floats values. If 0 then no mana is recovered.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Full_Mana_On_Enable">Full Mana On Enable</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the entities current mana will always be full to the max whenever the object is enabled during play.
+                    Useful for objects that ‘respawn’.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Mana_GUI">Mana GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Mana GUI can be added which will show the Current and Max mana in sliders and text. This is updated during play.
+                    Multiple sliders and text can be setup on the entity by pressing the “+ Add Mana GUI” button and can be removed by
+                    clicking the “X” for each mana GUI section.
+                </p>
+                <p>
+                    Once a mana GUI section is added the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Mana Slider
+                            <ol>
+                                This setting requires a Unity Slider object which can be created from the Unity menu: GameObject > UI > Slider.
+                                The slider will show the current mana during play and will always make sure the max value matches the max mana to
+                                accurately represent how ‘filled’ the bar should be.
+                            </ol>
+                            <ol>
+                                If the load default icon
+                                <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and
+                                the sliderMana object will be added to the setting. This example can be used, referenced or edited.
+                            </ol>
+                        </li>
+                        <li>
+                            Only Show Sliders When Selected
+                            <ol>
+                                If enabled then the sliders setup in this section will only show whilst the entity is being targeted by another ABC entity.
+                                If disabled then the sliders will always show.
+                            </ol>
+                        </li>
+                        <li>
+                            Mana Text
+                            <ol>
+                                This setting which requires a Unity text object which can be created from the Unity menu: GameObject > UI > Text.
+                                This object can be placed anywhere on the screen and will display the current mana and the max mana in the
+                                following format: CurrentMana/MaxMana
+                            </ol>
+                            <ol>
+                                If the load default icon
+                                <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the ABC_GUI default prefab will be added to the Hierarchy and
+                                the txtManaValue object will be added to the setting. This example can be used, referenced or edited.
+                            </ol>
+                        </li>
+                        <li>
+                            Only Show Text When Selected
+                            <ol>
+                                If enabled then the text object setup in this section will only show whilst the entity is being targeted by another ABC entity.
+                                If disabled then the text will always show.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Section hidden" id="Weapons">
+
+        <h2>Weapons</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The settings below contain global settings for managing weapons, including the inputs for cycling through and dropping weapons. You can also
+                    define restrictions on weapon dropping if the entity has less then a certain number (i.e don't drop weapon if only one is enabled)
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsGlobalWeapon.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Next_Weapon">Next Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will allow for the user to trigger a button to cycle to the next enabled weapon in the list equipping it.
+                    If ticked the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the next weapon cycle event, either a hardcoded key can be inserted or a button
+                                string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Next Scroll Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Next Scroll Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Previous_Weapon">Previous Weapon</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will allow for the user to trigger a button to cycle back to the previous enabled weapon in the list equipping it.
+                    If ticked the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the previous weapon cycle event, either a hardcoded key can be
+                                inserted or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Previous Scroll Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Previous Scroll Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Cycle_Weapons_Using_Mouse_Scroll">Cycle Weapons Using Mouse Scroll</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then scrolling the mouse wheel will cycle through equipping weapons, Next/Previous weapon has to be ticked to work. Scroll up for next, down for previous
+                </p>
+
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Input_Type">Reload Input Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting determines the type of input expected to reload the ammo on the current weapon that is equipped.
+                    Either a hardcoded key can be inserted or a button
+                    string which links to the same string setup in the Unity Input Manager.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Key">Reload Key</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Appears if 'Key' reload input type is selected. A key can be selected from Unity’s predefined drop down to
+                    reload the current scroll ability. This key is hardcoded.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Button">Reload Button</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A string can be entered which should match the same string setup in the Unity Input Manager.
+                    This method allows the end user to configure inputs as per Unity functionality to reload the current scroll ability.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Allow_Weapon_Drop">Allow Weapon Drop</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will allow for the user to trigger a button to drop the current equipped weapon (if set to be droppable).
+                    If ticked the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the drop weapon  event, either a hardcoded key can be
+                                inserted or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Drop Weapon Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Drop Weapon Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Restrict_Weapon_Drop">Restrict Weapon Drop</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will stop the current weapon from dropping if the entity has less then a defined number of enabled weapons.
+                    For example if set to 1 then the current weapon will not drop if the entity only has 1 weapon enabled. If ticked the following
+                    setting appears:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Restrict Weapon Drop If Weapon Count <= to
+                            <ol>
+                                Defines the number of weapons which the entity needs more of to allow for the current weapon to be dropped.
+                                I.e if set to 2 then the current weapon can only be dropped if the entity has 3 or more weapons enabled
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Image_GUI">Image GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity image object which can be created from the Unity menu: GameObject > UI > Image or Raw Image.
+                    This object can be placed anywhere on the screen and will display the ‘Icon Image’ of the weapon which is
+                    currently equipped. More information on setting up the Icon Image can be found here:  <a onclick="HyperLink('ControllerConfig', 'Weapon Settings', 'HeaderGeneral_AND_Graphic', 'Icon_Image')">Weapon Icon Image</a>
+                </p>
+                <p>
+                    This will inform the user which weapon is currently equipped. If the entity cycles and enables to the next/previous
+                    weapon then this image will be updated with the new weapon equipped
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the  ABC_GUI default prefab will be added to the Hierarchy
+                    and the equippedWeaponImage object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ammo_GUI">Ammo GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                    This object can be placed anywhere on the screen and will display the ammo status of the weapon which
+                    is currently equipped. If <a onclick="HyperLink('ControllerConfig', 'Weapon Settings', 'HeaderAmmo_AND_Reload', 'Use_Reload')">Use Reload</a> has been set up for the weapon
+                    then it will show the CurrentClipCount/MaxAmmo, else it will just show the current Ammo value.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the  ABC_GUI default prefab will be added to the
+                    Hierarchy and the equippedWeaponAmmo object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Section hidden" id="Scrollable_&_Reload">
+
+        <h2>Scrollable & Reload</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The below settings determine which keys are used to scroll through and activate abilities setup as ‘Scroll Abilities’.
+                    Only one scrollable ability can be enabled at once and scrolling through will deactivate the current and enable the next
+                    i.e cycling through weapons in an FPS. All scrollable abilities will activate via one trigger also setup here.
+                </p>
+                <p>
+                    Ammo reload settings which also relate to scroll abilities can also be found in this section.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsScrollNdReload.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Next_Scroll">Next Scroll</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will allow for the user to trigger a button to cycle to the next scrollable ability in the list.
+                    If ticked the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the next scrollable cycle event, either a hardcoded key can be inserted or a button
+                                string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Next Scroll Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Next Scroll Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Previous_Scroll">Previous Scroll</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting if enabled will allow for the user to trigger a button to cycle back to the previous scrollable ability in the list.
+                    If ticked the following settings appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to trigger the previous scrollable cycle event, either a hardcoded key can be
+                                inserted or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Previous Scroll Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Previous Scroll Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_Input_Type">Activate Input Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The type of input expected to activate the current enabled/‘equipped’ scroll ability,
+                    either a hardcoded key can be inserted or a button string which links to the same string setup in the Unity Input Manager.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_Key">Activate Key</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Appears if 'Key' activate input type is selected. A key can be selected from Unity’s
+                    predefined drop down to activate the current scroll ability. This key is hardcoded.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Activate_Button">Activate Button</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Appears if 'Button' activate input type is selected. A string can be entered which should match the same string setup in the
+                    Unity Input Manager. This method allows the end user to configure inputs as per Unity functionality to activate the current scroll ability.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Animations_On_Enable">Animations On Enable</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If ticked then the scroll ability enable animation (i.e the equip animation) will be played when the entity is enabled.
+                    Turn this setting off if you don’t want the enable animation to play for a scroll ability every time the entity re-spawns etc.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Image_GUI">Image GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity image object which can be created from the Unity menu: GameObject > UI > Image or Raw Image.
+                    This object can be placed anywhere on the screen and will display the ‘Icon Image’ of the scroll ability which is
+                    currently ‘equipped’. More information on setting up the Icon Image can be found here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Icon_Image')">Icon_Image</a>.
+                </p>
+                <p>
+                    This will inform the user which scroll ability is currently enabled. If the entity cycles and enables to the next/previous
+                    scroll ability then this image will be updated with the new current scroll ability ‘equipped’.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the  ABC_GUI default prefab will be added to the Hierarchy
+                    and the currentScrollAbilityImage object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ammo_GUI">Ammo GUI</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                    This object can be placed anywhere on the screen and will display the ammo status of the scroll ability which
+                    is currently ‘equipped’. If <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Use Reload</a> has been set up for the ability
+                    then it will show the CurrentClipCount/MaxAmmo, else it will just show the current Ammo value.
+                </p>
+                <p>
+                    If the load default icon <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button">  is clicked then the  ABC_GUI default prefab will be added to the
+                    Hierarchy and the currentScrollAbilityAmmo object will be added to the setting. This example can be used, referenced or edited.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Input_Type">Reload Input Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting determines the type of input expected to reload the ammo on the current scroll ability ‘equipped’ if
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Use_Reload')">Use Reload</a> has been setup on that scroll ability. Either a hardcoded key can be inserted or a button
+                    string which links to the same string setup in the Unity Input Manager.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Key">Reload Key</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Appears if 'Key' reload input type is selected. A key can be selected from Unity’s predefined drop down to
+                    reload the current scroll ability. This key is hardcoded.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Reload_Button">Reload Button</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    A string can be entered which should match the same string setup in the Unity Input Manager.
+                    This method allows the end user to configure inputs as per Unity functionality to reload the current scroll ability.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="Section hidden" id="UI_Icons">
+
+        <h2>UI Icons</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This section allows for the setup of interactive UI Icons which which clicked during play can activate
+                    abilities/current scroll ability, e.g an ‘ability toolbar’. The UI Icons can also be setup to be draggable
+                    to allow the UI icon to move to a different slot or overwrite another slot where a UI icon already exists which can for
+                    example be used to setup a spellbook where abilities are dragged onto the ‘toolbar’.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsUIIcons.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="UI_Icon_List">UI Icon List</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    At the left of this section is a list of all the UI Icons which have been setup for the entity.
+                    The UI Icons in the list can be dragged to a different position by clicking the “=” and moving the mouse
+                    however this is for ease of navigation only and does not affect anything during play.
+                </p>
+                <p>
+                    Selecting a UI Icon in the list will load it’s settings to the right. New UI Icons can be added by hitting the “+ Add UI Icon”
+                    button and if a UI Icon is currently selected it can be copied with the “Copy UI Icon” button. Any selected UI Icon can be deleted
+                    by pressing the “X Delete UI Icon” Button.
+                </p>
+                <p>
+                    If the load Icon Toolbar <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button"> is clicked then the  ABC_GUI default prefab will be added to the Hierarchy
+                    and 6 UI Icons will automatically be created in the list configured to connect to the 6 Icons within the default ‘toolbar’ prefab.
+                    This example can be used, referenced or edited and includes a full ability activation setup including tooltip information
+                    and countdown overlays.
+                </p>
+                <p>
+                    If the load Icon Book <img src="../DocImages/LoadDefault.png" alt="Image showing the Load Default Button"> is clicked then the  ABC_GUI default prefab will be added to the Hierarchy
+                    and 8 UI Icons will automatically be created in the list configured to connect to the 8 Icons within the default ‘book’ prefab.
+                    This example can be used, referenced or edited and includes a full ability book source setup allowing for the icons to only be
+                    dragged to a ‘toolbar’ ready for it to be clicked on to activate during play. This also includes tooltip information and countdown overlays.
+                </p>
+                <p>
+                    Once a UI Icon is selected the settings detailed below will appear.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Icon_Name">Icon Name</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The name of the UI Icon, this is the name which will appear in the list to the left and can be used to differentiate the different icons.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Icon_Type">Icon Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the what type the icon is and what happens if it’s triggered, the following selections can be made:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Empty Icon
+                            <ol>
+                                Icon is empty and does nothing, however other icons can be dropped on the empty icon filling it with an
+                                ability which can be activated
+                            </ol>
+                        </li>
+                        <li>
+                            Ability Activation
+                            <ol>
+                                When Icon is clicked then the abilities linked to the icon will be triggered to activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Scroll Ability Activation
+                            <ol>
+                                When icon is clicked then the current scroll ability if exists will be triggered to activate.
+                            </ol>
+                        </li>
+                        <li>
+                            Weapon Equip
+                            <ol>
+                                Will equip the weapon linked when the icon is clicked.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Icon_Object">Icon Object</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Requires a UI gameobject which will be converted into the Icon. The object will have Unity’s button and image
+                    component added if it doesn’t already exist as well as additional ABC UI Components.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Action_Type">Action Type</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Determines the action type of the icon. The action types determines what the Icon can do in regards to being dragged and dropped.
+                    3 dropdown options can be chosen:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Dynamic
+                            <ol>
+                                Dynamic Action Types can be dragged and moved on to other empty dynamic UI Icons or will swap places with
+                                non empty dynamic UI Icons. This is the action type for the typical toolbar setup where during play abilities
+                                on the toolbar can be swapped to another position on the toolbar
+                            </ol>
+                        </li>
+                        <li>
+                            Source
+                            <ol>
+                                Source Action Types can be dragged on to dynamic UI Icons (empty and non empty) overwriting what was
+                                currently there before. Source Icons once dropped unlike dynamic types will always remain where it was
+                                dragged from. This is the action type for the typical ‘ability book’ setup. Where multiple source icons
+                                can be dragged onto a toolbar with the original icon remaining in place.
+                            </ol>
+                        </li>
+                        <li>
+                            Static
+                            <ol>
+                                Static Action Types can not be dragged and no other UI Icons can be dropped on them.
+                                They can not be modified at all during play. This is useful for adding buttons to a game which
+                                will always do the same thing as a core mechanic of the game (like activating the current scroll weapon).
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Clickable">Clickable</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then clicking the Icon during play will initiate certain events depending on it’s Icon Type i.e activating the ability.
+                </p>
+                <p>
+                    To click the Icon (button) an EventSystem object is required as normal Unity functionality.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Removeable">Removeable</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then dragging the icon to an empty space during play will convert the icon into an empty dynamic icon i.e an empty slot.
+                    This setting is only available for Icons configured as Dynamic Action Type.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Key_Text">Key Text</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                    This object can be placed anywhere on the screen and will display the key/button that will trigger the icon
+                    activating the ability/current scroll ability. The ability trigger settings can be found here: <a onclick="HyperLink('ControllerConfig', 'Settings', 'HeaderScrollable_AND_Reload', 'Activate_Input_Type')">Activate Input Type</a>.
+                    More information on scroll abilities can be found here: <a onclick="HyperLink('AbilityManager', 'General', 'HeaderSettings', 'Scroll Ability')">Scroll Abilities</a>.
+                </p>
+                <p>
+                    The text setting can always be configured even if the Icon is an empty type. This is for
+                    during play for when the icon potentially gets converted into another type due to another icon being dropped on it.
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Click_From_Trigger">Click From Trigger</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then the UI Icons event can be triggered from a key press, it does not matter the type of icon both
+                    ability activation and scroll ability activation will both initiate if the key setup is pressed.
+                </p>
+                <p>
+                    The icons trigger is additional to the other triggers which may be setup for the ability i.e if setup then an
+                    ability can be triggered from both the key to initiate the icon event and its own key trigger. If you only want an
+                    ability to activate from the UI trigger then turn off it’s own trigger key in ability settings, more information on turning off the abilities trigger key
+                    can be found by clicking the following link:
+                    <a onclick="HyperLink('AbilityManager', 'General', 'HeaderKey_AND_Combo', 'On_Key_Press')">On Key Press</a>
+                </p>
+                <p>
+                    If ticked the following settings will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            On Key Press
+                            <ol>
+                                Will only trigger the icon event once per key press down
+                            </ol>
+                        </li>
+                        <li>
+                            On Key Hold
+                            <ol>
+                                Will continue to trigger the icon event as long as the key is held down
+                            </ol>
+                        </li>
+                        <li>
+                            Input Type
+                            <ol>
+                                The type of input expected to activate the UI Icon event, either a
+                                hardcoded key can be inserted or a button string which links to the same string setup in the Unity Input Manager.
+                            </ol>
+                        </li>
+                        <li>
+                            Key (If ‘Key’ Input Type is selected)
+                            <ol>
+                                A key can be selected from Unity’s predefined drop down to activate the current scroll ability. This key is hardcoded.
+                            </ol>
+                        </li>
+                        <li>
+                            Button (If ‘Button’ Input Type is selected)
+                            <ol>
+                                A string can be entered which should match the same string setup in the Unity Input Manager.
+                                This method allows the end user to configure inputs as per Unity functionality to activate the current scroll ability.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+
+        <h3 id="Scroll_Ability_Activation_Settings">Scroll Ability Activation Settings</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If Scroll Ability Activation is selected as the Icon Type than 1 additional setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Icon Texture
+                            <ol>
+                                Allows for an image to be selected which will be shown in the UI Icon
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+
+        <h3 id="Ability_Activation_Settings">Ability Activation Settings</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If Ability Activation is selected as the Icon Type than the following additional setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Ability Link
+                            <ol>
+                                An ability can be selected from the dropdown, once selected hitting the ‘Update’ button will link the ability to
+                                the UI Icon. This will start the game with the UI Icon linking to the ability, displaying its icon, tooltip information
+                                and activating it once the icon is triggered.
+                            </ol>
+                            <ol>
+                                If the ability activated from the icon is part of a combo then the system will work out which ability in the combo sequence
+                                to activate during play. Due to this you only need to link the first ability in the combo chain to the UI Icon.
+                            </ol>
+                        </li>
+                        <li>
+                            Substitute Ability When Disabled
+                            <ol>
+                                This will add substitute ability links to the UI Icon in a listed order. If the ability in the main link is
+                                disabled for any reason then the Icon will instead be linked to the substitute ability updating tooltips, icons
+                                and activating from the same icon trigger. When trying to find a substitute the system will go down the list in
+                                order using the next ability found which is enabled. If the main link is re-enabled then it will overwrite
+                                the substitute once more.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The below settings also relating to ability activation are configurations to display tooltips and information about the linked ability.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Tool Tip
+                            <ol>
+                                Object which will contain the ability information. This object is only required if you want to group all the
+                                additional text configurations under one object. This object can be enabled/disabled from the next setting “Show On Hover”
+                            </ol>
+                        </li>
+                        <li>
+                            Show On Hover
+                            <ol>
+                                Will show the Tool Tip object configured when the mouse is hovering of the UI Icon in game.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Name
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the name of the ability linked to the UI Icon.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Description
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the description of the ability linked to the UI Icon.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Mana
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the mana cost of the ability linked to the UI Icon.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Recast
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the recast time of the ability linked to the UI Icon.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The below settings also relating to ability activation are configurations to display countdown and disabled graphics
+                    information about the linked ability.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Disable With Ability
+                            <ol>
+                                If ticked then when the ability is disabled (and no substitutes exist) then the icon will be grey scaled to represent
+                                that is is no longer can be used during play.
+                            </ol>
+                        </li>
+                        <li>
+                            Display Countdown
+                            <ol>
+                                If enabled then 2 additional settings appear allowing you to add a fillbar and text which will represent
+                                how long is left on the recast until ability can be activated again.
+                            </ol>
+                        </li>
+                        <li>
+                            Countdown Overlay
+                            <ol>
+                                This setting requires a Unity image object which can be created from the Unity menu: GameObject > UI >Image.
+                                It is very important that the type of this image is ‘Filled’. This object can be placed anywhere on the screen
+                                but recommended to be over the UI icon and will fill down to show how long is left till the ability is ready to
+                                activate again. Example is a grey square with a minor transparency which will fill down clockwise.
+                            </ol>
+                        </li>
+                        <li>
+                            Countdown Text
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen but recommended to be over the UI icon and will represent a
+                                timer countdown, showing how long is left till the ability can be activated again. The text will count down
+                                in real time during play.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Weapon_Equip_Settings">Weapon Equip Settings</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If Weapon Equip is selected as the Icon Type than the following additional setting will appear:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Weapon Link
+                            <ol>
+                                An weapon can be selected from the dropdown, once selected hitting the ‘Update’ button will link the weapon to
+                                the UI Icon. This will start the game with the UI Icon linking to the weapon, displaying its icon, tooltip information
+                                and equipping it once the icon is triggered.
+                            </ol>
+                        </li>
+                        <li>
+                            Instant Equip
+                            <ol>
+                            If enabled then when the weapon icon is selected it will equipped instantly, else it will go through the normal animations before equipping
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The below settings also relating to weapon equip are configurations to display tooltips and information about the linked weapon.
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Tool Tip
+                            <ol>
+                                Object which will contain the weapon information. This object is only required if you want to group all the
+                                additional text configurations under one object. This object can be enabled/disabled from the next setting “Show On Hover”
+                            </ol>
+                        </li>
+                        <li>
+                            Show On Hover
+                            <ol>
+                                Will show the Tool Tip object configured when the mouse is hovering of the UI Icon in game.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Name
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the name of the weapon linked to the UI Icon.
+                            </ol>
+                        </li>
+                        <li>
+                            Tool Tip Description
+                            <ol>
+                                This setting requires a Unity text object which can be created from the Unity menu: GameObject > UI >Text.
+                                This object can be placed anywhere on the screen and will display the description of the weapon linked to the UI Icon.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The below settings also relating to weapon equip is a configuration which when enabled will disable the icon if the weapon is disabled                    
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Disable With Weapon
+                            <ol>
+                                If ticked then when the weapon is disabled then the icon will be grey scaled to represent
+                                that is is no longer can be used during play.
+                            </ol>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="Section hidden" id="Diagnostic">
+
+        <h2>Diagnostic</h2>
+
+        <h3 id="Overview">Overview</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Diagnostics will display a multitude of helpful information during play. This functionality is only useful for
+                    debugging and testing purposes. Examples of information logged include; targeting information, AI information,
+                    ability activation details, ability activation errors, setup errors and more. This section has 2 settings to decide
+                    where the diagnostic is logged.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <img src="../DocImages/EditorScreens/SettingsDiagnostic.png" alt="Image showing the ABC UI" class="img-responsive image-border doc-img">
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Enable_Diagnostic_Logging">Enable Diagnostic Logging</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then logging will be displayed in the Diagnostic Log section under this tab.
+                    This will be saved in a list and if the log gets too big then you will notice a decrease in performance during play.
+                    The history can be cleared by pressing the “X Clear Diagnostic Log” button. If this setting is
+                    disabled then nothing will be logged to the section under this tab.
+                </p>
+            </div>
+        </div>
+
+        <h3 id="Log_Diagnostic_To_Console">Log Diagnostic To Console</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    If enabled then logging will appear in Unity’s Console.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
