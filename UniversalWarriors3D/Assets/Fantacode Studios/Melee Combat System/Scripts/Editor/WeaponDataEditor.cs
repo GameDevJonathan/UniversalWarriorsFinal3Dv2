@@ -16,6 +16,7 @@ namespace FS_CombatSystem
         public SerializedProperty weaponModel;
         public SerializedProperty attacks;
         public SerializedProperty heavyAttacks;
+        public SerializedProperty specialAttacks;
         public SerializedProperty reactionData;
 
         public SerializedProperty weaponEquipAnimation;
@@ -72,6 +73,7 @@ namespace FS_CombatSystem
 
             attacks = serializedObject.FindProperty("attacks");
             heavyAttacks = serializedObject.FindProperty("heavyAttacks");
+            specialAttacks = serializedObject.FindProperty("specialAttacks");
             reactionData = serializedObject.FindProperty("reactionData");
 
             weaponEquipAnimation = serializedObject.FindProperty("weaponEquipAnimation");
@@ -135,6 +137,7 @@ namespace FS_CombatSystem
 
             EditorGUILayout.PropertyField(attacks);
             EditorGUILayout.PropertyField(heavyAttacks);
+            EditorGUILayout.PropertyField(specialAttacks);
             EditorGUILayout.PropertyField(reactionData);
 
 

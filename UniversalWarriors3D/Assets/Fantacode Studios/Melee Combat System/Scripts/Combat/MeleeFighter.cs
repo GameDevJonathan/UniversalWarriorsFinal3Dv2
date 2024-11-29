@@ -27,6 +27,8 @@ namespace FS_CombatSystem
         [SerializeField] float rotationSpeedDuringAttack = 500f;
         [field: SerializeField] public float PreferredFightingRange { get; private set; } = 2f;
 
+        [SerializeField] float transtionInSpeed = .1f, transtionOutSpeed = .1f;
+
         [Header("Optional Parameters")]
         public DefaultReactions defaultAnimations = new DefaultReactions();
 
@@ -189,7 +191,7 @@ namespace FS_CombatSystem
         // For testing, remove later
         public bool IsPlayerForDebug { get; set; }
 
-        public void TryToAttack(MeleeFighter target = null, bool isHeavyAttack = false, bool isCounter = false, bool isCharged = false)
+        public void TryToAttack(MeleeFighter target = null, bool isHeavyAttack = false, bool isCounter = false, bool isCharged = false, bool isSpecialAttack = false)
         {
             // Taking Blocked Hit is a special case where counter can be peformed
             if (State != FighterState.TakingBlockedHit)
@@ -203,19 +205,19 @@ namespace FS_CombatSystem
             if (CurrentWeapon == null && weapon != null)
             {
                 EquipWeapon(weapon,
-                    onComplete: () => HandleAttack(target, isHeavyAttack, isCounter, isCharged));
+                    onComplete: () => HandleAttack(target, isHeavyAttack, isCounter, isCharged, isSpecialAttack));
             }
             else if (CurrentWeapon != null)
             {
-                HandleAttack(target, isHeavyAttack, isCounter, isCharged);
+                HandleAttack(target, isHeavyAttack, isCounter, isCharged, isSpecialAttack);
             }
         }
 
-        void HandleAttack(MeleeFighter target = null, bool isHeavyAttack = false, bool isCounter = false, bool isCharged = false)
+        void HandleAttack(MeleeFighter target = null, bool isHeavyAttack = false, bool isCounter = false, bool isCharged = false, bool isSpecialAttack = false)
         {
             Target = target;
 
-            if (!ChooseAttacks(target, comboCount, isHeavyAttack: isHeavyAttack, isCounter: isCounter))
+            if (!ChooseAttacks(target, comboCount, isHeavyAttack: isHeavyAttack, isCounter: isCounter, isSpecialAttack))
             {
                 if (isCounter && CurrentWeapon.PlayActionIfCounterMisused && CurrentWeapon.CounterMisusedAction != null 
                     && !InAction && Target != null)
@@ -242,7 +244,7 @@ namespace FS_CombatSystem
         }
 
 
-        public bool ChooseAttacks(MeleeFighter target = null, int comboCount = 0, bool isHeavyAttack = false, bool isCounter = false)
+        public bool ChooseAttacks(MeleeFighter target = null, int comboCount = 0, bool isHeavyAttack = false, bool isCounter = false, bool isSpecialAttack = false)
         {
             if (CurrAttacksList == null)
                 CurrAttacksList = new List<AttackSlot>();
@@ -257,14 +259,15 @@ namespace FS_CombatSystem
                 bool counterPossible = ChooseCounterAttacks(target);
                 if (!counterPossible)
                     CurrAttacksList = new List<AttackSlot>();
-
+                
                 return counterPossible;
-            }
+            } 
 
             if (CurrentWeapon.Attacks != null && CurrentWeapon.Attacks.Count > 0)
             {
                 var possibleAttacks = CurrentWeapon.Attacks.ToList();
                 if (isHeavyAttack) possibleAttacks = CurrentWeapon.HeavyAttacks.ToList();
+                if (isSpecialAttack) possibleAttacks = CurrentWeapon.SpecialAttacks.ToList();
 
                 var normalAttacks = possibleAttacks.Where(a => a.AttackType == AttackType.Single || a.AttackType == AttackType.Combo).OrderBy(a => a.MinDistance).ToList();
                 var normalAttacksWithoutSyncedAndFinishers = normalAttacks.Where(a => a.AttackSlots.Any(s => !s.Attack.IsSyncedReaction && !s.Attack.IsFinisher)).ToList();
@@ -506,7 +509,7 @@ namespace FS_CombatSystem
                 }
             }
 
-            animGraph.CrossFade(attack.Clip, 0.2f, transitionOut: 0.1f,animationSpeed:attack.AnimationSpeed);
+            animGraph.CrossFade(attack.Clip, transtionInSpeed, transitionOut:transtionOutSpeed,animationSpeed:attack.AnimationSpeed);
 
             MatchingTargetDeltaPos = Vector3.zero;
             IsMatchingTarget = false;

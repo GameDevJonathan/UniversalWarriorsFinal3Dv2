@@ -175,7 +175,7 @@ namespace FS_CombatSystem
             };
         }
 
-        void OnAttackPressed(float holdTime, bool isHeavyAttack, bool isCounter, bool isCharged)
+        void OnAttackPressed(float holdTime, bool isHeavyAttack, bool isCounter, bool isCharged, bool isSpecialAttack)
         {
             if (playerController.FocusedSystemState != SystemState.Locomotion && playerController.FocusedSystemState != SystemState.Combat) return;
             if (TargetEnemy == null && isCounter && !CombatSettings.i.SameInputForAttackAndCounter) return;
@@ -196,7 +196,7 @@ namespace FS_CombatSystem
                         isCounter = false;
                 }
 
-                meleeFighter.TryToAttack(enemyToAttack?.Fighter, isHeavyAttack: isHeavyAttack, isCounter: isCounter, isCharged: isCharged);
+                meleeFighter.TryToAttack(enemyToAttack?.Fighter, isHeavyAttack: isHeavyAttack, isCounter: isCounter, isCharged: isCharged, isSpecialAttack: isSpecialAttack);
             }
         }
 

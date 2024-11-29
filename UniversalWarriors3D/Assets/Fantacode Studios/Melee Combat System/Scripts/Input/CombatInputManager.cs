@@ -11,6 +11,7 @@ namespace FS_CombatSystem
         [SerializeField] KeyCode rollKey = KeyCode.Space;
         [SerializeField] KeyCode combatModeKey = KeyCode.F;
         [SerializeField] KeyCode heavyAttackKey = KeyCode.R;
+        [SerializeField] KeyCode specialAttackKey = KeyCode.X;
         [SerializeField] KeyCode counterKey = KeyCode.Q;
 
 
@@ -22,8 +23,10 @@ namespace FS_CombatSystem
         [SerializeField] string combatModeButton;
         [SerializeField] string counterButton;
         [SerializeField] string heavyAttackButton;
+        [SerializeField] string specialAttackButton;
 
-        public event Action<float, bool, bool, bool> OnAttackPressed;
+        public event Action<float, bool, bool, bool, bool> OnAttackPressed;
+
         public bool Block { get; set; }
         public bool Dodge { get; set; }
         public bool Roll { get; set; }
@@ -31,9 +34,12 @@ namespace FS_CombatSystem
 
         bool attackDown;
         bool heavyAttackDown;
+        bool specialAttackDown;
+
 
         public float AttackHoldTime { get; private set; } = 0f;
         public float HeavyAttackHoldTime {get; private set;} = 0f;
+        public float SpecialAttackHoldTime {get; private set;} = 0f;
 
         float chargeTime = 0f;
         bool useAttackInputForCounter = false;
@@ -65,6 +71,9 @@ namespace FS_CombatSystem
             //HeavyAttack
             HandleHeavyAttack();
 
+            //Special Attack
+            HandleSpecialAttack();
+
             //Counter
             HandleCounter();
 
@@ -81,6 +90,7 @@ namespace FS_CombatSystem
         void HandleAttack()
         {
 #if inputsystem
+
             if (input.Combat.Attack.WasPressedThisFrame())
             {
                 attackDown = true;
@@ -89,7 +99,7 @@ namespace FS_CombatSystem
             {
                 if (AttackHoldTime >= chargeTime || input.Combat.Attack.WasReleasedThisFrame())
                 {
-                    OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime);
+                    OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime, false);
                     attackDown = false;
                     AttackHoldTime = 0f;
                 }
@@ -97,7 +107,8 @@ namespace FS_CombatSystem
             }
 #else
 
-            if ( Input.GetKeyDown(attackKey) || IsButtonDown(attackButton))
+
+            if (Input.GetKeyDown(attackKey) || IsButtonDown(attackButton))
             {
                 attackDown = true;
             }
@@ -105,7 +116,7 @@ namespace FS_CombatSystem
             {
                 if (AttackHoldTime >= chargeTime || Input.GetKeyUp(attackKey) || IsButtonUp(attackButton))
                 {
-                    OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime);
+                    OnAttackPressed?.Invoke(AttackHoldTime, false, useAttackInputForCounter, AttackHoldTime >= chargeTime, false);
                     attackDown = false;
                     AttackHoldTime = 0f;
                 }
@@ -126,7 +137,7 @@ namespace FS_CombatSystem
             {
                 if (HeavyAttackHoldTime >= chargeTime || input.Combat.HeavyAttack.WasReleasedThisFrame())
                 {
-                    OnAttackPressed?.Invoke(HeavyAttackHoldTime, true, false, HeavyAttackHoldTime >= chargeTime);
+                    OnAttackPressed?.Invoke(HeavyAttackHoldTime, false, false, HeavyAttackHoldTime >= chargeTime, false);
                     heavyAttackDown = false;
                     HeavyAttackHoldTime = 0f;
                 }
@@ -143,12 +154,52 @@ namespace FS_CombatSystem
             {
                 if (HeavyAttackHoldTime >= chargeTime || Input.GetKeyUp(heavyAttackKey) || IsButtonUp(heavyAttackButton))
                 {
-                    OnAttackPressed?.Invoke(HeavyAttackHoldTime, true, false, HeavyAttackHoldTime >= chargeTime);
+                    OnAttackPressed?.Invoke(HeavyAttackHoldTime, true, false, HeavyAttackHoldTime >= chargeTime, false);
                     heavyAttackDown = false;
                     HeavyAttackHoldTime = 0f;
                 }
 
                 HeavyAttackHoldTime += Time.deltaTime;
+            }
+#endif
+        }
+
+
+        void HandleSpecialAttack()
+        {
+#if inputsystem
+            if (input.Combat.SpecialAttack.WasPressedThisFrame())
+            {
+                specialAttackDown = true;
+            }
+
+            if (specialAttackDown)
+            {
+                if (SpecialAttackHoldTime >= chargeTime || input.Combat.SpecialAttack.WasReleasedThisFrame())
+                {
+                    OnAttackPressed?.Invoke(SpecialAttackHoldTime, false, false, SpecialAttackHoldTime >= chargeTime, true);
+                    specialAttackDown = false;
+                    SpecialAttackHoldTime = 0f;
+                }
+
+                SpecialAttackHoldTime += Time.deltaTime;
+            }
+#else
+            if (Input.GetKeyDown(specialAttackKey) || IsButtonDown(specialAttackButton))
+            {
+                specialAttackDown = true;
+            }
+
+            if (specialAttackDown)
+            {
+                if (SpecialAttackHoldTime >= chargeTime || Input.GetKeyUp(specialAttackKey) || IsButtonUp(specialAttackButton))
+                {
+                    OnAttackPressed?.Invoke(SpecialAttackHoldTime, false, false, SpecialAttackHoldTime >= chargeTime, true);
+                    specialAttackDown = false;
+                    SpecialAttackHoldTime = 0f;
+                }
+
+                SpecialAttackHoldTime += Time.deltaTime;
             }
 #endif
         }
@@ -160,12 +211,12 @@ namespace FS_CombatSystem
 #if inputsystem
                 if (input.Combat.Counter.WasPressedThisFrame())
                 {
-                    OnAttackPressed?.Invoke(0f, false, true, false);
+                    OnAttackPressed?.Invoke(0f, false, true, false, false);
                 }
 #else
                 if(Input.GetKeyDown(counterKey) || IsButtonDown(counterButton))
                 {
-                    OnAttackPressed?.Invoke(0f, false, true, false);
+                    OnAttackPressed?.Invoke(0f, false, true, false, false);
                 }
 #endif
             }

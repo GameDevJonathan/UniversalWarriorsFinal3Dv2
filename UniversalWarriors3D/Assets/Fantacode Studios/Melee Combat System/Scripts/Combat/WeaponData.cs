@@ -28,6 +28,9 @@ namespace FS_CombatSystem
         [Tooltip("List of attack data that is considered a heavy attack, each containing details about an attack and its conditions.")]
         [SerializeField] List<AttackContainer> heavyAttacks;
 
+        [Tooltip("List of attack data that is considered a special attacks, each containing details about an attack and its conditions.")]
+        [SerializeField] List<AttackContainer> specialAttacks;
+
         [Tooltip("Data for reactions associated with the weapon.")]
         [SerializeField] ReactionsData reactionData;
 
@@ -121,6 +124,9 @@ namespace FS_CombatSystem
 
             foreach (var attack in heavyAttacks)
                 attack.AttackSlots.ForEach(a => a.Container = attack);
+
+            foreach (var attack in specialAttacks)
+                attack.AttackSlots.ForEach(a => a.Container = attack);
         }
 
         public bool SpawnWeapon => spawnWeapon;
@@ -134,6 +140,7 @@ namespace FS_CombatSystem
         public float WeaponDeactivationTime => weaponDeactivationTime;
         public List<AttackContainer> Attacks => attacks;
         public List<AttackContainer> HeavyAttacks => heavyAttacks;
+        public List<AttackContainer> SpecialAttacks => specialAttacks;
         public ReactionsData ReactionData => reactionData;
         public bool CanBlock => canBlock;
         public AnimationClip Blocking => blocking;

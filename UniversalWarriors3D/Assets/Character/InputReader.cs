@@ -155,7 +155,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
         //_InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
 
-        _material.SetFloat(_targetRef, _targetValue);
+        _material?.SetFloat(_targetRef, _targetValue);
     }
 
 
@@ -251,7 +251,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         //Debug.Log($"on/off: {mat.GetInt(ShaderBoolRef)}");
 
-        mat.SetInt(ShaderBoolRef, Convert.ToInt32(on_off));
+        mat?.SetInt(ShaderBoolRef, Convert.ToInt32(on_off));
 
         if (chargeAmount >= _minRate && chargeAmount < _midRate)
         {

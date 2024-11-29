@@ -6570,6 +6570,8 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 200
   rotationSpeedDuringAttack: 500
   <PreferredFightingRange>k__BackingField: 2
+  transtionInSpeed: 0.1
+  transtionOutSpeed: 0.1
   defaultAnimations:
     hitReactionData: {fileID: 11400000, guid: d5767fa4d922fc047b704fcfb4e44a75, type: 2}
     blockedReactionData: {fileID: 11400000, guid: 3b18c52a9d1e9424eadbbcaca42da474,
@@ -6684,6 +6686,7 @@ MonoBehaviour:
   rollKey: 32
   combatModeKey: 115
   heavyAttackKey: 100
+  specialAttackKey: 120
   counterKey: 102
   attackButton: 
   blockButton: 
@@ -6692,6 +6695,7 @@ MonoBehaviour:
   combatModeButton: 
   counterButton: 
   heavyAttackButton: 
+  specialAttackButton: 
 --- !u!114 &355394301629366197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,7 +6792,7 @@ MonoBehaviour:
   enablePredictiveJump: 1
   <MaxJumpHeight>k__BackingField: 1.2
   minDistanceFromLedgeForJumping: 0.2
-  <MaxJumpDistance>k__BackingField: 7
+  <MaxJumpDistance>k__BackingField: 10
   footColliderRadius: 0.1
   footColliderOffset: {x: 0, y: 0, z: 0}
   parkourActions:
@@ -6927,6 +6931,7 @@ MonoBehaviour:
   jumpKey: 32
   dropKey: 101
   jumpFromHangKey: 113
+  parkourKey: 304
   jumpButton: 
   dropButton: 
   jumpFromHangButton: 

@@ -93,7 +93,7 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""fa6fdc82-eb00-4e06-8103-d2a98a7cfa1d"",
+                    ""id"": ""4f977b0c-c072-407f-a530-da9eab19d93a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -301,8 +301,8 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1941cf6b-f7c8-4839-a49a-a52194ceb675"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""34b7107b-8136-41ba-9172-b7351bc93aa1"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,8 +312,8 @@ public partial class @LocomotionInputAction: IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""881fb95a-e86d-4115-8dd4-59d05060a0c8"",
-                    ""path"": ""<Gamepad>/start"",
+                    ""id"": ""e61cb7ec-0853-4bb2-880c-89acb9deeaca"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

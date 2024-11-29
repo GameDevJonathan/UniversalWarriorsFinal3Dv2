@@ -451,21 +451,23 @@ namespace FS_ThirdPerson
                         timer += Time.deltaTime;
                         yield return null;
                     }
-                    layerMixer.SetInputWeight(1, 0);
-                    var currInput = layerMixer.GetInput(0);
-                    var currOutput = layerMixer.GetOutput(0);
-                    layerMixer.DisconnectInput(0);
-
-                    if (!currOutput.IsNull())
+                    if (layerMixer.IsValid())
                     {
-                        currOutput.DisconnectInput(0);
-                        currOutput.ConnectInput(0, currInput, 0);
+                        layerMixer.SetInputWeight(1, 0);
+                        var currInput = layerMixer.GetInput(0);
+                        var currOutput = layerMixer.GetOutput(0);
+                        layerMixer.DisconnectInput(0);
 
-                        currOutput.SetInputWeight(0, 1);
-                        currOutput.SetInputWeight(1, 0);
+                        if (!currOutput.IsNull())
+                        {
+                            currOutput.DisconnectInput(0);
+                            currOutput.ConnectInput(0, currInput, 0);
+
+                            currOutput.SetInputWeight(0, 1);
+                            currOutput.SetInputWeight(1, 0);
+                        }
+                        layerMixer.Destroy();
                     }
-                    layerMixer.Destroy();
-
                 }
 
                 if (i < layerMixerList.Count)

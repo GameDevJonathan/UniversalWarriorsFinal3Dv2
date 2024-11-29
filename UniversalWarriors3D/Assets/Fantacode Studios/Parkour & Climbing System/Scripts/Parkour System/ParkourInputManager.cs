@@ -9,6 +9,7 @@ namespace FS_ParkourSystem
         [SerializeField] KeyCode jumpKey = KeyCode.Space;
         [SerializeField] KeyCode dropKey = KeyCode.E;
         [SerializeField] KeyCode jumpFromHangKey = KeyCode.Q;
+        [SerializeField] KeyCode parkourKey = KeyCode.LeftShift;
 
 
         [Header("Buttons")]
@@ -17,10 +18,10 @@ namespace FS_ParkourSystem
         [SerializeField] string jumpFromHangButton;
 
         public bool Jump { get; set; }
-        public bool Parkour { get; set; }
         public bool JumpKeyDown { get; set; }
         public bool Drop { get; set; }
         public bool JumpFromHang { get; set; }
+        public bool Parkour { get; set; }
 
 #if inputsystem
         ParkourInputAction input;
@@ -50,17 +51,16 @@ namespace FS_ParkourSystem
             HandleJumpFromHang();
 
             //Parkour
-            HandleParkour(); 
+            HandleParkour();
         }
 
-        void HandleParkour()
+        private void HandleParkour()
         {
 #if inputsystem
             Parkour = input.Parkour.Parkour.inProgress;
 #else
-            //Parkour = Input.GetKey(jumpKey) || (String.IsNullOrEmpty(jumpButton) ? false : Input.GetButton(jumpButton));
+            Parkour = Input.GetKey(ParkourKey)
 #endif
-
         }
 
         void HandleJump()

@@ -128,14 +128,14 @@ namespace FS_ParkourSystem
                 return;
             }
 
-            //Perform Parkour Actions
+            //Perform Parkour action
             if(inputManager.Parkour && player.IsGrounded)
             {
                 var hitData = environmentScanner.ObstacleCheck();
                 HandleParkourAction(hitData);
             }
 
-            // Pefrom Parkour Actions or Predictive Jump/Climb
+            // Pefrom Predictive Jump/Climb
             if (inputManager.Jump && player.IsGrounded)
             {
                 var hitData = environmentScanner.ObstacleCheck();

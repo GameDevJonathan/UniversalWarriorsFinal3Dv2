@@ -403,6 +403,8 @@ namespace FS_ThirdPerson
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
                 //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 100f);
             }
+            else
+                targetRotation = transform.rotation;
         }
         void setTargetRotation(Vector3 moveDir, ref Quaternion targetRotation)
         {

@@ -10,6 +10,8 @@ namespace FC_ParkourSystem {
     {
         public List<Transform> ledgeParent;
         public FootStepEffects footStepEffects;
+        //public GameObject mobileUI;
+        //bool uiEnabled = false;
 
         void Start()
         {
@@ -22,5 +24,19 @@ namespace FC_ParkourSystem {
             if (!(footStepEffects.groundLayer == (footStepEffects.groundLayer | (1 << LayerMask.NameToLayer("Ledge")))))
                 footStepEffects.groundLayer += 1 << LayerMask.NameToLayer("Ledge");
         }
+
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.M))
+        //    {
+                
+
+        //        uiEnabled = !uiEnabled;
+        //        mobileUI.SetActive(uiEnabled);
+
+        //        Cursor.visible = uiEnabled;
+        //        Cursor.lockState = uiEnabled ? CursorLockMode.None : CursorLockMode.Locked;
+        //    }
+        //}
     }
 }

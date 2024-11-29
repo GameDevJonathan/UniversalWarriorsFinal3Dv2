@@ -16,7 +16,7 @@ MonoBehaviour:
   minHeight: 0
   maxHeight: 1.5
   rotateToObstacle: 1
-  vaultType: 0
+  vaultType: 2
   obstacleTag: Table
   postActionDelay: 0
   enableTargetMatching: 0
@@ -24,6 +24,6 @@ MonoBehaviour:
   matchStartTime: 0.5
   matchTargetTime: 0.7
   matchPosWeight: {x: 0, y: 1, z: 0}
-  clip: {fileID: 1827226128182048838, guid: f44fd9dff331cba4f9fb4d9f42c6c3dd, type: 3}
-  minimumObstacleHorizontalDistance: 0
+  clip: {fileID: 1827226128182048838, guid: 2fe55b01c09b60e4eb049d662e32f1ea, type: 3}
+  minimumObstacleHorizontalDistance: 3
   movementThreshold: 0.3

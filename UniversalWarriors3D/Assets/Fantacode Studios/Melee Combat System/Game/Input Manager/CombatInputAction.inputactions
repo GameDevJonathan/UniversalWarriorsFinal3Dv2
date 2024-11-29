@@ -9,7 +9,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "f0154cd1-84b9-41c4-8df8-0b483da8cf2d",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,7 +18,7 @@
                     "name": "Block",
                     "type": "Button",
                     "id": "a97793d9-c227-4b10-b550-211e208758ee",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SpecialAttack",
+                    "type": "Button",
+                    "id": "5194f830-4a5e-43ed-871e-6de4addb714a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -106,7 +115,7 @@
                 {
                     "name": "",
                     "id": "75699d44-1da7-4cdd-8f51-5457ad49b1ac",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -128,7 +137,7 @@
                 {
                     "name": "",
                     "id": "83a850d7-96ce-4c38-bbfd-b3ac4a2854b2",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -150,7 +159,7 @@
                 {
                     "name": "",
                     "id": "3e284574-d346-4100-b72e-f776d1dd6eb5",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -172,7 +181,7 @@
                 {
                     "name": "",
                     "id": "68b09ddc-5478-4e4a-acf3-6f005d0408a3",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -221,6 +230,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b3c56ed-44f0-4d3c-871e-bd4696fd1902",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13ea52b5-37a8-45e7-8242-7f77eb8dcb66",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

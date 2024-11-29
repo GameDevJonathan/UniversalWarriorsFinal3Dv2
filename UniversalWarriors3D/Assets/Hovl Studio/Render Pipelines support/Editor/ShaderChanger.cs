@@ -5,21 +5,10 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-
 namespace HovlStudio
 {
-
-    [InitializeOnLoad]
     public class RPChanger : EditorWindow
     {
-        static RPChanger()
-        {
-            if (File.Exists(AssetDatabase.GUIDToAssetPath("840fe54da571a73489cfb0206103fe17")))
-            {
-                ShowWindow();
-                AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath("840fe54da571a73489cfb0206103fe17"));
-            }
-        }
 
         private int pipeline;
         [MenuItem("Tools/RP changer for Hovl Studio assets")]
@@ -34,6 +23,7 @@ namespace HovlStudio
         public void OnGUI()
         {
             GUILayout.Label("Change VFX pipeline to:");
+
             if (GUILayout.Button("Standard RP"))
             {
                 FindShaders();
@@ -172,14 +162,14 @@ namespace HovlStudio
                     AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("f84b1a03ad7e89847a42377fdc96d921"), false);
                 else
                     AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2019.2+ URP.unitypackage", false);
-                OnImportPackageCompleted();
+                AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                 break;
             case 2:
                 if (AssetDatabase.GUIDToAssetPath("d3b0d4375975afb4abf9fc745a5c788b") != null)
                     AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("d3b0d4375975afb4abf9fc745a5c788b"), false);
                 else
                     AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2019.2+ HDRP.unitypackage", false);
-                OnImportPackageCompleted();
+                AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                 break;
             default:
                 Debug.Log("You didn't choose pipeline");
@@ -194,14 +184,14 @@ namespace HovlStudio
                     AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("ed9c841398c7fc1459cc7ad939bda692"), false);
                 else
                     AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2019.3+ URP.unitypackage", false);
-                OnImportPackageCompleted();
+                AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                 break;
             case 2:
                 if (AssetDatabase.GUIDToAssetPath("dbb762d9e9eb76343b2843640c4ede68") != null)
                     AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("dbb762d9e9eb76343b2843640c4ede68"), false);
                 else
                     AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2019.3+ HDRP.unitypackage", false);
-                OnImportPackageCompleted();
+                AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                 break;
             default:
                 Debug.Log("You didn't choose pipeline");
@@ -216,14 +206,14 @@ namespace HovlStudio
                         AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("e7ce4ef7e809f0e489f5dd61cfe34b01"), false);
                     else
                         AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2020+ URP.unitypackage", false);
-                    OnImportPackageCompleted();
+                    AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                     break;
                 case 2:
                     if (AssetDatabase.GUIDToAssetPath("1c827ac5cb1890a488436295a34d4d25") != null)
                         AssetDatabase.ImportPackage(AssetDatabase.GUIDToAssetPath("1c827ac5cb1890a488436295a34d4d25"), false);
                     else
                         AssetDatabase.ImportPackage("Assets/Hovl Studio/Render Pipelines support/Unity 2020+ HDRP.unitypackage", false);
-                    OnImportPackageCompleted();
+                    AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
                     break;
                 default:
                     Debug.Log("You didn't choose pipeline");
@@ -231,7 +221,7 @@ namespace HovlStudio
             }
 #endif
         }
-        private void OnImportPackageCompleted()
+        private void OnImportPackageCompleted(string packagename)
         {
             //Debug.Log($"Imported package: {packagename}");
             FindShaders();
@@ -241,6 +231,8 @@ namespace HovlStudio
                     ChangeToURP();
                     break;
                 case 2:
+                    ChangeToHDRP();
+                    ChangeToSRP();
                     ChangeToHDRP();
                     break;
                 default:
