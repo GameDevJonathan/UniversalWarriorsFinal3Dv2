@@ -101,6 +101,18 @@ MonoBehaviour:
     animationDistance: 0
     serialized: 1
   heavyAttacks: []
+  specialAttacks:
+  - attackType: 0
+    minDistance: 0
+    maxDistance: 4
+    healthThreshold: 100
+    attacks: []
+    attack:
+      attack: {fileID: 0}
+      canBeCharged: 0
+      chargedAttack: {fileID: 0}
+    animationDistance: 0
+    serialized: 1
   reactionData: {fileID: 11400000, guid: d5767fa4d922fc047b704fcfb4e44a75, type: 2}
   weaponEquipAnimation: {fileID: 0}
   weaponActivationTime: 0

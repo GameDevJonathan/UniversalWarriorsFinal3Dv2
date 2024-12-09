@@ -34,17 +34,17 @@ public class ProjectileMover : MonoBehaviour
                 Destroy(flashInstance, flashPsParts.main.duration);
             }
         }
-        //Destroy(gameObject,5);
+        Destroy(gameObject,5);
 	}
 
     void FixedUpdate ()
     {
-		//if (speed != 0)
-  //      {
-  //          rb.linearVelocity = transform.forward * speed;
-  //          //transform.position += transform.forward * (speed * Time.deltaTime);         
-  //      }
-	}
+        if (speed != 0)
+        {
+            rb.linearVelocity = transform.forward * speed;
+            //transform.position += transform.forward * (speed * Time.deltaTime);         
+        }
+    }
 
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter(Collision collision)
@@ -79,14 +79,14 @@ public class ProjectileMover : MonoBehaviour
         }
 
         ////Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
-        //foreach (var detachedPrefab in Detached)
-        //{
-        //    if (detachedPrefab != null)
-        //    {
-        //        detachedPrefab.transform.parent = null;
-        //    }
-        //}
-        ////Destroy projectile on collision
-        //Destroy(gameObject);
+        foreach (var detachedPrefab in Detached)
+        {
+            if (detachedPrefab != null)
+            {
+                detachedPrefab.transform.parent = null;
+            }
+        }
+        //Destroy projectile on collision
+        Destroy(gameObject);
     }
 }
