@@ -14,8 +14,8 @@ public class Menus : MonoBehaviour
     
 
     public static bool GameIsPause = false;
-    private LocomotionInputAction _locomotionInputAction;
-    private LocomotionInputAction.LocomotionActions _inputActions;
+    //private LocomotionInputAction _locomotionInputAction;
+    //private LocomotionInputAction.LocomotionActions _inputActions;
     
     
     
@@ -23,25 +23,25 @@ public class Menus : MonoBehaviour
 
     private void Awake()
     {
-        _locomotionInputAction = new LocomotionInputAction();
-        _locomotionInputAction.Locomotion.Enable();
-        _inputActions = _locomotionInputAction.Locomotion;
+        //_locomotionInputAction = new LocomotionInputAction();
+        //_locomotionInputAction.Locomotion.Enable();
+        //_inputActions = _locomotionInputAction.Locomotion;
         
     }
 
     private void Update()
     {
-        if (_inputActions.Pause.WasPressedThisFrame())
-        {
-            if (GameIsPause)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+        //if (_inputActions.Pause.WasPressedThisFrame())
+        //{
+        //    if (GameIsPause)
+        //    {
+        //        Resume();
+        //    }
+        //    else
+        //    {
+        //        Pause();
+        //    }
+        //}
         
     }
 

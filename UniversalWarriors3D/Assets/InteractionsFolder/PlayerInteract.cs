@@ -3,36 +3,36 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
 
-    private LocomotionInputAction _inputAction;
-    public LayerMask layerMask;
+    //private LocomotionInputAction _inputAction;
+    //public LayerMask layerMask;
 
-    private void Awake()
-    {
-        _inputAction = new LocomotionInputAction();
-        _inputAction.Locomotion.Enable();
-    }
+    //private void Awake()
+    //{
+    //    _inputAction = new LocomotionInputAction();
+    //    _inputAction.Locomotion.Enable();
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_inputAction.Locomotion.Interaction.WasPressedThisFrame())
-        {
-            //Debug.Log("button pressed");
-            float interactRange = 4f;            
-            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-            foreach (Collider collider in colliderArray)
-            {
-                //Debug.Log(collider);
-                if(collider.TryGetComponent(out NPCInteractable npcInteractable))                
-                {
-                    //Debug.Log("GotComponnent");
-                    npcInteractable.Interact();
-                }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (_inputAction.Locomotion.Interaction.WasPressedThisFrame())
+    //    {
+    //        //Debug.Log("button pressed");
+    //        float interactRange = 4f;            
+    //        Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+    //        foreach (Collider collider in colliderArray)
+    //        {
+    //            //Debug.Log(collider);
+    //            if(collider.TryGetComponent(out NPCInteractable npcInteractable))                
+    //            {
+    //                //Debug.Log("GotComponnent");
+    //                npcInteractable.Interact();
+    //            }
                 
-            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
 }
 
 /*
