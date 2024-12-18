@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEngine.UI.Image;
+
 
 public class EnviromentScaner : MonoBehaviour
 {
@@ -17,6 +13,9 @@ public class EnviromentScaner : MonoBehaviour
     [SerializeField] float originoffset = 0.5f;
     [SerializeField] Vector3 Direction;
     [SerializeField] LayerMask obstacleLayer;
+
+
+    
 
     public ObstacleHitData1 ObstacleCheck()
     {
@@ -74,9 +73,7 @@ public class EnviromentScaner : MonoBehaviour
         {
             var origin = transform.position + Direction * originoffset + Vector3.up;
             Debug.DrawRay(origin, Vector3.down * ledgeRayLength, Color.green);
-
         }
-
     }
 }
 

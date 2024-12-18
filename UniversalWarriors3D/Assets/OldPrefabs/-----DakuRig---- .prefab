@@ -5632,7 +5632,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <AttackForce>k__BackingField: 0
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   playerStateMachine: {fileID: 6424722687767415212}
@@ -5796,7 +5796,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <AttackForce>k__BackingField: 0
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   playerStateMachine: {fileID: 6424722687767415212}
@@ -16349,7 +16349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787768255735920123}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0052532195, y: 0.9931791, z: -0.10544475, w: -0.049489193}
+  m_LocalRotation: {x: -0.005253243, y: 0.993179, z: -0.10544502, w: -0.049489263}
   m_LocalPosition: {x: 1.6648791, y: -1.0787065, z: 17.038834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21769,8 +21769,6 @@ GameObject:
   - component: {fileID: 5629592464713417348}
   - component: {fileID: 6605998961593751039}
   - component: {fileID: 8695865436772837305}
-  - component: {fileID: 8585570977905126054}
-  - component: {fileID: 8941472552825831741}
   - component: {fileID: 8605808224687507885}
   m_Layer: 8
   m_Name: JaidenDakuMasterComponent
@@ -21848,34 +21846,43 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.4
     <AttackForce>k__BackingField: 10
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
-    <ComboAttackTime>k__BackingField: 0.3
+    <ComboAttackTime>k__BackingField: 0.15
     <AttackForce>k__BackingField: 10
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 4
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: 3
+    <ComboAttackTime>k__BackingField: 0.33
+    <AttackForce>k__BackingField: 20
+    <ShouldAddAttackForce>k__BackingField: 1
+    TimeForce: 0.203
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 3
+  - <AnimationName>k__BackingField: Attack4
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: 4
     <ComboAttackTime>k__BackingField: 0.6
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
-  - <AnimationName>k__BackingField: Attack4
+  - <AnimationName>k__BackingField: Attack5
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
     <ComboAttackTime>k__BackingField: 1
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 1
-    <TimeForce>k__BackingField: 0.3
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 5
   - <AnimationName>k__BackingField: Uppercut
@@ -21884,7 +21891,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 1
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 1
-    <TimeForce>k__BackingField: 0.3
+    TimeForce: 0.35
     <UpForce>k__BackingField: 100
     <ForwardForce>k__BackingField: 5
   - <AnimationName>k__BackingField: DiveKick
@@ -21893,7 +21900,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 1
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 1
-    <TimeForce>k__BackingField: 0.6
+    TimeForce: 0.502
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   - <AnimationName>k__BackingField: SpinningKick
@@ -21902,14 +21909,15 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 1
     <AttackForce>k__BackingField: 20
     <ShouldAddAttackForce>k__BackingField: 1
-    <TimeForce>k__BackingField: 0.1
+    TimeForce: 0
     <UpForce>k__BackingField: 1
     <ForwardForce>k__BackingField: 30
   <SpecialMoves>k__BackingField: []
   Index: 0
   <ParkourActions>k__BackingField:
-  - {fileID: 11400000, guid: 56975f718539f5b4eb9ddd32b6534cb4, type: 2}
+  - {fileID: 11400000, guid: 89ebd337f14a3534bb70ba5c3b32bf54, type: 2}
   - {fileID: 11400000, guid: 4b49fd43f7da6c343959daf7c8221b48, type: 2}
+  - {fileID: 11400000, guid: 56975f718539f5b4eb9ddd32b6534cb4, type: 2}
   <Targeter>k__BackingField: {fileID: 0}
   <EnviromentScaner>k__BackingField: {fileID: 0}
   <MeshTrail>k__BackingField: {fileID: 0}
@@ -22082,7 +22090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfeef1f09b503454586f1446ddf0c4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardRayOffset: {x: 0, y: 1, z: 0}
+  forwardRayOffset: {x: 0, y: 0.4, z: 0}
   forwardRayLength: 1.5
   heightRayLength: 5
   ledgeRayLength: 1000
@@ -22182,74 +22190,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &8585570977905126054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376331207116073681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &8941472552825831741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376331207116073681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors:
-  - m_Transform: {fileID: 0}
-    m_Style:
-      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
-      color: {r: 1, g: 0, b: 0, a: 0.5}
-      size: 0.1
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-    m_Visible: 1
 --- !u!114 &8605808224687507885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54366,6 +54306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5530142124149818861}
+  - component: {fileID: 9055378978697976470}
   m_Layer: 8
   m_Name: JaidenDaku
   m_TagString: Untagged
@@ -54405,6 +54346,148 @@ Transform:
   - {fileID: 8247412351957871652}
   m_Father: {fileID: 4283370979870456851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9055378978697976470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914500392721169043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 5530142124149818861}
+  - {fileID: 4068904563656785258}
+  - {fileID: 933780308846253983}
+  - {fileID: 5286315914954756533}
+  - {fileID: 2696180959961926033}
+  - {fileID: 6573145625161620332}
+  - {fileID: 7505066793242886443}
+  - {fileID: 300856337452095817}
+  - {fileID: 1227984234333713886}
+  - {fileID: 7400206554045156074}
+  - {fileID: 3891754108798510030}
+  - {fileID: 5995932473479436586}
+  - {fileID: 9141049855919292241}
+  - {fileID: 5701678322781343355}
+  - {fileID: 3119151631656119910}
+  - {fileID: 3071509462627154169}
+  - {fileID: 6711003325431418138}
+  - {fileID: 8171009320207590468}
+  - {fileID: 4547156500879240733}
+  - {fileID: 3827657677808853464}
+  - {fileID: 6348914616486216654}
+  - {fileID: 6492326096582714513}
+  - {fileID: 7412672650807984614}
+  - {fileID: 8447190608328848113}
+  - {fileID: 1327127739597683811}
+  - {fileID: 4694949134226164095}
+  - {fileID: 2936582365560405388}
+  - {fileID: 7062089730684461024}
+  - {fileID: 80908954766697240}
+  - {fileID: 570978040269974214}
+  - {fileID: 304442746467324491}
+  - {fileID: 6645706757087443347}
+  - {fileID: 1279924669918205886}
+  - {fileID: 760071370555879466}
+  - {fileID: 2852262061432315331}
+  - {fileID: 3624116964055802274}
+  - {fileID: 7941036848083261669}
+  - {fileID: 6421128377353996427}
+  - {fileID: 2445296978134805955}
+  - {fileID: 2618963225913141383}
+  - {fileID: 2385355235455559238}
+  - {fileID: 2752070452753093544}
+  - {fileID: 7818165371368051407}
+  - {fileID: 2164775434327722925}
+  - {fileID: 5765870733745475756}
+  - {fileID: 1528715936656328753}
+  - {fileID: 4304457798485980745}
+  - {fileID: 3817535102879706075}
+  - {fileID: 4344541323669764465}
+  - {fileID: 1719227897278469074}
+  - {fileID: 7228127768520544176}
+  - {fileID: 6955129702421526130}
+  - {fileID: 604906155697815657}
+  - {fileID: 5497006900740884686}
+  - {fileID: 633976946813624579}
+  - {fileID: 6078709846507425047}
+  - {fileID: 3751702777120115820}
+  - {fileID: 4426686503594614790}
+  - {fileID: 1333223962712774567}
+  - {fileID: 1499481172594504383}
+  - {fileID: 5508323864419452965}
+  - {fileID: 5102430575956707087}
+  - {fileID: 8030924479513945117}
+  - {fileID: 5649991996426064405}
+  - {fileID: 7407767415851175361}
+  - {fileID: 2638898814192347882}
+  - {fileID: 1190545493039638289}
+  - {fileID: 4289268364456584132}
+  - {fileID: 1562289502878421044}
+  - {fileID: 152343937852816902}
+  - {fileID: 4202512479569992983}
+  - {fileID: 4853646072043496186}
+  - {fileID: 1388490693721379021}
+  - {fileID: 1070228598550772371}
+  - {fileID: 1385603272603584387}
+  - {fileID: 5431518445693463567}
+  - {fileID: 3854733869118733491}
+  - {fileID: 5145421586899472721}
+  - {fileID: 7587323605602422143}
+  - {fileID: 3703110062820036701}
+  - {fileID: 1207113503071039464}
+  - {fileID: 1371068977169129823}
+  - {fileID: 7256455955934493294}
+  - {fileID: 5714590002014282649}
+  - {fileID: 2856595877205575190}
+  - {fileID: 7928897617127358014}
+  - {fileID: 1406614617215807498}
+  - {fileID: 4046326543829996259}
+  - {fileID: 4730054162420443758}
+  - {fileID: 7077864413789505756}
+  - {fileID: 7000718217579475824}
+  - {fileID: 3585507776335780008}
+  - {fileID: 2520756317561350700}
+  - {fileID: 2871165843104276802}
+  - {fileID: 1839158665673395788}
+  - {fileID: 1472174359335691048}
+  - {fileID: 6261225210504922096}
+  - {fileID: 495982358313075772}
+  - {fileID: 373040790480230242}
+  - {fileID: 5643868553016633124}
+  - {fileID: 1587561726452586456}
+  - {fileID: 9152390773728465477}
+  - {fileID: 7659303812410347722}
+  - {fileID: 3974787808088132508}
+  - {fileID: 5259779432961664622}
+  - {fileID: 1582618866627224895}
+  - {fileID: 5560301589537452049}
+  - {fileID: 300433511127482885}
+  - {fileID: 4405792014860069077}
+  - {fileID: 4057238864418211996}
+  - {fileID: 8877621711928756347}
+  - {fileID: 931804329186632239}
+  - {fileID: 5747593863976291239}
+  - {fileID: 1655347291288234044}
+  - {fileID: 4550874358757352939}
+  - {fileID: 6820671132212852718}
+  - {fileID: 2209679634909452343}
+  - {fileID: 5088003423256271145}
+  - {fileID: 9000424102428342758}
+  - {fileID: 9180179743985993546}
+  - {fileID: 1079081372029159629}
+  - {fileID: 3908654694578593652}
+  - {fileID: 8247412351957871652}
 --- !u!1 &5946729338328484570
 GameObject:
   m_ObjectHideFlags: 0
@@ -70770,7 +70853,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <AttackForce>k__BackingField: 0
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   playerStateMachine: {fileID: 6424722687767415212}
@@ -71053,7 +71136,7 @@ Transform:
   m_GameObject: {fileID: 7790212406564564395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 0.0000038146973, z: 12.8549595}
+  m_LocalPosition: {x: -0.0000015497208, y: 0.000010728836, z: 12.8549595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76915,7 +76998,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <AttackForce>k__BackingField: 0
     <ShouldAddAttackForce>k__BackingField: 0
-    <TimeForce>k__BackingField: 0
+    TimeForce: 0
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
   playerStateMachine: {fileID: 6424722687767415212}

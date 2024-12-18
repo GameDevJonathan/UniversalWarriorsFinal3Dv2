@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: fa806bdce0eef584a815016614c6e3db
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181695
+  packageName: Girl Martial Arts AnimSet
+  packageVersion: 1.31
+  assetPath: Assets/Animations/Girl_Martial_Arts/Animation/Humanoid/attack_kick02_2.fbx
+  uploadId: 706230
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -48,11 +53,11 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -868,10 +873,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 181695
-  packageName: Girl Martial Arts AnimSet
-  packageVersion: 1.31
-  assetPath: Assets/Animations/Girl_Martial_Arts/Animation/Humanoid/attack_kick02_2.fbx
-  uploadId: 706230

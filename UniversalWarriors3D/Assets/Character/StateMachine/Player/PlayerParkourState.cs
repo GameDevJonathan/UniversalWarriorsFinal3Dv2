@@ -58,7 +58,7 @@ public class PlayerParkourState : PlayerBaseState
 
         if (GetNormalizedTime(stateMachine.Animator, "Parkour") > 1)
         {
-            stateMachine.SwitchState(new Grounded(stateMachine));
+            stateMachine.SwitchState(new Grounded(stateMachine, true));
             return;
         }
 

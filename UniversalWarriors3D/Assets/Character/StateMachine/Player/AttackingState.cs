@@ -8,7 +8,7 @@ public class AttackingState : PlayerBaseState
     private int attackIndex;
     private bool alreadyAppliedForce;
     private bool grounded => stateMachine.WallRun.CheckForGround();
-    private enum SpecialAttacks { Uppercut = 4, SpinningKick = 6 };
+    private enum SpecialAttacks { Uppercut = 5, SpinningKick = 6 };
 
     SpecialAttacks specialAttacks;
 

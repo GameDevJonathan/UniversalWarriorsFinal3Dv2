@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,7 +14,10 @@ public class Attacks
     [field: SerializeField] public bool ShouldAddAttackForce { get; private set; }
 
     [Range(0f,1f)]
-    [SerializeField] public float TimeForce; 
+    [SerializeField] public float TimeForce;
+
+    [MinMaxRangeSlider(0, 1)] 
+    public Vector2[] attackTime;
     
     [field: SerializeField] public float UpForce { get; private set; } 
     [field: SerializeField] public float ForwardForce { get; private set; } 

@@ -19,6 +19,6 @@ MonoBehaviour:
   rotateToObstacle: 1
   enableTargetMatching: 1
   matchBodyPart: 5
-  matchStartTime: 0.37
-  matchEndTime: 0.6
-  <TargetRotation>k__BackingField: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
+  matchStartTime: 0.3
+  matchEndTime: 0.35
+  <TargetRotation>k__BackingField: {x: 0, y: 1, z: 0, w: 0.000000059604645}
