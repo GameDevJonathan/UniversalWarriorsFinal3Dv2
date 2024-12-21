@@ -17,7 +17,7 @@ public class Attacks
     [SerializeField] public float TimeForce;
 
     [MinMaxRangeSlider(0, 1)] 
-    public Vector2[] attackTime;
+    public Vector2[] ImpactWindow;
     
     [field: SerializeField] public float UpForce { get; private set; } 
     [field: SerializeField] public float ForwardForce { get; private set; } 

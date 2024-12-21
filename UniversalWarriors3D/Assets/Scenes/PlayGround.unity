@@ -23356,6 +23356,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[0].ImpactWindow.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[3].ImpactWindow.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[6].<UpForce>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -23373,6 +23383,26 @@ PrefabInstance:
         type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[0].attackTime.Array.data[0].y
       value: 0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[0].ImpactWindow.Array.data[0].x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[0].ImpactWindow.Array.data[0].y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[3].ImpactWindow.Array.data[0].x
+      value: 0.1734694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[3].ImpactWindow.Array.data[0].y
+      value: 0.3979592
       objectReference: {fileID: 0}
     - target: {fileID: 6424722687767415212, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
@@ -23462,7 +23492,7 @@ PrefabInstance:
     - target: {fileID: 7882783138226692186, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

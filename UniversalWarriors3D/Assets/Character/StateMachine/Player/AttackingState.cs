@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class AttackingState : PlayerBaseState
@@ -190,6 +191,14 @@ public class AttackingState : PlayerBaseState
     {
         //Debug.Log(attackIndex);
         stateMachine.Index = attackIndex;
+    }
+
+    private void AttackWindow(Attacks attack)
+    {
+        Debug.Log("Attack Window: Min[0] Max[1]");
+        attack.ImpactWindow
+
+
     }
 
 
