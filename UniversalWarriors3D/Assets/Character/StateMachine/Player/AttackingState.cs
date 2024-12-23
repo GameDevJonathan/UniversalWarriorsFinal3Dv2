@@ -1,4 +1,4 @@
-using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackingState : PlayerBaseState
@@ -13,6 +13,8 @@ public class AttackingState : PlayerBaseState
 
     SpecialAttacks specialAttacks;
 
+    public Collider[] hitBoxes;
+
     public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
     {
         attack = stateMachine.Attacks[AttackIndex];
@@ -20,6 +22,9 @@ public class AttackingState : PlayerBaseState
         this.targetLock = targetLock;
         this.attackIndex = AttackIndex;
 
+        if (stateMachine.hitBoxes != null)
+            this.hitBoxes = stateMachine.hitBoxes;
+        Debug.Log(hitBoxes);
 
     }
 
@@ -75,6 +80,12 @@ public class AttackingState : PlayerBaseState
 
 
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
+
+
+        Debug.Log(hitBoxes.Length);
+
+
+        ActivateHitBox(normalizedTime);
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
@@ -195,8 +206,43 @@ public class AttackingState : PlayerBaseState
 
     private void AttackWindow(Attacks attack)
     {
-        Debug.Log("Attack Window: Min[0] Max[1]");
-        attack.ImpactWindow
+        Debug.Log("Attack Window: " + attack.ImpactWindow[0].x + " " + attack.ImpactWindow[0].y);
+
+    }
+
+    private void ActivateHitBox(float impactTime)
+    {
+        //Debug.Log(attack.ImpactWindow[0]);
+        if (attack.ImpactWindow.Length < 1) return;
+
+
+        if (impactTime > attack.ImpactWindow[0].x && impactTime < attack.ImpactWindow[0].y)
+        {
+            switch (attack.hitBox)
+            {
+                case Attacks.HitBox.Right:
+                    hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
+                    break;
+                case Attacks.HitBox.Left:
+                    hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
+                    break;
+                case Attacks.HitBox.RightFoot:
+                    hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
+                    break;
+                case Attacks.HitBox.LeftFoot:
+                    hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+
+
+            hitBoxes[(int)Attacks.HitBox.RightFoot].gameObject.SetActive(false);
+            hitBoxes[(int)Attacks.HitBox.LeftFoot].gameObject.SetActive(false);
+            hitBoxes[(int)Attacks.HitBox.Right].gameObject.SetActive(false);
+            hitBoxes[(int)Attacks.HitBox.Left].gameObject.SetActive(false);
+        }
 
 
     }

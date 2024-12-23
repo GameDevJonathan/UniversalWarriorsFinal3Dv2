@@ -11,6 +11,7 @@ public class HitBoxData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        col = (col) ? col : GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame

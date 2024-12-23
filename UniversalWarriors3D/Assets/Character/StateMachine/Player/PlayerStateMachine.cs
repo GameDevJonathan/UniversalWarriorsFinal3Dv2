@@ -28,6 +28,8 @@ public class PlayerStateMachine : StateMachine
     #region Weapons, Start Positions and IK
 
     [field: Header("Weapons")]
+
+    [field: SerializeField] public Collider[] hitBoxes { get; private set; }
     [field: SerializeField] public Transform FirePoint { get; private set; }
     [field: SerializeField] public Transform[] Sockets { get; private set; }
     [field: SerializeField] public GameObject[] BusterShot { get; private set; }

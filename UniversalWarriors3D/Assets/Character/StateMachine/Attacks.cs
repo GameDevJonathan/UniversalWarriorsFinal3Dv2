@@ -21,7 +21,10 @@ public class Attacks
     
     [field: SerializeField] public float UpForce { get; private set; } 
     [field: SerializeField] public float ForwardForce { get; private set; } 
-    
+
+    public enum HitBox { Right = 0, Left = 1, RightFoot = 2, LeftFoot = 3 };
+    public HitBox hitBox;
+
 }
 
 [Serializable]
