@@ -10,7 +10,10 @@ public class Attacks
     [field: SerializeField] public int ComboStateIndex { get; private set; } = - 1;
     [field: SerializeField] public float ComboAttackTime { get; private set; }
     
-    [field: SerializeField] public float AttackForce { get; private set; } 
+    [field: SerializeField] public float AttackForce { get; private set; }
+
+    [SerializeField] public bool MultiHitCombo = false;
+    [SerializeField] public int MultiHitIndex = 0;
     [field: SerializeField] public bool ShouldAddAttackForce { get; private set; }
 
     [Range(0f,1f)]
@@ -24,6 +27,22 @@ public class Attacks
 
     public enum HitBox { Right = 0, Left = 1, RightFoot = 2, LeftFoot = 3 };
     public HitBox hitBox;
+
+    public void MultiHitIndexAdd()
+    {
+        if (!MultiHitCombo) return;
+        MultiHitIndex++;
+    }
+
+    public void SetHitBox(HitBox box)
+    {
+        hitBox = box;
+    }
+
+    public void ResetHitIndex()
+    {
+        MultiHitIndex = 0;
+    }
 
 }
 

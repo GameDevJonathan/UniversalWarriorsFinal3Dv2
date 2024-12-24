@@ -24,7 +24,7 @@ public class AttackingState : PlayerBaseState
 
         if (stateMachine.hitBoxes != null)
             this.hitBoxes = stateMachine.hitBoxes;
-        Debug.Log(hitBoxes);
+        
 
     }
 
@@ -48,6 +48,8 @@ public class AttackingState : PlayerBaseState
     {
         Move(deltaTime);
         FaceTarget();
+
+        Debug.Log(attack.MultiHitIndex);
 
         if (attack.ShouldAddAttackForce)
         {
@@ -82,10 +84,11 @@ public class AttackingState : PlayerBaseState
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
 
-        Debug.Log(hitBoxes.Length);
+        
 
 
         ActivateHitBox(normalizedTime);
+        setHitBox();
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
@@ -132,7 +135,6 @@ public class AttackingState : PlayerBaseState
                 stateMachine.SwitchState(new PlayerFallState(stateMachine));
             }
         }
-
 
         previousFrameTime = normalizedTime;
 
@@ -206,7 +208,7 @@ public class AttackingState : PlayerBaseState
 
     private void AttackWindow(Attacks attack)
     {
-        Debug.Log("Attack Window: " + attack.ImpactWindow[0].x + " " + attack.ImpactWindow[0].y);
+        Debug.Log("Attack Window: " + attack.ImpactWindow[attack.MultiHitIndex].x + " " + attack.ImpactWindow[attack.MultiHitIndex].y);
 
     }
 
@@ -216,7 +218,7 @@ public class AttackingState : PlayerBaseState
         if (attack.ImpactWindow.Length < 1) return;
 
 
-        if (impactTime > attack.ImpactWindow[0].x && impactTime < attack.ImpactWindow[0].y)
+        if (impactTime > attack.ImpactWindow[attack.MultiHitIndex].x && impactTime < attack.ImpactWindow[attack.MultiHitIndex].y)
         {
             switch (attack.hitBox)
             {
@@ -247,7 +249,21 @@ public class AttackingState : PlayerBaseState
 
     }
 
+    private void setHitBox()
+    {
+        if(attack.MultiHitCombo == false) { return; }
+        if(attack.AnimationName == "Attack1")
+        {
+            switch (attack.MultiHitIndex)
+            {
+                case 1:
+                    attack.hitBox = Attacks.HitBox.Right;
+                    break;
+            }
+        }
+    }
 
+    
 
 
 
