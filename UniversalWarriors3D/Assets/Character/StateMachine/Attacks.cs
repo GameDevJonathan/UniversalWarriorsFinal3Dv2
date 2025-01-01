@@ -10,7 +10,7 @@ public class Attacks
     [field: SerializeField] public int ComboStateIndex { get; private set; } = - 1;
     [field: SerializeField] public float ComboAttackTime { get; private set; }
     
-    [field: SerializeField] public float AttackForce { get; private set; }
+    [field: SerializeField] public int AttackForce { get; private set; }
 
     [SerializeField] public bool MultiHitCombo = false;
     [SerializeField] public int MultiHitIndex = 0;

@@ -94,7 +94,7 @@ public class Grounded : PlayerBaseState
         }
        
 
-        Debug.Log($"WallRunCheck for ground function {grounded}");
+        //Debug.Log($"WallRunCheck for ground function {grounded}");
         hitData = stateMachine.EnviromentScaner.ObstacleCheck();
 
         if (grounded)
@@ -329,6 +329,7 @@ public class Grounded : PlayerBaseState
     public void OnTarget()
     {
         if (!stateMachine.Targeter.SelectTarget()) return;
+        Debug.Log("GroundedState:: OnTarget() Target Selection successful");
         stateMachine.InputReader.Targeting = true;
         //stateMachine.InputReader.CinemachineCameraTarget.transform.rotation.eulerAngles.y = 0f;
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));

@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Targeter : MonoBehaviour
 {
@@ -38,7 +38,7 @@ public class Targeter : MonoBehaviour
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }
         targets.Add(target);
-        target.OnDestroyed += RemoveTarget;
+        //target.OnDestroyed += RemoveTarget;
     }
 
 
@@ -46,44 +46,44 @@ public class Targeter : MonoBehaviour
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }
         targets.Remove(target);
-        stateMachine.InputReader.Targeting = false;
-        RemoveTarget(target);
+        //stateMachine.InputReader.Targeting = false;
+        //RemoveTarget(target);
     }
 
     public void SelectClosestTarget()
     {
-        if (CurrentTarget != null) return;
-        if (targets.Count == 0) return;
-        float closestDistance = Mathf.Infinity;
-        Target closestTarget = null;
+        //if (CurrentTarget != null) return;
+        //if (targets.Count == 0) return;
+        //float closestDistance = Mathf.Infinity;
+        //Target closestTarget = null;
 
-        foreach(Target target in targets)
-        {
-            float currentDistance;
-            currentDistance = Vector3.Distance(transform.position, target.transform.position);
+        //foreach(Target target in targets)
+        //{
+        //    float currentDistance;
+        //    currentDistance = Vector3.Distance(transform.position, target.transform.position);
 
-            if(currentDistance < closestDistance)
-            {
-                closestDistance = currentDistance;
-                closestTarget = target;
-            }
-        }
+        //    if(currentDistance < closestDistance)
+        //    {
+        //        closestDistance = currentDistance;
+        //        closestTarget = target;
+        //    }
+        //}
 
-        QuickTarget = closestTarget;
-        Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
-        //Debug.Log($"look position {lookPos}");
-        lookPos.y = 0f;
+        //QuickTarget = closestTarget;
+        //Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
+        ////Debug.Log($"look position {lookPos}");
+        //lookPos.y = 0f;
 
-        float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
-        //Debug.Log($"Distance {distance}");
-        if(distance < 3f)
-            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        //float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
+        ////Debug.Log($"Distance {distance}");
+        //if(distance < 3f)
+        //    stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     private void RemoveTarget(Target target)
     {
         if (CurrentTarget == target)
@@ -107,6 +107,7 @@ public class Targeter : MonoBehaviour
 
         foreach (Target target in targets)
         {
+            Debug.Log("Target: " + target);
             Vector2 viewPos = mainCamera.WorldToViewportPoint(target.transform.position);
 
             if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
@@ -122,23 +123,47 @@ public class Targeter : MonoBehaviour
                 closestTargetDistance = toCenter.sqrMagnitude;
             }
         }
-        if (closestTarget == null) { return false; }
+
+        //Debug.Log("Targeter Component:: " + closestTarget);
+        if (closestTarget == null) 
+        { 
+            return false;
+        }
+        else
+        {
+            Debug.Log(closestTarget);
+        }
+        //if (closestTarget != null)
+        //{ Debug.Log("We have a target " + closestTarget); }
+        //else
+        //    return false;
+
 
         CurrentTarget = closestTarget;
+        Debug.Log("current target transform " + CurrentTarget.transform);
 
-        if (CurrentTarget)
-        {
-            switch (CurrentTarget.type)
-            {
-                case Target.Type.small:
-                    targetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
-                    break;
-                case Target.Type.large:
-                    targetGroup.AddMember(CurrentTarget.transform, .25f, 2f);
-                    break;
-            }
 
-        }
+        targetGroup.AddMember(CurrentTarget.transform,.1f,2f);
+
+        //Debug.Log("Targeter Component:: CurrentTarget =  " + CurrentTarget);
+        //Debug.Log("Type of  =  " + CurrentTarget);
+
+        //if (CurrentTarget)
+        //{
+        //    Debug.Log("Targeter Component:: if statement hit here ");
+
+        //    targetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
+        //    //switch (CurrentTarget.type)
+        //    //{
+        //    //    case Target.Type.small:
+        //    //        targetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
+        //    //        break;
+        //    //    case Target.Type.large:
+        //    //        targetGroup.AddMember(CurrentTarget.transform, .25f, 2f);
+        //    //        break;
+        //    //}
+
+        //}
 
 
         return true;

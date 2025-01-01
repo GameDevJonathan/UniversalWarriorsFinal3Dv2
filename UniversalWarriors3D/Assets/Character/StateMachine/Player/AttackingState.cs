@@ -1,9 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackingState : PlayerBaseState
 {
     Attacks attack;
+    WeaponDamage weapon;
     float previousFrameTime;
     private bool targetLock;
     private int attackIndex;
@@ -18,6 +18,7 @@ public class AttackingState : PlayerBaseState
     public AttackingState(PlayerStateMachine stateMachine, int AttackIndex, bool targetLock = false) : base(stateMachine)
     {
         attack = stateMachine.Attacks[AttackIndex];
+        weapon = stateMachine.weapon[(int)attack.hitBox];
         stateMachine.InputReader.FightingStance = true;
         this.targetLock = targetLock;
         this.attackIndex = AttackIndex;
@@ -30,6 +31,9 @@ public class AttackingState : PlayerBaseState
 
     public override void Enter()
     {
+
+        Debug.Log($"HitBox: {(int)attack.hitBox} ");
+        weapon.SetAttack(attack.AttackForce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
         if (attack.AnimationName == "Uppercut")
@@ -49,7 +53,7 @@ public class AttackingState : PlayerBaseState
         Move(deltaTime);
         FaceTarget();
 
-        Debug.Log(attack.MultiHitIndex);
+        //Debug.Log(attack.MultiHitIndex);
 
         if (attack.ShouldAddAttackForce)
         {
@@ -88,7 +92,7 @@ public class AttackingState : PlayerBaseState
 
 
         ActivateHitBox(normalizedTime);
-        setHitBox();
+        
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {

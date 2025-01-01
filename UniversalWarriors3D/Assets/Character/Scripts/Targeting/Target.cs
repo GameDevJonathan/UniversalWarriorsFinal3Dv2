@@ -4,8 +4,8 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public event Action<Target> OnDestroyed;
-    public enum Type { small = 1, heavy = 2, large = 3}
-    public Type type;
+    //public enum Type { small = 1, heavy = 2, large = 3}
+    //public Type type;
 
     private Target target;
 
@@ -22,12 +22,7 @@ public class Target : MonoBehaviour
     public void delete()
     {
         target = GetComponent<Target>();
-       Destroy(target);
-        
-        
-        
+       Destroy(target);        
     }
-
-
 
 }

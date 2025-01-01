@@ -23,6 +23,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public EnviromentScaner EnviromentScaner { get; private set; }
     [field: SerializeField] public MeshTrail MeshTrail { get; private set; }
+    [field:SerializeField] public WeaponDamage[] weapon { get; private set; }
+
     #endregion
 
     #region Weapons, Start Positions and IK

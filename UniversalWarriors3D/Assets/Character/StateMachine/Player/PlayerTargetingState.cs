@@ -74,7 +74,6 @@ public class PlayerTargetingState : PlayerBaseState
         {
             angle = 0f;
         }
-
         //Debug.Log($"JoystickAngle: {angle}");
 
         FaceTarget();
@@ -84,10 +83,10 @@ public class PlayerTargetingState : PlayerBaseState
         if (stateMachine.Targeter.CurrentTarget != null)
         {
             RayCastDebug();
-            if (stateMachine.Targeter.CurrentTarget.type == Target.Type.large)
-                stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one * 2.5f;
-            else
-                stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one;
+            //if (stateMachine.Targeter.CurrentTarget.type == Target.Type.large)
+            //    stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one * 2.5f;
+            //else
+            //    stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one;
 
         }
 

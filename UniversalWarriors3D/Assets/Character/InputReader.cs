@@ -134,7 +134,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     //Material
     [Header("Material Glow")]
-    [SerializeField] private Material _material;
+    //[SerializeField] private Material _material;
     [SerializeField] private bool _canFlicker;
     [SerializeField] public float _targetValue;
     [SerializeField] private float _minTarget;
@@ -155,7 +155,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
         //_InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
 
-        _material?.SetFloat(_targetRef, _targetValue);
+        //_material?.SetFloat(_targetRef, _targetValue);
     }
 
 
@@ -176,11 +176,11 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
         if (controls.Player.ResetCamera.WasPressedThisFrame() && _softReset == false)
         {
-            _softReset = true;
-            StartCoroutine(SoftReset());
+            //_softReset = true;
+            //StartCoroutine(SoftReset());
         }
 
-        FlickerMaterial(_material, _boolRef, _canFlicker);
+        //FlickerMaterial(_material, _boolRef, _canFlicker);
 
         _canFlicker = chargeLevel >= 1 ? true : false;
 
@@ -251,52 +251,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         //Debug.Log($"on/off: {mat.GetInt(ShaderBoolRef)}");
 
-        mat?.SetInt(ShaderBoolRef, Convert.ToInt32(on_off));
-
-        if (chargeAmount >= _minRate && chargeAmount < _midRate)
-        {
-            chargeLevel = 1;
-            Mathf.Clamp(_targetValue, 0, _minTarget);
-
-            if (_targetValue < _minTarget)
-                _targetValue += Time.deltaTime;
-
-            _material.SetFloat(_targetRef, _targetValue);
-        }
-
-        if (chargeAmount >= _midRate && chargeAmount < _maxRate)
-        {
-            chargeLevel = 2;
-            //_minChargeEffect?.SetActive(true);
-
-            if (_targetValue < _midTarget)
-                _targetValue += Time.deltaTime;
-
-            _material.SetFloat(_targetRef, _targetValue);
-        }
-
-        if (chargeAmount >= _maxRate)
-        {
-            chargeLevel = 3;
-            //_minChargeEffect?.SetActive(false);
-            //_maxChargeEffect?.SetActive(true);
-
-            if (_targetValue < _maxTarget)
-                _targetValue += Time.deltaTime;
-
-            _material.SetFloat(_targetRef, _targetValue);
-
-        }
-
-        if (chargeAmount == 0)
-        {
-            //_maxChargeEffect?.SetActive(false);
-            //_minChargeEffect?.SetActive(false);
-            chargeLevel = 0;
-            _targetValue = 0.1f;
-            _material.SetFloat(_targetRef, _targetValue);
-
-        }
+        
     }
 
     public void OnBlock(InputAction.CallbackContext context)
@@ -353,12 +308,13 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnLockOn(InputAction.CallbackContext context)
     {
-        Debug.Log("ButtonPressed");
         if (context.performed && !Targeting)
         {
+            Debug.Log("ButtonPressed");
             //rotation = new Quaternion(0, 0, 0,0);            
             TargetEvent?.Invoke();
         }
+
         else if (context.performed && Targeting)
         {
 
