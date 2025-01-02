@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 32f1fcf7a771088408731b8e39a12d36
+guid: 8a1ff138882e5e84cbdf947958f079fc
 ModelImporter:
-  serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: 3394898544683033744
-    second: move_jog_frontL45
+  serializedVersion: 22200
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -17,6 +14,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -37,7 +35,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move_jog_frontL45
       takeName: move_jog_frontL45
-      internalID: 0
+      internalID: 3394898544683033744
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -71,10 +69,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -86,6 +86,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -96,6 +97,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -866,7 +868,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 29b31f7e516c1514faca4cb343b0716b,
@@ -876,6 +878,8 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
@@ -884,6 +888,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 259191
   packageName: Unleashed boxer AnimSet
-  packageVersion: 1.0
-  assetPath: Assets/Unleashed_boxer_AnimSet/Animation/Humanoid/inplace/move_jog_frontL45_inplace.fbx
-  uploadId: 596407
+  packageVersion: 1.01
+  assetPath: Assets/Unleashed_boxer_AnimSet/Animation/Humanoid/Inplace/move_jog_frontL45_inplace.fbx
+  uploadId: 712300

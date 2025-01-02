@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: a243a50e0bd8a284e9a9ee9835fbfabc
+guid: 5eeeeb091268f134b9431d0974996273
 ModelImporter:
-  serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -2993534804863918692
-    second: jump
+  serializedVersion: 22200
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -17,6 +14,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -37,7 +35,7 @@ ModelImporter:
     - serializedVersion: 16
       name: jump
       takeName: jump
-      internalID: 0
+      internalID: -2993534804863918692
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -71,10 +69,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -86,6 +86,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -96,6 +97,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -851,7 +853,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0a81a1fc2e738b9469b3900fdbb5dfa4,
@@ -861,6 +863,8 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
@@ -869,6 +873,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 262994
   packageName: MuayThai AnimSet
-  packageVersion: 1.0
-  assetPath: Assets/MuayThai_AnimSet/Animations/Humanoid/inplace/jump_inplace.fbx
-  uploadId: 606747
+  packageVersion: 1.01
+  assetPath: Assets/MuayThai_AnimSet/Animations/Humanoid/Inplace/jump_inplace.fbx
+  uploadId: 712304

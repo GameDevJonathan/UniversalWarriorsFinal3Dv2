@@ -1,18 +1,8 @@
 fileFormatVersion: 2
-guid: 6eef01d64b4bbf045a6253bece7e14a6
-AssetOrigin:
-  serializedVersion: 1
-  productId: 262994
-  packageName: MuayThai AnimSet
-  packageVersion: 1.0
-  assetPath: Assets/MuayThai_AnimSet/Animations/Humanoid/move_jog_backL45.fbx
-  uploadId: 606747
+guid: b7978d11ba7552949a5f838b87a1b069
 ModelImporter:
   serializedVersion: 22200
-  internalIDToNameTable:
-  - first:
-      74: -7356457538135068887
-    second: move_jog_backL45
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -26,6 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -43,7 +35,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move_jog_backL45
       takeName: move_jog_backL45
-      internalID: 0
+      internalID: -7356457538135068887
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -56,7 +48,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -82,7 +74,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 0
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -861,7 +853,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0a81a1fc2e738b9469b3900fdbb5dfa4,
@@ -871,9 +863,16 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
-  remapMaterialsIfMaterialImportModeIsNone: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262994
+  packageName: MuayThai AnimSet
+  packageVersion: 1.01
+  assetPath: Assets/MuayThai_AnimSet/Animations/Humanoid/move_jog_backL45.fbx
+  uploadId: 712304

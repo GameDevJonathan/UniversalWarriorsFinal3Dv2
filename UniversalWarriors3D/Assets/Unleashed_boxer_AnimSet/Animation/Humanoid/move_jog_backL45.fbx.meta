@@ -1,18 +1,8 @@
 fileFormatVersion: 2
-guid: 7954172636dc32b4a85679c747132c38
-AssetOrigin:
-  serializedVersion: 1
-  productId: 259191
-  packageName: Unleashed boxer AnimSet
-  packageVersion: 1.0
-  assetPath: Assets/Unleashed_boxer_AnimSet/Animation/Humanoid/move_jog_backL45.fbx
-  uploadId: 596407
+guid: 988640df271cdfc469ab0f5822f28e64
 ModelImporter:
   serializedVersion: 22200
-  internalIDToNameTable:
-  - first:
-      74: -7356457538135068887
-    second: move_jog_backL45
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -26,6 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -43,7 +35,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move_jog_backL45
       takeName: move_jog_backL45
-      internalID: 0
+      internalID: -7356457538135068887
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -56,7 +48,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -82,7 +74,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 0
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -876,7 +868,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 29b31f7e516c1514faca4cb343b0716b,
@@ -886,9 +878,16 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
-  remapMaterialsIfMaterialImportModeIsNone: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259191
+  packageName: Unleashed boxer AnimSet
+  packageVersion: 1.01
+  assetPath: Assets/Unleashed_boxer_AnimSet/Animation/Humanoid/move_jog_backL45.fbx
+  uploadId: 712300

@@ -6472,6 +6472,7 @@ GameObject:
   - component: {fileID: 5008002692977653424}
   - component: {fileID: 8253221035389543615}
   - component: {fileID: 3185382053751120855}
+  - component: {fileID: 7838187919098781549}
   m_Layer: 8
   m_Name: TargetCamera
   m_TagString: Untagged
@@ -6488,7 +6489,7 @@ Transform:
   m_GameObject: {fileID: 1787768255735920123}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: 0.5121734, y: -1.4426504, z: 10.530559}
+  m_LocalPosition: {x: 0.4158654, y: -3.7766516, z: 4.539493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6515,7 +6516,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 7540940121463433349}
+    TrackingTarget: {fileID: 4283370979870456851}
     LookAtTarget: {fileID: 2987660405778842096}
     CustomLookAtTarget: 1
   Lens:
@@ -6550,20 +6551,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0.5, y: -0.1, z: -2.52}
+  Damping: {x: 0, y: 0, z: 0}
+  ShoulderOffset: {x: 0.5, y: 2, z: -5.5}
   VerticalArmLength: 0.79
   CameraSide: 1
   CameraDistance: 3.4
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 1
-    IgnoreTag: 
+      m_Bits: 257
+    IgnoreTag: Untagged
     CameraRadius: 0.2
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
+--- !u!114 &7838187919098781549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787768255735920123}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 1.79, z: 0}
+  Damping: {x: 0.5, y: 0.5}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &1799131132079005119
 GameObject:
   m_ObjectHideFlags: 0
@@ -7140,12 +7170,12 @@ MonoBehaviour:
     <AttackForce>k__BackingField: 10
     MultiHitCombo: 0
     MultiHitIndex: 0
-    <ShouldAddAttackForce>k__BackingField: 0
-    TimeForce: 0
+    <ShouldAddAttackForce>k__BackingField: 1
+    TimeForce: 0.2
     ImpactWindow:
-    - {x: 0.1734694, y: 0.5492749}
+    - {x: 0.4, y: 0.6}
     <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 5
     hitBox: 3
   - <AnimationName>k__BackingField: Attack5
     <TransitionDuration>k__BackingField: 0.2
@@ -12314,7 +12344,7 @@ Transform:
   m_GameObject: {fileID: 7790212406564564395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49999994, y: -0.6899998, z: 5.920003}
+  m_LocalPosition: {x: -0.00024784362, y: -0.0013826204, z: 0.0067703696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12336,7 +12366,7 @@ MonoBehaviour:
   RotationMode: 0
   UpdateMethod: 1
   Targets:
-  - Object: {fileID: 7540940121463433349}
+  - Object: {fileID: 4283370979870456851}
     Weight: 1
     Radius: 0
   m_LegacyTargets: []
