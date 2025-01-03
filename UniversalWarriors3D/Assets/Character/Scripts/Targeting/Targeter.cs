@@ -52,32 +52,32 @@ public class Targeter : MonoBehaviour
 
     public void SelectClosestTarget()
     {
-        //if (CurrentTarget != null) return;
-        //if (targets.Count == 0) return;
-        //float closestDistance = Mathf.Infinity;
-        //Target closestTarget = null;
+        if (CurrentTarget != null) return;
+        if (targets.Count == 0) return;
+        float closestDistance = Mathf.Infinity;
+        Target closestTarget = null;
 
-        //foreach(Target target in targets)
-        //{
-        //    float currentDistance;
-        //    currentDistance = Vector3.Distance(transform.position, target.transform.position);
+        foreach (Target target in targets)
+        {
+            float currentDistance;
+            currentDistance = Vector3.Distance(transform.position, target.transform.position);
 
-        //    if(currentDistance < closestDistance)
-        //    {
-        //        closestDistance = currentDistance;
-        //        closestTarget = target;
-        //    }
-        //}
+            if (currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                closestTarget = target;
+            }
+        }
 
-        //QuickTarget = closestTarget;
-        //Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
-        ////Debug.Log($"look position {lookPos}");
-        //lookPos.y = 0f;
+        QuickTarget = closestTarget;
+        Vector3 lookPos = QuickTarget.transform.position - stateMachine.transform.position;
+        //Debug.Log($"look position {lookPos}");
+        lookPos.y = 0f;
 
-        //float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
-        ////Debug.Log($"Distance {distance}");
-        //if(distance < 3f)
-        //    stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        float distance = Vector3.Distance(QuickTarget.transform.position, stateMachine.transform.position);
+        //Debug.Log($"Distance {distance}");
+        if (distance < 3f)
+            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
 
 
