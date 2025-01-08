@@ -18,7 +18,8 @@ public class WeaponDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Sensor") || other.CompareTag("Player")) { return; }
+        if (other.CompareTag("Sensor") || other == myCollider) { return; }
+        
         Debug.Log(other.gameObject.name);
 
         if (alreadyCollidedWith.Contains(other)) { return; }

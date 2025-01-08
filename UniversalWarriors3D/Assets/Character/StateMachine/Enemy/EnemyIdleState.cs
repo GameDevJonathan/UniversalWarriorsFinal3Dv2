@@ -25,6 +25,17 @@ public class EnemyIdleState : EnemyBaseState
     }
     public override void Tick(float deltaTime)
     {
+        Move(deltaTime);
+        if (IsInChaseRange())
+        {
+            Debug.Log("Entering Chasing State");
+            //Transition to chasing state
+            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
+            return;
+        }
+
+
+
         if (RandomIdleTimer > 0)
         {
             //RandomIdleTimer = Mathf.Max(RandomIdleTimer - Time.deltaTime, 0);

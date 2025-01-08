@@ -1082,7 +1082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8656691471661814717
 Transform:
   m_ObjectHideFlags: 0
@@ -5960,6 +5960,7 @@ GameObject:
   - component: {fileID: 8850379863112918799}
   - component: {fileID: 8821250252075897252}
   - component: {fileID: 1560392280017986289}
+  - component: {fileID: 3247488755785880077}
   m_Layer: 0
   m_Name: -----EnemyRig----
   m_TagString: Untagged
@@ -6043,6 +6044,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d974f06459fded041aeef84f4e817f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 3247488755785880077}
+  <PlayerDectionRange>k__BackingField: 10
+  <IdleRangeTimer>k__BackingField: {x: 0, y: 0}
+--- !u!95 &3247488755785880077
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446364552463435663}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3feca5a5467237043ab2392f84137024, type: 3}
+  m_Controller: {fileID: 9100000, guid: 244551d605afede4e8770c2a80940e5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5496618881035962012
 GameObject:
   m_ObjectHideFlags: 0
