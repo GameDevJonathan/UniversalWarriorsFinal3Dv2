@@ -25,7 +25,7 @@ public class AttackingState : PlayerBaseState
 
         if (stateMachine.hitBoxes != null)
             this.hitBoxes = stateMachine.hitBoxes;
-        
+
 
     }
 
@@ -36,7 +36,7 @@ public class AttackingState : PlayerBaseState
         weapon.SetAttack(attack.AttackForce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
-        if (attack.AnimationName == "Uppercut")
+        if (attack.AnimationName == "Uppercut" || attack.AnimationName == "Attack3")
         {
             stateMachine.Animator.applyRootMotion = false;
 

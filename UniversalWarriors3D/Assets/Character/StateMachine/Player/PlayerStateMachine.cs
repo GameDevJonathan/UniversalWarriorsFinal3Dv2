@@ -13,6 +13,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public WallRun WallRun { get; private set; }
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
     [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
@@ -92,6 +93,18 @@ public class PlayerStateMachine : StateMachine
     private void OnEnable()
     {
         GetComponents();
+    
+        Health.OnTakeDamage += DamageEvent;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnTakeDamage -= DamageEvent;
+    }
+
+    private void DamageEvent()
+    {
+        SwitchState(new PlayerImpactState(this));
     }
 
 
@@ -213,6 +226,7 @@ public class PlayerStateMachine : StateMachine
         Targeter = GetComponentInChildren<Targeter>();
         EnviromentScaner = GetComponent<EnviromentScaner>();
         MeshTrail = GetComponent<MeshTrail>();
+        Health = GetComponent<Health>();
     }
 
     public Attacks SetAttackIndex()
@@ -221,6 +235,8 @@ public class PlayerStateMachine : StateMachine
         return Attacks[Index];
         
     }
+
+    
 
 
 
