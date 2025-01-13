@@ -9,7 +9,7 @@ public class AttackingState : PlayerBaseState
     private int attackIndex;
     private bool alreadyAppliedForce;
     private bool grounded => stateMachine.WallRun.CheckForGround();
-    private enum SpecialAttacks { Uppercut = 5, SpinningKick = 6 };
+    private enum SpecialAttacks { Uppercut = 5, SpinningKick = 6, Launcher = 7 };
 
     SpecialAttacks specialAttacks;
 
@@ -31,12 +31,15 @@ public class AttackingState : PlayerBaseState
 
     public override void Enter()
     {
+        Debug.Log($"Attcking LaunchForce: {attack.LaunchForce}");
 
-        Debug.Log($"HitBox: {(int)attack.hitBox} ");
+        //Debug.Log($"HitBox: {(int)attack.hitBox} ");
         weapon.SetAttack(attack.AttackForce);
+        weapon.SetAttackType(attack.LauncherAttack);
+        weapon.SetLaunchForce(attack.LaunchForce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
-        if (attack.AnimationName == "Uppercut" || attack.AnimationName == "Attack3")
+        if (attack.AnimationName == "Uppercut" )
         {
             stateMachine.Animator.applyRootMotion = false;
 
@@ -59,7 +62,7 @@ public class AttackingState : PlayerBaseState
         {
             if (GetNormalizedTime(stateMachine.Animator, "Attack") >= attack.TimeForce)
             {
-                Debug.Log("adding Force");
+                //Debug.Log("adding Force");
                 TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, attack.UpForce, attack.ForwardForce);
             }
         }
@@ -109,6 +112,11 @@ public class AttackingState : PlayerBaseState
             {
                 Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
+            }
+
+            if(stateMachine.InputReader.HeavyAttackButtonPressed)
+            {
+                TryLauncher(normalizedTime);
             }
 
 
@@ -188,6 +196,15 @@ public class AttackingState : PlayerBaseState
         }
 
 
+    }
+
+    private void TryLauncher(float normalizedTime)
+    {
+        if (attack.ComboStateIndex == -1) { return; }
+        if(normalizedTime < attack.ComboAttackTime) {return; }
+        stateMachine.Targeter.SelectClosestTarget();        
+        stateMachine.SwitchState(new AttackingState(stateMachine, 7, targetLock));
+        
     }
 
 

@@ -15,6 +15,7 @@ public class ForceReceiver : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float Normal = 30f;
     [SerializeField] private float wallSlideSpeed = 1f;
+    [SerializeField] private float floatSpeed = 10f;
     [SerializeField] private float DiveSpeed = 30f;
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
 
@@ -81,7 +82,7 @@ public class ForceReceiver : MonoBehaviour
    
     /// <summary>    
     ///  Sets Gravity 
-    ///  0: Normal Gravity 1: Wall Slide
+    ///  0: Normal Gravity 1: Wall Slide 2: floatSpeed
     /// </summary>
     
     
@@ -90,10 +91,13 @@ public class ForceReceiver : MonoBehaviour
         switch (setGravity)
         {
             case 0:
-                gravity = Normal; 
+                this.gravity = Normal; 
                 break;
             case 1:
-                gravity = wallSlideSpeed;
+                this.gravity = wallSlideSpeed;
+                break;
+            case 2:
+                this.gravity = floatSpeed;
                 break;
         }
     }

@@ -33,6 +33,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool JumpButtonPressed => controls.Player.Jump.WasPressedThisFrame();
     public bool AttackButtonPressed => controls.Player.LightAttack.WasPressedThisFrame();
     public bool AttackButtonHeld => controls.Player.LightAttack.WasPerformedThisFrame();
+    public bool HeavyAttackButtonPressed => controls.Player.HeavyAttack.WasPressedThisFrame();
     public bool BlockButtonReleased => controls.Player.Block.WasReleasedThisFrame();
     public bool GrabButtonPressed => controls.Player.Grab.WasPressedThisFrame();
 
@@ -86,6 +87,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action GrabEvent;
     public event Action JumpEvent;
     public event Action MeleeEvent;
+    public event Action HeavyMeleeEvent;
     public event Action TargetEvent;
     public event Action SpecialBeamEvent;
     #endregion
@@ -339,6 +341,24 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            HeavyMeleeEvent?.Invoke();
+        }
+
+        if (context.performed)
+        {
+            Debug.Log($"Heavy Context: ${context}");
+        }
+
+        //if (context.canceled)
+        //{
+        //    Debug.Log($"Heavy Context: ${context}");
+        //}
+    }
+
     public void OnSkills(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -413,5 +433,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         {
             Debug.Log($"Parkour Context: ${context}");
         }
-    }    
+    }
+
+    
 }

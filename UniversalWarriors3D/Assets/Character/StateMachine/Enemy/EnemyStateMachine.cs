@@ -1,24 +1,25 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.AI;
- 
+
 
 public class EnemyStateMachine : StateMachine
 {
     [field: SerializeField] public Animator Animator { get; private set; }
-    [field:SerializeField] public CharacterController CharacterController { get; private set; }
-    [field:SerializeField] public NavMeshAgent Agent { get; private set; }
-    [field:SerializeField] public WeaponDamage Weapon { get; private set; }
-    [field:SerializeField] public ForceReceiver ForceReceiver { get; private set; }
-    [field:SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public WeaponDamage Weapon { get; private set; }
+    [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
     public GameObject Player { get; private set; }
 
-    [field:SerializeField] public float PlayerDectionRange { get; private set; }
-    [field:SerializeField] public float AttackRange { get; private set; }
-    [field:SerializeField] public int AttackDamage { get; private set; }
-    [field:SerializeField] public float MovementSpeed { get; private set; }
-    [field:SerializeField] public float RotationSmoothValue { get; private set; }
-    [field:SerializeField] public bool Dummy { get; private set; }
+    [field: SerializeField] public float PlayerDectionRange { get; private set; }
+    [field: SerializeField] public float AttackRange { get; private set; }
+    [field: SerializeField] public int AttackDamage { get; private set; }
+    [field: SerializeField] public float MovementSpeed { get; private set; }
+    [SerializeField] public float LaunchForce => Health.launchForce; 
+    [field: SerializeField] public float RotationSmoothValue { get; private set; }
+    [field: SerializeField] public bool Dummy { get; private set; }
 
     [Tooltip("Idle Timer to trigger random idle animation")]
     [MinMaxRangeSlider(0, 100)]
@@ -55,7 +56,13 @@ public class EnemyStateMachine : StateMachine
 
     private void DamageEvent()
     {
-        SwitchState(new EnemyImpactState(this));
+        Debug.Log($"Enemy State Machine Damage Event: {Health.isLaunched}");
+        if (Health.isLaunched)
+        {
+            SwitchState(new EnemyLaunchedState(this));
+        }
+        else
+            SwitchState(new EnemyImpactState(this));
     }
 
 }

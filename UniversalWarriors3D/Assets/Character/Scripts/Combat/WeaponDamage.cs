@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class WeaponDamage : MonoBehaviour
 {
     [SerializeField] Collider myCollider;
@@ -8,6 +9,8 @@ public class WeaponDamage : MonoBehaviour
     [SerializeField] private PlayerStateMachine player;
 
     private int damage;
+    private bool launching;
+    public float launchForce;
 
 
     private void OnEnable()
@@ -20,14 +23,16 @@ public class WeaponDamage : MonoBehaviour
     {
         if (other.CompareTag("Sensor") || other == myCollider) { return; }
         
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
 
         if (alreadyCollidedWith.Contains(other)) { return; }
         alreadyCollidedWith.Add(other);
 
         if (other.TryGetComponent<Health>(out Health health))
         {
+            health.SetAttackType(launching);
             health.DealDamage(damage);
+            health.SetLaunchForce(launchForce);
 
         }
 
@@ -35,8 +40,19 @@ public class WeaponDamage : MonoBehaviour
 
     public void SetAttack(int damage)
     {
-        Debug.Log("Damage Value: " + damage);
+        //Debug.Log("Damage Value: " + damage);
         this.damage = damage;
+    }
+
+    public void SetAttackType(bool launching)
+    {
+        this.launching = launching;
+    }
+
+    public void SetLaunchForce(float launchForce)
+    {
+        Debug.Log($"WeaponDamage LaunchForce: {launchForce}");
+        this.launchForce = launchForce;
     }
 
 

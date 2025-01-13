@@ -10527,7 +10527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1240399043014557332}
   - component: {fileID: 3611762102226983387}
-  - component: {fileID: 6604073785223175840}
   - component: {fileID: 7498573054386057070}
   - component: {fileID: 6062157898238271239}
   m_Layer: 2
@@ -10573,34 +10572,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.188589, y: 1, z: 1}
   m_Center: {x: -0.095, y: 0, z: 0}
---- !u!114 &6604073785223175840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893270706744896979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a8d4b60ea93854aafab183491c18d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack:
-    <AnimationName>k__BackingField: 
-    <TransitionDuration>k__BackingField: 0
-    <ComboStateIndex>k__BackingField: -1
-    <ComboAttackTime>k__BackingField: 0
-    <AttackForce>k__BackingField: 0
-    MultiHitCombo: 0
-    MultiHitIndex: 0
-    <ShouldAddAttackForce>k__BackingField: 0
-    TimeForce: 0
-    ImpactWindow: []
-    <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
-    hitBox: 0
-  playerStateMachine: {fileID: 0}
-  col: {fileID: 0}
 --- !u!114 &7498573054386057070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21161,7 +21132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4551420477824716067}
   - component: {fileID: 4282871897899308804}
-  - component: {fileID: 6680265202138880046}
   - component: {fileID: 1136127082822013380}
   - component: {fileID: 216689013188102308}
   m_Layer: 2
@@ -21207,34 +21177,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6680265202138880046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650902297094181830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a8d4b60ea93854aafab183491c18d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack:
-    <AnimationName>k__BackingField: 
-    <TransitionDuration>k__BackingField: 0
-    <ComboStateIndex>k__BackingField: -1
-    <ComboAttackTime>k__BackingField: 0
-    <AttackForce>k__BackingField: 0
-    MultiHitCombo: 0
-    MultiHitIndex: 0
-    <ShouldAddAttackForce>k__BackingField: 0
-    TimeForce: 0
-    ImpactWindow: []
-    <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
-    hitBox: 0
-  playerStateMachine: {fileID: 0}
-  col: {fileID: 0}
 --- !u!114 &1136127082822013380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48064,7 +48006,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5552273594692025892}
   - component: {fileID: 5061132027312294317}
-  - component: {fileID: 2989190711336116488}
   - component: {fileID: 8290222503682369180}
   - component: {fileID: 7208067042592968993}
   m_Layer: 2
@@ -48110,34 +48051,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2989190711336116488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4473877884528140038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a8d4b60ea93854aafab183491c18d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack:
-    <AnimationName>k__BackingField: 
-    <TransitionDuration>k__BackingField: 0
-    <ComboStateIndex>k__BackingField: -1
-    <ComboAttackTime>k__BackingField: 0
-    <AttackForce>k__BackingField: 0
-    MultiHitCombo: 0
-    MultiHitIndex: 0
-    <ShouldAddAttackForce>k__BackingField: 0
-    TimeForce: 0
-    ImpactWindow: []
-    <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
-    hitBox: 0
-  playerStateMachine: {fileID: 0}
-  col: {fileID: 0}
 --- !u!114 &8290222503682369180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54875,7 +54788,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2717902413099334634}
   - component: {fileID: 5909059528663200592}
-  - component: {fileID: 7554940066204259884}
   - component: {fileID: 4229042556951356985}
   - component: {fileID: 4585749179528114875}
   m_Layer: 2
@@ -54921,34 +54833,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.188589, y: 1, z: 1}
   m_Center: {x: 0.03, y: 0, z: 0}
---- !u!114 &7554940066204259884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491465182088745396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a8d4b60ea93854aafab183491c18d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack:
-    <AnimationName>k__BackingField: 
-    <TransitionDuration>k__BackingField: 0
-    <ComboStateIndex>k__BackingField: -1
-    <ComboAttackTime>k__BackingField: 0
-    <AttackForce>k__BackingField: 0
-    MultiHitCombo: 0
-    MultiHitIndex: 0
-    <ShouldAddAttackForce>k__BackingField: 0
-    TimeForce: 0
-    ImpactWindow: []
-    <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 0
-    hitBox: 0
-  playerStateMachine: {fileID: 0}
-  col: {fileID: 0}
 --- !u!114 &4229042556951356985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81368,7 +81252,7 @@ MonoBehaviour:
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: 3
-    <ComboAttackTime>k__BackingField: 0.33
+    <ComboAttackTime>k__BackingField: 0.27
     <AttackForce>k__BackingField: 10
     MultiHitCombo: 0
     MultiHitIndex: 0
@@ -81377,7 +81261,7 @@ MonoBehaviour:
     ImpactWindow:
     - {x: 0.21, y: 0.36}
     <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 3
+    <ForwardForce>k__BackingField: 1
     hitBox: 1
   - <AnimationName>k__BackingField: Attack4
     <TransitionDuration>k__BackingField: 0.2
@@ -81391,7 +81275,7 @@ MonoBehaviour:
     ImpactWindow:
     - {x: 0.4, y: 0.6}
     <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 5
+    <ForwardForce>k__BackingField: 1
     hitBox: 3
   - <AnimationName>k__BackingField: Attack5
     <TransitionDuration>k__BackingField: 0.2
@@ -81405,7 +81289,7 @@ MonoBehaviour:
     ImpactWindow:
     - {x: 0.35, y: 0.5708791}
     <UpForce>k__BackingField: 0
-    <ForwardForce>k__BackingField: 5
+    <ForwardForce>k__BackingField: 1
     hitBox: 2
   - <AnimationName>k__BackingField: Uppercut
     <TransitionDuration>k__BackingField: 0.2
@@ -81751,6 +81635,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   isDead: 0
+  isInvicible: 0
 --- !u!1 &7752968524237234790
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@
                     "name": "Skills",
                     "type": "Button",
                     "id": "f5134603-52aa-49c2-acd7-ebd6dcf1245a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,7 +90,16 @@
                     "name": "LightAttack",
                     "type": "Button",
                     "id": "ad12a785-a2f8-47a3-a858-74d8c9177c48",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HeavyAttack",
+                    "type": "Button",
+                    "id": "f20c9047-6077-4dbb-b7df-80946f876a2f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -451,6 +460,28 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "265f6865-d699-4e8f-a755-0ae290e27d90",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8d2188e-d749-45aa-a822-01fe52f5ca34",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "KeyBoardBeam",
                     "id": "427cc0ba-2bc4-4656-a7dd-ee256d35ed87",
                     "path": "OneModifier",
@@ -541,7 +572,7 @@
                 {
                     "name": "",
                     "id": "74f2d59e-dc75-468d-a61a-96251163b220",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",

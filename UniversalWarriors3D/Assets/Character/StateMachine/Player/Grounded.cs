@@ -76,7 +76,7 @@ public class Grounded : PlayerBaseState
                 {
                     equipTime = Mathf.Clamp(equipTime,0,equipTime);
                     equipTime -= _time * deltaTime;
-                    Debug.Log($"equipTime: {equipTime}");
+                    //Debug.Log($"equipTime: {equipTime}");
                     stateMachine.Animator.SetFloat("isEquiped", equipTime);                    
                 }
                 

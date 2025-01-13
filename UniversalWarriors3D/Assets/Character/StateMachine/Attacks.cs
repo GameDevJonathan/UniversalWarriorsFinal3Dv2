@@ -15,6 +15,7 @@ public class Attacks
     [SerializeField] public bool MultiHitCombo = false;
     [SerializeField] public int MultiHitIndex = 0;
     [field: SerializeField] public bool ShouldAddAttackForce { get; private set; }
+    [field: SerializeField] public bool LauncherAttack { get; private set; }
 
     [Range(0f,1f)]
     [SerializeField] public float TimeForce;
@@ -24,6 +25,7 @@ public class Attacks
     
     [field: SerializeField] public float UpForce { get; private set; } 
     [field: SerializeField] public float ForwardForce { get; private set; } 
+    [field: SerializeField] public float LaunchForce { get; private set; } 
 
     public enum HitBox { Right = 0, Left = 1, RightFoot = 2, LeftFoot = 3 };
     public HitBox hitBox;
