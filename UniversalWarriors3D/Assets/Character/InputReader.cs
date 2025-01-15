@@ -204,7 +204,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     private void LateUpdate()
     {
 
-
         if (stateMachine.SpecialMove || Targeting) return;
         CameraRotation();
     }
@@ -264,8 +263,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
             BlockEvent?.Invoke();
         }
     }
-
-
 
     public void OnCamera(InputAction.CallbackContext context)
     {
@@ -347,16 +344,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         {
             HeavyMeleeEvent?.Invoke();
         }
-
-        if (context.performed)
-        {
-            Debug.Log($"Heavy Context: ${context}");
-        }
-
-        //if (context.canceled)
-        //{
-        //    Debug.Log($"Heavy Context: ${context}");
-        //}
     }
 
     public void OnSkills(InputAction.CallbackContext context)

@@ -4,10 +4,10 @@ public class EnemyLaunchedState : EnemyBaseState
 {
     private readonly int LaunchedHash = Animator.StringToHash("Launched");
     private const float CrossFadeDuration = 0.1f;
-    private float launchForce = 20f;
-    public EnemyLaunchedState(EnemyStateMachine stateMachine) : base(stateMachine)
+    private float launchForce;
+    public EnemyLaunchedState(EnemyStateMachine stateMachine, float launchForce) : base(stateMachine)
     {
-        
+       this.launchForce = launchForce;
     }
 
     public override void Enter()
@@ -16,9 +16,10 @@ public class EnemyLaunchedState : EnemyBaseState
         //stateMachine.Animator.applyRootMotion = true;
         stateMachine.Animator.CrossFadeInFixedTime(LaunchedHash, CrossFadeDuration);
         Vector3 direction = Vector3.up.normalized;
-        Debug.Log($"Launch State LaunchForce: {launchForce}");
+        Debug.Log($"Launch State LaunchForce: {launchForce}");        
         stateMachine.ForceReceiver.Reset();
         stateMachine.ForceReceiver.SetGravity(2);
+
         stateMachine.ForceReceiver.Jump(launchForce);
     }
 
@@ -32,7 +33,7 @@ public class EnemyLaunchedState : EnemyBaseState
             
         }
 
-        if(stateMachine.CharacterController.isGrounded == false && stateMachine.Animator.speed < 1f)
+        if(stateMachine.CharacterController.isGrounded == true && stateMachine.Animator.speed < 1f)
         {
             stateMachine.Animator.speed = 1f;
             stateMachine.ForceReceiver.SetGravity(0);

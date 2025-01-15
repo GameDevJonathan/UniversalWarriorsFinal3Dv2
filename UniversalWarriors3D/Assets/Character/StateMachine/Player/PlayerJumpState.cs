@@ -16,7 +16,7 @@ public class PlayerJumpState : PlayerBaseState
         Momentum = stateMachine.CharacterController.velocity;
         Momentum.y = 0f;
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash,CrossFadeDuration);
-        stateMachine.InputReader.MeleeEvent += MeleeEvent;
+        stateMachine.InputReader.HeavyMeleeEvent += HeavyMeleeEvent;
     }
    
 
@@ -32,6 +32,16 @@ public class PlayerJumpState : PlayerBaseState
             FaceMovement(movement, deltaTime);
         }
 
+        if (stateMachine.InputReader.AttackButtonPressed)
+        {
+            stateMachine.EquipTime = 10f;
+            stateMachine.Targeter.SelectClosestTarget();
+            stateMachine.SwitchState(new AirAttackingState(stateMachine, 0));
+            return;
+        }
+        
+        
+        
         if (stateMachine.CharacterController.velocity.y <= 0f)
         {
             stateMachine.SwitchState(new PlayerFallState(stateMachine));
@@ -69,7 +79,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.InputReader.MeleeEvent -= MeleeEvent;
+        stateMachine.InputReader.HeavyMeleeEvent -= HeavyMeleeEvent;
         stateMachine.ForceReceiver.Reset();
     }
 
@@ -105,7 +115,7 @@ public class PlayerJumpState : PlayerBaseState
         
     }
 
-    private void MeleeEvent()
+    private void HeavyMeleeEvent()
     {
         stateMachine.EquipTime = 10f;
         stateMachine.ForceReceiver.Reset();

@@ -28,13 +28,17 @@ public class WeaponDamage : MonoBehaviour
         if (alreadyCollidedWith.Contains(other)) { return; }
         alreadyCollidedWith.Add(other);
 
+        if(other.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine stateMachine))
+        {
+            stateMachine.LaunchForce = launchForce;
+        }
+        
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.SetAttackType(launching);
             health.DealDamage(damage);
-            health.SetLaunchForce(launchForce);
-
         }
+
 
     }
 

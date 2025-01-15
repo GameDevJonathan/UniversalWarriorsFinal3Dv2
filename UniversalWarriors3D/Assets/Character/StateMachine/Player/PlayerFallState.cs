@@ -28,7 +28,7 @@ public class PlayerFallState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
 
 
-        stateMachine.InputReader.MeleeEvent += MeleeEvent;
+        stateMachine.InputReader.HeavyMeleeEvent += HeavyMeleeEvent;
 
     }
 
@@ -85,7 +85,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.InputReader.MeleeEvent -= MeleeEvent;
+        stateMachine.InputReader.HeavyMeleeEvent -= HeavyMeleeEvent;
         stateMachine.MeshTrail.isTrailActive = false;
     }
 
@@ -106,7 +106,7 @@ public class PlayerFallState : PlayerBaseState
                right * stateMachine.InputReader.MovementValue.x;
     }
 
-    private void MeleeEvent()
+    private void HeavyMeleeEvent()
     {
         stateMachine.EquipTime = 10f;
         stateMachine.ForceReceiver.Reset();

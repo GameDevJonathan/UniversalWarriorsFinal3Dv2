@@ -17,7 +17,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
-    [SerializeField] public float LaunchForce => Health.launchForce; 
+    [SerializeField] public float LaunchForce;  
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
     [field: SerializeField] public bool Dummy { get; private set; }
 
@@ -56,13 +56,20 @@ public class EnemyStateMachine : StateMachine
 
     private void DamageEvent()
     {
-        Debug.Log($"Enemy State Machine Damage Event: {Health.isLaunched}");
+        //Debug.Log($"Enemy State Machine Damage Event: {Health.isLaunched}");
+        //LaunchForce = Health.launchForce;
+        Debug.Log($"Enemy State Machine: Launch force = {LaunchForce}"); 
         if (Health.isLaunched)
         {
-            SwitchState(new EnemyLaunchedState(this));
+            SwitchState(new EnemyLaunchedState(this,LaunchForce));
         }
         else
             SwitchState(new EnemyImpactState(this));
+    }
+
+    public void SetLaunchForce(int force)
+    {
+        LaunchForce = force;
     }
 
 }

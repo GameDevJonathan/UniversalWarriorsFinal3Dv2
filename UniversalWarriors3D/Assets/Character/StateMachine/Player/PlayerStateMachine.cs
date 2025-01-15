@@ -16,6 +16,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public WallRun WallRun { get; private set; }
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
+    [field: SerializeField] public AirAttacks[] AirAttacks { get; private set; }
     [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
 
     [SerializeField] public int Index = 0;

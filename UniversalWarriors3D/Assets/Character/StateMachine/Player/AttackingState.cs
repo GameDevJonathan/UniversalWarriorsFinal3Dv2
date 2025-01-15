@@ -31,8 +31,6 @@ public class AttackingState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log($"Attcking LaunchForce: {attack.LaunchForce}");
-
         //Debug.Log($"HitBox: {(int)attack.hitBox} ");
         weapon.SetAttack(attack.AttackForce);
         weapon.SetAttackType(attack.LauncherAttack);

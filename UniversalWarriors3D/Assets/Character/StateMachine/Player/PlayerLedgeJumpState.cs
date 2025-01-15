@@ -35,7 +35,7 @@ public class PlayerLedgeJumpState : PlayerBaseState
             Debug.Log("jumped ledge");
             //stateMachine.ForceReceiver.Jump(10f);
             //alreadyAppliedForce = true;
-            TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 80f, Momentum.z);
+            TryApplyForce(stateMachine.transform.up, stateMachine.transform.forward, 40f, Momentum.z);
         }
         Move(Momentum,deltaTime);
 
