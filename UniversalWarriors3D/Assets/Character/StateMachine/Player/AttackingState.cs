@@ -33,8 +33,10 @@ public class AttackingState : PlayerBaseState
     {
         //Debug.Log($"HitBox: {(int)attack.hitBox} ");
         weapon.SetAttack(attack.AttackForce);
+        weapon.SetKnockDown(attack.KnockDown);
         weapon.SetAttackType(attack.LauncherAttack);
         weapon.SetLaunchForce(attack.LaunchForce);
+        weapon.setStunForce(attack.stunForce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
         if (attack.AnimationName == "Uppercut" )

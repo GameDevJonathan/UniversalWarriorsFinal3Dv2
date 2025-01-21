@@ -25,7 +25,7 @@ public class AirAttackingState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("WEapon: " + weapon.gameObject.name);
+        //Debug.Log("WEapon: " + weapon.gameObject.name);
         weapon.SetAttack(AirAttacks.AttackForce);
         weapon.SetAttackType(AirAttacks.LauncherAttack);
         weapon.SetLaunchForce(AirAttacks.LaunchForce);
@@ -63,7 +63,7 @@ public class AirAttackingState : PlayerBaseState
 
             if (stateMachine.InputReader.AttackButtonPressed)
             {
-                Debug.Log("Pressed attack button");
+                //Debug.Log("Pressed attack button");
                 TryComboAttack(normalizedTime);
             }
 

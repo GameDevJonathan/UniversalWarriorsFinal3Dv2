@@ -11,15 +11,19 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     public GameObject Player { get; private set; }
 
     [field: SerializeField] public float PlayerDectionRange { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
+    [field: SerializeField] public bool KnockDown { get; set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
-    [SerializeField] public float LaunchForce;  
+    
+    [SerializeField] public float LaunchForce;
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
     [field: SerializeField] public bool Dummy { get; private set; }
+    [field: SerializeField] public bool CanHit { get; set; }
 
     [Tooltip("Idle Timer to trigger random idle animation")]
     [MinMaxRangeSlider(0, 100)]
@@ -28,6 +32,10 @@ public class EnemyStateMachine : StateMachine
     [Tooltip("Time to Attack")]
     [MinMaxRangeSlider(0, 5)]
     public Vector2 AttackTimerRange;
+
+    [Tooltip("Time To Get Up")]
+    [MinMaxRangeSlider(0, 10)]
+    public Vector2 UpTime;
 
 
     private void Start()
@@ -56,15 +64,37 @@ public class EnemyStateMachine : StateMachine
 
     private void DamageEvent()
     {
+        if (!CanHit) return;
         //Debug.Log($"Enemy State Machine Damage Event: {Health.isLaunched}");
         //LaunchForce = Health.launchForce;
-        Debug.Log($"Enemy State Machine: Launch force = {LaunchForce}"); 
-        if (Health.isLaunched)
+        //Debug.Log($"Enemy State Machine: Launch force = {LaunchForce}");
+        if (CharacterController.isGrounded)
         {
-            SwitchState(new EnemyLaunchedState(this,LaunchForce));
+
+            if (this.KnockDown)
+            {
+                Debug.Log("Enemy State Machine:: Switch to knock down State");
+                SwitchState(new EnemyKnockDownState(this,LaunchForce));
+
+            }
+            else if (Health.isLaunched)
+            {
+                SwitchState(new EnemyLaunchedState(this, LaunchForce));
+                return;
+            }
+            else
+            {
+                SwitchState(new EnemyImpactState(this));
+                return;
+            }
         }
-        else
-            SwitchState(new EnemyImpactState(this));
+        else if (!CharacterController.isGrounded)
+        {
+            Debug.Log("Hit In air");
+            SwitchState(new EnemyImpactAirState(this));
+            return;
+        }
+        
     }
 
     public void SetLaunchForce(int force)

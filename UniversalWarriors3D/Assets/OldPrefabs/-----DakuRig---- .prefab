@@ -5155,7 +5155,7 @@ Transform:
   m_GameObject: {fileID: 320304551341577076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.398, z: -2.2999992}
+  m_LocalPosition: {x: 0, y: 1.398, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10588,6 +10588,7 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  launchForce: 0
 --- !u!54 &6062157898238271239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21193,6 +21194,7 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  launchForce: 0
 --- !u!54 &216689013188102308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21246,7 +21248,7 @@ Transform:
   m_GameObject: {fileID: 1815959501523790369}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49999982, y: -2.79, z: 8.900001}
+  m_LocalPosition: {x: 0.00000047683716, y: -3.8, z: 14.099999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21270,7 +21272,7 @@ MonoBehaviour:
   Targets:
   - Object: {fileID: 2580552307341888843}
     Weight: 1
-    Radius: 0
+    Radius: 0.5
   m_LegacyTargets: []
 --- !u!1 &1885009984462998564
 GameObject:
@@ -48067,6 +48069,7 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  launchForce: 0
 --- !u!54 &7208067042592968993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54849,6 +54852,7 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  launchForce: 0
 --- !u!54 &4585749179528114875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75187,7 +75191,6 @@ GameObject:
   - component: {fileID: 7266991019532882981}
   - component: {fileID: 7200180375893652013}
   - component: {fileID: 9213949414647280334}
-  - component: {fileID: 5546673269921779227}
   m_Layer: 8
   m_Name: TargetCamera
   m_TagString: Untagged
@@ -75204,13 +75207,13 @@ Transform:
   m_GameObject: {fileID: 6915200216281760413}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: 0.809078, y: -1.2022533, z: 13.502393}
+  m_LocalPosition: {x: 1.8258009, y: -0.31733322, z: 18.649551}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1712787524294600856}
   m_Father: {fileID: 8473532601269887744}
-  m_LocalEulerAnglesHint: {x: -1, y: -174.295, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.375, y: -173.4, z: 0}
 --- !u!114 &7200180375893652013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75225,17 +75228,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 12
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 2580552307341888843}
-    LookAtTarget: {fileID: 1712787524294600856}
+    LookAtTarget: {fileID: 2580552307341888843}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 40
+    FieldOfView: 30
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -75267,10 +75270,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0.5, y: 2, z: -5.5}
-  VerticalArmLength: 0.79
-  CameraSide: 1
-  CameraDistance: 3.4
+  ShoulderOffset: {x: 0, y: 3, z: -5.5}
+  VerticalArmLength: 0.8
+  CameraSide: 0.5
+  CameraDistance: 8.6
   AvoidObstacles:
     Enabled: 0
     CollisionFilter:
@@ -75280,35 +75283,6 @@ MonoBehaviour:
     CameraRadius: 0.2
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
---- !u!114 &5546673269921779227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6915200216281760413}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.2, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 1.79, z: 0}
-  Damping: {x: 0.5, y: 0.5}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!1 &6918188655348138313
 GameObject:
   m_ObjectHideFlags: 0
@@ -81021,7 +80995,7 @@ Transform:
   m_GameObject: {fileID: 7685928155006214809}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: 0.64735323, y: -2.4354687, z: 6.8540297}
+  m_LocalPosition: {x: 0.71692103, y: -2.4522672, z: 7.5503626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81086,7 +81060,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0.5, y: -0.39, z: 0}
   VerticalArmLength: 0
   CameraSide: 0.5
-  CameraDistance: 2.3
+  CameraDistance: 3
   AvoidObstacles:
     Enabled: 1
     CollisionFilter:
@@ -81225,15 +81199,16 @@ MonoBehaviour:
     <ComboStateIndex>k__BackingField: 1
     <ComboAttackTime>k__BackingField: 0.2
     <AttackForce>k__BackingField: 10
-    MultiHitCombo: 1
+    MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0
     ImpactWindow:
     - {x: 0.23, y: 0.36}
-    - {x: 0.5, y: 0.6}
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
     hitBox: 1
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
@@ -81243,11 +81218,13 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0
     ImpactWindow:
     - {x: 0.18, y: 0.35}
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 4
+    <LaunchForce>k__BackingField: 0
     hitBox: 0
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.2
@@ -81257,11 +81234,13 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0.203
     ImpactWindow:
     - {x: 0.21, y: 0.36}
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
+    <LaunchForce>k__BackingField: 0
     hitBox: 1
   - <AnimationName>k__BackingField: Attack4
     <TransitionDuration>k__BackingField: 0.2
@@ -81271,11 +81250,13 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0.2
     ImpactWindow:
     - {x: 0.4, y: 0.6}
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
+    <LaunchForce>k__BackingField: 0
     hitBox: 3
   - <AnimationName>k__BackingField: Attack5
     <TransitionDuration>k__BackingField: 0.2
@@ -81285,11 +81266,13 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0
     ImpactWindow:
     - {x: 0.35, y: 0.5708791}
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
+    <LaunchForce>k__BackingField: 0
     hitBox: 2
   - <AnimationName>k__BackingField: Uppercut
     <TransitionDuration>k__BackingField: 0.2
@@ -81299,11 +81282,13 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0.35
     ImpactWindow:
     - {x: 0.24, y: 0.63}
     <UpForce>k__BackingField: 100
     <ForwardForce>k__BackingField: 5
+    <LaunchForce>k__BackingField: 0
     hitBox: 0
   - <AnimationName>k__BackingField: SpinningKick
     <TransitionDuration>k__BackingField: 0.2
@@ -81313,10 +81298,28 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0
     ImpactWindow: []
     <UpForce>k__BackingField: 1
     <ForwardForce>k__BackingField: 30
+    <LaunchForce>k__BackingField: 0
+    hitBox: 0
+  - <AnimationName>k__BackingField: Launcher
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 1
+    <AttackForce>k__BackingField: 20
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 1
+    TimeForce: 0.502
+    ImpactWindow:
+    - {x: 0.23, y: 0.45}
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 15
     hitBox: 0
   - <AnimationName>k__BackingField: DiveKick
     <TransitionDuration>k__BackingField: 0.2
@@ -81326,10 +81329,61 @@ MonoBehaviour:
     MultiHitCombo: 0
     MultiHitIndex: 0
     <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
     TimeForce: 0.502
     ImpactWindow: []
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
+    hitBox: 0
+  <AirAttacks>k__BackingField:
+  - <AnimationName>k__BackingField: AirAttack2
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 1
+    <ComboAttackTime>k__BackingField: 0.5
+    <AttackForce>k__BackingField: 1
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
+    TimeForce: 0
+    ImpactWindow:
+    - {x: 0.29, y: 0.36}
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
+    hitBox: 0
+  - <AnimationName>k__BackingField: AirAttack1
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 2
+    <ComboAttackTime>k__BackingField: 0.5
+    <AttackForce>k__BackingField: 1
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
+    TimeForce: 0
+    ImpactWindow:
+    - {x: 0.29, y: 0.36}
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
+    hitBox: 1
+  - <AnimationName>k__BackingField: AirAttack3
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 0.5
+    <AttackForce>k__BackingField: 1
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
+    TimeForce: 0
+    ImpactWindow:
+    - {x: 0.34, y: 0.56}
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
     hitBox: 0
   <SpecialMoves>k__BackingField: []
   Index: 0
@@ -81505,6 +81559,7 @@ MonoBehaviour:
   gravity: 0
   Normal: 30
   wallSlideSpeed: 1
+  floatSpeed: 0.5
   DiveSpeed: 30
 --- !u!114 &4869247558239796031
 MonoBehaviour:
@@ -81546,7 +81601,7 @@ MonoBehaviour:
     m_Bits: 2097153
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 1048576
+    m_Bits: 1048577
   GroundCheck:
     serializedVersion: 2
     m_Bits: 7340033
@@ -81636,6 +81691,8 @@ MonoBehaviour:
   health: 100
   isDead: 0
   isInvicible: 0
+  isLaunched: 0
+  launchForce: 0
 --- !u!1 &7752968524237234790
 GameObject:
   m_ObjectHideFlags: 0
@@ -82130,7 +82187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6586703551502517721}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: '-----DakuRig---- '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

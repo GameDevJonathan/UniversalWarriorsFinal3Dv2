@@ -23,6 +23,7 @@ public class Menus : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Active");
         //_locomotionInputAction = new LocomotionInputAction();
         //_locomotionInputAction.Locomotion.Enable();
         //_inputActions = _locomotionInputAction.Locomotion;

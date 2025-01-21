@@ -12,11 +12,11 @@ public class EnemyLaunchedState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Enetered Launched State");
+        //Debug.Log("Enetered Launched State");
         //stateMachine.Animator.applyRootMotion = true;
         stateMachine.Animator.CrossFadeInFixedTime(LaunchedHash, CrossFadeDuration);
         Vector3 direction = Vector3.up.normalized;
-        Debug.Log($"Launch State LaunchForce: {launchForce}");        
+        //Debug.Log($"Launch State LaunchForce: {launchForce}");        
         stateMachine.ForceReceiver.Reset();
         stateMachine.ForceReceiver.SetGravity(2);
 
@@ -38,11 +38,17 @@ public class EnemyLaunchedState : EnemyBaseState
             stateMachine.Animator.speed = 1f;
             stateMachine.ForceReceiver.SetGravity(0);
         }
+
+        if(GetNormalizedTime(stateMachine.Animator,"Hurt") > 1f)
+        {
+            stateMachine.SwitchState(new EnemyProneState(stateMachine));
+        }
     }
 
 
     public override void Exit()
     {
+        stateMachine.Animator.speed = 1f;
 
     }
 

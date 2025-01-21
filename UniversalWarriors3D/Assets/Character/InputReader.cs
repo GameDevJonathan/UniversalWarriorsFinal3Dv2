@@ -309,7 +309,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         if (context.performed && !Targeting)
         {
-            Debug.Log("ButtonPressed");
+            //Debug.Log("ButtonPressed");
             //rotation = new Quaternion(0, 0, 0,0);            
             TargetEvent?.Invoke();
         }

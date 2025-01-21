@@ -19,7 +19,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Entered fallState");
+        //Debug.Log("Entered fallState");
         stateMachine.InputReader.isDashing = false;
         Momentum = stateMachine.CharacterController.velocity;
         Momentum.y = 0f;

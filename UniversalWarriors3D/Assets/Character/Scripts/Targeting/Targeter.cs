@@ -107,7 +107,7 @@ public class Targeter : MonoBehaviour
 
         foreach (Target target in targets)
         {
-            Debug.Log("Target: " + target);
+            //Debug.Log("Target: " + target);
             Vector2 viewPos = mainCamera.WorldToViewportPoint(target.transform.position);
 
             if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
@@ -131,7 +131,7 @@ public class Targeter : MonoBehaviour
         }
         else
         {
-            Debug.Log(closestTarget);
+            //Debug.Log(closestTarget);
         }
         //if (closestTarget != null)
         //{ Debug.Log("We have a target " + closestTarget); }
@@ -140,7 +140,7 @@ public class Targeter : MonoBehaviour
 
 
         CurrentTarget = closestTarget;
-        Debug.Log("current target transform " + CurrentTarget.transform);
+        //Debug.Log("current target transform " + CurrentTarget.transform);
 
 
         targetGroup.AddMember(CurrentTarget.transform,.1f,2f);

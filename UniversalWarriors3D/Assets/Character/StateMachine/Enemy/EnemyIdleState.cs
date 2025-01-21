@@ -21,6 +21,7 @@ public class EnemyIdleState : EnemyBaseState
     {
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, crossFadeTime);
         RandomIdleTimer = Random.Range(stateMachine.IdleRangeTimer.x, stateMachine.IdleRangeTimer.y);
+        stateMachine.CanHit = true;
         
     }
     public override void Tick(float deltaTime)

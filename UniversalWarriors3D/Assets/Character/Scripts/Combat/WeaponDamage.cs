@@ -11,6 +11,8 @@ public class WeaponDamage : MonoBehaviour
     private int damage;
     private bool launching;
     public float launchForce;
+    private bool knockDown;
+    private float stunForce;
 
 
     private void OnEnable()
@@ -31,12 +33,14 @@ public class WeaponDamage : MonoBehaviour
         if(other.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine stateMachine))
         {
             stateMachine.LaunchForce = launchForce;
+            stateMachine.KnockDown = knockDown;
         }
         
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.SetAttackType(launching);
             health.DealDamage(damage);
+            health.SetStun(stunForce);
         }
 
 
@@ -55,8 +59,18 @@ public class WeaponDamage : MonoBehaviour
 
     public void SetLaunchForce(float launchForce)
     {
-        Debug.Log($"WeaponDamage LaunchForce: {launchForce}");
+        //Debug.Log($"WeaponDamage LaunchForce: {launchForce}");
         this.launchForce = launchForce;
+    }
+
+    public void SetKnockDown(bool knockDown)
+    {
+        this.knockDown = knockDown;
+    }
+
+    public void setStunForce(float stunForce)
+    {
+        this.stunForce = stunForce;
     }
 
 

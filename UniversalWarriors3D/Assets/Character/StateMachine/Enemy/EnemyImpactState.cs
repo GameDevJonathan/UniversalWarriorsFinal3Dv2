@@ -14,6 +14,7 @@ public class EnemyImpactState : EnemyBaseState
     }
     public override void Tick(float deltaTime)
     {
+        FacePlayer();
         if(GetNormalizedTime(stateMachine.Animator, "Hurt") > 1)
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
