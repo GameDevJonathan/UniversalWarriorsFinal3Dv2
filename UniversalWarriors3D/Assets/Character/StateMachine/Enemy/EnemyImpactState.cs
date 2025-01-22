@@ -15,16 +15,25 @@ public class EnemyImpactState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         FacePlayer();
-        if(GetNormalizedTime(stateMachine.Animator, "Hurt") > 1)
+        if (GetNormalizedTime(stateMachine.Animator, "Hurt") >= .4f
+            && stateMachine.Health.isStunned)
+        {
+            stateMachine.SwitchState(new EnemyStunState(stateMachine));
+            return;
+        }
+
+
+        if (GetNormalizedTime(stateMachine.Animator, "Hurt") > 1)
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            return;
         }
-        
+
     }
 
     public override void Exit()
     {
-        
+
     }
 
 }

@@ -14,17 +14,29 @@ public class Health : MonoBehaviour
     [SerializeField] public float stunDecreaseSpeed = 1f;
     [SerializeField] public bool isStunned = false;
     [SerializeField] public Coroutine stunDecrease;
+    [SerializeField] public GameObject uiContainer;
+    [SerializeField] private Transform mainCamera;
 
     public event Action OnTakeDamage;
-    
+
+    private void Awake()
+    {
+        uiContainer.gameObject.SetActive(false);
+    }
+
+
     private void Start()
     {
         health = maxHealth;
+        mainCamera = Camera.main.transform;
+        
         
     }
 
     private void Update()
     {
+
+
         stunValue = Mathf.Clamp(stunValue, 0f, 100f);
         if(stunValue >= 100 && !isStunned)
             isStunned=true;
@@ -33,7 +45,13 @@ public class Health : MonoBehaviour
         {
             Debug.Log("I am stunned");
             stunDecrease = StartCoroutine(StunDecrease());
+            uiContainer.gameObject.SetActive(true);
         }
+    }
+
+    private void LateUpdate()
+    {
+        uiContainer.transform.LookAt(mainCamera.transform);
     }
 
     public void DealDamage(int damage)
@@ -63,6 +81,7 @@ public class Health : MonoBehaviour
 
     public void SetStun(float stunValue)
     {
+        if (isStunned) return;
         this.stunValue += stunValue;
     }
 
@@ -74,6 +93,15 @@ public class Health : MonoBehaviour
             yield return null ;
         }
         isStunned = false;
+        stunDecrease = null;
+        uiContainer.gameObject.SetActive(false);
+    }
+
+    public void TakeDownReset()
+    {
+        isStunned = false;
+        stunValue = 0f;
+        StopCoroutine(StunDecrease());
         stunDecrease = null;
     }
 

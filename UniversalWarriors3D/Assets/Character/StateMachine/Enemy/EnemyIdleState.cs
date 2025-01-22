@@ -26,6 +26,7 @@ public class EnemyIdleState : EnemyBaseState
     }
     public override void Tick(float deltaTime)
     {
+        
         Move(deltaTime);
         if (IsInChaseRange())
         {
