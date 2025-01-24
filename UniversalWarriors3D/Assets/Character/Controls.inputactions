@@ -108,7 +108,7 @@
                     "name": "Special Beam",
                     "type": "Button",
                     "id": "f7804d3b-33a6-46c4-b0c3-1d08bf6b2220",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -145,6 +145,15 @@
                     "type": "Button",
                     "id": "3b961fa1-869d-43fc-b6db-69550abf40d0",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TakeDown",
+                    "type": "Button",
+                    "id": "7a26ae66-7c15-478d-8014-0b0f23a717df",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -528,7 +537,7 @@
                 {
                     "name": "modifier",
                     "id": "2182a0f8-e8a8-400d-8d26-dd393e8fadea",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
@@ -590,6 +599,39 @@
                     "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "GamePad",
+                    "id": "4299928b-a9d0-4ffd-b4b6-60440322a591",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDown",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b1be25df-c03e-484e-bac8-0abc14ca33ec",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "4ad3de6b-76ba-417e-a59d-616a923833be",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

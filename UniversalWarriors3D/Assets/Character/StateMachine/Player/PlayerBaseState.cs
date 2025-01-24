@@ -33,6 +33,7 @@ public abstract class PlayerBaseState : State
 
     protected void FaceTarget()
     {
+
         if(stateMachine.Targeter.CurrentTarget == null) { return; }
 
         Vector3 lookPos = stateMachine.Targeter.CurrentTarget.transform.position - stateMachine.transform.position;
@@ -42,7 +43,19 @@ public abstract class PlayerBaseState : State
             Quaternion.Lerp(stateMachine.transform.rotation,
             Quaternion.LookRotation(lookPos),
             Time.deltaTime * stateMachine.RotationSmoothValue);
+    }
 
+    protected void FaceTakeDownTarget()
+    {
+        if(stateMachine.Targeter.TakeDownTarget == null) { return; }
+        Vector3 lookPos = stateMachine.Targeter.TakeDownTarget.transform.position - stateMachine.transform.position;
+        //Debug.Log($"look position {lookPos}");
+        lookPos.y = 0f;
+
+        float distance = Vector3.Distance(stateMachine.Targeter.TakeDownTarget.transform.position, stateMachine.transform.position);
+        //Debug.Log($"Distance {distance}");
+        if (distance < 3f)
+            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
 
 

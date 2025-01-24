@@ -2,7 +2,7 @@ using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Attacks 
 {
     [field:SerializeField] public string AnimationName { get; private set; }
@@ -92,7 +92,12 @@ public class AirAttacks
     public void SetHitBox(HitBox box)
     {
         hitBox = box;
-    }
+    }    
+}
+[Serializable]
+public class TakeDowns
+{
+    [field: SerializeField] public string AnimationName { get; private set; }
+    [field: SerializeField] public float TransitionDuration { get; private set; }
 
-    
 }

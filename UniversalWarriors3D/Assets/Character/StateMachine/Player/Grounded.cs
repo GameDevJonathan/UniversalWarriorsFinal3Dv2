@@ -122,6 +122,15 @@ public class Grounded : PlayerBaseState
            
         }
 
+        if(stateMachine.CanTakeDown && stateMachine.InputReader.TakeDownButton)
+        {
+            //Todo switch to takedown state
+            Debug.Log("Grounded state:: switch to take down state");
+            FaceTakeDownTarget();
+            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine));
+
+        }
+
        
 
 

@@ -37,6 +37,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public bool BlockButtonReleased => controls.Player.Block.WasReleasedThisFrame();
     public bool GrabButtonPressed => controls.Player.Grab.WasPressedThisFrame();
 
+    public bool TakeDownButton => controls.Player.TakeDown.WasPerformedThisFrame();
+
     [HideInInspector] public bool shoot;
     [HideInInspector] public bool charge;
     [HideInInspector] public bool fire;
@@ -422,5 +424,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-    
+    public void OnTakeDown(InputAction.CallbackContext context)
+    {
+        
+    }
 }

@@ -6,10 +6,10 @@ public class StateMachine : MonoBehaviour
     private State currentState;
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Return))
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //}
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         //Debug.Log(currentState);
         currentState?.Tick(Time.deltaTime);
     }

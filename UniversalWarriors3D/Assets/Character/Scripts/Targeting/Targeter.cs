@@ -10,10 +10,14 @@ public class Targeter : MonoBehaviour
     [SerializeField] private List<Target> targets = new List<Target>();
     [SerializeField] public Target CurrentTarget;
     [SerializeField] public Target QuickTarget;
+    [SerializeField] public Health TakeDownTarget;
 
     [SerializeField] public int index = 0;
     [SerializeField] private bool didCycle;
     [SerializeField] private PlayerStateMachine stateMachine;
+    [SerializeField] public Collider[] quickTargets;
+    [SerializeField] public LayerMask TargetMask;
+    [SerializeField] private float radius = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,22 +36,36 @@ public class Targeter : MonoBehaviour
             if (anim.normalizedTime > 1)
                 QuickTarget = null;
         }
+
+        SelectClosestTakeDown();
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }
         targets.Add(target);
-        //target.OnDestroyed += RemoveTarget;
+        target.OnDestroyed += RemoveTarget;
+
+
     }
+
+   
+
+
+
+
 
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }
         targets.Remove(target);
-        //stateMachine.InputReader.Targeting = false;
-        //RemoveTarget(target);
+        stateMachine.InputReader.Targeting = false;
+        RemoveTarget(target);
+        CurrentTarget = null;
+        stateMachine.CanTakeDown = false;
     }
 
     public void SelectClosestTarget()
@@ -78,6 +96,44 @@ public class Targeter : MonoBehaviour
         //Debug.Log($"Distance {distance}");
         if (distance < 3f)
             stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+
+    public void SelectClosestTakeDown()
+    {
+        if (CurrentTarget != null) return;
+        if (targets.Count == 0) return;
+        float closestDistance = Mathf.Infinity;
+        Health closestTarget = null;
+
+        quickTargets = Physics.OverlapSphere(transform.position, radius, TargetMask);
+
+        foreach (Collider target in quickTargets)
+        {
+            target.TryGetComponent<Health>(out Health targetComponent);
+            Debug.Log(targetComponent.gameObject.name);
+            float currentDistance;
+            currentDistance = Vector3.Distance(transform.position, targetComponent.transform.position);
+
+            if (currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                if(targetComponent.isStunned)                
+                closestTarget = targetComponent;
+            }
+        }
+
+        TakeDownTarget = closestTarget;
+
+        if (TakeDownTarget == null) return;
+        Debug.Log("Current target is " + TakeDownTarget.gameObject.name);
+        stateMachine.CanTakeDown = true;
+        
+        //closestTarget.TryGetComponent<Health>(out Health targetHealth);
+
+        //if (targetHealth.isStunned) 
+        //{
+        //    Debug.Log(targetHealth.gameObject.name + "I am Stunned");
+        //}
     }
 
 

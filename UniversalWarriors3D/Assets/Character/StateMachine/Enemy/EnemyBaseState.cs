@@ -23,6 +23,19 @@ public abstract class EnemyBaseState : State
 
     }
 
+    protected void FaceTakeDown()
+    {
+        if (stateMachine.Player == null) { return; }
+        Vector3 lookPos = stateMachine.Player.transform.position - stateMachine.transform.position;
+        //Debug.Log($"look position {lookPos}");
+        lookPos.y = 0f;
+
+        float distance = Vector3.Distance(stateMachine.Player.transform.position, stateMachine.transform.position);
+        //Debug.Log($"Distance {distance}");
+        if (distance < 3f)
+            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+
     protected bool IsInChaseRange()
     {
         float toPlayer = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;

@@ -130,7 +130,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Special Beam"",
                     ""type"": ""Button"",
                     ""id"": ""f7804d3b-33a6-46c4-b0c3-1d08bf6b2220"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -167,6 +167,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""3b961fa1-869d-43fc-b6db-69550abf40d0"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a26ae66-7c15-478d-8014-0b0f23a717df"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -550,7 +559,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""modifier"",
                     ""id"": ""2182a0f8-e8a8-400d-8d26-dd393e8fadea"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -612,6 +621,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""GamePad"",
+                    ""id"": ""4299928b-a9d0-4ffd-b4b6-60440322a591"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeDown"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""b1be25df-c03e-484e-bac8-0abc14ca33ec"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""4ad3de6b-76ba-417e-a59d-616a923833be"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -664,6 +706,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_ResetCamera = m_Player.FindAction("ResetCamera", throwIfNotFound: true);
         m_Player_Parkour = m_Player.FindAction("Parkour", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
+        m_Player_TakeDown = m_Player.FindAction("TakeDown", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -746,6 +789,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ResetCamera;
     private readonly InputAction m_Player_Parkour;
     private readonly InputAction m_Player_Block;
+    private readonly InputAction m_Player_TakeDown;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -766,6 +810,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @ResetCamera => m_Wrapper.m_Player_ResetCamera;
         public InputAction @Parkour => m_Wrapper.m_Player_Parkour;
         public InputAction @Block => m_Wrapper.m_Player_Block;
+        public InputAction @TakeDown => m_Wrapper.m_Player_TakeDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -823,6 +868,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @TakeDown.started += instance.OnTakeDown;
+            @TakeDown.performed += instance.OnTakeDown;
+            @TakeDown.canceled += instance.OnTakeDown;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -875,6 +923,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @TakeDown.started -= instance.OnTakeDown;
+            @TakeDown.performed -= instance.OnTakeDown;
+            @TakeDown.canceled -= instance.OnTakeDown;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -928,5 +979,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnResetCamera(InputAction.CallbackContext context);
         void OnParkour(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnTakeDown(InputAction.CallbackContext context);
     }
 }

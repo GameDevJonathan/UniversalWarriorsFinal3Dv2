@@ -16384,10 +16384,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 434552106188874113, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 917704276515001153, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 917704276515001153, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1177991413459141687, guid: a5ad7a6468771c449b089d9c609eb38a,
         type: 3}
       propertyPath: fov
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291574166233141325, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291574166233141325, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1439273143371119128, guid: a5ad7a6468771c449b089d9c609eb38a,
         type: 3}
@@ -16459,6 +16484,66 @@ PrefabInstance:
       propertyPath: <Ragdoll>k__BackingField
       value: 
       objectReference: {fileID: 2145383350}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.<AnimationName>k__BackingField
+      value: BoxingVictim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.<TransitionDuration>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[0].<AnimationName>k__BackingField
+      value: BoxingVictim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[1].<AnimationName>k__BackingField
+      value: GermanSuplexVic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[0].<TransitionDuration>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560392280017986289, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[1].<TransitionDuration>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335316046032838202, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335316046032838202, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061748327698152237, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061748327698152237, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086778564898073407, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3616214254498116749, guid: a5ad7a6468771c449b089d9c609eb38a,
         type: 3}
       propertyPath: 'm_CapsuleColliders.Array.data[0]'
@@ -16484,10 +16569,45 @@ PrefabInstance:
       propertyPath: 'm_CapsuleColliders.Array.data[4]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3804806593251375820, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003357799653643610, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5446364552463435663, guid: a5ad7a6468771c449b089d9c609eb38a,
         type: 3}
       propertyPath: m_Name
       value: -----EnemyRig----_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446364552463435663, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446364552463435663, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6763318938128071146, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766789199515345473, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8673312446618623955, guid: a5ad7a6468771c449b089d9c609eb38a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8821250252075897252, guid: a5ad7a6468771c449b089d9c609eb38a,
         type: 3}
@@ -24264,10 +24384,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 699368866417192650, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1815959501523790369, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
@@ -24313,6 +24443,26 @@ PrefabInstance:
         type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[3].<ComboAttackTime>k__BackingField
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[0].<AnimationName>k__BackingField
+      value: BoxingAttacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[1].<AnimationName>k__BackingField
+      value: GermanSuplex
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[0].<TransitionDuration>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891222219991165263, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: <TakeDowns>k__BackingField.Array.data[1].<TransitionDuration>k__BackingField
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2244035139767183604, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}
@@ -24433,6 +24583,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968977166591808135, guid: 51a64003d9d16a84b9d19ed11e70f19e,
+        type: 3}
+      propertyPath: TargetMask.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 8529036625134447013, guid: 51a64003d9d16a84b9d19ed11e70f19e,
         type: 3}

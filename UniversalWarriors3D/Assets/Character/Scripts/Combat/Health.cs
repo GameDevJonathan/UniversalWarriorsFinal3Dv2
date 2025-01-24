@@ -21,7 +21,8 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        uiContainer.gameObject.SetActive(false);
+        if(uiContainer != null)
+            uiContainer?.gameObject.SetActive(false);
     }
 
 
@@ -45,13 +46,14 @@ public class Health : MonoBehaviour
         {
             Debug.Log("I am stunned");
             stunDecrease = StartCoroutine(StunDecrease());
-            uiContainer.gameObject.SetActive(true);
+            uiContainer?.gameObject.SetActive(true);
         }
     }
 
     private void LateUpdate()
     {
-        uiContainer.transform.LookAt(mainCamera.transform);
+        if(uiContainer != null)
+            uiContainer.transform.LookAt(mainCamera.transform);
     }
 
     public void DealDamage(int damage)

@@ -12,6 +12,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
     public GameObject Player { get; private set; }
 
     [field: SerializeField] public float PlayerDectionRange { get; private set; }
