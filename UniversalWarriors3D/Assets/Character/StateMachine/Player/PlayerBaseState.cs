@@ -53,9 +53,8 @@ public abstract class PlayerBaseState : State
         lookPos.y = 0f;
 
         float distance = Vector3.Distance(stateMachine.Targeter.TakeDownTarget.transform.position, stateMachine.transform.position);
-        //Debug.Log($"Distance {distance}");
-        if (distance < 3f)
-            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        //Debug.Log($"Distance {distance}");        
+        stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
 
 

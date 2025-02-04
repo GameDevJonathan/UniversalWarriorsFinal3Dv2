@@ -1,6 +1,7 @@
-using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -15,14 +16,23 @@ public class Health : MonoBehaviour
     [SerializeField] public bool isStunned = false;
     [SerializeField] public Coroutine stunDecrease;
     [SerializeField] public GameObject uiContainer;
+    [SerializeField] public GameObject UIComponent;
     [SerializeField] private Transform mainCamera;
+    [SerializeField] private Image stunBar;
+    [SerializeField] private EnemyStateMachine EnemyStateMachine;
+    [SerializeField] private LayerMask layerMask;
 
     public event Action OnTakeDamage;
 
     private void Awake()
     {
-        if(uiContainer != null)
+        if (uiContainer != null)
             uiContainer?.gameObject.SetActive(false);
+
+        if (this.stunBar != null)
+        {
+            this.stunBar.fillAmount = stunValue;
+        }
     }
 
 
@@ -30,17 +40,20 @@ public class Health : MonoBehaviour
     {
         health = maxHealth;
         mainCamera = Camera.main.transform;
-        
-        
     }
 
     private void Update()
     {
-
+        if (EnemyStateMachine)
+            Debug.Log("Grounded " + EnemyStateMachine.CharacterController.isGrounded);
 
         stunValue = Mathf.Clamp(stunValue, 0f, 100f);
-        if(stunValue >= 100 && !isStunned)
-            isStunned=true;
+        if (stunBar)
+            stunBar.fillAmount = stunValue / 100;
+
+
+        if (stunValue >= 100 && !isStunned)
+            isStunned = true;
 
         if (isStunned && stunDecrease == null)
         {
@@ -52,17 +65,17 @@ public class Health : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(uiContainer != null)
-            uiContainer.transform.LookAt(mainCamera.transform);
+        if (UIComponent != null)
+            UIComponent.transform.LookAt(mainCamera.transform);
     }
 
     public void DealDamage(int damage)
     {
-        if(health == 0) { return; }
-        
-        if(!isInvicible)
-        health = Mathf.Max(health - damage, 0);
-        
+        if (health == 0) { return; }
+
+        if (!isInvicible)
+            health = Mathf.Max(health - damage, 0);
+
         OnTakeDamage?.Invoke();
         //Debug.Log(health);
 
@@ -85,14 +98,16 @@ public class Health : MonoBehaviour
     {
         if (isStunned) return;
         this.stunValue += stunValue;
+        if (stunBar != null)
+            this.stunBar.fillAmount += stunValue / 100;
     }
 
     IEnumerator StunDecrease()
     {
-        while(stunValue > 0f)
+        while (stunValue > 0f)
         {
             stunValue -= Time.deltaTime * stunDecreaseSpeed;
-            yield return null ;
+            yield return null;
         }
         isStunned = false;
         stunDecrease = null;
@@ -105,6 +120,22 @@ public class Health : MonoBehaviour
         stunValue = 0f;
         StopCoroutine(StunDecrease());
         stunDecrease = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("Object layer " + hit.gameObject.layer);
+        int layer = LayerMask.NameToLayer("Wall");
+        if (!EnemyStateMachine) return;
+        if (EnemyStateMachine.CharacterController.isGrounded) return;
+        if (hit.gameObject.layer != layer) return;
+
+        Debug.LogWarning("I hit a wall");
     }
 
 

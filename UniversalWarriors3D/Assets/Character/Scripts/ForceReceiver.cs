@@ -8,6 +8,7 @@ public class ForceReceiver : MonoBehaviour
     [SerializeField] private float drag = 0.3f;
     [SerializeField] private bool isGrounded;
     [SerializeField] public bool useGravity = true;
+    [SerializeField] public bool shouldChangeAgent = true;
 
     private Vector3 dampingVelocity;
     private Vector3 impact;
@@ -46,7 +47,7 @@ public class ForceReceiver : MonoBehaviour
 
         impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
 
-        if (agent != null)
+        if (agent != null && this.shouldChangeAgent)
         {
             if (impact.sqrMagnitude <= 0.2f * 0.2f)
             {
@@ -67,7 +68,7 @@ public class ForceReceiver : MonoBehaviour
     {
         impact += force;
         //Debug.Log($"force direction: {force}");
-        if (agent != null)
+        if (agent != null && this.shouldChangeAgent)
         {
             agent.enabled = false;
         }

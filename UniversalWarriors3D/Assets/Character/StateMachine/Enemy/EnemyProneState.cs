@@ -8,14 +8,16 @@ public class EnemyProneState : EnemyBaseState
     private const float CrossFadeDuration = 0.1f;
     public EnemyProneState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
+
     }
 
     public override void Enter()
     {
+        //stateMachine.Agent.updatePosition = true;
         Debug.Log("Entered Prone State");
         upTime = Random.Range(stateMachine.UpTime.x, stateMachine.UpTime.y);
         stateMachine.CanHit = false;
-        
+
     }
     public override void Tick(float deltaTime)
     {
@@ -31,14 +33,24 @@ public class EnemyProneState : EnemyBaseState
 
         if (GetNormalizedTime(stateMachine.Animator, "GetUp") > 1f)
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            switch (stateMachine.Health.isStunned)
+            {
+                case true:
+                    stateMachine.SwitchState(new EnemyStunState(stateMachine));
+                    break;
+                case false:
+                    stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+                    break;
+            }
         }
+
+
     }
 
     public override void Exit()
     {
-        
-        
+
+
     }
 
 }

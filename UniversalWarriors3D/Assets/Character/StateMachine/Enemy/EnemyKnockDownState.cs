@@ -19,7 +19,7 @@ public class EnemyKnockDownState : EnemyBaseState
         stateMachine.Animator.CrossFadeInFixedTime(ImpactHash, CrossFadeDuration);
         stateMachine.Animator.applyRootMotion = true;
         direction = Vector3.up.normalized * launchForce;
-        
+
         stateMachine.ForceReceiver.AddForce(direction);
 
         //stateMachine.Ragdoll.ToggleRagdoll(true);
@@ -29,15 +29,16 @@ public class EnemyKnockDownState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
-        
-        if(GetNormalizedTime(stateMachine.Animator,"Hurt") > 1f)
+
+        if (GetNormalizedTime(stateMachine.Animator, "Hurt") > 1f)
         {
-           stateMachine.SwitchState(new EnemyProneState(stateMachine));
+            stateMachine.SwitchState(new EnemyProneState(stateMachine));
+            return;
         }
-        
-        
-        
-        
+
+
+
+
 
 
     }

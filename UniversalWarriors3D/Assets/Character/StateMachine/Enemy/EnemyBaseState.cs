@@ -32,8 +32,7 @@ public abstract class EnemyBaseState : State
 
         float distance = Vector3.Distance(stateMachine.Player.transform.position, stateMachine.transform.position);
         //Debug.Log($"Distance {distance}");
-        if (distance < 3f)
-            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
     }
 
     protected bool IsInChaseRange()

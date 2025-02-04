@@ -126,8 +126,12 @@ public class Grounded : PlayerBaseState
         {
             //Todo switch to takedown state
             Debug.Log("Grounded state:: switch to take down state");
+            stateMachine.takeDownIndex = Random.Range(0, stateMachine.TakeDowns.Length);
+            Debug.Log($"TakeDown Index: {stateMachine.takeDownIndex}");
             FaceTakeDownTarget();
-            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine));
+
+            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine,stateMachine.takeDownIndex));
+            return;
 
         }
 

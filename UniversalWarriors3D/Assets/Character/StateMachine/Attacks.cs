@@ -99,5 +99,21 @@ public class TakeDowns
 {
     [field: SerializeField] public string AnimationName { get; private set; }
     [field: SerializeField] public float TransitionDuration { get; private set; }
+    [field: SerializeField] public float Takedowndistance { get; private set; }
+
+    /// <summary>    
+    ///  Move to point 
+    ///  Argument 1: Point where target Object should move to 
+    ///  Argument 2: Point where second Object should move to 
+    ///  Argument 3: Distance from target Object    
+    /// </summary>
+
+
+    public void MoveToPoint(Transform target, Transform point, float distance)
+    {
+        //target.transform.position = new Vector3(point.transform.position.x, point.transform.position.y, point.transform.position.z + distance);
+        target.transform.position = point.transform.position;
+
+    }
 
 }

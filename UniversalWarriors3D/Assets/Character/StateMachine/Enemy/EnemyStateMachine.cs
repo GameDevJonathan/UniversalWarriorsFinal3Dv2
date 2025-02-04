@@ -1,5 +1,5 @@
-using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine;
 using UnityEngine.AI;
 
 
@@ -13,18 +13,21 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
-    public GameObject Player { get; private set; }
+    [field: SerializeField] public GameObject Player { get; private set; }
 
     [field: SerializeField] public float PlayerDectionRange { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public bool KnockDown { get; set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
-    
+
     [SerializeField] public float LaunchForce;
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
     [field: SerializeField] public bool Dummy { get; private set; }
     [field: SerializeField] public bool CanHit { get; set; }
+    [field: SerializeField] public bool wallSplat { get; set; }
+
+    [field: SerializeField] Coroutine moveToPoint;
 
     [Tooltip("Idle Timer to trigger random idle animation")]
     [MinMaxRangeSlider(0, 100)]
@@ -47,6 +50,7 @@ public class EnemyStateMachine : StateMachine
         SwitchState(new EnemyIdleState(this));
     }
 
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -63,6 +67,8 @@ public class EnemyStateMachine : StateMachine
         Health.OnTakeDamage -= DamageEvent;
     }
 
+
+
     private void DamageEvent()
     {
         if (!CanHit) return;
@@ -75,7 +81,7 @@ public class EnemyStateMachine : StateMachine
             if (this.KnockDown)
             {
                 Debug.Log("Enemy State Machine:: Switch to knock down State");
-                SwitchState(new EnemyKnockDownState(this,LaunchForce));
+                SwitchState(new EnemyKnockDownState(this, LaunchForce));
 
             }
             else if (Health.isLaunched)
@@ -95,12 +101,17 @@ public class EnemyStateMachine : StateMachine
             SwitchState(new EnemyImpactAirState(this));
             return;
         }
-        
+
     }
 
     public void SetLaunchForce(int force)
     {
         LaunchForce = force;
     }
+
+
+
+
+
 
 }

@@ -19,6 +19,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AirAttacks[] AirAttacks { get; private set; }
     [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
     [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
+    //[field: SerializeField] public Transform TakeDownPoint { get; private set; }
 
     [SerializeField] public int Index = 0;
 
@@ -73,6 +74,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float DashForce { get; private set; }
     [field: SerializeField] public float EquipTime { get;  set; } 
     [field: SerializeField] public bool CanTakeDown { get; set; } 
+    [field: SerializeField] public int takeDownIndex{get; set;}
+    [field: SerializeField] public bool testTakeDown {get; set;}
     #endregion
 
     #region Camera's and VFX

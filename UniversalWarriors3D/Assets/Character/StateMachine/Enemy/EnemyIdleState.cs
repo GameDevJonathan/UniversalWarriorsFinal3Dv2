@@ -19,7 +19,9 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.Agent.updatePosition = false;
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, crossFadeTime);
+        
         RandomIdleTimer = Random.Range(stateMachine.IdleRangeTimer.x, stateMachine.IdleRangeTimer.y);
         stateMachine.CanHit = true;
         

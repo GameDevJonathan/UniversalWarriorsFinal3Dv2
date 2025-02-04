@@ -3,21 +3,35 @@ using UnityEngine;
 public class PlayerTakeDownState : PlayerBaseState
 {
     TakeDowns takedowns;
-    public PlayerTakeDownState(PlayerStateMachine stateMachine) : base(stateMachine)
+    int index;
+    
+    public PlayerTakeDownState(PlayerStateMachine stateMachine, int takeDownIndex) : base(stateMachine)
     {
-        takedowns = stateMachine.TakeDowns[1];
+        
+        index = (!stateMachine.testTakeDown) ? takeDownIndex : 0;
+        //index = takeDownIndex;
+        
+        
+        takedowns = stateMachine.TakeDowns[index];
     }
 
     public override void Enter()
     {
         stateMachine.CharacterController.detectCollisions = false;
-        stateMachine.Animator.applyRootMotion = true;
-        Debug.Log("Entered TakeDown State");
-        stateMachine.Targeter.TakeDownTarget.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemyStateMachine);        
-        enemyStateMachine.SwitchState(new EnemyTakeDownState(enemyStateMachine));
-        
+        stateMachine.CharacterController.enabled = false;
         stateMachine.Targeter.TakeDownTarget.TryGetComponent<Health>(out Health target);
         target.TakeDownReset();
+        stateMachine.Targeter.TakeDownTarget.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemyStateMachine);        
+        
+        
+        enemyStateMachine.CharacterController.enabled = false;
+        //enemyStateMachine.Animator.applyRootMotion = true;
+        enemyStateMachine.SwitchState(new EnemyTakeDownState(enemyStateMachine,index));
+          
+        
+        stateMachine.Animator.applyRootMotion = true;
+        Debug.Log("Entered TakeDown State");
+
         stateMachine.Animator.CrossFadeInFixedTime(takedowns.AnimationName, takedowns.TransitionDuration);
     }
     public override void Tick(float deltaTime)
@@ -25,12 +39,15 @@ public class PlayerTakeDownState : PlayerBaseState
         if(GetNormalizedTime(stateMachine.Animator,"TakeDown") > 1f)
         {
             stateMachine.SwitchState(new Grounded(stateMachine, true));
+            return;
         }
         
     }
 
     public override void Exit()
     {
+        stateMachine.CharacterController.enabled = true;
+        
         stateMachine.CharacterController.detectCollisions = true;
         stateMachine.Animator.applyRootMotion = false;
         
