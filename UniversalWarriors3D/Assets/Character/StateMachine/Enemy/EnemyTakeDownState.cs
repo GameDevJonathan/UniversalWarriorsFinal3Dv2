@@ -13,7 +13,7 @@ public class EnemyTakeDownState : EnemyBaseState
 
     public override void Enter()
     {
-
+        //character controller is turned of in the player take down state
 
         FaceTakeDown();
         stateMachine.Animator.applyRootMotion = true;

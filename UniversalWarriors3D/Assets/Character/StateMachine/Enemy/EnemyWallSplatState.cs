@@ -1,16 +1,35 @@
 using UnityEngine;
 
-public class EnemyWallSplatState : MonoBehaviour
+public class EnemyWallSplatState : EnemyBaseState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private readonly int WallSplatHash = Animator.StringToHash("WallSplat");
+    private const float crossFadeTime = 0.1f;
+    public EnemyWallSplatState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        stateMachine.Animator.applyRootMotion = true;
+        stateMachine.Animator.CrossFadeInFixedTime(WallSplatHash, crossFadeTime);
+
     }
+    public override void Tick(float deltaTime)
+    {
+        if (GetNormalizedTime(stateMachine.Animator, "WallSplat") > 1)
+        {
+            stateMachine.SwitchState(new EnemyProneState(stateMachine, true));
+            return;
+        }
+    }
+
+    public override void Exit()
+    {
+        stateMachine.Animator.applyRootMotion = false;
+        stateMachine.wallSplat = false;
+    }
+
+
+
 }

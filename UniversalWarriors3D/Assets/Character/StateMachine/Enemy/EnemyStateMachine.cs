@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : StateMachine
 {
+    [field: Header("Components")]
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -12,6 +13,8 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+
+    [field: Header("TakeDown Animations")]
     [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
     [field: SerializeField] public GameObject Player { get; private set; }
 
@@ -23,7 +26,11 @@ public class EnemyStateMachine : StateMachine
 
     [SerializeField] public float LaunchForce;
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
+
+    [field: Header("State Machine Dummy")]
     [field: SerializeField] public bool Dummy { get; private set; }
+
+    [field: Space(10f)]
     [field: SerializeField] public bool CanHit { get; set; }
     [field: SerializeField] public bool wallSplat { get; set; }
 

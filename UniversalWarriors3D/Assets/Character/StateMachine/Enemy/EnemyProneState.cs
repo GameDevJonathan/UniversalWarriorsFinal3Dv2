@@ -5,10 +5,12 @@ public class EnemyProneState : EnemyBaseState
     private float upTime = 0f;
     private bool getUp = false;
     private readonly int StandUpHash = Animator.StringToHash("StandUp");
+    private readonly int StandUpProneHash = Animator.StringToHash("StandUpProne");
     private const float CrossFadeDuration = 0.1f;
-    public EnemyProneState(EnemyStateMachine stateMachine) : base(stateMachine)
+    private bool faceDown = false;
+    public EnemyProneState(EnemyStateMachine stateMachine, bool faceDown = false) : base(stateMachine)
     {
-
+        this.faceDown = faceDown;
     }
 
     public override void Enter()
@@ -28,7 +30,7 @@ public class EnemyProneState : EnemyBaseState
         if (upTime <= 0 && !getUp)
         {
             getUp = !getUp;
-            stateMachine.Animator.CrossFadeInFixedTime(StandUpHash, CrossFadeDuration);
+            stateMachine.Animator.CrossFadeInFixedTime((!faceDown) ? StandUpHash : StandUpProneHash, CrossFadeDuration);
         }
 
         if (GetNormalizedTime(stateMachine.Animator, "GetUp") > 1f)

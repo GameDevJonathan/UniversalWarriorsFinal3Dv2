@@ -84,6 +84,33 @@ BlendTree:
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!1102 &-5620452428338231523
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WallSplat
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 8993902097722301239, guid: b491263fb4c3959469363e2fae469fbd,
+    type: 3}
+  m_Tag: WallSplat
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-5111366569562848305
 AnimatorState:
   serializedVersion: 6
@@ -196,7 +223,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7042827392285970998}
-    m_Position: {x: 600, y: 410, z: 0}
+    m_Position: {x: 600, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8895871736063684720}
     m_Position: {x: 860, y: 90, z: 0}
@@ -215,6 +242,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7013157570153705187}
     m_Position: {x: 860, y: 410, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -5620452428338231523}
+    m_Position: {x: 860, y: 480, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6713648459148544533}
+    m_Position: {x: 600, y: 400, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -460,6 +493,32 @@ AnimatorState:
   m_Motion: {fileID: 8993902097722301239, guid: 47ab5d75320c41847ab9fd53529a96d4,
     type: 3}
   m_Tag: TakeDown
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &6713648459148544533
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StandUpProne
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: a7734a1459f41c54f817900bbff6dae5, type: 3}
+  m_Tag: GetUp
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

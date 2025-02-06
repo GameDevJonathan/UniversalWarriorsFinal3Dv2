@@ -136,6 +136,13 @@ public class Health : MonoBehaviour
         if (hit.gameObject.layer != layer) return;
 
         Debug.LogWarning("I hit a wall");
+        if (!EnemyStateMachine.wallSplat)
+        {
+            EnemyStateMachine.SwitchState(new EnemyWallSplatState(EnemyStateMachine));
+            EnemyStateMachine.wallSplat = !EnemyStateMachine.wallSplat;
+            return;
+
+        }
     }
 
 
