@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StateMachine : MonoBehaviour
 {
-    private State currentState;
+    protected State currentState;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))

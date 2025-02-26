@@ -39,7 +39,12 @@ public class AttackingState : PlayerBaseState
         weapon.setStunForce(attack.stunForce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
-        if (attack.AnimationName == "Uppercut" )
+        if (attack.MultiHitIndex != 0)
+        {
+            attack.MultiHitIndex = 0;
+        }
+
+        if (attack.AnimationName == ("Uppercut") || attack.AnimationName == "SpinningKick")
         {
             stateMachine.Animator.applyRootMotion = false;
 
@@ -67,6 +72,38 @@ public class AttackingState : PlayerBaseState
             }
         }
 
+        if (attack.AnimationName == "SpinningKick")
+        {
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") < .23f)
+            {
+                attack.KnockDown = false;
+            }
+
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") >= .23f && GetNormalizedTime(stateMachine.Animator, "Attack") < .45f)
+            {
+                attack.MultiHitIndex = 1;
+            }
+
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") >= .45f)
+            {
+
+                attack.MultiHitIndex = 2;
+                attack.KnockDown = true;
+                weapon.launchForce = attack.LaunchForce;
+                weapon.SetKnockDown(true);
+
+
+            }
+
+            if (GetNormalizedTime(stateMachine.Animator, "Attack") > .80f)
+            {
+                attack.KnockDown = false;
+                weapon.SetKnockDown(false);
+            }
+        }
+
+
+
 
 
         //if (attack.AnimationName == "Uppercut")
@@ -91,11 +128,13 @@ public class AttackingState : PlayerBaseState
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
 
-        
+
 
 
         ActivateHitBox(normalizedTime);
-        
+
+
+
 
         if (normalizedTime > previousFrameTime && normalizedTime < 1f)
         {
@@ -114,7 +153,7 @@ public class AttackingState : PlayerBaseState
                 TryComboAttack(normalizedTime);
             }
 
-            if(stateMachine.InputReader.HeavyAttackButtonPressed)
+            if (stateMachine.InputReader.HeavyAttackButtonPressed)
             {
                 TryLauncher(normalizedTime);
             }
@@ -184,13 +223,13 @@ public class AttackingState : PlayerBaseState
             case 1:
                 specialAttacks = SpecialAttacks.Uppercut;
                 //stateMachine.ForceReceiver.Jump(20f);
-                stateMachine.SwitchState(new AttackingState(stateMachine, (int)specialAttacks, targetLock));
+                stateMachine.SwitchState(new AttackingState(stateMachine, stateMachine.MoveIndex("Uppercut"), targetLock));
                 break;
 
             case 2:
                 specialAttacks = SpecialAttacks.SpinningKick;
                 //stateMachine.ForceReceiver.Jump(20f);
-                stateMachine.SwitchState(new AttackingState(stateMachine, (int)specialAttacks, targetLock));
+                stateMachine.SwitchState(new AttackingState(stateMachine, stateMachine.MoveIndex("SpinningKick"), targetLock));
                 break;
 
         }
@@ -201,10 +240,10 @@ public class AttackingState : PlayerBaseState
     private void TryLauncher(float normalizedTime)
     {
         if (attack.ComboStateIndex == -1) { return; }
-        if(normalizedTime < attack.ComboAttackTime) {return; }
-        stateMachine.Targeter.SelectClosestTarget();        
+        if (normalizedTime < attack.ComboAttackTime) { return; }
+        stateMachine.Targeter.SelectClosestTarget();
         stateMachine.SwitchState(new AttackingState(stateMachine, 7, targetLock));
-        
+
     }
 
 
@@ -225,12 +264,6 @@ public class AttackingState : PlayerBaseState
     {
         //Debug.Log(attackIndex);
         stateMachine.Index = attackIndex;
-    }
-
-    private void AttackWindow(Attacks attack)
-    {
-        Debug.Log("Attack Window: " + attack.ImpactWindow[attack.MultiHitIndex].x + " " + attack.ImpactWindow[attack.MultiHitIndex].y);
-
     }
 
     private void ActivateHitBox(float impactTime)
@@ -255,36 +288,27 @@ public class AttackingState : PlayerBaseState
                 case Attacks.HitBox.LeftFoot:
                     hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
                     break;
+
+                case Attacks.HitBox.Special:
+                    hitBoxes[(int)attack.hitBox].gameObject.SetActive(true);
+                    break;
             }
         }
         else
         {
-
-
             hitBoxes[(int)Attacks.HitBox.RightFoot].gameObject.SetActive(false);
             hitBoxes[(int)Attacks.HitBox.LeftFoot].gameObject.SetActive(false);
             hitBoxes[(int)Attacks.HitBox.Right].gameObject.SetActive(false);
             hitBoxes[(int)Attacks.HitBox.Left].gameObject.SetActive(false);
-        }
+            hitBoxes[(int)Attacks.HitBox.Special].gameObject.SetActive(false);
 
+        }
 
     }
 
-    private void setHitBox()
-    {
-        if(attack.MultiHitCombo == false) { return; }
-        if(attack.AnimationName == "Attack1")
-        {
-            switch (attack.MultiHitIndex)
-            {
-                case 1:
-                    attack.hitBox = Attacks.HitBox.Right;
-                    break;
-            }
-        }
-    }
 
-    
+
+
 
 
 

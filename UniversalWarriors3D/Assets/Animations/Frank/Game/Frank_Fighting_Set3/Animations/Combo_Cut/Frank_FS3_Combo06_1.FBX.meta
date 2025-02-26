@@ -16,17 +16,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 2.962550 mm\n\t'calf_r' : position error = 1.057730 mm\n\t'lowerarm_l'
-      : position error = 1.423345 mm\n\t'hand_l' : position error = 2.678643 mm\n\t'ring_02_l'
-      : position error = 1.239434 mm\n\t'ring_03_l' : position error = 1.120081 mm\n\t'upperarm_r'
-      : position error = 1.015706 mm\n\t'lowerarm_r' : position error = 1.944207
-      mm\n\t'hand_r' : position error = 2.862916 mm\n\t'middle_02_r' : position error
-      = 1.764468 mm\n\t'middle_03_r' : position error = 1.311768 mm\n\t'ring_02_r'
-      : position error = 1.565966 mm\n\t'ring_03_r' : position error = 1.300521 mm\n\t'pinky_01_r'
-      : position error = 1.114237 mm\n\t'head' : position error = 6.342512 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Unreal Take' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -68,13 +57,13 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 1
+      heightFromFeet: 1
+      mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []

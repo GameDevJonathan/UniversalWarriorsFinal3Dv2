@@ -893,7 +893,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f37946cb555732642aecec5d50026745, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f37946cb555732642aecec5d50026745,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -905,3 +906,11 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 217762
+  packageName: Ultimate Traversal Anims
+  packageVersion: 1.1.0
+  assetPath: Assets/Downloaded Animations/Universal_Traversal_Anims/Art/Animations/Updated
+    Anims 1.1/In_Place_Updated/AnimSeq_Traversal_BalanceBeam_Back_End_Updated.FBX
+  uploadId: 606677

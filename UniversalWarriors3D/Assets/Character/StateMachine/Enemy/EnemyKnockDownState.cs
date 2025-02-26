@@ -15,6 +15,7 @@ public class EnemyKnockDownState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.Health.CallHitStop();
         Debug.Log("Entered KnockDown State");
         stateMachine.Animator.CrossFadeInFixedTime(ImpactHash, CrossFadeDuration);
         stateMachine.Animator.applyRootMotion = true;

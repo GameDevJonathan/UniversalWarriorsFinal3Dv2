@@ -14,30 +14,35 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Enter()
     {
+        Debug.Log("Entering Chasing State");
+
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, crossFadeTime);
 
     }
     public override void Tick(float deltaTime)
     {
 
-        if (!IsInChaseRange())
+        if ((!stateMachine.PlayerDetector.playerInFov && !stateMachine.PlayerDetector.playerInEngageRange))
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
-        }else 
-        
-        if (IsInAttackRange())
+        }
+        else
+        if (stateMachine.PlayerDetector.playerInEngageRange)
         {
-            stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
+            stateMachine.Animator.SetFloat(SpeedHash, 0, AnimatorDampTime, deltaTime);
+            stateMachine.SwitchState(new EnemyEngageState(stateMachine));
             return;
         }
         FacePlayer();
         MoveToPlayer(deltaTime);
-        stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDampTime, deltaTime );
+        stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDampTime, deltaTime);
 
     }
     public override void Exit()
     {
+        Debug.Log("Leaving Chasing State");
+
         stateMachine.Agent.ResetPath();
         stateMachine.Agent.velocity = Vector3.zero;
     }
@@ -47,7 +52,7 @@ public class EnemyChasingState : EnemyBaseState
         stateMachine.Agent.destination = stateMachine.Player.transform.position;
 
         Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
-        
+
         stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
     }
 
@@ -59,5 +64,5 @@ public class EnemyChasingState : EnemyBaseState
 
 }
 
-   
+
 

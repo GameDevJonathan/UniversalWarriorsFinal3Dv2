@@ -1330,6 +1330,7 @@ MonoBehaviour:
   alreadyCollidedWith: []
   player: {fileID: 0}
   launchForce: 0
+  knockDown: 0
 --- !u!54 &6907185271444696392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6791,7 +6792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1439273143371119128
 Transform:
   m_ObjectHideFlags: 0
@@ -6857,11 +6858,40 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 3247488755785880077}
   <CharacterController>k__BackingField: {fileID: 8850379863112918799}
   <Agent>k__BackingField: {fileID: 7207353060552631154}
-  <Weapon>k__BackingField: {fileID: 5518897092528007863}
   <ForceReceiver>k__BackingField: {fileID: 2017602489733167934}
   <Health>k__BackingField: {fileID: 8821250252075897252}
+  <PlayerDetector>k__BackingField: {fileID: 1177991413459141687}
   <Ragdoll>k__BackingField: {fileID: 8370630952154911208}
+  <Attacks>k__BackingField:
+  - <AnimationName>k__BackingField: LeftHook
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 0
+    <ComboAttackTime>k__BackingField: 0
+    <AttackForce>k__BackingField: 0
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 0
+    <LauncherAttack>k__BackingField: 0
+    <KnockDown>k__BackingField: 0
+    TimeForce: 0
+    ImpactWindow:
+    - {x: 0.28, y: 0.44}
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 0
+    <LaunchForce>k__BackingField: 0
+    <stunForce>k__BackingField: 0
+    hitBox: 1
+  <Weapon>k__BackingField:
+  - {fileID: 2310399922973582450}
+  - {fileID: 5518897092528007863}
+  <hitBoxes>k__BackingField:
+  - {fileID: 4413493322981718463}
+  - {fileID: 5361717569170321722}
+  <AttackIndex>k__BackingField: 0
   <TakeDowns>k__BackingField:
+  - <AnimationName>k__BackingField: Rapid Combo Damage
+    <TransitionDuration>k__BackingField: 0.1
+    <Takedowndistance>k__BackingField: 0
   - <AnimationName>k__BackingField: GermanSuplexVic
     <TransitionDuration>k__BackingField: 0.1
     <Takedowndistance>k__BackingField: 0
@@ -6874,19 +6904,20 @@ MonoBehaviour:
   - <AnimationName>k__BackingField: DropkickVictim
     <TransitionDuration>k__BackingField: 0.1
     <Takedowndistance>k__BackingField: 0
-  - <AnimationName>k__BackingField: Rapid Combo Damage
+  <Counters>k__BackingField:
+    <AnimationName>k__BackingField: ShoulderThrow
     <TransitionDuration>k__BackingField: 0.1
-    <Takedowndistance>k__BackingField: 0
   <Player>k__BackingField: {fileID: 0}
   <PlayerDectionRange>k__BackingField: 10
   <AttackRange>k__BackingField: 1.7
   <AttackDamage>k__BackingField: 20
   <KnockDown>k__BackingField: 0
-  <MovementSpeed>k__BackingField: 4
+  <MovementSpeed>k__BackingField: 2
+  <StrafeMovementSpeed>k__BackingField: 0.25
   LaunchForce: 0
   <RotationSmoothValue>k__BackingField: 11
   <Dummy>k__BackingField: 1
-  <CanHit>k__BackingField: 1
+  <CanHit>k__BackingField: 0
   <wallSplat>k__BackingField: 0
   IdleRangeTimer: {x: 0, y: 0}
   AttackTimerRange: {x: 0, y: 0}
@@ -6913,13 +6944,14 @@ MonoBehaviour:
   stunDecreaseSpeed: 10
   isStunned: 0
   uiContainer: {fileID: 7615510709140056200}
-  UIComponent: {fileID: 0}
+  UIComponent: {fileID: 8338815433704555619}
   mainCamera: {fileID: 0}
-  stunBar: {fileID: 0}
-  EnemyStateMachine: {fileID: 0}
+  stunBar: {fileID: 867041584479322641}
+  EnemyStateMachine: {fileID: 1560392280017986289}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
+  hitStopTime: 0.05
 --- !u!95 &3247488755785880077
 Animator:
   serializedVersion: 7
@@ -7002,7 +7034,7 @@ MonoBehaviour:
   boneShape: 1
   drawBones: 1
   drawTripods: 0
-  boneSize: 1
+  boneSize: 2.69
   tripodSize: 1
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms:
@@ -7074,11 +7106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af10125d63135c340b36cbf7ab162336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: 10
+  fov: 8
   fovAngle: 91
+  engageRange: 6
   alertStage: 0
   alertLevel: 0
   playerInFov: 0
+  playerInEngageRange: 0
 --- !u!114 &8370630952154911208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7518,6 +7552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4330667386312821485}
   - component: {fileID: 4413493322981718463}
+  - component: {fileID: 2310399922973582450}
   m_Layer: 0
   m_Name: HitBoxRH
   m_TagString: Untagged
@@ -7561,6 +7596,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.50181603, y: 0.21, z: 0.2}
   m_Center: {x: -0.019091876, y: 0.0000000012989989, z: -0.0000000042275556}
+--- !u!114 &2310399922973582450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087481045574242395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d5cca03e5aaf14b94f573431378c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 8850379863112918799}
+  myTargeter: {fileID: 0}
+  alreadyCollidedWith: []
+  player: {fileID: 0}
+  launchForce: 0
+  knockDown: 0
 --- !u!1 &7348726036921124075
 GameObject:
   m_ObjectHideFlags: 0
@@ -7606,7 +7659,7 @@ GameObject:
   - component: {fileID: 4581109387614187827}
   m_Layer: 0
   m_Name: TargetFocus
-  m_TagString: Untagged
+  m_TagString: Sensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8245,17 +8298,17 @@ PrefabInstance:
     - target: {fileID: 5214987865866613935, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.245
+      value: -0.043
       objectReference: {fileID: 0}
     - target: {fileID: 5214987865866613935, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.971
+      value: 2.085
       objectReference: {fileID: 0}
     - target: {fileID: 5214987865866613935, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.165
       objectReference: {fileID: 0}
     - target: {fileID: 5214987865866613935, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
@@ -8350,7 +8403,7 @@ PrefabInstance:
     - target: {fileID: 8148124435247758733, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828035143135194627, guid: 09e82b2e2089cc04096567a849edfa77,
         type: 3}
@@ -8362,12 +8415,39 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9103941048619344292, guid: 09e82b2e2089cc04096567a849edfa77,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103941048619344292, guid: 09e82b2e2089cc04096567a849edfa77,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103941048619344292, guid: 09e82b2e2089cc04096567a849edfa77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.28
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5613534081625996628, guid: 09e82b2e2089cc04096567a849edfa77, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09e82b2e2089cc04096567a849edfa77, type: 3}
+--- !u!114 &867041584479322641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1491842797631133460, guid: 09e82b2e2089cc04096567a849edfa77,
+    type: 3}
+  m_PrefabInstance: {fileID: 1782386023073223941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5828525920122905002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5214987865866613935, guid: 09e82b2e2089cc04096567a849edfa77,
@@ -8377,6 +8457,12 @@ Transform:
 --- !u!1 &7615510709140056200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8148124435247758733, guid: 09e82b2e2089cc04096567a849edfa77,
+    type: 3}
+  m_PrefabInstance: {fileID: 1782386023073223941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8338815433704555619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7711608214770930022, guid: 09e82b2e2089cc04096567a849edfa77,
     type: 3}
   m_PrefabInstance: {fileID: 1782386023073223941}
   m_PrefabAsset: {fileID: 0}

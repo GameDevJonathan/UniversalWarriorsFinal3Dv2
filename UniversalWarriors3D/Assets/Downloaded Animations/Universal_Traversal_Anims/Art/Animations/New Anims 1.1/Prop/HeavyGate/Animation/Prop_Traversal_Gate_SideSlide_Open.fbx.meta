@@ -124,7 +124,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b8edba1719b9d504bbdc20b957d1f421, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b8edba1719b9d504bbdc20b957d1f421,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
@@ -136,3 +137,11 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 217762
+  packageName: Ultimate Traversal Anims
+  packageVersion: 1.1.0
+  assetPath: Assets/Downloaded Animations/Universal_Traversal_Anims/Art/Animations/New
+    Anims 1.1/Prop/HeavyGate/Animation/Prop_Traversal_Gate_SideSlide_Open.fbx
+  uploadId: 606677

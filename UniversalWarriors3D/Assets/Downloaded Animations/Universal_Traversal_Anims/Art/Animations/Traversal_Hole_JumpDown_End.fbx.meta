@@ -886,7 +886,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 232c5f166caf4c347a0862a91c9dfa56, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 232c5f166caf4c347a0862a91c9dfa56,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -896,3 +897,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 217762
+  packageName: Ultimate Traversal Anims
+  packageVersion: 1.1.0
+  assetPath: Assets/Downloaded Animations/Universal_Traversal_Anims/Art/Animations/Traversal_Hole_JumpDown_End.fbx
+  uploadId: 606677

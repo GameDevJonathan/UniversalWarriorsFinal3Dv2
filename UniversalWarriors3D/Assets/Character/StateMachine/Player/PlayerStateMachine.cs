@@ -1,7 +1,8 @@
-using UnityEngine;
 using EasyAudioManager;
-using UnityEngine.Animations.Rigging;
 using System.Collections.Generic;
+using Unity.Cinemachine;
+using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerStateMachine : StateMachine
 {
@@ -15,10 +16,20 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public WallRun WallRun { get; private set; }
+    [field: SerializeField] public AudioSource AudioSource { get; private set; }
+
+    [field: Header("Attacks and Parries")]
     [field: SerializeField] public Attacks[] Attacks { get; private set; }
     [field: SerializeField] public AirAttacks[] AirAttacks { get; private set; }
     [field: SerializeField] public SpecialMoves[] SpecialMoves { get; private set; }
     [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
+    [field: SerializeField] public Counters Counters { get; private set; }
+    [field: SerializeField] public AudioClip[] SoundEffects { get; private set; }
+
+
+    [MinMaxRangeSlider(0, 1)]
+    [field: SerializeField] public Vector2 ParryWindow;
+    [field: SerializeField] public float ParryTime;
     //[field: SerializeField] public Transform TakeDownPoint { get; private set; }
 
     [SerializeField] public int Index = 0;
@@ -27,7 +38,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public EnviromentScaner EnviromentScaner { get; private set; }
     [field: SerializeField] public MeshTrail MeshTrail { get; private set; }
-    [field:SerializeField] public WeaponDamage[] weapon { get; private set; }
+    [field: SerializeField] public WeaponDamage[] weapon { get; private set; }
 
     #endregion
 
@@ -45,6 +56,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] Transform[] startTransform;
     [SerializeField] enum enStartPositions { Stairs = 0, Highway, TollBooth, JumpPoint }
     [SerializeField] enStartPositions enStartPosition = enStartPositions.TollBooth;
+
+
 
 
     [field: Header("Special Beam")]
@@ -72,10 +85,10 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float DashForceTime { get; private set; }
     [field: SerializeField] public float DashForce { get; private set; }
-    [field: SerializeField] public float EquipTime { get;  set; } 
-    [field: SerializeField] public bool CanTakeDown { get; set; } 
-    [field: SerializeField] public int takeDownIndex{get; set;}
-    [field: SerializeField] public bool testTakeDown {get; set;}
+    [field: SerializeField] public float EquipTime { get; set; }
+    [field: SerializeField] public bool CanTakeDown { get; set; }
+    [field: SerializeField] public int takeDownIndex { get; set; }
+    [field: SerializeField] public bool testTakeDown { get; set; }
     #endregion
 
     #region Camera's and VFX
@@ -99,7 +112,7 @@ public class PlayerStateMachine : StateMachine
     private void OnEnable()
     {
         GetComponents();
-    
+
         Health.OnTakeDamage += DamageEvent;
     }
 
@@ -110,7 +123,15 @@ public class PlayerStateMachine : StateMachine
 
     private void DamageEvent()
     {
-        SwitchState(new PlayerImpactState(this));
+
+        Debug.Log("I got hit");
+
+
+        if (ParryTime > ParryWindow.x && ParryTime < ParryWindow.y)
+        {
+            Debug.Log("Parry This Hit");
+        }
+        //SwitchState(new PlayerImpactState(this));
     }
 
 
@@ -130,15 +151,22 @@ public class PlayerStateMachine : StateMachine
 
                 case enStartPositions.Highway:
                     transform.parent.position = startTransform[(int)enStartPositions.Highway].position;
-                    
+
                     break;
 
                 case enStartPositions.Stairs:
                     transform.parent.position = startTransform[(int)enStartPositions.Stairs].position;
-                    
+
                     break;
             }
         }
+    }
+
+    public int MoveIndex(string moveName)
+    {
+
+        int index = System.Array.FindIndex(Attacks, name => name.AnimationName == moveName);
+        return index;
     }
 
     public void ChargedLevel()
@@ -165,7 +193,11 @@ public class PlayerStateMachine : StateMachine
             return;
 
         }
+    }
 
+    public void PlaySoundEffects(int index)
+    {
+        AudioSource.PlayOneShot(SoundEffects[index]);
     }
 
     public void FireBullet()
@@ -200,27 +232,83 @@ public class PlayerStateMachine : StateMachine
         LightSaber.TurnOn();
     }
 
-    public void OnControllerColliderHit(ControllerColliderHit hit)
+
+
+
+    private void OnTriggerEnter(Collider other)
     {
 
 
-        Rigidbody body = hit.collider.attachedRigidbody;
 
-        if (body == null)
+        other.transform.root.TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemy);
+
+
+        if (enemy)
         {
-            return;
+            if (ParryTime > ParryWindow.x && ParryTime < ParryWindow.y)
+            {
+                switch (enemy.Attacks[enemy.AttackIndex].hitBox)
+                {
+                    case global::Attacks.HitBox.Left:
+                        Debug.Log("Hit by left hitbox");
+                        transform.rotation = Quaternion.LookRotation(FaceAttacker(
+                            enemy.transform, transform));
+                        enemy.transform.rotation = Quaternion.LookRotation(FaceAttacker(
+                            transform, enemy.transform));
+                        SwitchState(new PlayerCounterState(this));
+                        enemy.SwitchState(new EnemyCounterState(enemy));
+                        break;
+                    case global::Attacks.HitBox.Right:
+                        Debug.Log("Hit by right hitbox");
+                        break;
+                }
+
+            }
+
+
+
+
+
+            Debug.Log(enemy.Attacks[0].hitBox.ToString());
+            Debug.Log(enemy.Attacks[0].hitBox);
         }
 
-        //Debug.Log(body);
-
-        body.TryGetComponent<HighWayInteraction>(out HighWayInteraction highWayInteraction);
-
-        if (highWayInteraction != null && highWayInteraction.Enemy == false)
-            body.useGravity = true;
-
-
-
     }
+
+    public Vector3 FaceAttacker(Transform target1, Transform target2)
+    {
+        Vector3 lookpos = target1.position - target2.position;
+        lookpos.y = 0f;
+
+        return lookpos;
+    }
+
+    //public void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+
+
+
+
+
+
+
+    //    Rigidbody body = hit.collider.attachedRigidbody;
+
+    //    if (body == null)
+    //    {
+    //        return;
+    //    }
+
+    //    //Debug.Log(body);
+
+    //    body.TryGetComponent<HighWayInteraction>(out HighWayInteraction highWayInteraction);
+
+    //    if (highWayInteraction != null && highWayInteraction.Enemy == false)
+    //        body.useGravity = true;
+
+
+
+    //}
 
     private void GetComponents()
     {
@@ -233,16 +321,14 @@ public class PlayerStateMachine : StateMachine
         EnviromentScaner = GetComponent<EnviromentScaner>();
         MeshTrail = GetComponent<MeshTrail>();
         Health = GetComponent<Health>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
-    public Attacks SetAttackIndex()
-    {
-        //Debug.Log(Attacks[Index].AttackForce);
-        return Attacks[Index];
-        
-    }
+    //public void SetAttackIndex()
+    //{
+    //    Debug.Log()
 
-    
+    //}
 
 
 

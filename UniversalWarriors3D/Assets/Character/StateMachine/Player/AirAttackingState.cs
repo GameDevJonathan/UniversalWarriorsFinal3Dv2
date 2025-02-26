@@ -78,7 +78,7 @@ public class AirAttackingState : PlayerBaseState
                 //if (targetLock)
                 //    stateMachine.SwitchState(new PlayerTargetingState(stateMachine, true));
                 //else
-                    stateMachine.SwitchState(new PlayerFallState(stateMachine));
+                stateMachine.SwitchState(new PlayerFallState(stateMachine));
                 return;
             }
         }
@@ -133,6 +133,10 @@ public class AirAttackingState : PlayerBaseState
                 case AirAttacks.HitBox.LeftFoot:
                     hitBoxes[(int)AirAttacks.hitBox].gameObject.SetActive(true);
                     break;
+
+                case AirAttacks.HitBox.Special:
+                    hitBoxes[(int)AirAttacks.hitBox].gameObject.SetActive(true);
+                    break;
             }
         }
         else
@@ -141,6 +145,7 @@ public class AirAttackingState : PlayerBaseState
             hitBoxes[(int)AirAttacks.HitBox.LeftFoot].gameObject.SetActive(false);
             hitBoxes[(int)AirAttacks.HitBox.Right].gameObject.SetActive(false);
             hitBoxes[(int)AirAttacks.HitBox.Left].gameObject.SetActive(false);
+            hitBoxes[(int)AirAttacks.HitBox.Special].gameObject.SetActive(false);
         }
 
 

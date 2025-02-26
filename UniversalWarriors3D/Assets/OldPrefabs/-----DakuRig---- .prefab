@@ -4934,6 +4934,134 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &32876575759260031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7117887349035654568}
+  - component: {fileID: 5205599557124058478}
+  - component: {fileID: 2401073240001160188}
+  - component: {fileID: 6158866882047410960}
+  - component: {fileID: 6926548681036151912}
+  m_Layer: 8
+  m_Name: ArialHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7117887349035654568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32876575759260031}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0081, y: 1.2609, z: 0.73}
+  m_LocalScale: {x: 1.6417502, y: 1.0868682, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4562298584157945765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5205599557124058478
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32876575759260031}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2401073240001160188
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32876575759260031}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6158866882047410960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32876575759260031}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6926548681036151912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32876575759260031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d5cca03e5aaf14b94f573431378c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 6805466013783316823}
+  myTargeter: {fileID: 745719846575015352}
+  alreadyCollidedWith: []
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  launchForce: 0
+  knockDown: 0
 --- !u!1 &45327220743100412
 GameObject:
   m_ObjectHideFlags: 0
@@ -5769,7 +5897,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6824862398283846591}
   - component: {fileID: 5627937248008357143}
-  - component: {fileID: 983454675327727665}
   - component: {fileID: 1298180675033202136}
   m_Layer: 8
   m_Name: UICamera
@@ -5844,14 +5971,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &983454675327727665
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506776928379272299}
-  m_Enabled: 1
 --- !u!114 &1298180675033202136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11338,7 +11457,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.188589, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.3, z: 1.5}
   m_Center: {x: -0.095, y: 0, z: 0}
 --- !u!114 &7498573054386057070
 MonoBehaviour:
@@ -11356,7 +11475,9 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  enemy: {fileID: 0}
   launchForce: 0
+  knockDown: 0
 --- !u!54 &6062157898238271239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17125,7 +17246,7 @@ GameObject:
   m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22227,7 +22348,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1136127082822013380
 MonoBehaviour:
@@ -22245,7 +22366,9 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  enemy: {fileID: 0}
   launchForce: 0
+  knockDown: 0
 --- !u!54 &216689013188102308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22422,8 +22545,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815959501523790369}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: -3.8, z: 14.099999}
+  m_LocalRotation: {x: -0.019400815, y: -0.0000000037252903, z: 2.910383e-11, w: 0.9998118}
+  m_LocalPosition: {x: 0.000000059604645, y: -2.3382382, z: 8.597183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22442,12 +22565,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionMode: 0
-  RotationMode: 0
-  UpdateMethod: 1
+  RotationMode: 1
+  UpdateMethod: 2
   Targets:
   - Object: {fileID: 2580552307341888843}
     Weight: 1
-    Radius: 0.5
+    Radius: 0
   m_LegacyTargets: []
 --- !u!1 &1885009984462998564
 GameObject:
@@ -50649,6 +50772,7 @@ Transform:
   - {fileID: 2016642036201355384}
   - {fileID: 5550106716475159183}
   - {fileID: 7420714086113819243}
+  - {fileID: 5524995057502658154}
   - {fileID: 7219926618987770358}
   - {fileID: 3363721142934152205}
   - {fileID: 76146494668893830}
@@ -50661,6 +50785,7 @@ Transform:
   - {fileID: 4956429528818210277}
   - {fileID: 7395072649238903469}
   - {fileID: 5643390736762068482}
+  - {fileID: 7117887349035654568}
   m_Father: {fileID: 2580552307341888843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &699368866417192650
@@ -50682,13 +50807,11 @@ MonoBehaviour:
   tripodSize: 1
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms:
-  - {fileID: 4562298584157945765}
   - {fileID: 2430789060000918214}
   - {fileID: 1582091552289997968}
   - {fileID: 2016642036201355384}
   - {fileID: 5550106716475159183}
   - {fileID: 7420714086113819243}
-  - {fileID: 7219926618987770358}
   - {fileID: 2972186229060894704}
   - {fileID: 7692189180291072794}
   - {fileID: 1795616887809217183}
@@ -51183,7 +51306,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8290222503682369180
 MonoBehaviour:
@@ -51201,7 +51324,9 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  enemy: {fileID: 0}
   launchForce: 0
+  knockDown: 0
 --- !u!54 &7208067042592968993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -57670,6 +57795,37 @@ Transform:
   - {fileID: 5397785590500352820}
   m_Father: {fileID: 4021284979211683859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5383158377815121095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5524995057502658154}
+  m_Layer: 8
+  m_Name: DragonWavePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5524995057502658154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383158377815121095}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08598328, y: 1.1936193, z: 1.1773491}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4562298584157945765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5397793374137434876
 GameObject:
   m_ObjectHideFlags: 0
@@ -59014,7 +59170,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.188589, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.3, z: 1.5}
   m_Center: {x: 0.03, y: 0, z: 0}
 --- !u!114 &4229042556951356985
 MonoBehaviour:
@@ -59032,7 +59188,9 @@ MonoBehaviour:
   myTargeter: {fileID: 745719846575015352}
   alreadyCollidedWith: []
   player: {fileID: 1891222219991165263}
+  enemy: {fileID: 0}
   launchForce: 0
+  knockDown: 0
 --- !u!54 &4585749179528114875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79591,7 +79749,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7266991019532882981}
   - component: {fileID: 7200180375893652013}
-  - component: {fileID: 9213949414647280334}
+  - component: {fileID: 2662195722651648362}
+  - component: {fileID: 4876761556249458605}
   m_Layer: 8
   m_Name: TargetCamera
   m_TagString: Untagged
@@ -79607,14 +79766,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915200216281760413}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000598179, y: 0.99868894, z: 0.011984794, w: -0.049763627}
-  m_LocalPosition: {x: 1.8258009, y: -0.31733322, z: 18.649551}
+  m_LocalRotation: {x: -0.00036738857, y: 0.9987335, z: -0.0073928414, w: -0.04976587}
+  m_LocalPosition: {x: 1.2665614, y: -1.3126206, z: 13.051915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1712787524294600856}
   m_Father: {fileID: 8473532601269887744}
-  m_LocalEulerAnglesHint: {x: -1.375, y: -173.4, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.4, y: -174.295, z: 0}
 --- !u!114 &7200180375893652013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79636,10 +79795,10 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 2580552307341888843}
-    LookAtTarget: {fileID: 2580552307341888843}
+    LookAtTarget: {fileID: 1712787524294600856}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 30
+    FieldOfView: 36
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -79658,7 +79817,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &9213949414647280334
+--- !u!114 &2662195722651648362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79671,19 +79830,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 3, z: -5.5}
-  VerticalArmLength: 0.8
-  CameraSide: 0.5
-  CameraDistance: 8.6
+  ShoulderOffset: {x: 0, y: 3.23, z: 0}
+  VerticalArmLength: -0.56
+  CameraSide: 1
+  CameraDistance: 8.5
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 257
-    IgnoreTag: Untagged
+      m_Bits: 1048577
+    IgnoreTag: 
     CameraRadius: 0.2
     DampingIntoCollision: 0
-    DampingFromCollision: 0.5
+    DampingFromCollision: 0
+--- !u!114 &4876761556249458605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915200216281760413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 2.34, z: 0}
+  Damping: {x: 0, y: 0}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &6918188655348138313
 GameObject:
   m_ObjectHideFlags: 0
@@ -86088,6 +86276,7 @@ GameObject:
   - component: {fileID: 7407521534606696178}
   - component: {fileID: 5590135348599061526}
   - component: {fileID: 5996872271279542613}
+  - component: {fileID: 8233688837740914634}
   m_Layer: 8
   m_Name: JaidenDakuMasterComponent
   m_TagString: Player
@@ -86158,6 +86347,7 @@ MonoBehaviour:
   <ForceReceiver>k__BackingField: {fileID: 0}
   <Health>k__BackingField: {fileID: 0}
   <WallRun>k__BackingField: {fileID: 0}
+  <AudioSource>k__BackingField: {fileID: 0}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: Attack1
     <TransitionDuration>k__BackingField: 0.1
@@ -86175,8 +86365,9 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
     <LaunchForce>k__BackingField: 0
-    <stunForce>k__BackingField: 100
+    <stunForce>k__BackingField: 20
     hitBox: 1
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
@@ -86193,8 +86384,9 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 4
     <LaunchForce>k__BackingField: 0
-    <stunForce>k__BackingField: 0
+    <stunForce>k__BackingField: 20
     hitBox: 0
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: 3
@@ -86211,8 +86403,9 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
     <LaunchForce>k__BackingField: 0
-    <stunForce>k__BackingField: 0
+    <stunForce>k__BackingField: 20
     hitBox: 1
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Attack4
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: 4
@@ -86229,8 +86422,9 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
     <LaunchForce>k__BackingField: 0
-    <stunForce>k__BackingField: 0
+    <stunForce>k__BackingField: 20
     hitBox: 3
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Attack5
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -86247,8 +86441,9 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 1
     <LaunchForce>k__BackingField: 10
-    <stunForce>k__BackingField: 0
+    <stunForce>k__BackingField: 20
     hitBox: 2
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Uppercut
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -86262,11 +86457,12 @@ MonoBehaviour:
     TimeForce: 0.35
     ImpactWindow:
     - {x: 0.24, y: 0.63}
-    <UpForce>k__BackingField: 100
+    <UpForce>k__BackingField: 50
     <ForwardForce>k__BackingField: 5
     <LaunchForce>k__BackingField: 0
     <stunForce>k__BackingField: 0
     hitBox: 0
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: SpinningKick
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -86278,12 +86474,16 @@ MonoBehaviour:
     <LauncherAttack>k__BackingField: 0
     <KnockDown>k__BackingField: 0
     TimeForce: 0
-    ImpactWindow: []
+    ImpactWindow:
+    - {x: 0.16, y: 0.22}
+    - {x: 0.34, y: 0.37}
+    - {x: 0.66, y: 0.71}
     <UpForce>k__BackingField: 1
-    <ForwardForce>k__BackingField: 30
+    <ForwardForce>k__BackingField: 5
     <LaunchForce>k__BackingField: 0
     <stunForce>k__BackingField: 0
-    hitBox: 0
+    hitBox: 4
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: Launcher
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -86302,6 +86502,7 @@ MonoBehaviour:
     <LaunchForce>k__BackingField: 15
     <stunForce>k__BackingField: 0
     hitBox: 0
+    VFX: {fileID: 0}
   - <AnimationName>k__BackingField: DiveKick
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -86319,6 +86520,25 @@ MonoBehaviour:
     <LaunchForce>k__BackingField: 0
     <stunForce>k__BackingField: 0
     hitBox: 0
+    VFX: {fileID: 0}
+  - <AnimationName>k__BackingField: JumpKick
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 1
+    <AttackForce>k__BackingField: 20
+    MultiHitCombo: 0
+    MultiHitIndex: 0
+    <ShouldAddAttackForce>k__BackingField: 1
+    <LauncherAttack>k__BackingField: 0
+    <KnockDown>k__BackingField: 0
+    TimeForce: 0
+    ImpactWindow: []
+    <UpForce>k__BackingField: 0
+    <ForwardForce>k__BackingField: 25
+    <LaunchForce>k__BackingField: 0
+    <stunForce>k__BackingField: 0
+    hitBox: 3
+    VFX: {fileID: 0}
   <AirAttacks>k__BackingField:
   - <AnimationName>k__BackingField: AirAttack2
     <TransitionDuration>k__BackingField: 0.1
@@ -86335,7 +86555,7 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
     <LaunchForce>k__BackingField: 0
-    hitBox: 0
+    hitBox: 4
   - <AnimationName>k__BackingField: AirAttack1
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
@@ -86351,7 +86571,7 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
     <LaunchForce>k__BackingField: 0
-    hitBox: 1
+    hitBox: 4
   - <AnimationName>k__BackingField: AirAttack3
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: -1
@@ -86367,9 +86587,18 @@ MonoBehaviour:
     <UpForce>k__BackingField: 0
     <ForwardForce>k__BackingField: 0
     <LaunchForce>k__BackingField: 0
-    hitBox: 0
-  <SpecialMoves>k__BackingField: []
+    hitBox: 4
+  <SpecialMoves>k__BackingField:
+  - <AnimationName>k__BackingField: DragonWave
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: -1
+    <AttackForce>k__BackingField: 0
+    <TimeForce>k__BackingField: 0
   <TakeDowns>k__BackingField:
+  - <AnimationName>k__BackingField: Rapid Combo Attack
+    <TransitionDuration>k__BackingField: 0.1
+    <Takedowndistance>k__BackingField: 1
   - <AnimationName>k__BackingField: GermanSuplex
     <TransitionDuration>k__BackingField: 0.1
     <Takedowndistance>k__BackingField: 1
@@ -86382,9 +86611,17 @@ MonoBehaviour:
   - <AnimationName>k__BackingField: DropKickAttacker
     <TransitionDuration>k__BackingField: 0.1
     <Takedowndistance>k__BackingField: 1
-  - <AnimationName>k__BackingField: Rapid Combo Attack
+  <Counters>k__BackingField:
+    <AnimationName>k__BackingField: ShoulderThrow
     <TransitionDuration>k__BackingField: 0.1
-    <Takedowndistance>k__BackingField: 1
+  <SoundEffects>k__BackingField:
+  - {fileID: 8300000, guid: 8bf456067b9c41e4b816d11e7e8a1f61, type: 3}
+  - {fileID: 8300000, guid: abca193e04f54cd4bb6ebd60d8f4a9b6, type: 3}
+  - {fileID: 8300000, guid: 32263eda5ad12f042a8fa568c84e00a0, type: 3}
+  - {fileID: 8300000, guid: a65d792d6907f744490c9b15bb70edfe, type: 3}
+  - {fileID: 8300000, guid: 4d4ef7516a431934681038a3dc391e55, type: 3}
+  ParryWindow: {x: 0, y: 0.2}
+  ParryTime: 0
   Index: 0
   <ParkourActions>k__BackingField:
   - {fileID: 11400000, guid: 89ebd337f14a3534bb70ba5c3b32bf54, type: 2}
@@ -86398,17 +86635,19 @@ MonoBehaviour:
   - {fileID: 1136127082822013380}
   - {fileID: 7498573054386057070}
   - {fileID: 4229042556951356985}
+  - {fileID: 6926548681036151912}
   <hitBoxes>k__BackingField:
   - {fileID: 5061132027312294317}
   - {fileID: 4282871897899308804}
   - {fileID: 3611762102226983387}
   - {fileID: 5909059528663200592}
-  <FirePoint>k__BackingField: {fileID: 5643390736762068482}
+  - {fileID: 6158866882047410960}
+  <FirePoint>k__BackingField: {fileID: 5524995057502658154}
   <Sockets>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}
   <BusterShot>k__BackingField:
-  - {fileID: 3221138590616415227, guid: c185b4010fca29444a8e460f9a31d894, type: 3}
+  - {fileID: 1079946990457772, guid: 2e10c38d7d83154429c2fb51c652e1fb, type: 3}
   - {fileID: 1311559214229084, guid: 87d77b78efd8ec1429eb85d253e503b8, type: 3}
   - {fileID: 1079946990457772, guid: db78a9e393bbf7f4383dece22bd1b56b, type: 3}
   <LightSaber>k__BackingField: {fileID: 0}
@@ -86700,7 +86939,111 @@ MonoBehaviour:
   stunDecreaseSpeed: 1
   isStunned: 0
   uiContainer: {fileID: 0}
+  UIComponent: {fileID: 0}
   mainCamera: {fileID: 0}
+  stunBar: {fileID: 0}
+  EnemyStateMachine: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  hitStopTime: 0
+--- !u!82 &8233688837740914634
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715469925043053954}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7752968524237234790
 GameObject:
   m_ObjectHideFlags: 0

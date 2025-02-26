@@ -4,32 +4,15 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Action
-  - AutoCrouch
   - Ragdoll
   - Ignore Ragdoll
   - Boss
   - Enemy
-  - CompanionAI
   - Weapon
   - LookAt
-  - Dirt
-  - Wood
-  - Metal
-  - Concrete
-  - Glass
-  - Water
   - LadderTrigger
-  - ExitWater
-  - Barrel
-  - FreeClimb
-  - ClimbDirection
-  - Zipline
   - PlayerUI
-  - Collectable
-  - CoverPoint
   - Interactable
-  - AIAction
   - Wall
   - Projectile
   - Fence
@@ -37,6 +20,7 @@ TagManager:
   - Sensor
   - Table
   - Environment
+  - Floor
   layers:
   - Default
   - TransparentFX

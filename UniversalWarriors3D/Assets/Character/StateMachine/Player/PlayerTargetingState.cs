@@ -1,6 +1,4 @@
-using EasyAudioManager;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
 public class PlayerTargetingState : PlayerBaseState
 {
@@ -87,6 +85,19 @@ public class PlayerTargetingState : PlayerBaseState
             //    stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one * 2.5f;
             //else
             //    stateMachine._TargetCamUtil.gameObject.transform.localScale = Vector3.one;
+
+        }
+
+        if (stateMachine.CanTakeDown && stateMachine.InputReader.TakeDownButton)
+        {
+            //Todo switch to takedown state
+            Debug.Log("Grounded state:: switch to take down state");
+            stateMachine.takeDownIndex = Random.Range(0, stateMachine.TakeDowns.Length);
+            Debug.Log($"TakeDown Index: {stateMachine.takeDownIndex}");
+            FaceTakeDownTarget();
+
+            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine, stateMachine.takeDownIndex));
+            return;
 
         }
 
@@ -217,11 +228,11 @@ public class PlayerTargetingState : PlayerBaseState
 
     public void OnDodge()
     {
-        Debug.Log($"Joystick angle: {angle}");
-        Vector2 move = stateMachine.InputReader.MovementValue;
         Debug.Log($"Dodging: {dodging}");
         dodging = true;
-        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, move, angle, dodging));
+        float x = stateMachine.InputReader.MovementValue.x;
+        float y = stateMachine.InputReader.MovementValue.y;
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, Angle(x, y), dodging));
         return;
     }
 

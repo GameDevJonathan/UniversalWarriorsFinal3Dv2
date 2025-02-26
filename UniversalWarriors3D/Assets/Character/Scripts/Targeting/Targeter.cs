@@ -1,5 +1,5 @@
-using Unity.Cinemachine;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 
@@ -51,7 +51,7 @@ public class Targeter : MonoBehaviour
 
     }
 
-   
+
 
 
 
@@ -100,7 +100,7 @@ public class Targeter : MonoBehaviour
 
     public void SelectClosestTakeDown()
     {
-        if (CurrentTarget != null) return;
+        //if (CurrentTarget != null) return;
         if (targets.Count == 0) return;
         float closestDistance = Mathf.Infinity;
         Health closestTarget = null;
@@ -110,15 +110,15 @@ public class Targeter : MonoBehaviour
         foreach (Collider target in quickTargets)
         {
             target.TryGetComponent<Health>(out Health targetComponent);
-            Debug.Log(targetComponent.gameObject.name);
+            //Debug.Log(targetComponent.gameObject.name);
             float currentDistance;
             currentDistance = Vector3.Distance(transform.position, targetComponent.transform.position);
 
             if (currentDistance < closestDistance)
             {
                 closestDistance = currentDistance;
-                if(targetComponent.isStunned)                
-                closestTarget = targetComponent;
+                if (targetComponent.isStunned)
+                    closestTarget = targetComponent;
             }
         }
 
@@ -127,7 +127,7 @@ public class Targeter : MonoBehaviour
         if (TakeDownTarget == null) return;
         Debug.Log("Current target is " + TakeDownTarget.gameObject.name);
         stateMachine.CanTakeDown = true;
-        
+
         //closestTarget.TryGetComponent<Health>(out Health targetHealth);
 
         //if (targetHealth.isStunned) 
@@ -181,8 +181,8 @@ public class Targeter : MonoBehaviour
         }
 
         //Debug.Log("Targeter Component:: " + closestTarget);
-        if (closestTarget == null) 
-        { 
+        if (closestTarget == null)
+        {
             return false;
         }
         else
@@ -199,7 +199,7 @@ public class Targeter : MonoBehaviour
         //Debug.Log("current target transform " + CurrentTarget.transform);
 
 
-        targetGroup.AddMember(CurrentTarget.transform,.1f,2f);
+        targetGroup.AddMember(CurrentTarget.transform, .1f, 2f);
 
         //Debug.Log("Targeter Component:: CurrentTarget =  " + CurrentTarget);
         //Debug.Log("Type of  =  " + CurrentTarget);

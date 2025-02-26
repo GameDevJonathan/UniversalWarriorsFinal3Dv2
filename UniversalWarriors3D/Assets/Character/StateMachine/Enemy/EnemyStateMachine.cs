@@ -9,20 +9,31 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
-    [field: SerializeField] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public EnemyPlayerDetector PlayerDetector { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+
+
+    [field: Header("Attack Animation")]
+    [field: SerializeField] public Attacks[] Attacks { get; private set; }
+    [field: SerializeField] public WeaponDamage[] Weapon { get; private set; }
+    [field: SerializeField] public Collider[] hitBoxes { get; private set; }
+    [field: SerializeField] public int AttackIndex { get; private set; }
+    [field: SerializeField] public int CurrentAttackIndex { get; set; }
+
 
     [field: Header("TakeDown Animations")]
     [field: SerializeField] public TakeDowns[] TakeDowns { get; private set; }
-    [field: SerializeField] public GameObject Player { get; private set; }
+    [field: SerializeField] public Counters Counters { get; private set; }
+    [field: SerializeField] public GameObject Player { get; set; }
 
     [field: SerializeField] public float PlayerDectionRange { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public bool KnockDown { get; set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
+    [field: SerializeField] public float StrafeMovementSpeed { get; private set; }
 
     [SerializeField] public float LaunchForce;
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
@@ -34,7 +45,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public bool CanHit { get; set; }
     [field: SerializeField] public bool wallSplat { get; set; }
 
-    [field: SerializeField] Coroutine moveToPoint;
+
 
     [Tooltip("Idle Timer to trigger random idle animation")]
     [MinMaxRangeSlider(0, 100)]
@@ -98,6 +109,9 @@ public class EnemyStateMachine : StateMachine
             }
             else
             {
+                //if (hitStop == null)
+                //    hitStop = StartCoroutine(HitStopRoutine(hitStopTime));
+
                 SwitchState(new EnemyImpactState(this));
                 return;
             }
@@ -111,10 +125,21 @@ public class EnemyStateMachine : StateMachine
 
     }
 
+
+
+    public void CurrentState()
+    {
+        Debug.Log(currentState);
+    }
+
     public void SetLaunchForce(int force)
     {
         LaunchForce = force;
     }
+
+
+
+
 
 
 

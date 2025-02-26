@@ -860,7 +860,7 @@ ModelImporter:
     second: FX_Punch_R_Mesh
   - first:
       74: 7400000
-    second: Take 001
+    second: Frank_RPG_Fighter_4Way_Walk_B
   - first:
       95: 9500000
     second: //RootNode
@@ -940,18 +940,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 2.715927 mm\n\t'thigh_r' : position error = 1.503920 mm\n\t'calf_r'
-      : position error = 1.130430 mm\n\t'hand_l' : position error = 3.405735 mm\n\t'middle_02_l'
-      : position error = 1.562885 mm\n\t'middle_03_l' : position error = 1.134398
-      mm\n\t'ring_02_l' : position error = 1.745706 mm\n\t'ring_03_l' : position
-      error = 1.155088 mm\n\t'pinky_02_l' : position error = 1.066724 mm\n\t'lowerarm_r'
-      : position error = 1.929135 mm\n\t'hand_r' : position error = 2.201294 mm\n\t'middle_02_r'
-      : position error = 1.561043 mm\n\t'middle_03_r' : position error = 1.131943
-      mm\n\t'ring_02_r' : position error = 1.744242 mm\n\t'ring_03_r' : position
-      error = 1.156455 mm\n\t'pinky_02_r' : position error = 1.064624 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -976,7 +964,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Frank_RPG_Fighter_4Way_Walk_B
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
@@ -987,7 +975,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

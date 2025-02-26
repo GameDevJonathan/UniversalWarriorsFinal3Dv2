@@ -21,6 +21,9 @@ public class Health : MonoBehaviour
     [SerializeField] private Image stunBar;
     [SerializeField] private EnemyStateMachine EnemyStateMachine;
     [SerializeField] private LayerMask layerMask;
+    [field: SerializeField] public Coroutine hitStop;
+    public float hitStopTime;
+
 
     public event Action OnTakeDamage;
 
@@ -45,9 +48,9 @@ public class Health : MonoBehaviour
     private void Update()
     {
         if (EnemyStateMachine)
-            Debug.Log("Grounded " + EnemyStateMachine.CharacterController.isGrounded);
+            //Debug.Log("Grounded " + EnemyStateMachine.CharacterController.isGrounded);
 
-        stunValue = Mathf.Clamp(stunValue, 0f, 100f);
+            stunValue = Mathf.Clamp(stunValue, 0f, 100f);
         if (stunBar)
             stunBar.fillAmount = stunValue / 100;
 
@@ -104,6 +107,7 @@ public class Health : MonoBehaviour
 
     IEnumerator StunDecrease()
     {
+
         while (stunValue > 0f)
         {
             stunValue -= Time.deltaTime * stunDecreaseSpeed;
@@ -124,12 +128,12 @@ public class Health : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+        Debug.Log("health component: " + collision.gameObject.name);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log("Object layer " + hit.gameObject.layer);
+        //Debug.Log("Object layer " + hit.gameObject.layer);
         int layer = LayerMask.NameToLayer("Wall");
         if (!EnemyStateMachine) return;
         if (EnemyStateMachine.CharacterController.isGrounded) return;
@@ -143,6 +147,17 @@ public class Health : MonoBehaviour
             return;
 
         }
+    }
+
+    public void CallHitStop() => hitStop = StartCoroutine(HitStopRoutine(hitStopTime));
+
+    public IEnumerator HitStopRoutine(float time)
+    {
+        Debug.Log("Called Routine");
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1f;
+        hitStop = null;
     }
 
 

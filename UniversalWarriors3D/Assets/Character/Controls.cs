@@ -67,7 +67,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Grab"",
                     ""type"": ""Button"",
                     ""id"": ""76dc2962-2464-42ad-877d-129d414c1561"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -139,7 +139,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""3437edc6-e829-42a1-a4ac-5fb939597556"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -339,7 +339,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""435b873a-61ec-4c23-9255-409189039756"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -548,7 +548,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ControlerBeam"",
                     ""id"": ""c7c7e1e4-7401-4ac0-8527-2368b82051a9"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""ButtonWithOneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -557,9 +557,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
+                    ""name"": ""Modifier"",
                     ""id"": ""2182a0f8-e8a8-400d-8d26-dd393e8fadea"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -568,9 +568,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
+                    ""name"": ""Button"",
                     ""id"": ""a818720e-904c-4b01-9d6e-8c7c5ff5f5d9"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HitBoxData : MonoBehaviour
@@ -17,11 +14,11 @@ public class HitBoxData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attack = playerStateMachine.SetAttackIndex();
-        if (col.enabled && col != null)
-        {
-            
-        }
-        
+        //attack = playerStateMachine.SetAttackIndex();
+        //if (col.enabled && col != null)
+        //{
+
+        //}
+
     }
 }

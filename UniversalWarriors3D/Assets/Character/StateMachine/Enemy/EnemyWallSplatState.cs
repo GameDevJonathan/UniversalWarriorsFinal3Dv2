@@ -7,6 +7,10 @@ public class EnemyWallSplatState : EnemyBaseState
     private const float crossFadeTime = 0.1f;
     public EnemyWallSplatState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
+        if (stateMachine.Animator.applyRootMotion == false)
+        {
+            stateMachine.Animator.applyRootMotion = true;
+        }
     }
 
     public override void Enter()

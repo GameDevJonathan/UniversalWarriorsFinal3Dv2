@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 
@@ -7,30 +8,31 @@ public class Grounded : PlayerBaseState
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("Movement");
     private readonly int EquipHash = Animator.StringToHash("Equip");
     private readonly int UnEquipHash = Animator.StringToHash("UnEquip");
-    public float AnimatorDampTime = 0.05f;
+    public float AnimatorDampTime = 0.01f;
     private float freeLookValue;
     private float freeLookMoveSpeed;
     private float equipTime;
     private float _time = 2f;
     private float dropHeight;
     private bool shouldFade;
+    private bool skills => stateMachine.InputReader.Skills;
     Vector3 movement;
 
-    private const float CrossFadeDuration = 0.2f;
+    private const float CrossFadeDuration = 0.1f;
     private bool grounded => stateMachine.WallRun.CheckForGround();
-    
+
     public bool isOnLedge { get; set; }
     ObstacleHitData1 hitData;
 
 
 
 
-    public Grounded(PlayerStateMachine stateMachine, bool shouldFade = false) : base(stateMachine)
+    public Grounded(PlayerStateMachine stateMachine, bool shouldFade = true) : base(stateMachine)
     {
         this.freeLookMoveSpeed = stateMachine.FreeLookMovementSpeed;
         this.shouldFade = shouldFade;
         this.equipTime = (stateMachine.InputReader.FightingStance) ? 1 : 0;
-        
+
     }
 
     public override void Enter()
@@ -48,6 +50,7 @@ public class Grounded : PlayerBaseState
         }
 
 
+
         if (!shouldFade)
             stateMachine.Animator.Play(FreeLookBlendTreeHash);
         else
@@ -59,27 +62,32 @@ public class Grounded : PlayerBaseState
         stateMachine.InputReader.JumpEvent += OnJump;
         stateMachine.InputReader.SpecialBeamEvent += InputReader_SpecialBeamEvent;
         stateMachine.InputReader.TargetEvent += OnTarget;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
     }
 
     public override void Tick(float deltaTime)
     {
-        stateMachine.EquipTime = Mathf.Clamp(stateMachine.EquipTime,0, stateMachine.EquipTime);
+
+        Debug.Log("Skills: " + skills);
+        stateMachine.EquipTime = Mathf.Clamp(stateMachine.EquipTime, 0, stateMachine.EquipTime);
+
+        //Quality of life for whether Player is in fighting stance or not.
         switch (stateMachine.InputReader.FightingStance)
         {
             case true:
-                if(stateMachine.EquipTime > 0f)
+                if (stateMachine.EquipTime > 0f)
                 {
                     stateMachine.EquipTime -= deltaTime;
                 }
 
-                if(stateMachine.EquipTime == 0f)
+                if (stateMachine.EquipTime == 0f)
                 {
-                    equipTime = Mathf.Clamp(equipTime,0,equipTime);
+                    equipTime = Mathf.Clamp(equipTime, 0, equipTime);
                     equipTime -= _time * deltaTime;
                     //Debug.Log($"equipTime: {equipTime}");
-                    stateMachine.Animator.SetFloat("isEquiped", equipTime);                    
+                    stateMachine.Animator.SetFloat("isEquiped", equipTime);
                 }
-                
+
                 if (equipTime <= 0)
                 {
                     equipTime = 0f;
@@ -92,9 +100,21 @@ public class Grounded : PlayerBaseState
             case false:
                 break;
         }
-       
+
+        //Special Moves
+        if (skills)
+        {
+            if (stateMachine.InputReader.AttackButtonPressed)
+            {
+                stateMachine.SwitchState(new PlayerSpecialMoveState(stateMachine, 0));
+                return;
+            }
+        }
+
 
         //Debug.Log($"WallRunCheck for ground function {grounded}");
+
+        //Parkour Functions 
         hitData = stateMachine.EnviromentScaner.ObstacleCheck();
 
         if (grounded)
@@ -119,10 +139,12 @@ public class Grounded : PlayerBaseState
 
                 }
             }
-           
+
         }
 
-        if(stateMachine.CanTakeDown && stateMachine.InputReader.TakeDownButton)
+
+        //TakeDowns
+        if (stateMachine.CanTakeDown && stateMachine.InputReader.TakeDownButton)
         {
             //Todo switch to takedown state
             Debug.Log("Grounded state:: switch to take down state");
@@ -130,14 +152,9 @@ public class Grounded : PlayerBaseState
             Debug.Log($"TakeDown Index: {stateMachine.takeDownIndex}");
             FaceTakeDownTarget();
 
-            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine,stateMachine.takeDownIndex));
+            stateMachine.SwitchState(new PlayerTakeDownState(stateMachine, stateMachine.takeDownIndex));
             return;
-
         }
-
-       
-
-
 
         #region Inputs
         if (!stateMachine.InputReader.equipingWeapon)
@@ -177,11 +194,11 @@ public class Grounded : PlayerBaseState
                 //Debug.Log("Grounded State:: input reader value: " + stateMachine.InputReader.Modified);
             }
 
-            if (stateMachine.InputReader.GrabButtonPressed)
-            {
-                Debug.Log("Grounded State:: input reader value:  pressed" );
+            //if (stateMachine.InputReader.GrabButtonPressed)
+            //{
+            //    Debug.Log("Grounded State:: input reader value:  pressed");
 
-            }
+            //}
 
         }
         #endregion
@@ -202,27 +219,15 @@ public class Grounded : PlayerBaseState
         }
         Move(movement * freeLookMoveSpeed, deltaTime);
 
-        //if (GetNormalizedTime(stateMachine.Animator, "Stance") > 1f)
-        //{
-        //    stateMachine.Animator.SetFloat("isEquiped",
-        //        (stateMachine.InputReader.FightingStance) ? 1 : 0);
-        //    stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash,CrossFadeDuration);
-        //}
 
-        //if (GetNormalizedTime(stateMachine.Animator, "Stance") < 1f && stateMachine.InputReader.MovementValue.magnitude > 0f)
-        //{
-        //    stateMachine.Animator.SetFloat("isEquiped",
-        //        (stateMachine.InputReader.FightingStance) ? 1 : 0);
-        //    stateMachine.Animator.Play(FreeLookBlendTreeHash);
-        //}
 
-       
+
 
 
         //Debug.Log($"Grounded State::{grounded}");
         if (!grounded)
         {
-            
+
             Debug.Log("Not Touching Ground");
             stateMachine.SwitchState(new PlayerFallState(stateMachine));
             return;
@@ -251,6 +256,12 @@ public class Grounded : PlayerBaseState
             freeLookValue = 1;
             freeLookMoveSpeed = 3f;
         }
+        else if (magnitude > .6f && stateMachine.InputReader.Modified)
+        {
+            freeLookValue = 2f;
+            freeLookMoveSpeed = 15f;
+            Debug.Log("Should Be Running");
+        }
         else if (magnitude > .6f)
         {
             freeLookValue = 1.5f;
@@ -261,8 +272,9 @@ public class Grounded : PlayerBaseState
             freeLookValue = 0;
         }
 
+
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, freeLookValue, AnimatorDampTime, deltaTime);
-        
+
 
 
         FaceMovement(movement, deltaTime);
@@ -288,13 +300,32 @@ public class Grounded : PlayerBaseState
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.MeleeEvent -= OnMelee;
         stateMachine.InputReader.SpecialBeamEvent -= InputReader_SpecialBeamEvent;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
 
+
+    }
+
+    public void OnDodge()
+    {
+        float x = stateMachine.InputReader.MovementValue.x;
+        float y = stateMachine.InputReader.MovementValue.y;
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, Angle(x, y)));
+        return;
     }
 
     public void OnMelee()
     {
+        if (skills) return;
         stateMachine.EquipTime = 10f;
         stateMachine.Targeter.SelectClosestTarget();
+
+        if (stateMachine.InputReader.Modified && stateMachine.InputReader.MovementValue.magnitude >= .9f)
+        {
+            //Debug.Log(index);
+            stateMachine.SwitchState(new AttackingState(stateMachine, stateMachine.MoveIndex("JumpKick")));
+            return;
+        }
+
         stateMachine.SwitchState(new AttackingState(stateMachine, 0));
         return;
     }

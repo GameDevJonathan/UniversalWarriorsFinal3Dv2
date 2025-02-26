@@ -166,7 +166,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     private void Update()
     {
-        Time.timeScale = TimeScale;
+        //Time.timeScale = TimeScale;
         _InitialCameraYaw = CinemachineInitPos.transform.rotation.eulerAngles.y;
         _InitialCameraPitch = CinemachineInitPos.transform.rotation.eulerAngles.x;
 
@@ -254,7 +254,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         //Debug.Log($"on/off: {mat.GetInt(ShaderBoolRef)}");
 
-        
+
     }
 
     public void OnBlock(InputAction.CallbackContext context)
@@ -350,7 +350,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnSkills(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             Skills = true;
         }
@@ -359,8 +359,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         {
             Skills = false;
         }
-        Debug.Log($"Skills context: {context}");
-        Debug.Log("Skills: " + Modified);
+        //Debug.Log($"Skills context: {context}");
+        //Debug.Log("On Skills: " + Modified);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -426,6 +426,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnTakeDown(InputAction.CallbackContext context)
     {
-        
+
     }
+
 }

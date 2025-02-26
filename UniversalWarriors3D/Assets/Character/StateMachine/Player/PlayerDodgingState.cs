@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerDodgingState : PlayerBaseState
 {
     private float angle;
-    private Vector2 dodgeInput;
     private readonly int DodgeForwardHash = Animator.StringToHash("DodgeForward");
     private readonly int DodgeRightHash = Animator.StringToHash("DodgeRight");
     private readonly int DodgeLeftHash = Animator.StringToHash("DodgeLeft");
@@ -11,20 +10,18 @@ public class PlayerDodgingState : PlayerBaseState
     private const float CrossFadeDuration = 0.1f;
     bool stillTargeting;
 
-    public PlayerDodgingState(PlayerStateMachine stateMachine, Vector2 dodgeInput, float angle, bool stillTargeting = false) : base(stateMachine)
+    public PlayerDodgingState(PlayerStateMachine stateMachine, float angle, bool stillTargeting = false) : base(stateMachine)
     {
         this.angle = angle;
-        this.dodgeInput = dodgeInput;
+
         this.stillTargeting = stillTargeting;
-
-
     }
 
     public override void Enter()
     {
         Debug.Log(angle);
 
-        if(dodgeInput == Vector2.zero && angle == 0)
+        if (angle == 0)
         {
             setAnimProperties(3);
             return;
@@ -52,7 +49,7 @@ public class PlayerDodgingState : PlayerBaseState
         }
         else
 
-        if ( angle == 0 || (angle > 225 && angle < 315)) // left quadrent
+        if (angle == 0 || (angle > 225 && angle < 315)) // left quadrent
         {
             setAnimProperties(4);// dodge left
         }
@@ -82,7 +79,10 @@ public class PlayerDodgingState : PlayerBaseState
     {
         if (GetNormalizedTime(stateMachine.Animator, "Dodge") > 1)
         {
-            stateMachine.SwitchState(new PlayerTargetingState(stateMachine, stillTargeting));
+            if (stateMachine.InputReader.Targeting)
+                stateMachine.SwitchState(new PlayerTargetingState(stateMachine, stillTargeting));
+            else
+                stateMachine.SwitchState(new Grounded(stateMachine));
             return;
         }
     }
@@ -116,7 +116,7 @@ public class PlayerDodgingState : PlayerBaseState
             case 4: //Left
                 stateMachine.Animator.CrossFadeInFixedTime(DodgeLeftHash, CrossFadeDuration);
                 break;
-        }        
+        }
         stateMachine.Animator.applyRootMotion = true;
     }
 }
